@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Rename the DZ-MSD wire magic (e.g. NAJDA1 -> SLK1) everywhere, recomputing every hard-coded CRC.
+// Rename the DZ-MSD wire magic (e.g. SLK1 -> SELK1) everywhere, recomputing every hard-coded CRC.
 //
 //   node scripts/rename-magic.mjs SLK1            # DRY RUN: lists what would change
 //   node scripts/rename-magic.mjs SLK1 --write    # apply, regenerate golden vectors, run `pnpm check`

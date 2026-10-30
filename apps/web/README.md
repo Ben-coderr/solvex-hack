@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# web — Sellekni dispatcher, hospital and witness console
 
-## Getting Started
+Next.js 16 (App Router, Turbopack) on the local Supabase stack. **Synthetic data only.**
+Start it from the repo root with `./sellekni up` (see the root `README.md`); project rules are in `DEVELOPMENT.md`.
 
-First, run the development server:
+## Layout
+
+| Path | What lives there |
+|---|---|
+| `src/app/` | Pages: `/` dispatcher map, `/hospital`, `/audit`, `/w/[id]` public witness page (works without JS), `/demo` + `/phones` (DEMO_MODE only), `/styleguide` |
+| `src/app/api/` | Route handlers: ingest (`incidents`, `sms/inbound`), witness, hospital status, pre-alert ACK, demo, health |
+| `src/server/domain/` | Pure logic, no I/O (unit tested): merge rule, links, witness form, status SMS, rate limits |
+| `src/server/services/` | I/O: Postgres (`postgres.js`), ingest pipeline, SMS outbox, demo scenarios |
+| `src/components/` | UI by area: `dispatch/`, `hospital/`, `witness/`, `demo/`, `ui/` |
+| `src/i18n/` | ar / fr / en strings; `src/brand.ts` holds every brand string |
+| `src/proxy.ts` | Auth gate and locale cookie (`?lang=`) |
+| `tests/e2e/` | Playwright: hero flow, P6 witness / demo |
+| `scripts/` | Map worker copy, design QA, `open-demo.mts` (used by `./sellekni open`) |
+
+## Commands (from the repo root)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm --filter web test        # unit tests (vitest)
+pnpm --filter web test:db     # tests against the local database
+pnpm --filter web lint
+pnpm --filter web typecheck
+./sellekni test               # everything, including the end-to-end hero flow
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+End-to-end tests run against a production build (`NEXT_DIST_DIR=.next-e2e`), not `next dev`: see `DEVELOPMENT.md`.
+After renaming CSS variables or a workspace package, delete `apps/web/.next` before building.

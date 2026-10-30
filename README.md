@@ -1,4 +1,4 @@
-# SELLEKNI (نجدة) — run it and test it locally
+# Sellekni (سلّكني) — run it and test it locally
 
 Prototype for SolveX 3.0 · Problem 1. **Synthetic data only.** Decision support, not a dispatch system.
 Project rules and architecture: `DEVELOPMENT.md` and `docs/`.
@@ -18,7 +18,7 @@ That's it. `./sellekni up` prints the URL, the accounts and the password when it
 | `./sellekni up --prod` | Production build + `next start`. Faster pages; use it for rehearsals and the stage. |
 | `./sellekni up --mobile` | Also starts Metro for the phone app (development build, **not** Expo Go). |
 | `./sellekni up --replace` | Another `next dev` for this app is already running somewhere: stop it, start fresh. |
-| `./sellekni open [--reset] [--locale=ar] [--no-stage]` | Signed-in Chrome windows: dispatcher, hospital CHU-A, and (DEMO_MODE) the stage window with `/demo` + `/phones`. `--reset` empties the demo data first. (`./najda` still forwards here.) |
+| `./sellekni open [--reset] [--locale=ar] [--no-stage]` | Signed-in Chrome windows: dispatcher, hospital CHU-A, and (DEMO_MODE) the stage window with `/demo` + `/phones`. `--reset` empties the demo data first. |
 | `./sellekni login` | Prints the accounts and the password again. |
 | `./sellekni status` | Shows what's running and on which port. |
 | `./sellekni reset` | Empties incidents, pre-alerts and the audit log (hospitals stay). |

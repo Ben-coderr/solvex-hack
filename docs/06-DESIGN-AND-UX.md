@@ -154,7 +154,7 @@ One module per app (`src/brand.ts`) holds these; no brand string literal anywher
 |---|---|---|
 | Name, Latin | **Sellekni** | team decision 2026-10-30 |
 | Name, Arabic | **سلّكني** | the team says it means “help me” in Algerian Darija; have a native speaker confirm the spelling and the diacritic |
-| Code name | `sellekni` | `@sellekni/*`, `x-sellekni-key`, env prefixes, file names (the old codename NAJDA was retired at 24h-H5) |
+| Code name | `sellekni` | `@sellekni/*`, `x-sellekni-key`, env prefixes, file names (one name everywhere since 24h-H5) |
 | Wire magic | `SLK1` | changes only with `scripts/rename-magic.mjs` (CRC covers it), docs/12 §2.2 |
 | SMS verbs | `SLK ACK` · `SLK STATUS CHU-A SAT` | one constant; hospital pre-alert text starts `SELLEKNI PRE-ALERTE` (docs/04 §6) |
 | Severity wording | UI: “estimated severity” · fr “gravité estimée” · ar “الخطورة المقدّرة” | `NSI` is an internal acronym and never appears in the UI; Arabic wording to be reviewed |

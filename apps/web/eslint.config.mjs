@@ -13,7 +13,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // vendored MapLibre worker, copied from node_modules by scripts/copy-map-worker.mjs
+    "public/maplibre-gl-worker.mjs",
   ]),
+  {
+    // `_name` marks a value destructured away on purpose
+    rules: { "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }] },
+  },
 ]);
 
 export default eslintConfig;

@@ -1,14 +1,14 @@
 # 12 — Decisions: rebrand to Sellekni, the OBD add-on, the IoT box (2026-10-30)
 
 > **Read this first — what this memo is and is not.**
-> I could **not** open the two GitHub repos (`3imss/obd-connected-pack`, `ouldmiloudzakaria/najda` → `docs/solvex`): GitHub is not linked to the session that produced this pack, and nothing could be fetched from either repo (they may be private). So **§7 is a review protocol, not findings.** Everything else here is evidence-backed (sources in §9) or explicitly marked *assumption*. Where I reason about "your OBD pack" or "your IoT docs", I am reasoning from the **old plan's known errors** (docs/11 §A) and from first principles, and I say so.
+> I could **not** open the two GitHub repos (`3imss/obd-connected-pack`, the team's earlier repo → `docs/solvex`): GitHub is not linked to the session that produced this pack, and nothing could be fetched from either repo (they may be private). So **§7 is a review protocol, not findings.** Everything else here is evidence-backed (sources in §9) or explicitly marked *assumption*. Where I reason about "your OBD pack" or "your IoT docs", I am reasoning from the **old plan's known errors** (docs/11 §A) and from first principles, and I say so.
 
 ## 1. Decisions at a glance
 
 | # | Decision | Why (short) | Cost |
 |---|---|---|---|
-| 1 | Brand = **Sellekni**. Keep `NAJDA` / `@najda/*` as the **internal codename** (code, env, repo) | renaming internals buys nothing and risks the tested contract | 0 |
-| 2 | Change the **wire magic** `NAJDA1` → `SLK1` **now**, with `scripts/rename-magic.mjs` | the packet is on the projector and on the gateway phone's screen; the cost grows after P5 fixtures and the pitch deck exist | ~15 min |
+| 1 | Brand = **Sellekni**. Keep the old name as the **internal codename** (code, env, repo) — *superseded at 24h-H5: one name everywhere* | renaming internals buys nothing and risks the tested contract | 0 |
+| 2 | Change the **wire magic** (original 6 chars) → `SLK1` **now**, with `scripts/rename-magic.mjs` | the packet is on the projector and on the gateway phone's screen; the cost grows after P5 fixtures and the pitch deck exist | ~15 min |
 | 3 | Decide the **Android package id / URL scheme** before building APKs for the phones | changing it later = a different app (reinstall, permissions, battery whitelist) | 10 min |
 | 4 | Fix the **logo** before it ships (§2.3): remove the red cross, separate icon-mark vs wordmark, mono variant, vector | emblem misuse risk; red = triage red; 32 px legibility | 2–3 h (designer) |
 | 5 | **New finding (affects P4 today):** phone accelerometers saturate at ±8–16 g → make the detector **range-aware**, clip replay traces, never show "38 g measured by the phone" | §3 | 1–2 h |
@@ -24,18 +24,18 @@
 
 | Place | Today | Action | When |
 |---|---|---|---|
-| UI strings, app display name, splash | NAJDA / نجدة | one `brand` constants module + i18n keys (no literals in components); `app.json` `name` | now |
-| Arabic wordmark | نجدة | **needs the intended Arabic spelling** (see questions in the reply) — RTL screens need it | now |
-| Android `package`, iOS `bundleIdentifier`, URL `scheme` | from P0 scaffolding (`…najda…`) | set e.g. `com.sellekni.app` / `sellekni` **before** the first APK for the phones | now |
-| **Wire magic** | `NAJDA1` | `node scripts/rename-magic.mjs SLK1 --write` (§2.2) | before P5 fixtures |
-| Pre-alert SMS template | `NAJDA PRE-ALERTE …` | `SELLEKNI PRE-ALERTE …` (GSM-7 safe, no accents) — build it from the brand constant | with P3/P6 |
-| ACK / status SMS | `NAJDA ACK`, `NJ STATUS CHU-A SAT` | pick short, brand-consistent verbs (e.g. `SLK ACK`, `SLK STATUS …`) — one constant | with P5/P6 |
-| `x-najda-key`, env var names, `@najda/*`, repo name, skill names | internal | **keep** (codename); rename later if the product continues | — |
-| Pitch deck, README, store listing | NAJDA | replace; keep "(formerly NAJDA)" in the repo README only | P8 |
+| UI strings, app display name, splash | old name | one `brand` constants module + i18n keys (no literals in components); `app.json` `name` | now |
+| Arabic wordmark | old wordmark | **needs the intended Arabic spelling** (see questions in the reply) — RTL screens need it | now |
+| Android `package`, iOS `bundleIdentifier`, URL `scheme` | from P0 scaffolding (old codename) | set e.g. `com.sellekni.app` / `sellekni` **before** the first APK for the phones | now |
+| **Wire magic** | original 6-char magic | `node scripts/rename-magic.mjs SLK1 --write` (§2.2) | before P5 fixtures |
+| Pre-alert SMS template | old-name `PRE-ALERTE …` | `SELLEKNI PRE-ALERTE …` (GSM-7 safe, no accents) — build it from the brand constant | with P3/P6 |
+| ACK / status SMS | old-name `ACK`, `NJ STATUS CHU-A SAT` | pick short, brand-consistent verbs (e.g. `SLK ACK`, `SLK STATUS …`) — one constant | with P5/P6 |
+| API-key header, env var names, package scope, repo name, skill names | internal | **keep** (codename); rename later if the product continues — *done at 24h-H5* | — |
+| Pitch deck, README, store listing | old name | replace | P8 |
 | Design tokens | brand blue `#2B62F0` | see §2.3 finding 2 | after the logo decision |
 
 ### 2.2 The wire-magic rename (tested)
-The CRC-8 covers the magic, so every literal full packet in tests, docs, fixtures and app code becomes invalid when the magic changes. Replacing text by hand breaks the contract silently. `scripts/rename-magic.mjs` follows the `najda-protocol` procedure automatically.
+The CRC-8 covers the magic, so every literal full packet in tests, docs, fixtures and app code becomes invalid when the magic changes. Replacing text by hand breaks the contract silently. `scripts/rename-magic.mjs` follows the `sellekni-protocol` procedure automatically.
 
 ```bash
 git switch -c chore/rename-magic          # clean branch first
@@ -45,23 +45,23 @@ git diff                                  # review, especially test-vectors/ and
 ```
 
 What it does: rewrites the magic in `dzmsd.ts`, `crosscheck.py`, `generate-vectors.ts`, tests and any text file in the repo (apps included); **recomputes the CRC of every literal packet**; moves the quoted lengths (`93 chars`, `(67 spare)`, `WIRE1.length`) by the length delta; skips lines containing `keep-magic` (historical quotes); regenerates the golden vectors; runs `pnpm check`.
-**Tested here** on a copy of the pack: `NAJDA1 → SLK1` and then `SLK1 → SELK1`; both ended with 67/67 shared tests, 6/6 token tests, 302 valid + 134 invalid vectors, 405 NSI cases and the independent Python decoder agreeing.
+**Tested here** on a copy of the pack: original magic → `SLK1` and then `SLK1 → SELK1`; both ended with 67/67 shared tests, 6/6 token tests, 302 valid + 134 invalid vectors, 405 NSI cases and the independent Python decoder agreeing.
 **Limits:** it only sees text files; a packet literal split across lines or built by string concatenation will not be recomputed (the final `pnpm check` and your app tests will fail loudly, which is the point). Run it on a clean branch; do not run it after the venue fixtures are recorded without re-recording them.
 
 | Magic | Typical auto packet | Worst case | Verdict |
 |---|---|---|---|
-| `NAJDA1` (today) | 93 | 115 | works; brand mismatch on screen |
+| original 6-char magic | 93 | 115 | works; brand mismatch on screen |
 | **`SLK1`** | **91** | **113** | **recommended: short, legible, GSM-7 safe** |
 | `SELK1` | 92 | 114 | ok |
 | `SELLEKNI1` | 96 | 118 | most on-brand; costs +3 chars (limit 160, so still fine) |
 
-*(Numbers for `NAJDA1`/`SLK1`/`SELK1` come from the tested runs; `SELLEKNI1` is computed as +3 over `NAJDA1`.)*
+*(Numbers for the original magic, `SLK1` and `SELK1` come from the tested runs; `SELLEKNI1` is computed as +3 over the original.)*
 
 ### 2.3 Logo review (measured on the image you sent)
 
 | # | Finding | Evidence | Fix |
 |---|---|---|---|
-| 1 | 🔴 **Red cross on the ambulance** | ICRC: use of the emblem *or imitations* "for commercial or pseudo-medical purposes is prohibited"; states must repress misuse. A red cross on a white ground is the emblem. Algeria's society uses the Red Crescent. Our own rule (`najda-design`) bans it. *I'm not a lawyer.* | Remove the cross. Neutral options: plain pulse line, a non-red "+" only if a lawyer says so, or drop the ambulance |
+| 1 | 🔴 **Red cross on the ambulance** | ICRC: use of the emblem *or imitations* "for commercial or pseudo-medical purposes is prohibited"; states must repress misuse. A red cross on a white ground is the emblem. Algeria's society uses the Red Crescent. Our own rule (`sellekni-design`) bans it. *I'm not a lawyer.* | Remove the cross. Neutral options: plain pulse line, a non-red "+" only if a lawyer says so, or drop the ambulance |
 | 2 | 🔴 **Logo red ≈ triage red** | Sampled red: `#F41F3D / #FB2E45 / #F22F43`. Our reserved triage R is `#E5484D`. RGB distance 30–47 (out of ~441): visually the same. The logo's *pin* is also the shape of our map markers | Product UI uses a **mono (white/ink) logo**; full-colour only on splash, store icon, pitch. Keep `brand` out of red. Never put the red logo next to the triage legend |
 | 3 | 🟠 White text on the logo red fails AA for normal text | contrast 3.76–4.11:1 (needs 4.5:1; large text 3:1) | no red buttons with white labels; red on black is fine (5.1–5.6:1) |
 | 4 | 🟠 **Illegible at small sizes** | I downscaled to 64 and 32 px: the road and ambulance merge into a blob; only the pin survives; the wordmark is unreadable at ≤64 px | Separate **icon mark** (pin + S-road, flat, 2 colours, no speed lines/glow) from the **wordmark lockup**. Min sizes: mark 24 px, lockup 96 px wide |
@@ -163,7 +163,7 @@ Say: "phones are our sensor today and they saturate at about ±16 g; a plug-in b
 ```
 
 - **Today (48 h):** phone + witness + manual + dispatcher + hospital + crew. This is already a complete, defensible system.
-- **Roadmap:** a `D` (device) source letter and "G may exceed phone range" — a **protocol v1.1** change, to be made only through the `najda-protocol` procedure (update docs/05 → `crosscheck.py` → `pnpm vectors` → review → `pnpm check`). Not applied now.
+- **Roadmap:** a `D` (device) source letter and "G may exceed phone range" — a **protocol v1.1** change, to be made only through the `sellekni-protocol` procedure (update docs/05 → `crosscheck.py` → `pnpm vectors` → review → `pnpm check`). Not applied now.
 - **Why this beats both add-ons:** it keeps the demo focused, turns hardware into an *extension of the contract you already tested*, and answers the jury question "what about cars without phones / drivers who don't install apps?" with a concrete, honest path.
 
 ---
@@ -181,7 +181,7 @@ Say: "phones are our sensor today and they saturate at about ±16 g; a plug-in b
 6. Does it define its **own packet**? Reconcile with DZ-MSD (the old plan already had two incompatible formats).
 7. Licence, tests, does it build?
 
-**`ouldmiloudzakaria/najda` → `docs/solvex` — questions to answer**
+**The team's earlier repo → `docs/solvex` — questions to answer**
 1. Diff by topic against docs 03–11: what is *better* there (ideas worth porting) vs *wrong* (docs/11 §A list: which of the 20 errors still exist?).
 2. IoT: bill of materials, accelerometer range (±16 g parts clip real crashes), modem generation (2G?), power, SMS vs HTTP, cost, homologation, who builds it.
 3. Unsourced numbers ("18 min", "<30% GPS", "72% 4G", …) still present?
@@ -201,7 +201,7 @@ Say: "phones are our sensor today and they saturate at about ±16 g; a plug-in b
 5. **Send me the two repos** (§7 options) and I produce the comparison and the final go/no-go on the hardware in about an hour of work.
 6. **Logo fixes in parallel (D)** — vector mark, mono, no cross.
 
-**Do not do now:** OBD integration, hardware purchase, new protocol letters, renaming `@najda/*`.
+**Do not do now:** OBD integration, hardware purchase, new protocol letters, renaming the package scope.
 
 ## 9. Sources (checked 2026-10-30)
 - Algeria 2G/3G shutdown by 2029 — [algerie-eco.com](https://algerie-eco.com/2026/04/09/algerie-la-desactivation-des-reseaux-2g-et-3g-prevue-en-2029/)

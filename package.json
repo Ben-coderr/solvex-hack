@@ -8,6 +8,7 @@
   "scripts": {
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "pnpm -r --if-present lint",
     "vectors": "pnpm --filter @sellekni/shared vectors",
     "crosscheck": "python3 -I packages/shared/scripts/crosscheck.py",
     "tokens": "pnpm --filter @sellekni/tokens build",

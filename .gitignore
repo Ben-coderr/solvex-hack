@@ -29,6 +29,3 @@ data/captures/
 
 # Tooling and caches
 .playwright-mcp/
-.claude/
-CLAUDE*.md
-najda-pack-last/

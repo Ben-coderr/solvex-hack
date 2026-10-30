@@ -18,7 +18,7 @@ test('extension chars cost 2 septets', () => {
 });
 
 test('Arabic and most accents force UCS-2 (not GSM-7)', () => {
-  assert.equal(gsm7Length('نجدة'), null);
+  assert.equal(gsm7Length('سلّكني'), null);
   assert.equal(isGsm7('ç'), false); // lowercase c-cedilla is NOT in GSM-7 (only uppercase Ç)
   assert.equal(isGsm7('é'), true);
 });

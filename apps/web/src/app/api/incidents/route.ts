@@ -11,7 +11,7 @@ import { postgresStore } from '@/server/services/store-postgres';
 
 /** JSON channel from the app (docs/05 §2). Idempotent on the packet id + body. */
 export async function POST(req: NextRequest) {
-  // TRANSITION (24h-H5): APKs built before the rename send `x-najda-key`. Drop it once the new APK is verified on the phone.
+  // TRANSITION (24h-H5): APKs built before the rename send the old key header. Drop it once the new APK is verified on the phone.
   const key = req.headers.get('x-sellekni-key') ?? req.headers.get('x-najda-key');
   if (!sameSecret(key, env().INGEST_API_KEY)) return fail(401, 'missing or bad x-sellekni-key');
   const ip = clientIp(req);

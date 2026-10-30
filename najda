@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Renamed at 24h-H5: the runner is ./sellekni now. This shim forwards so old notes and muscle memory keep working.
-echo "note: ./najda was renamed to ./sellekni (forwarding)" >&2
-exec "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/sellekni" "$@"
