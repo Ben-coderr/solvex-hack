@@ -35,6 +35,12 @@ export const LIMITS = {
   smsWebhook: { limit: 120, windowMs: 60_000 },
   /** docs/05 §7: ≤ 3 auto alerts per hour per SMS sender (excess is still STORED, flagged, never dropped) */
   smsPerSender: { limit: 3, windowMs: 3_600_000 },
+  /** witness page POST per IP hash: a person reports once or twice, a script is stopped early */
+  witnessPerIp: { limit: 5, windowMs: 600_000 },
+  /** witness reports per incident: a busy road gives several witnesses, never dozens */
+  witnessPerIncident: { limit: 20, windowMs: 3_600_000 },
+  /** witness page views per IP hash (refreshes on a bad connection are normal) */
+  witnessPagePerIp: { limit: 60, windowMs: 60_000 },
   /** dispatcher API per user */
   dispatcher: { limit: 120, windowMs: 60_000 },
 } as const satisfies Record<string, Limit>;

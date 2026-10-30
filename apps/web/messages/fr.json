@@ -254,7 +254,15 @@
     "title": "Incident {id}",
     "packet": "Paquet reçu",
     "fullAudit": "Ouvrir le journal d'audit complet",
-    "tabsLabel": "Sections de l'incident"
+    "tabsLabel": "Sections de l'incident",
+    "witness": {
+      "title": "Lien témoin",
+      "show": "Afficher le QR pour un témoin",
+      "hide": "Masquer le QR",
+      "body": "Un témoin sur place le scanne, répond à 4 questions, et son signalement rejoint cet incident. La page n’affiche qu’une position à ~100 m près, aucune donnée sur les victimes.",
+      "loadError": "Le lien témoin n’a pas pu être créé.",
+      "qrLabel": "QR code de la page témoin pour l’incident {id}"
+    }
   },
   "override": {
     "titleBand": "Changer le niveau",
@@ -375,5 +383,73 @@
     "demo": {
       "reset": "Réinitialisation démo"
     }
+  },
+  "witnessPage": {
+    "title": "Signaler un accident",
+    "lead": "4 questions rapides. Vos réponses vont à la salle opérationnelle. Sans compte, sans nom.",
+    "call": "Cela ne remplace pas un appel : appelez le 14 (Protection civile).",
+    "callButton": "Appeler le 14",
+    "vehicles": "Véhicules",
+    "howMany": "Combien de véhicules ?",
+    "whichKinds": "Quels types ?",
+    "kind": {
+      "car": "Voiture",
+      "moto": "Moto",
+      "truck": "Camion",
+      "bus": "Bus",
+      "pedestrian": "Piéton"
+    },
+    "hurt": "Blessés",
+    "howManyHurt": "Combien de personnes blessées ?",
+    "none": "Aucune",
+    "plus": "{n}+",
+    "theyAre": "Quelqu’un…",
+    "state": {
+      "unresponsive": "Ne répond pas",
+      "breathing": "Respire mal",
+      "bleeding": "Saigne beaucoup"
+    },
+    "danger": "Danger",
+    "dangers": {
+      "trapped": "Quelqu’un est coincé",
+      "fire": "Feu ou fumée",
+      "child": "Un enfant est concerné"
+    },
+    "location": "Lieu",
+    "near": "L’accident a été signalé près de :",
+    "approx": "à 100 m près",
+    "map": "Voir sur une carte",
+    "here": "Je suis à cet endroit, ou je vois l’accident",
+    "send": "Envoyer le signalement",
+    "sending": "Envoi…",
+    "privacy": "Cette page n’affiche aucune information sur les blessés.",
+    "sent": {
+      "title": "Signalement envoyé. Merci.",
+      "body": "La salle opérationnelle a votre signalement avec la première alerte.",
+      "safety": "En attendant les secours",
+      "s1": "Protégez les lieux : feux de détresse, triangle, restez hors de la chaussée.",
+      "s2": "Ne déplacez pas un blessé, sauf en cas de feu ou d’autre danger immédiat.",
+      "s3": "N’enlevez pas le casque d’un motard.",
+      "s4": "Si quelqu’un ne respire plus ou si la situation change, rappelez le 14.",
+      "another": "Envoyer un autre signalement"
+    },
+    "invalid": {
+      "title": "Ce lien n’est pas valide",
+      "body": "Vérifiez que vous avez ouvert le lien complet. Si vous voyez un accident, appelez le 14."
+    },
+    "closed": {
+      "title": "Cet accident est déjà pris en charge",
+      "body": "Les secours ont clôturé ce signalement. Pour une nouvelle urgence, appelez le 14."
+    },
+    "error": {
+      "confirm_place": "Cochez la case pour confirmer que vous êtes à cet endroit.",
+      "invalid": "Il manque une réponse. Vérifiez le formulaire et renvoyez.",
+      "rate_limited": "Trop de signalements depuis cette connexion. Attendez quelques minutes, ou appelez le 14.",
+      "closed": "Cet accident est déjà pris en charge. Pour une nouvelle urgence, appelez le 14.",
+      "network": "Le signalement n’a pas pu être envoyé. Vérifiez votre connexion et réessayez, ou appelez le 14."
+    },
+    "offline": "Pas de connexion internet. Le signalement ne peut pas partir : appelez le 14.",
+    "slow": "Trop de requêtes depuis cette connexion. Attendez une minute puis rechargez, ou appelez le 14.",
+    "loading": "Chargement du formulaire…"
   }
 }

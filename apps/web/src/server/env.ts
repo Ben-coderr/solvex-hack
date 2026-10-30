@@ -15,6 +15,8 @@ const Env = z.object({
   SMSGATE_WEBHOOK_SECRET: z.string().min(16),
   /** dev only: write every SIGNED webhook (body + headers) here to record real fixtures (P5). Never in production. */
   SMSGATE_CAPTURE_DIR: z.string().optional().or(z.literal('')),
+  /** origin printed in witness links / QR codes when the phones reach this server by another name (LAN IP, tunnel) */
+  PUBLIC_BASE_URL: z.string().url().optional().or(z.literal('')),
   OSRM_URL: z.string().url().optional().or(z.literal('')),
   ORS_API_KEY: z.string().optional(),
   DEMO_MODE: z

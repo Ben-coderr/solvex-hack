@@ -193,3 +193,31 @@ describe('ingest — same id on two channels, server authority, atomicity', () =
     expect(s.state.outbox[0]!.body).toMatch(/^SELLEKNI RECU P3N8D \d{4}\./);
   });
 });
+
+describe('ingest — witness link (D10): pinned to the linked incident', () => {
+  const witness = (over: Partial<IncidentJson> = {}): InboundMessage => ({
+    kind: 'json', channel: 'witness', receivedAt: AT, senderHash: 'h-ip', target: 'K7Q2M',
+    body: {
+      v: 1, incident_id: 'W1TN5', source: 'witness', created_at: '2026-10-30T15:30:00+01:00', // 58 min later
+      location: { lat: 36.6, lon: 2.9 }, // ~14 km away
+      scene: { vehicles: 2, persons: 1, kinds: ['car'], flags: ['trapped'] }, ...over,
+    },
+  });
+
+  it('merges into the linked incident even outside 300 m / 10 min, as an independent report', async () => {
+    const s = new MemoryStore();
+    await ingest(sms(EX1), s);
+    const r = await ingest(witness(), s);
+    expect(r).toMatchObject({ outcome: 'merged', incident_id: 'K7Q2M', merged_count: 2 });
+    expect(s.state.reports[1]).toMatchObject({ channel: 'witness', source: 'witness', incidentId: 'K7Q2M' });
+  });
+
+  it('a closed linked incident falls back to the normal rule (never dropped: here a new incident)', async () => {
+    const s = new MemoryStore();
+    await ingest(sms(EX1), s);
+    s.state.incidents[0]!.status = 'CLOSED';
+    const r = await ingest(witness(), s);
+    expect(r).toMatchObject({ outcome: 'created', incident_id: 'W1TN5' });
+  });
+});
+

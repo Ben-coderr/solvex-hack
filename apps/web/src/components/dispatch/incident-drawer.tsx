@@ -1,7 +1,7 @@
 'use client';
 import type { Band } from '@najda/shared';
 import { BAND_ORDER } from '@najda/ui-core';
-import { Check, Copy, ExternalLink, Flame, Phone, PhoneOff, ScrollText, Users, Wrench, X, type LucideIcon } from 'lucide-react';
+import { Check, Copy, ExternalLink, Flame, Phone, QrCode, PhoneOff, ScrollText, Users, Wrench, X, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Tabs } from 'radix-ui';
@@ -20,6 +20,7 @@ import { cn } from '@/lib/utils';
 import type { RouteHint } from './incident-map';
 import { LifecyclePanel } from './lifecycle';
 import { Orientation } from './orientation';
+import { WitnessQr } from './witness-qr';
 import { ReasonDialog } from './reason-dialog';
 
 function CopyButton({ text, label, testId }: { text: string; label: string; testId?: string }) {
@@ -177,6 +178,8 @@ function Overview({ detail }: { detail: IncidentDetail }) {
         </dl>
       </section>
 
+      <WitnessLinkPanel incidentId={incident.id} />
+
       {latest && (
         <section className="flex flex-col gap-2">
           <h3 className="text-sm font-medium text-muted-foreground">{t('detail.packet')}</h3>
@@ -191,6 +194,26 @@ function Overview({ detail }: { detail: IncidentDetail }) {
         </section>
       )}
     </div>
+  );
+}
+
+/** D10: QR + link to the witness page, folded by default (the token is not shown until asked). */
+function WitnessLinkPanel({ incidentId }: { incidentId: string }) {
+  const t = useTranslations('detail.witness');
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="flex flex-col gap-2">
+      <Button variant="outline" size="sm" className="self-start" aria-expanded={open} data-testid="witness-toggle" onClick={() => setOpen((o) => !o)}>
+        <QrCode aria-hidden />
+        {open ? t('hide') : t('show')}
+      </Button>
+      {open && (
+        <div className="flex flex-col gap-2 rounded-md border border-line p-3">
+          <p className="text-sm text-muted-foreground">{t('body')}</p>
+          <WitnessQr incidentId={incidentId} />
+        </div>
+      )}
+    </section>
   );
 }
 

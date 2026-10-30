@@ -26,7 +26,11 @@ export type InboundMessage =
       body: IncidentJson;
       receivedAt: Date;
       senderHash: string | null;
+      /** witness link (D10): join THIS incident whatever the distance/time window, while it is open (else the normal merge rule) */
+      target?: string;
     };
+
+const CLOSED: ReadonlySet<string> = new Set(['CLOSED', 'CANCELLED', 'MERGED']);
 
 const SOURCE_OF: Record<DzmsdPacket['src'], ReportSource> = { A: 'auto', W: 'witness', M: 'sos' };
 
@@ -66,7 +70,9 @@ export function ingest(msg: InboundMessage, store: IngestStore): Promise<IngestA
     }
 
     const sameId = await tx.findIncidentByClientId(packet.id);
-    const candidate = sameId ?? (await tx.findMergeCandidate(packet.lat, packet.lon, crashedAt));
+    const linked = msg.kind === 'json' && msg.target && !sameId ? await tx.findIncidentByClientId(msg.target) : null;
+    const target = linked && !CLOSED.has(linked.status) ? linked : null;
+    const candidate = sameId ?? target ?? (await tx.findMergeCandidate(packet.lat, packet.lon, crashedAt));
     const outcome = sameId ? 'updated' : candidate ? 'merged' : 'created';
 
     const packets = candidate ? [...(await tx.listPackets(candidate.id)), packet] : [packet];

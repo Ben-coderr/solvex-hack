@@ -254,7 +254,15 @@
     "title": "Incident {id}",
     "packet": "Packet received",
     "fullAudit": "Open the full audit log",
-    "tabsLabel": "Incident sections"
+    "tabsLabel": "Incident sections",
+    "witness": {
+      "title": "Witness link",
+      "show": "Show the QR for a witness",
+      "hide": "Hide the QR",
+      "body": "A witness on site scans it, answers 4 questions, and the report joins this incident. The page shows only a ~100 m position, no victim data.",
+      "loadError": "The witness link could not be created.",
+      "qrLabel": "QR code of the witness page for incident {id}"
+    }
   },
   "override": {
     "titleBand": "Change the band",
@@ -375,5 +383,73 @@
     "demo": {
       "reset": "Demo reset"
     }
+  },
+  "witnessPage": {
+    "title": "Report an accident",
+    "lead": "4 quick questions. Your answers go to the operations room. No account, no name.",
+    "call": "This does not replace a call: call 14 (Protection civile).",
+    "callButton": "Call 14",
+    "vehicles": "Vehicles",
+    "howMany": "How many vehicles?",
+    "whichKinds": "Which kinds?",
+    "kind": {
+      "car": "Car",
+      "moto": "Motorbike",
+      "truck": "Truck",
+      "bus": "Bus",
+      "pedestrian": "Pedestrian"
+    },
+    "hurt": "Who is hurt",
+    "howManyHurt": "How many people are hurt?",
+    "none": "None",
+    "plus": "{n}+",
+    "theyAre": "Someone is…",
+    "state": {
+      "unresponsive": "Not answering",
+      "breathing": "Breathing badly",
+      "bleeding": "Bleeding a lot"
+    },
+    "danger": "Danger",
+    "dangers": {
+      "trapped": "Someone trapped",
+      "fire": "Fire or smoke",
+      "child": "A child involved"
+    },
+    "location": "Location",
+    "near": "The accident was reported near:",
+    "approx": "about 100 m",
+    "map": "See on a map",
+    "here": "I am at this place, or I can see the accident",
+    "send": "Send the report",
+    "sending": "Sending…",
+    "privacy": "We do not show any information about the injured on this page.",
+    "sent": {
+      "title": "Report sent. Thank you.",
+      "body": "The operations room has your report with the first alert.",
+      "safety": "While you wait",
+      "s1": "Protect the scene: hazard lights, warning triangle, stay off the road.",
+      "s2": "Do not move an injured person, unless there is fire or another immediate danger.",
+      "s3": "Do not remove a motorcyclist's helmet.",
+      "s4": "If someone stops breathing or the situation changes, call 14 again.",
+      "another": "Send another report"
+    },
+    "invalid": {
+      "title": "This link is not valid",
+      "body": "Check that you opened the full link. If you see an accident, call 14."
+    },
+    "closed": {
+      "title": "This accident is already handled",
+      "body": "Rescuers have closed this report. For a new emergency, call 14."
+    },
+    "error": {
+      "confirm_place": "Tick the box to confirm you are at this place.",
+      "invalid": "Something is missing in the form. Check the answers and send again.",
+      "rate_limited": "Too many reports from this connection. Wait a few minutes, or call 14.",
+      "closed": "This accident is already handled. For a new emergency, call 14.",
+      "network": "The report could not be sent. Check your connection and try again, or call 14."
+    },
+    "offline": "No internet connection. Your report cannot be sent: call 14.",
+    "slow": "Too many requests from this connection. Wait a minute and reload, or call 14.",
+    "loading": "Loading the report form…"
   }
 }
