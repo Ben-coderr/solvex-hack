@@ -39,7 +39,12 @@ export function parseJson<S extends z.ZodType>(raw: string, schema: S):
   return { ok: true, data: r.data };
 }
 
-const limiter = new RateLimiter();
+let limiter = new RateLimiter();
+
+/** Demo reset only: forget all rate-limit windows so the stage drill is repeatable. */
+export function resetRateLimits() {
+  limiter = new RateLimiter();
+}
 
 export function limited(key: string, limit: Limit): NextResponse | null {
   const r = limiter.check(key, limit);

@@ -9,7 +9,8 @@ A phone detects a crash (or a witness reports it in 5 taps) and sends a 160-char
 ## Status
 DONE and tested: `packages/shared` (codec, CRC-8, GSM-7, Plus Codes, NSI scoring, hospital ranking, merge) and `packages/tokens` (design tokens + WCAG tests).
 P0 skeletons: `apps/web` (Next 16) and `apps/mobile` (Expo SDK 58 dev build) render a real packet from `@najda/shared`.
-TODO: `supabase/`, `data/`, `scripts/`, and the real app screens (see phase prompts P1–P8).
+P1 (gate-H10): `supabase/` schema+RLS+seed, `packages/api-contract`, `apps/web/src/server` (ingest, lifecycle, routing, pre-alert, SMS gateway) and `/api/*` routes.
+TODO: the real app screens and the native side (see phase prompts P2–P8).
 
 ## Commands
 ```bash
@@ -17,7 +18,13 @@ pnpm install
 pnpm check            # shared tests + typecheck + tokens contrast + independent Python cross-check — must be green before every merge
 pnpm vectors          # regenerate golden vectors (only after an intentional protocol/scoring change, see below)
 pnpm tokens           # rebuild packages/tokens/dist from tokens.json
-supabase start | supabase db reset
+supabase start          # local Postgres+PostGIS, Auth, Realtime (Docker/colima)
+pnpm db:reset           # regenerate seed.sql from data/hospitals.seed.json + supabase db reset
+pnpm env:local          # fill EMPTY keys of the root .env.local (local keys + random secrets); prints names only
+pnpm db:users           # demo logins dispatcher@najda.test / hospital-a@najda.test (password: DEMO_USER_PASSWORD)
+pnpm --filter web test:db   # ingest through real Postgres (truncates local incident tables)
+pnpm realtime:probe     # print Realtime events as the dispatcher sees them (RLS)
+scripts/curl-demo.sh    # G1 drill through the signed SMS webhook (BASE_URL=http://localhost:3000)
 pnpm dev:web          # = pnpm --filter web dev  (also: build | start | typecheck)
 pnpm dev:mobile       # Metro for the dev build (first install: pnpm --filter mobile android, JAVA_HOME = Android Studio JBR 17)
 npx expo run:android  # development build (NOT Expo Go: custom native code)
@@ -47,4 +54,7 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 - `expo-sms` only opens the composer; silent SMS needs our Kotlin module (`apps/mobile/modules/najda-native`). `SEND_SMS` is Play-restricted → sideload APK.
 - `expo-sensors` stops in the background → Drive mode is foreground + keep-awake; replay mode is the stage safety net.
 - Check the SMS gateway's real webhook payload at docs.sms-gate.app before writing the parser.
+- Supabase Realtime truncates `char(n)` to 1 char and then drops the event under RLS: never use char(n); text + CHECK.
+- postgres.js v4 renders `${sql(obj, keys)}` from the keyword before it: keep it directly after `set`/`insert`, never inside a nested fragment.
+- Next's env loader caches its first load and skips `.env.local` when NODE_ENV=test.
 - Supabase Free pauses after 7 idle days. Vercel Hobby is non-commercial. Render free sleeps after 15 min.

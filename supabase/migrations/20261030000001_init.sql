@@ -1,5 +1,7 @@
 -- NAJDA 0001 — initial schema (docs/04 §5).
 -- All writes go through Next.js route handlers on a server-only connection; browsers only SELECT under RLS.
+-- No char(n) anywhere: Supabase Realtime truncates char(n) values to one character (checked on 2026-10-30),
+-- which also breaks its per-subscriber RLS check. Fixed-length codes are text + CHECK.
 
 create extension if not exists postgis with schema extensions;
 create extension if not exists pgcrypto with schema extensions;
@@ -22,7 +24,7 @@ create table public.profiles (               -- one row per auth user
 create table public.hospitals (
   id text primary key,                       -- e.g. 'CHU-A'
   name text not null,
-  level char(1) not null check (level in ('A','B','C')),
+  level text not null check (level in ('A','B','C')),
   wilaya_code smallint,
   phone_sms text,
   capabilities text[] not null default '{}'
@@ -47,11 +49,11 @@ create table public.hospital_status (
 -- ───────────────────────── incidents ─────────────────────────
 
 create table public.incidents (
-  id char(5) primary key,                    -- first client id; merged incidents keep it
+  id text primary key check (id ~ '^[0-9A-HJKMNP-TV-Z]{5}$'),  -- first client id; merged incidents keep it
   status public.incident_status not null default 'RECEIVED',
   band public.band not null,
   nsi smallint not null check (nsi between 0 and 99),
-  conf char(1) not null check (conf in ('H','M','L')),
+  conf text not null check (conf in ('H','M','L')),
   location extensions.geography(Point,4326) not null,
   plus_code text,
   crashed_at timestamptz not null,
@@ -80,8 +82,8 @@ create trigger incidents_touch before update on public.incidents
 -- but are stored and shown raw (never dropped).
 create table public.reports (
   id uuid primary key default gen_random_uuid(),
-  incident_id char(5) references public.incidents on delete cascade,
-  client_id char(5),                         -- the packet's id (a repeated id = update of the same report)
+  incident_id text references public.incidents on delete cascade,
+  client_id text check (client_id ~ '^[0-9A-HJKMNP-TV-Z]{5}$'),                         -- the packet's id (a repeated id = update of the same report)
   channel text not null check (channel in ('https','sms','paste','witness','sim')),
   source text not null check (source in ('auto','witness','sos','crew','unknown')),
   raw text not null,
@@ -102,11 +104,11 @@ create index reports_unparsed_idx on public.reports (received_at desc) where par
 
 create table public.assessments (            -- every recompute (server-authoritative)
   id uuid primary key default gen_random_uuid(),
-  incident_id char(5) not null references public.incidents on delete cascade,
+  incident_id text not null references public.incidents on delete cascade,
   version int not null,
   band public.band not null,
   nsi smallint not null,
-  conf char(1) not null check (conf in ('H','M','L')),
+  conf text not null check (conf in ('H','M','L')),
   reasons jsonb not null,
   inputs jsonb not null,
   engine_version text not null,
@@ -116,7 +118,7 @@ create table public.assessments (            -- every recompute (server-authorit
 
 create table public.prealerts (
   id uuid primary key default gen_random_uuid(),
-  incident_id char(5) not null references public.incidents on delete cascade,
+  incident_id text not null references public.incidents on delete cascade,
   hospital_id text not null references public.hospitals,
   channel text not null check (channel in ('web','sms')),
   body text,
@@ -130,7 +132,7 @@ create index prealerts_hospital_idx on public.prealerts (hospital_id, sent_at de
 -- immutable: no UPDATE/DELETE for anyone (trigger + revoked privileges). TRUNCATE is used only by the demo reset.
 create table public.audit_events (
   id bigint generated always as identity primary key,
-  incident_id char(5),
+  incident_id text,
   actor text not null,
   action text not null,
   before jsonb,
@@ -163,7 +165,7 @@ create table public.sms_outbox (
   to_number text,
   body text not null,
   purpose text not null check (purpose in ('ack','prealert','status_reply')),
-  incident_id char(5),
+  incident_id text,
   status text not null default 'queued' check (status in ('queued','sent','failed','simulated','no_number')),
   error text,
   created_at timestamptz not null default now(),

@@ -98,10 +98,15 @@ function txOps(sql: Tx): IngestTx {
       if (p.plusCode !== undefined) cols.plus_code = p.plusCode;
       if (p.crashedAt !== undefined) cols.crashed_at = p.crashedAt;
       if (p.mergedCount !== undefined) cols.merged_count = p.mergedCount;
-      const loc = p.lat !== undefined && p.lon !== undefined ? point(sql, p.lat, p.lon) : null;
       const keys = Object.keys(cols);
-      if (keys.length) await sql`update public.incidents set ${sql(cols, keys)} where id = ${id}`;
-      if (loc) await sql`update public.incidents set location = ${loc} where id = ${id}`;
+      const hasLoc = p.lat !== undefined && p.lon !== undefined;
+      if (!keys.length && !hasLoc) return;
+      // One statement = one Realtime UPDATE event per change. The column helper must follow `set` directly:
+      // postgres.js renders it from the preceding keyword (inside another fragment it becomes an identifier list).
+      const loc = hasLoc ? point(sql, p.lat!, p.lon!) : null;
+      if (!keys.length) await sql`update public.incidents set location = ${loc!} where id = ${id}`;
+      else if (loc) await sql`update public.incidents set ${sql(cols, keys)}, location = ${loc} where id = ${id}`;
+      else await sql`update public.incidents set ${sql(cols, keys)} where id = ${id}`;
     },
 
     async insertReport(r) {
