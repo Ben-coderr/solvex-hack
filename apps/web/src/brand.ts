@@ -5,8 +5,6 @@
  */
 export const BRAND = {
   name: 'Sellekni',
-  /** have a native speaker confirm the spelling and the shadda (docs/06 §11) */
-  nameAr: 'سلّكني',
   codename: 'NAJDA',
   /** outbound SMS start with this (basic GSM-7, capitals, no accents) */
   smsName: 'SELLEKNI',

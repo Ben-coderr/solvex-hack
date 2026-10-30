@@ -6,8 +6,6 @@
  */
 export const BRAND = {
   name: 'Sellekni',
-  /** have a native speaker confirm the spelling and the shadda (docs/06 §11) */
-  nameAr: 'سلّكني',
   codename: 'NAJDA',
   /** JSON `device.app` prefix, seen by the dispatcher in the raw report */
   appId: 'sellekni-mobile',

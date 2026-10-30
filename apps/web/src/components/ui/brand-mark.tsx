@@ -12,16 +12,13 @@ export function BrandMark({ className }: { className?: string }) {
   );
 }
 
-/** Mark + Latin name + Arabic name. `size` picks the header or the login scale. */
+/** Mark + name (one name, Latin script, in every language). `size` picks the header or the login scale. */
 export function BrandLockup({ size = 'md' }: { size?: 'md' | 'lg' }) {
   const lg = size === 'lg';
   return (
     <span className="inline-flex items-center gap-2.5">
       <BrandMark className={lg ? 'size-16' : 'size-9'} />
-      <span className="flex flex-col leading-none">
-        <span className={cn('font-display font-semibold', lg ? 'text-4xl' : 'text-2xl')}>{BRAND.name}</span>
-        <span className={cn('font-ui font-normal text-muted-foreground', lg ? 'text-xl mt-1' : 'text-sm mt-0.5')}>{BRAND.nameAr}</span>
-      </span>
+      <span className={cn('font-display font-semibold leading-none', lg ? 'text-4xl' : 'text-2xl')}>{BRAND.name}</span>
     </span>
   );
 }

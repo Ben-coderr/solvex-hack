@@ -14,16 +14,13 @@ export function BrandMark({ size = 40 }: { size?: number }) {
   return <Image source={MARK} accessibilityIgnoresInvertColors style={{ width: size, height: size, tintColor: c.logoMono }} resizeMode="contain" />;
 }
 
-/** Mark + name (+ Arabic name under it): the home header. */
+/** Mark + name: the home header. One name in every language (Latin script). */
 export function BrandLockup() {
   return (
-    <View accessible accessibilityRole="header" accessibilityLabel={`${BRAND.name} · ${BRAND.nameAr}`}
+    <View accessible accessibilityRole="header" accessibilityLabel={BRAND.name}
       style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[2] }}>
       <BrandMark size={44} />
-      <View>
-        <Txt v="h1" style={{ fontFamily: FONT.displayBold, lineHeight: 34 }}>{BRAND.name}</Txt>
-        <Txt v="small" tone="muted">{BRAND.nameAr}</Txt>
-      </View>
+      <Txt v="h1" style={{ fontFamily: FONT.displayBold, lineHeight: 34 }}>{BRAND.name}</Txt>
     </View>
   );
 }

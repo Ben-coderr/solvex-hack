@@ -20,7 +20,7 @@ export default function Language() {
     <Screen footer={<Btn testID="onb-continue" label={t('common.continue')} onPress={() => { set({ locale: i18n.language as Locale }); router.push('/onboarding/explain'); }} />}>
       <View style={{ flex: 1, justifyContent: 'center', gap: T.space[5] }}>
         <BrandMark size={96} />
-        <Txt v="display" style={{ fontSize: T.fontSize['3xl'] }}>{`${BRAND.nameAr} · ${BRAND.name}`}</Txt>
+        <Txt v="display" style={{ fontSize: T.fontSize['3xl'] }}>{BRAND.name}</Txt>
         <Txt v="h1" accessibilityRole="header">{t('onboarding.langTitle')}</Txt>
         <LocaleSwitch value={i18n.language as Locale} onChange={(l) => void pick(l)} />
         <Txt tone="muted">{t('onboarding.langBody')}</Txt>
