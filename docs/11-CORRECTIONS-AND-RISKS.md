@@ -26,7 +26,7 @@
 | 15 | 🟠 | V3 §15.5 Q3 | Privacy answer claims SMS data is "encrypted server-side (HTTPS)" and "nothing stored on the phone". GSM SMS is not end-to-end encrypted; the outbox is stored on the phone | Honest wording: SMS carries only non-sensitive essentials; the medical profile never uses SMS; local outbox is cleared after ACK/30 min |
 | 16 | 🟠 | V3 §15 | "AI triage / IA" wording | It is a transparent rules engine: say "rules" |
 | 17 | 🟠 | V3 Q7 | Claims data from the "registre MSP" and 50 scenarios tested | Not done; say what is curated/illustrative |
-| 18 | 🟡 | 06 §6.2 | "≥ 69 spare characters" is true for a typical auto packet (91 chars) but the worst case is 111 (49 spare) | Both numbers documented |
+| 18 | 🟡 | 06 §6.2 | "≥ 69 spare characters" is true for a typical auto packet (91 chars) but the worst case is 113 (47 spare) | Both numbers documented |
 | 19 | 🟡 | V3 §14 | Mobile only starts at H28 — the riskiest part (native SMS, sensors) comes last | Mobile starts at H0, native SMS has its own gate (G4, H30) |
 | 20 | 🟡 | 06 §3.3 | Flutter plan | Superseded (Expo + Next.js as requested) |
 | 21 | 🔴 | docs 03–05, 10 (this pack) | **Our own error:** the docs treat a phone as measuring crash peaks like 38 g. Phone accelerometers saturate (typically ±8–16 g, device-specific; Apple needed a 256 g sensor for iPhone 14 Crash Detection) | Detector is range-aware, traces clipped, `G = min(peak, range)`, demo says "sensor ceiling"; high-g only for a hardware box (docs/12 §3) |
