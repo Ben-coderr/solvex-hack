@@ -1,5 +1,5 @@
 'use client';
-import { GOLDEN_SPAN_MIN, GOLDEN_TICKS, goldenFraction, ringDash } from '@najda/ui-core';
+import { GOLDEN_SPAN_MIN, GOLDEN_TICKS, goldenFraction, ringDash } from '@sellekni/ui-core';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
@@ -24,18 +24,18 @@ export function GoldenRing({ elapsedMin, paused, size = 64, className }: GoldenR
       style={{ width: size, height: size }}
     >
       <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden className="-rotate-90">
-        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--najda-line)" strokeWidth="6" />
+        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--sellekni-line)" strokeWidth="6" />
         <circle
           cx="50" cy="50" r={r} fill="none"
-          stroke={paused ? 'var(--najda-muted)' : 'var(--najda-brand-fill)'}
+          stroke={paused ? 'var(--sellekni-muted)' : 'var(--sellekni-brand-fill)'}
           strokeWidth="6" strokeLinecap="round"
           strokeDasharray={circumference} strokeDashoffset={offset}
-          className="najda-ring-drain"
+          className="sellekni-ring-drain"
         />
         {GOLDEN_TICKS.map((m) => {
           const a = (m / GOLDEN_SPAN_MIN) * 2 * Math.PI;
           const [x1, y1, x2, y2] = [50 + 34 * Math.cos(a), 50 + 34 * Math.sin(a), 50 + 50 * Math.cos(a), 50 + 50 * Math.sin(a)];
-          return <line key={m} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--najda-text)" strokeWidth="3" />;
+          return <line key={m} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--sellekni-text)" strokeWidth="3" />;
         })}
       </svg>
       <span className="packet-ltr absolute flex flex-col items-center leading-none">
@@ -68,13 +68,13 @@ export function CountdownRing({ remaining, total = 30, size = 240, className }: 
       style={{ width: size, height: size }}
     >
       <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden className="-rotate-90">
-        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--najda-line)" strokeWidth={urgent ? 8 : 5} />
+        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--sellekni-line)" strokeWidth={urgent ? 8 : 5} />
         <circle
           cx="50" cy="50" r={r} fill="none"
-          stroke={urgent ? 'var(--najda-text)' : 'var(--najda-brand-fill)'}
+          stroke={urgent ? 'var(--sellekni-text)' : 'var(--sellekni-brand-fill)'}
           strokeWidth={urgent ? 8 : 5} strokeLinecap="round"
           strokeDasharray={circumference} strokeDashoffset={offset}
-          className="najda-ring-drain"
+          className="sellekni-ring-drain"
         />
       </svg>
       <span className="packet-ltr absolute flex items-baseline gap-1">

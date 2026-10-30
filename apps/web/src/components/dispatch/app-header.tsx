@@ -18,7 +18,7 @@ export function ThemeToggle() {
   const flip = () => {
     const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
     document.documentElement.dataset.theme = next; // instant, then the server render agrees via the cookie
-    document.cookie = `najda-theme=${next}; path=/; max-age=31536000; samesite=lax`;
+    document.cookie = `sellekni-theme=${next}; path=/; max-age=31536000; samesite=lax`;
     router.refresh();
   };
   return (

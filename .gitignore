@@ -19,8 +19,8 @@ data/*.pmtiles
 # real gateway webhooks (contain phone numbers): anonymise before copying into fixtures
 data/captures/
 
-# ./najda runtime (pids, logs, port)
-/.najda/
+# ./sellekni runtime (pids, logs, port)
+/.sellekni/
 
 # Build outputs
 **/build/

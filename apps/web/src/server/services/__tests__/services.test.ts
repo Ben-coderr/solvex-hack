@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { gsm7Length, isGsm7Basic } from '@najda/shared';
+import { gsm7Length, isGsm7Basic } from '@sellekni/shared';
 import { checkTransition, STATUSES, TRANSITIONS } from '../../domain/lifecycle';
 import { prealertSms } from '../../domain/prealert-sms';
 import { cellKey, getEtas, parseMatrix, type Eta, type EtaCache } from '../routing';

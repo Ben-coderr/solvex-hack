@@ -101,7 +101,7 @@ export const ar: Messages = {
     smsPerm: 'إرسال SMS تلقائيًا', smsPermGranted: 'مسموح', smsPermDenied: 'غير مسموح: ستضغط على إرسال في تطبيق الرسائل.', smsPermAllow: 'السماح بالرسائل',
     smsNoNative: 'هذه النسخة لا تستطيع إرسال SMS وحدها.',
     title: 'الإعدادات', language: 'اللغة', server: 'خادم العمليات', serverUrl: 'عنوان الخادم', serverHint: 'مثال: http://192.168.1.20:3000',
-    key: 'مفتاح التطبيق (x-najda-key)', keyHint: 'يقدّمه فريق العمليات', test: 'اختبار الاتصال', reachable: 'الخادم متاح', unreachable: 'الخادم غير متاح',
+    key: 'مفتاح التطبيق (x-sellekni-key)', keyHint: 'يقدّمه فريق العمليات', test: 'اختبار الاتصال', reachable: 'الخادم متاح', unreachable: 'الخادم غير متاح',
     gateways: 'بوابات الرسائل', gw1: 'البوابة 1 (GW1)', gw2: 'البوابة 2 (GW2)', gwHint: '+213…', sim: 'شريحة الرسائل',
     demo: 'وضع العرض', demoHint: 'يكتب «عرض» على كل شاشة ويقصّر العدّ التنازلي.', countdown: 'مدة العدّ التنازلي (العرض فقط)', seconds: '{{n}} ث',
     replay: 'إعادة تشغيل رحلة', alarmTest: 'تجربة المنبّه (3 ث)', sensorLab: 'مختبر المستشعرات', sensorLabOpen: 'فتح مختبر المستشعرات',

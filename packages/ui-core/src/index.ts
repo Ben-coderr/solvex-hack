@@ -1,8 +1,8 @@
 /**
- * @najda/ui-core — display logic shared by the web and mobile design systems (no React, no I/O).
- * Validity always comes from @najda/shared's decoder; nothing here re-implements the protocol.
+ * @sellekni/ui-core — display logic shared by the web and mobile design systems (no React, no I/O).
+ * Validity always comes from @sellekni/shared's decoder; nothing here re-implements the protocol.
  */
-import { MAGIC, SMS_SINGLE_MAX, decodeDzmsd, gsm7Length, isGsm7Basic, type Band, type DecodeResult } from '@najda/shared';
+import { MAGIC, SMS_SINGLE_MAX, decodeDzmsd, gsm7Length, isGsm7Basic, type Band, type DecodeResult } from '@sellekni/shared';
 
 // ───────────────────────── triage vocabulary ─────────────────────────
 
@@ -56,7 +56,7 @@ export interface PacketView {
 }
 
 const KIND_RULES: ReadonlyArray<[RegExp, PacketTokenKind]> = [
-  [new RegExp(`^${MAGIC}$`), 'magic'], // the wire magic comes from @najda/shared (renamed only by scripts/rename-magic.mjs)
+  [new RegExp(`^${MAGIC}$`), 'magic'], // the wire magic comes from @sellekni/shared (renamed only by scripts/rename-magic.mjs)
   [/^#[0-9A-F]{2}$/, 'crc'],
   [/^[RYOGU]\d{2}[HML]$/, 'assessment'],
   [/^-?\d{1,2}\.\d+,-?\d{1,3}\.\d+$/, 'coords'],

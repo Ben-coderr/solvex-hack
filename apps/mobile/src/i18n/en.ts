@@ -1,4 +1,4 @@
-// English copy. ar/fr must have exactly the same keys (typed by `Messages`). Wording rules: najda-medical-language.
+// English copy. ar/fr must have exactly the same keys (typed by `Messages`). Wording rules: sellekni-medical-language.
 // The product name comes from src/brand.ts (never a literal here).
 import { BRAND } from '../brand';
 
@@ -101,7 +101,7 @@ export const en = {
     smsPerm: 'Send SMS by itself', smsPermGranted: 'Allowed', smsPermDenied: 'Not allowed: you will press Send in your SMS app.', smsPermAllow: 'Allow SMS',
     smsNoNative: 'This build cannot send SMS by itself.',
     title: 'Settings', language: 'Language', server: 'Operations server', serverUrl: 'Server address', serverHint: 'e.g. http://192.168.1.20:3000',
-    key: 'App key (x-najda-key)', keyHint: 'Given by the operations team', test: 'Test connection', reachable: 'Server reachable', unreachable: 'Server not reachable',
+    key: 'App key (x-sellekni-key)', keyHint: 'Given by the operations team', test: 'Test connection', reachable: 'Server reachable', unreachable: 'Server not reachable',
     gateways: 'SMS gateways', gw1: 'Gateway 1 (GW1)', gw2: 'Gateway 2 (GW2)', gwHint: '+213…', sim: 'SIM for SMS',
     demo: 'Demo mode', demoHint: 'Labels every screen DEMO and shortens the countdown.', countdown: 'Countdown length (demo only)', seconds: '{{n}} s',
     replay: 'Replay a trip', alarmTest: 'Test the alarm (3 s)', sensorLab: 'Sensor lab', sensorLabOpen: 'Open the sensor lab',

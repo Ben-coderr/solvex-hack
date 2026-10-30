@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { IncidentId } from '@najda/api-contract';
+import { IncidentId } from '@sellekni/api-contract';
 import { formToObject, WitnessForm } from '@/server/domain';
 import { clientIp, fail, json, limited, readRaw } from '@/server/http';
 import { LIMITS } from '@/server/services/rate-limit';

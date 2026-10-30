@@ -1,4 +1,4 @@
-# 03 — Product Spec: Sellekni (سلّكني) · codename NAJDA
+# 03 — Product Spec: Sellekni (سلّكني)
 
 > **One sentence:** Sellekni is a *complementary emergency data layer* for Algerian road crashes: a phone detects the crash (or a witness reports it in 5 taps), sends a tiny structured packet by internet **or plain SMS**, and the operations room instantly gets an explainable severity estimate, a merged picture, and a hospital recommendation, with a pre-alert to the hospital. **We never replace the 14/1021 call and never dispatch anything automatically: humans decide.**
 
@@ -38,7 +38,7 @@ Priority: **P0** = must be in the demo · **P1** = if ahead at the H30 gate · *
 | M2 | Drive mode | P0 | When Drive mode is on, a persistent notification shows; the screen stays awake; a status ring shows IDLE/ARMED; speed, GPS accuracy, battery and connectivity (data / SMS-only / none) are visible; one tap stops it |
 | M3 | Crash detector + **replay engine** | P0 | The pure detector produces the same decisions live and from CSV traces. Reference implementation: `packages/detector` (docs/13); do not re-implement it. Traces: `frontal_45` and `rollover_71` alert; `speed_bump`, `hard_brake`, `phone_drop`, `pothole_80`, `pothole_then_stop`, `door_slam`, `walking_pocket` and `fender_bender_12` must not. A replay is visibly labelled **REPLAY · SYNTHETIC** |
 | M4 | Countdown | P0 | After CONFIRM, a full-screen countdown (30 s; 10 s in demo mode, labelled) with alarm, vibration and AR/FR voice. Two controls only: "I'm OK" (≥72 dp) and "Send help now". No response → alert with flag `N` |
-| M5 | Alert + status | P0 | Packet is built (`@najda/shared`), persisted in the outbox, the dialler opens on 14, and the fallback chain runs. The status screen shows each channel (HTTPS / SMS / retry) and, on ACK, "Received by rescuers" + time. Works with data off |
+| M5 | Alert + status | P0 | Packet is built (`@sellekni/shared`), persisted in the outbox, the dialler opens on 14, and the fallback chain runs. The status screen shows each channel (HTTPS / SMS / retry) and, on ACK, "Received by rescuers" + time. Works with data off |
 | M6 | Witness mode | P0 | 5 taps (vehicles → who is hurt → danger → location confirm → send) with pictograms; no account; GPS auto; produces an `SW` packet. Includes "secure the scene, don't move the victim" |
 | M7 | SOS | P0 | Long-press (1.5 s) anywhere on the home screen sends a manual `SM` alert |
 | M8 | Settings | P0 | Language, SIM, gateway numbers (GW1/GW2), emergency contacts, demo mode, countdown length (demo only), sensor lab |

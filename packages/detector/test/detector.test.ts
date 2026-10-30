@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Detector, SCENARIOS, makeTrace, pulseDuration, replay, toPacketHints, parseCsv, toCsv, type Mount, type ScenarioName } from '../src';
-import { assess, encodeDzmsd, decodeDzmsd, type DzmsdPacket } from '@najda/shared';
+import { assess, encodeDzmsd, decodeDzmsd, type DzmsdPacket } from '@sellekni/shared';
 
 const RANGES = [8, 16, 32];
 const MOUNTS: Mount[] = ['aligned', 'tilted', 'pocket'];

@@ -1,4 +1,4 @@
-import { tokens, type ThemeMode } from '@najda/tokens';
+import { tokens, type ThemeMode } from '@sellekni/tokens';
 import { useColorScheme } from 'react-native';
 import { useSettings } from '../state/settings';
 import {

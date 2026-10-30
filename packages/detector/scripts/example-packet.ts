@@ -1,6 +1,6 @@
 // Prints a REAL packet built from a detector decision, for the diagrams (docs/diagrams/build_diagrams.py).
 import { makeTrace, replay, toPacketHints } from '../src';
-import { assess, encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@najda/shared';
+import { assess, encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@sellekni/shared';
 
 const R = 16;
 const [a] = replay(makeTrace('frontal_45', { rangeG: R, seed: 3, mount: 'tilted' })).decisions;

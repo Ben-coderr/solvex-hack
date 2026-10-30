@@ -1,4 +1,4 @@
-import { parseCsv, type Decision } from '@najda/detector';
+import { parseCsv, type Decision } from '@sellekni/detector';
 import * as Battery from 'expo-battery';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import * as Location from 'expo-location';
@@ -14,7 +14,7 @@ import { useSettings } from '../state/settings';
 import { readAccelerometerRangeG } from './sensor-info';
 
 /**
- * Drive mode (M2): ONE detector host (src/detector/adapter.ts over @najda/detector) fed either by the live sensors
+ * Drive mode (M2): ONE detector host (src/detector/adapter.ts over @sellekni/detector) fed either by the live sensors
  * or by a replayed trace. FOREGROUND ONLY (docs/17 §2): screen on + keep-awake, no location service, because
  * expo-sensors stops in the background and Android 14 needs a declared service type. An ALERT opens the countdown.
  */

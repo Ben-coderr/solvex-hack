@@ -1,11 +1,11 @@
 import {
   FLAG_LETTER, KIND_LETTER, SOURCE_LETTER,
   type IncidentJson,
-} from '@najda/api-contract';
+} from '@sellekni/api-contract';
 import {
   FLAG_ORDER, KIND_ORDER, encodePlusCode, formatHHMM,
   type Band, type Confidence, type DzmsdPacket, type Flag, type Kind,
-} from '@najda/shared';
+} from '@sellekni/shared';
 
 export interface ClientHint { band: Band; score: number; conf: Confidence }
 

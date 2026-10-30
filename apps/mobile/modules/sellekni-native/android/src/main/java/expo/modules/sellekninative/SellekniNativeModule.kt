@@ -1,4 +1,4 @@
-package expo.modules.najdanative
+package expo.modules.sellekninative
 
 import android.Manifest
 import android.app.Activity
@@ -37,12 +37,12 @@ class SmsUnavailableException(why: String) : CodedException("E_SMS_UNAVAILABLE",
  * this module only sends and reports. A result that arrives while JS is not listening is lost: the outbox treats a
  * message with no result after its timeout as unknown and sends it again (ingest is idempotent on the incident id).
  */
-class NajdaNativeModule : Module() {
+class SellekniNativeModule : Module() {
   private val ctx: Context?
     get() = appContext.reactContext?.applicationContext
 
-  private val actionSent get() = "${ctx?.packageName}.najda.SMS_SENT"
-  private val actionDelivered get() = "${ctx?.packageName}.najda.SMS_DELIVERED"
+  private val actionSent get() = "${ctx?.packageName}.sellekni.SMS_SENT"
+  private val actionDelivered get() = "${ctx?.packageName}.sellekni.SMS_DELIVERED"
 
   private val receiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -72,7 +72,7 @@ class NajdaNativeModule : Module() {
   }
 
   override fun definition() = ModuleDefinition {
-    Name("NajdaNative")
+    Name("SellekniNative")
 
     Events("onSmsResult")
 
@@ -179,6 +179,6 @@ class NajdaNativeModule : Module() {
   }
 
   companion object {
-    private const val EXTRA_ID = "najda.sms.id"
+    private const val EXTRA_ID = "sellekni.sms.id"
   }
 }

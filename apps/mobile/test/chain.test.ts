@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { IncidentJson, type IngestAck } from '@najda/api-contract';
+import { IncidentJson, type IngestAck } from '@sellekni/api-contract';
 import { channelRows, SMS_DELIVERY_WAIT_MS, SMS_RESULT_TIMEOUT_MS, type ChainConfig } from '../src/alert/chain';
 import type { PostResult } from '../src/alert/https';
 import { GIVE_UP_MS, memoryStore, newItem, type OutboxItem } from '../src/alert/outbox';

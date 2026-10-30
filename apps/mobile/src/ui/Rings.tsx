@@ -1,4 +1,4 @@
-import { GOLDEN_SPAN_MIN, GOLDEN_TICKS, goldenFraction, ringDash } from '@najda/ui-core';
+import { GOLDEN_SPAN_MIN, GOLDEN_TICKS, goldenFraction, ringDash } from '@sellekni/ui-core';
 import { Text, View } from 'react-native';
 import Svg, { Circle, G, Line } from 'react-native-svg';
 import { FONT, useTheme } from './theme';

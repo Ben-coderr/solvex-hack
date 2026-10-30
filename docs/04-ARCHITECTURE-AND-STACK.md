@@ -10,7 +10,7 @@
 | Layer | Choice | Why | If it fails |
 |---|---|---|---|
 | Mobile | **Expo SDK 58** (React Native 0.88), **Expo Router**, TypeScript strict, **development build** (never Expo Go) | You need custom native code (silent SMS), so Expo Go is out. Expo gives OTA-free fast iteration + a huge ecosystem | none needed; it is the requirement |
-| Native bits | **One local Expo Module** (Kotlin) `najda-native`: `sendSms()` via `SmsManager`, SIM selection, sent/delivered events | `expo-sms` only *opens the composer*, it cannot send silently | `expo-sms` composer (user taps Send) → HTTPS → clipboard |
+| Native bits | **One local Expo Module** (Kotlin) `sellekni-native`: `sendSms()` via `SmsManager`, SIM selection, sent/delivered events | `expo-sms` only *opens the composer*, it cannot send silently | `expo-sms` composer (user taps Send) → HTTPS → clipboard |
 | Styling | Design tokens (`packages/tokens`) → NativeWind (Tailwind classes) via the `expo-tailwind-setup` skill | Same tokens on web and mobile | plain `StyleSheet` + `tokens` (30 min to switch; do not fight NativeWind for hours) |
 | Motion | Reanimated 4 + `react-native-svg` | countdown ring, g-force graph, pin pulse | simpler `Animated` |
 | Dashboard | **Next.js 16** (App Router, React 19), Tailwind CSS v4, shadcn/ui, lucide icons | SSR + route handlers = UI and API in one deployable | Vite SPA + Hono |
@@ -30,7 +30,7 @@ Why **not** the usual alternatives: Firebase (SMS webhook + PostGIS + scoring in
 ## 2. Monorepo layout
 
 ```
-najda/
+sellekni/
 ├─ apps/
 │  ├─ mobile/                 Expo app (Android-first)
 │  │  ├─ app/                 Expo Router routes: (tabs)/, drive, countdown, witness, sent, settings
@@ -40,7 +40,7 @@ najda/
 │  │  │  ├─ channels/         https.ts · sms.ts (native module) · composer.ts · clipboard.ts
 │  │  │  ├─ ui/               PacketChip, GoldenRing, TriageMarker, SosButton ...
 │  │  │  └─ i18n/             ar.json fr.json en.json
-│  │  ├─ modules/najda-native/   local Expo module (Kotlin)
+│  │  ├─ modules/sellekni-native/   local Expo module (Kotlin)
 │  │  └─ app.json, eas.json
 │  └─ web/                    Next.js 16
 │     ├─ app/
@@ -61,7 +61,7 @@ najda/
 └─ docker-compose.yml         OSRM (+ optional services)
 ```
 
-Layering inside `apps/web/src/server` (same discipline as a domain-driven backend): `domain/` = pure functions from `@najda/shared` (no I/O) → `services/` = orchestration with DB/HTTP (`ingest`, `lifecycle`, `prealert`, `routing`, `sms`) → `app/api/**` route handlers = thin (validate with zod, call a service, return JSON). No business logic in route handlers, no I/O in `packages/shared`.
+Layering inside `apps/web/src/server` (same discipline as a domain-driven backend): `domain/` = pure functions from `@sellekni/shared` (no I/O) → `services/` = orchestration with DB/HTTP (`ingest`, `lifecycle`, `prealert`, `routing`, `sms`) → `app/api/**` route handlers = thin (validate with zod, call a service, return JSON). No business logic in route handlers, no I/O in `packages/shared`.
 
 ---
 
@@ -122,7 +122,7 @@ Duplicates are harmless: ingest is idempotent on `incident_id`. Show "Received b
 ### 3.4 Native module contract (write this first, implement second)
 
 ```ts
-// modules/najda-native/src/index.ts
+// modules/sellekni-native/src/index.ts
 export type SmsResult = { id: string; status: 'sent' | 'delivered' | 'failed'; code?: number };
 export function getSimInfo(): Promise<{ subscriptionId: number; carrier: string; slot: number }[]>;
 export function sendSms(to: string, text: string, opts?: { subscriptionId?: number; id: string }): Promise<void>; // result arrives as an event
@@ -250,7 +250,7 @@ create table sms_outbox (id uuid primary key default gen_random_uuid(), to_numbe
 
 | Method & path | Purpose | Notes |
 |---|---|---|
-| `POST /api/incidents` | ingest JSON from the app | `x-najda-key`, zod, idempotent, rate-limited; returns `201 {incident_id, assessment, ack}` |
+| `POST /api/incidents` | ingest JSON from the app | `x-sellekni-key`, zod, idempotent, rate-limited; returns `201 {incident_id, assessment, ack}` |
 | `POST /api/sms/inbound` | SMS gateway webhook (+ "Paste SMS") | webhook secret/HMAC; **always 200 after storing**, even if unparsed; queue the ACK SMS |
 | `POST /api/witness/[id]` | witness web page | token `k` required; rate-limited by IP hash |
 | `POST /api/crew/[id]` | crew assessment (GCS/SBP/SpO₂/HR/ETA) | signed link; re-runs `assess()` |
@@ -294,7 +294,7 @@ Keep Next.js for the UI and move `services/` to FastAPI (async, Pydantic v2, SQL
 ## 11. Package list (use `npx expo install …` so versions match SDK 58)
 **Mobile:** `expo expo-router expo-dev-client expo-sensors expo-location expo-task-manager expo-keep-awake expo-speech expo-audio expo-haptics expo-sqlite expo-secure-store expo-localization expo-crypto expo-sms expo-font expo-network @react-native-community/netinfo react-native-reanimated react-native-worklets react-native-gesture-handler react-native-svg react-native-safe-area-context react-native-screens @expo-google-fonts/ibm-plex-sans-arabic @expo-google-fonts/ibm-plex-mono @expo-google-fonts/bricolage-grotesque i18next react-i18next zustand zod lucide-react-native` (+ `nativewind tailwindcss` per the skill).
 **Web:** `next react react-dom typescript tailwindcss @tailwindcss/postcss shadcn lucide-react maplibre-gl react-map-gl pmtiles @protomaps/basemaps @supabase/supabase-js @supabase/ssr zod next-intl motion zustand @tanstack/react-query jose qrcode` · dev: `vitest @playwright/test`.
-**Workspace:** `@najda/shared`, `@najda/tokens` (`workspace:*`).
+**Workspace:** `@sellekni/shared`, `@sellekni/tokens` (`workspace:*`).
 
 ## 12. Pitfalls checklist (all verified)
 - `expo-sms` cannot send silently. Silent send needs our Kotlin module; random npm "silent SMS" packages are unvetted.

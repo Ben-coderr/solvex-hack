@@ -1,5 +1,5 @@
 // Writes replay CSVs + manifest for the app's replay engine (M3) and the /phones demo page (D11).
-//   pnpm --filter @najda/detector traces
+//   pnpm --filter @sellekni/detector traces
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { SCENARIOS, makeTrace, replay, toCsv } from '../src';

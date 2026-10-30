@@ -1,5 +1,5 @@
 'use client';
-import { IncidentId } from '@najda/api-contract';
+import { IncidentId } from '@sellekni/api-contract';
 import { Search, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';

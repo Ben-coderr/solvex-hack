@@ -1,6 +1,6 @@
 /**
  * Generates language-neutral golden test vectors into ../test-vectors/*.json
- * Run: pnpm --filter @najda/shared vectors      (deterministic: same output every run)
+ * Run: pnpm --filter @sellekni/shared vectors      (deterministic: same output every run)
  * Cross-check with an INDEPENDENT implementation: python3 -I scripts/crosscheck.py
  */
 import { mkdirSync, writeFileSync } from 'node:fs';

@@ -1,5 +1,5 @@
 'use client';
-import type { IngestAck } from '@najda/api-contract';
+import type { IngestAck } from '@sellekni/api-contract';
 import { ClipboardPaste, FlaskConical } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useId, useState } from 'react';
@@ -80,7 +80,7 @@ export function IngestButtons({ demo, onOpenIncident }: { demo: boolean; onOpenI
             {SCENARIOS.map((s) => (
               <label key={s} className={cn('flex min-h-12 cursor-pointer items-center gap-3 rounded-md border px-3 py-2 text-base',
                 scenario === s ? 'border-brand-fill bg-raised' : 'border-line')}>
-                <input type="radio" name="scenario" value={s} checked={scenario === s} onChange={() => setScenario(s)} className="size-5 accent-[var(--najda-brand-fill)]" />
+                <input type="radio" name="scenario" value={s} checked={scenario === s} onChange={() => setScenario(s)} className="size-5 accent-[var(--sellekni-brand-fill)]" />
                 {t(`sim.${s}`)}
               </label>
             ))}

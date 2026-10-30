@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { IncidentJson } from '@najda/api-contract';
-import { encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@najda/shared';
+import type { IncidentJson } from '@sellekni/api-contract';
+import { encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@sellekni/shared';
 import { ingest, type InboundMessage } from '../ingest';
 import { MemoryStore } from './memory-store';
 

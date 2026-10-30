@@ -1,4 +1,4 @@
-import type { AssessmentSummary, IncidentJson, IngestAck } from '@najda/api-contract';
+import type { AssessmentSummary, IncidentJson, IngestAck } from '@sellekni/api-contract';
 import {
   assess, decodeDzmsd, formatHHMM, mergePackets, resolveCrashTime,
   type Assessment, type DzmsdPacket,

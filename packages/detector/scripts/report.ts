@@ -1,5 +1,5 @@
 // Prints what the reference detector does with every synthetic scenario, per sensor range and mount.
-//   pnpm --filter @najda/detector report
+//   pnpm --filter @sellekni/detector report
 import { SCENARIOS, makeTrace, replay, type Mount } from '../src';
 
 const ranges = [4, 8, 16, 32];

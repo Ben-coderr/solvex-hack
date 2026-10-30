@@ -2,7 +2,7 @@
 """Builds docs/diagrams/sellekni-blueprint.html: one self-contained page that carries the seven diagrams
 (inline SVG, theme variables) plus the tables the team needs when presenting.
     cd docs/diagrams && python3 build_diagrams.py && python3 build_page.py
-Numbers on the page come from `pnpm --filter @najda/detector report` and `pnpm check` (see docs/13 section 4)."""
+Numbers on the page come from `pnpm --filter @sellekni/detector report` and `pnpm check` (see docs/13 section 4)."""
 import pathlib, html, re
 
 HERE = pathlib.Path(__file__).parent
@@ -167,10 +167,10 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
     <span class="chip road"><b>Roadmap</b> · OBD link</span>
     <span class="chip road"><b>Roadmap</b> · plug-in box</span>
     <span class="chip">Wire magic <span class="mono">SLK1</span></span>
-    <span class="chip">Codename NAJDA stays in code</span>
+    <span class="chip">One name in code too: sellekni</span>
   </div>
   <p class="checks"><b>pnpm check is green</b> on this pack: 67 protocol tests, 10 design-token tests, 21 detector tests, and an independent Python decoder that agrees on 302 valid packets and refuses all 134 invalid ones. Everything the detector shows below is a synthetic replay, labelled as such.</p>
-  <p class="notice"><b>Not read:</b> the two GitHub repositories (<span class="mono">obd-connected-pack</span> and <span class="mono">najda/docs/solvex</span>). Access failed from my side, so this page rests on the old plan files you uploaded and on sources I checked. How to give access is in docs/12 §7.</p>
+  <p class="notice"><b>Not read:</b> the two GitHub repositories (<span class="mono">obd-connected-pack</span> and <span class="mono">sellekni/docs/solvex</span>). Access failed from my side, so this page rests on the old plan files you uploaded and on sources I checked. How to give access is in docs/12 §7.</p>
 </header>
 
 <nav class="index" aria-label="Sections"><ul>

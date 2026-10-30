@@ -1,12 +1,14 @@
 // Open the demo already signed in: one Chrome window for the dispatcher, one for hospital CHU-A (separate
-// sessions, like two people). Uses the real login form, so it also proves the accounts work.
-//   ./najda open                 (or: BASE_URL=http://localhost:3000 pnpm --filter web exec tsx scripts/open-demo.mts)
-//   ./najda open --reset         empty the demo database first
-//   ./najda open --locale=ar     ar | fr | en
-//   ./najda reset                (= --reset-only: no windows)
+// sessions, like two people), and a stage window (dispatcher session) with /demo and /phones in two tabs.
+// Uses the real login form, so it also proves the accounts work.
+//   ./sellekni open                 (or: BASE_URL=http://localhost:3000 pnpm --filter web exec tsx scripts/open-demo.mts)
+//   ./sellekni open --reset         empty the demo database first
+//   ./sellekni open --locale=ar     ar | fr | en
+//   ./sellekni open --no-stage      only the dispatcher and hospital windows
+//   ./sellekni reset                (= --reset-only: no windows)
 import path from 'node:path';
 import nextEnv from '@next/env';
-import { chromium, type Browser } from 'playwright';
+import { chromium, type Browser, type BrowserContext, type Page } from 'playwright';
 
 nextEnv.loadEnvConfig(path.resolve(import.meta.dirname, '../../..'), true, undefined, true);
 const BASE = process.env.BASE_URL ?? 'http://localhost:3000';
@@ -14,18 +16,25 @@ const PASSWORD = process.env.DEMO_USER_PASSWORD;
 const args = process.argv.slice(2);
 const resetOnly = args.includes('--reset-only');
 const reset = resetOnly || args.includes('--reset');
+const stage = !args.includes('--no-stage');
 const locale = args.find((a) => a.startsWith('--locale='))?.split('=')[1] ?? 'en';
-if (!PASSWORD) throw new Error('DEMO_USER_PASSWORD is empty in .env.local: run ./najda up');
+if (!PASSWORD) throw new Error('DEMO_USER_PASSWORD is empty in .env.local: run ./sellekni up');
 
-async function signedIn(browser: Browser, email: string, landing: RegExp, size: { width: number; height: number }, position: string) {
-  const ctx = await browser.newContext({ viewport: null });
-  await ctx.addCookies([{ name: 'NEXT_LOCALE', value: locale, url: BASE }]);
-  const page = await ctx.newPage();
-  // place the window (Chrome DevTools Protocol): dispatcher left, hospital right
+type Size = { width: number; height: number };
+
+/** Place a page's window (Chrome DevTools Protocol): dispatcher left, hospital right, stage window on top. */
+async function place(ctx: BrowserContext, page: Page, size: Size, position: string) {
   const cdp = await ctx.newCDPSession(page);
   const { windowId } = await cdp.send('Browser.getWindowForTarget');
   const [left, top] = position.split(',').map(Number);
   await cdp.send('Browser.setWindowBounds', { windowId, bounds: { left, top, ...size } });
+}
+
+async function signedIn(browser: Browser, email: string, landing: RegExp, size: Size, position: string) {
+  const ctx = await browser.newContext({ viewport: null });
+  await ctx.addCookies([{ name: 'NEXT_LOCALE', value: locale, url: BASE }]);
+  const page = await ctx.newPage();
+  await place(ctx, page, size, position);
   await page.goto(`${BASE}/login`);
   await page.locator('input[name=email]').fill(email);
   await page.locator('input[name=password]').fill(PASSWORD!);
@@ -37,7 +46,7 @@ async function signedIn(browser: Browser, email: string, landing: RegExp, size: 
 }
 
 const browser = await chromium.launch({ channel: 'chrome', headless: resetOnly, args: ['--no-first-run', '--no-default-browser-check'] });
-const dispatcher = await signedIn(browser, 'dispatcher@najda.test', /^\/$/, { width: 1366, height: 860 }, '0,0');
+const dispatcher = await signedIn(browser, 'dispatcher@sellekni.test', /^\/$/, { width: 1366, height: 860 }, '0,0');
 
 if (reset) {
   const r = await dispatcher.page.request.post(`${BASE}/api/demo/reset`);
@@ -49,7 +58,26 @@ if (reset) {
   await dispatcher.page.reload();
 }
 
-const hospital = await signedIn(browser, 'hospital-a@najda.test', /^\/hospital\//, { width: 900, height: 860 }, '1366,0');
+const hospital = await signedIn(browser, 'hospital-a@sellekni.test', /^\/hospital\//, { width: 900, height: 860 }, '1366,0');
+// D11 stage window: the dispatcher's session (no second login), /demo and /phones as two tabs of one window.
+const stagePages: Page[] = [];
+if (stage) {
+  const health = (await (await dispatcher.page.request.get(`${BASE}/api/health`)).json()) as { demo?: boolean };
+  if (health.demo) {
+    const demo = await dispatcher.ctx.newPage();
+    await place(dispatcher.ctx, demo, { width: 1280, height: 860 }, '160,60');
+    await demo.goto(`${BASE}/demo`);
+    const phones = await dispatcher.ctx.newPage(); // opens in its own window: Chrome gives each automation page one
+    await place(dispatcher.ctx, phones, { width: 1280, height: 860 }, '220,100');
+    await phones.goto(`${BASE}/phones`);
+    await demo.bringToFront();
+    stagePages.push(demo, phones);
+    console.log(`  ✓ stage: ${BASE}/demo and ${BASE}/phones (the witness QR appears on /demo once an incident is open)`);
+  } else {
+    console.log('  · stage windows skipped: DEMO_MODE is not true on this server');
+  }
+}
+
 console.log(`
   Try the hero flow (≈ 90 s):
    1. Dispatcher: Simulate SMS → "Rollover, no response" → Send → Esc
@@ -57,8 +85,9 @@ console.log(`
    3. Orientation: Pre-alert on CHU-A (#1)
    4. Hospital window: Acknowledge
    5. Dispatcher: ✓ Acknowledged appears → Audit log shows every step
-  Close both windows (or Ctrl+C) to quit.`);
+   6. Stage window: a witness report on the newest incident → ×2, confidence up; Reset when done
+  Close all windows (or Ctrl+C) to quit.`);
 
-// stay open until the person closes both windows
-await Promise.all([dispatcher.page, hospital.page].map((p) => p.waitForEvent('close', { timeout: 0 }).catch(() => undefined)));
+// stay open until the person closes every window
+await Promise.all([dispatcher.page, hospital.page, ...stagePages].map((p) => p.waitForEvent('close', { timeout: 0 }).catch(() => undefined)));
 await browser.close().catch(() => undefined);

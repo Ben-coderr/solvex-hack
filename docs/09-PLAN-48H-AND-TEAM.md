@@ -9,7 +9,7 @@
 | **A — Mobile** | `apps/mobile`, native SMS module, detector, replay, outbox | Expo skills, Context7 |
 | **B — Web & API** | `apps/web`, Supabase schema, ingest, realtime, pre-alert | Supabase MCP, shadcn, Playwright |
 | **C — Shared, data, maps** | `packages/shared` upkeep, hospital data, OSRM/PMTiles, ETA, traces, measurements | Context7 |
-| **D — Design, pitch, demo** | Figma, tokens, all UI polish, slides, video, demo script, rehearsal | Figma MCP, frontend-design, najda-design |
+| **D — Design, pitch, demo** | Figma, tokens, all UI polish, slides, video, demo script, rehearsal | Figma MCP, frontend-design, sellekni-design |
 
 3 people: merge C into B. 2 people: A+C, B+D and use the **cut list** (§4) from the start. Solo: dashboard + `/phones` + Simulate SMS + witness page only; mobile = replay mode UI without the native module.
 

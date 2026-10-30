@@ -1,4 +1,4 @@
-# 06 — Addendum: what makes the look unmistakably NAJDA
+# 06 — Addendum: what makes the look unmistakably SELLEKNI
 
 1. **The packet is the interface.** The real DZ-MSD text (`SLK1 K7Q2M R75H … #0E`) is always on screen as monospace chips with a live `91/160` counter and a GSM-7 badge; a bad checksum shows up in the chips themselves.
 2. **Five shapes before five colours.** R ▲ · O ◆ · Y ● · G ■ · U ◌ dashed and hollow, each carrying its letter. The greyscale test passes, and light themes add a 2 px ink outline.

@@ -1,4 +1,4 @@
-import { SMS_SINGLE_MAX, gsm7Length, type Band, type Flag } from '@najda/shared';
+import { SMS_SINGLE_MAX, gsm7Length, type Band, type Flag } from '@sellekni/shared';
 import { BRAND } from '../../brand';
 
 export interface PrealertFacts {
@@ -24,7 +24,7 @@ const FLAG_PRIORITY: readonly Flag[] = ['U', 'B', 'H', 'N', 'X', 'E', 'D', 'C', 
 
 /**
  * Hospital pre-alert, one SMS of BASIC GSM-7 only (docs/04 §6 template, minus its `~`, an extension char;
- * "estimated risk" wording per najda-medical-language):
+ * "estimated risk" wording per sellekni-medical-language):
  * SELLEKNI PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M
  */
 export function prealertSms(f: PrealertFacts): string {

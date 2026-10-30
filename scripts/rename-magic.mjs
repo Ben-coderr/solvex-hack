@@ -6,7 +6,7 @@
 //
 // Why a script: the CRC-8 covers the magic, so changing it invalidates every full packet that is
 // written as a literal in tests, docs, fixtures and app code. Replacing the text by hand breaks the
-// contract silently. This follows the najda-protocol procedure: change source -> change the
+// contract silently. This follows the sellekni-protocol procedure: change source -> change the
 // independent Python implementation -> regenerate vectors -> review the diff -> pnpm check.
 //
 // Run it on a clean git branch. Review `git diff` before committing. Never edit vectors by hand.

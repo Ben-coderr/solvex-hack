@@ -100,7 +100,7 @@ export const fr: Messages = {
     smsPerm: 'Envoyer les SMS seul', smsPermGranted: 'Autorisé', smsPermDenied: "Non autorisé : vous appuierez sur Envoyer dans l'app SMS.", smsPermAllow: 'Autoriser les SMS',
     smsNoNative: 'Cette version ne peut pas envoyer de SMS seule.',
     title: 'Réglages', language: 'Langue', server: 'Serveur opérationnel', serverUrl: 'Adresse du serveur', serverHint: 'ex. http://192.168.1.20:3000',
-    key: "Clé de l'application (x-najda-key)", keyHint: "Fournie par l'équipe opérationnelle", test: 'Tester la connexion', reachable: 'Serveur joignable', unreachable: 'Serveur injoignable',
+    key: "Clé de l'application (x-sellekni-key)", keyHint: "Fournie par l'équipe opérationnelle", test: 'Tester la connexion', reachable: 'Serveur joignable', unreachable: 'Serveur injoignable',
     gateways: 'Passerelles SMS', gw1: 'Passerelle 1 (GW1)', gw2: 'Passerelle 2 (GW2)', gwHint: '+213…', sim: 'SIM pour les SMS',
     demo: 'Mode démo', demoHint: 'Affiche DÉMO sur chaque écran et raccourcit le compte à rebours.', countdown: 'Durée du compte à rebours (démo)', seconds: '{{n}} s',
     replay: 'Rejouer un trajet', alarmTest: "Tester l'alarme (3 s)", sensorLab: 'Labo capteurs', sensorLabOpen: 'Ouvrir le labo capteurs',

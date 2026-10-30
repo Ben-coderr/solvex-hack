@@ -1,11 +1,11 @@
 /**
- * Replay engine (M3): feeds a trace (`parseCsv` from @najda/detector) through the SAME detector host the live
+ * Replay engine (M3): feeds a trace (`parseCsv` from @sellekni/detector) through the SAME detector host the live
  * sensors use, at the recorded timing (rate 1) or faster for development (rate 4). Samples and GPS fixes are merged
  * by time exactly as the package's `replay()` does (a fix is pushed before a sample with the same or later t), so a
  * paced replay yields the package's decisions. Pure TypeScript with an injected clock: unit-tested without timers.
  * While a replay runs the UI shows REPLAY · SYNTHETIC on every screen (the session's `replay` field).
  */
-import type { Decision, GpsFix, Sample } from '@najda/detector';
+import type { Decision, GpsFix, Sample } from '@sellekni/detector';
 import type { DetectorHost } from '../detector/adapter';
 
 export interface Clock {

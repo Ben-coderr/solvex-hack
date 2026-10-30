@@ -1,4 +1,4 @@
-import type { Decision, RejectKey } from '@najda/detector';
+import type { Decision, RejectKey } from '@sellekni/detector';
 import { create } from 'zustand';
 import type { OutboxItem } from '../alert/outbox';
 import type { Fix } from '../alert/packet';

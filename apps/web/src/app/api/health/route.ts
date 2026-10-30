@@ -10,8 +10,8 @@ const body = () => ({
   time: new Date().toISOString(),
   version: process.env.npm_package_version ?? '0.1.0',
   demo: process.env.DEMO_MODE === 'true',
-  /** the offline basemap (public/tiles/najda.pmtiles) is installed: the map needs no internet */
-  offlineTiles: existsSync(path.join(process.cwd(), 'public/tiles/najda.pmtiles')),
+  /** the offline basemap (public/tiles/sellekni.pmtiles) is installed: the map needs no internet */
+  offlineTiles: existsSync(path.join(process.cwd(), 'public/tiles/sellekni.pmtiles')),
 });
 
 export function GET() {

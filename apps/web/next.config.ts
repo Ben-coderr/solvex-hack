@@ -12,8 +12,8 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || ".next",
   // The floating dev badge overlaps content in QA/pitch screenshots.
   devIndicators: false,
-  // @najda/shared ships TypeScript source (main: src/index.ts); Next compiles it like app code.
-  transpilePackages: ["@najda/shared", "@najda/tokens"],
+  // @sellekni/shared ships TypeScript source (main: src/index.ts); Next compiles it like app code.
+  transpilePackages: ["@sellekni/shared", "@sellekni/tokens"],
   turbopack: {
     rules: {
       "*.css": {

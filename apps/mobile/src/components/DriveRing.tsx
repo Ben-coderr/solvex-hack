@@ -1,7 +1,7 @@
-import { ringDash } from '@najda/ui-core';
+import { ringDash } from '@sellekni/ui-core';
 import { View } from 'react-native';
 import Svg, { Circle, G } from 'react-native-svg';
-import type { DetectorState } from '@najda/detector';
+import type { DetectorState } from '@sellekni/detector';
 import { T, useTheme } from '../ui';
 import { Txt } from './kit';
 

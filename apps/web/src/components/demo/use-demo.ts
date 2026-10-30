@@ -1,5 +1,5 @@
 'use client';
-import type { IngestAck } from '@najda/api-contract';
+import type { IngestAck } from '@sellekni/api-contract';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { api } from '@/lib/api';

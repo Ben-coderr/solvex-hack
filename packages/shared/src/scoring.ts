@@ -1,5 +1,5 @@
 /**
- * NAJDA Severity Index (NSI) — transparent, explainable, UNCALIBRATED decision support.
+ * SELLEKNI Severity Index (NSI) — transparent, explainable, UNCALIBRATED decision support.
  *
  * Inputs and their direction follow the 2021 ACS/NHTSA Field Triage Guideline (red/yellow criteria)
  * and AACN/URGENCY crash-physics literature (delta-v, rollover, multiple impacts).

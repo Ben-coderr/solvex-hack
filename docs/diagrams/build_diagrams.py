@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Builds docs/diagrams/*.svg (standalone) and inline/*.svg (theme-variable version for the published page).
-   python3 build_diagrams.py        (needs example-packet.json: `pnpm --filter @najda/detector exec tsx scripts/example-packet.ts > docs/diagrams/example-packet.json`)
+   python3 build_diagrams.py        (needs example-packet.json: `pnpm --filter @sellekni/detector exec tsx scripts/example-packet.ts > docs/diagrams/example-packet.json`)
 Figure 07 is drawn from the same half-sine model the detector tests use (docs/13 §2.1)."""
 import json, math, pathlib
 from dg import Svg, LIGHT, INLINE, SANS, MONO
@@ -243,7 +243,7 @@ def d04(T, uid):
     s.badge(996, 324)
     s.rect(24, 524, 992, 96, T.brand_soft, T.brand, 1.2, 8)
     s.text(40, 548, 'Adding a source never changes the server.', 13, weight=600, fill=T.brand_text)
-    s.para(40, 568, 'A box needs one new source letter and "G may exceed the phone range": protocol v1.1, changed only through the najda-protocol procedure (docs 12 and 16). '
+    s.para(40, 568, 'A box needs one new source letter and "G may exceed the phone range": protocol v1.1, changed only through the sellekni-protocol procedure (docs 12 and 16). '
            f"The band {band[0]} {band[1:3]} {band[3]} above is what the server computed for this phone-only reading: mechanism evidence alone is capped, more reports or vitals raise it.", 950, 12, 16, fill=T.ink)
     return s
 

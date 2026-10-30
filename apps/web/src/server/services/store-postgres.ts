@@ -1,6 +1,6 @@
 import 'server-only';
 import type postgres from 'postgres';
-import { MERGE_RADIUS_M, MERGE_WINDOW_MIN, type DzmsdPacket } from '@najda/shared';
+import { MERGE_RADIUS_M, MERGE_WINDOW_MIN, type DzmsdPacket } from '@sellekni/shared';
 import { sql as getSql, type Sql } from '../db';
 import type { IncidentRow, IngestStore, IngestTx } from './ingest-store';
 
@@ -32,7 +32,7 @@ const json = (sql: Tx, v: unknown) => sql.json(v as postgres.JSONValue);
 function txOps(sql: Tx): IngestTx {
   return {
     async lockIngest() {
-      await sql`select pg_advisory_xact_lock(hashtext('najda.ingest'))`;
+      await sql`select pg_advisory_xact_lock(hashtext('sellekni.ingest'))`;
     },
 
     async findDuplicate({ clientId, channel, raw, senderHash }) {

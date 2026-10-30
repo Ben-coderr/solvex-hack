@@ -1,6 +1,6 @@
 import 'server-only';
 import QRCode from 'qrcode';
-import type { IngestAck } from '@najda/api-contract';
+import type { IngestAck } from '@sellekni/api-contract';
 import { sql as getSql } from '../db';
 import { coarse, linkToken, verifyLinkToken, witnessJson, type WitnessForm } from '../domain';
 import { env } from '../env';

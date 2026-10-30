@@ -1,5 +1,5 @@
 'use client';
-import type { CapabilityCode } from '@najda/ui-core';
+import type { CapabilityCode } from '@sellekni/ui-core';
 import { Info, MapPin } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';

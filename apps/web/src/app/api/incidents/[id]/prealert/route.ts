@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { IncidentId } from '@najda/api-contract';
+import { IncidentId } from '@sellekni/api-contract';
 import { requireRole } from '@/server/auth';
 import { fail, json, limited, parseJson, readRaw } from '@/server/http';
 import { createPrealert } from '@/server/services/prealert';

@@ -9,8 +9,8 @@ try { file = JSON.parse(raw)?.tool_input?.file_path ?? ''; } catch { process.exi
 file = file.replaceAll('\\', '/');
 
 const targets = [
-  ['packages/shared/', '@najda/shared'],
-  ['packages/tokens/', '@najda/tokens'],
+  ['packages/shared/', '@sellekni/shared'],
+  ['packages/tokens/', '@sellekni/tokens'],
 ];
 for (const [needle, pkg] of targets) {
   if (!file.includes(needle)) continue;

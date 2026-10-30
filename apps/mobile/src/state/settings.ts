@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import type { Locale } from '../i18n';
 import { COUNTDOWN } from '../config';
+import { readWithLegacy, STORAGE } from './legacy';
 
 /**
  * User settings (M8), persisted on the phone (SQLite key-value store). The ingest key is a low-value shared
@@ -41,8 +42,8 @@ export const useSettings = create<Settings>()(
       locale: null,
       theme: 'system',
       onboarded: false,
-      serverUrl: process.env.EXPO_PUBLIC_NAJDA_SERVER_URL ?? '',
-      ingestKey: process.env.EXPO_PUBLIC_NAJDA_INGEST_KEY ?? '',
+      serverUrl: process.env.EXPO_PUBLIC_SELLEKNI_SERVER_URL ?? '',
+      ingestKey: process.env.EXPO_PUBLIC_SELLEKNI_INGEST_KEY ?? '',
       gw1: '',
       gw2: '',
       contacts: [],
@@ -55,11 +56,12 @@ export const useSettings = create<Settings>()(
       set: (p) => set(p),
     }),
     {
-      name: 'najda.settings.v1',
+      name: STORAGE.settings,
       // synchronous: a change is on disk before the next line runs. The language switch reloads the app right after
       // `set` (RTL needs a restart); with the async API that reload beat the write and the language never stuck.
       storage: createJSONStorage(() => ({
-        getItem: (k) => Storage.getItemSync(k),
+        // a build from before the rename saved under the old name: read it once, the next write moves it
+        getItem: (k) => (k === STORAGE.settings ? readWithLegacy((x) => Storage.getItemSync(x), k, STORAGE.legacySettings) : Storage.getItemSync(k)),
         setItem: (k, v) => Storage.setItemSync(k, v),
         removeItem: (k) => void Storage.removeItemSync(k),
       })),

@@ -2,7 +2,7 @@
  * Sensor Lab maths (M9, docs/13 §6.3), pure so it is tested: T1 turns Android's maximumRange (m/s²) into the
  * detector's rangeG; T3 turns sensor timestamps into the real sampling rate (median and p95 of Δt).
  */
-import { PARAMS } from '@najda/detector';
+import { PARAMS } from '@sellekni/detector';
 
 /** Android SensorManager.STANDARD_GRAVITY */
 export const STANDARD_GRAVITY = 9.80665;

@@ -1,4 +1,4 @@
-import { MERGE_RADIUS_M, MERGE_WINDOW_MIN, haversineKm, type DzmsdPacket } from '@najda/shared';
+import { MERGE_RADIUS_M, MERGE_WINDOW_MIN, haversineKm, type DzmsdPacket } from '@sellekni/shared';
 import type {
   AuditEvent, IncidentRow, IngestStore, IngestTx, NewAssessment, NewReport, OutboundSms,
 } from '../ingest-store';

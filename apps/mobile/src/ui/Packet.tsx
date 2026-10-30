@@ -1,4 +1,4 @@
-import { packetView, type PacketToken } from '@najda/ui-core';
+import { packetView, type PacketToken } from '@sellekni/ui-core';
 import { StyleSheet, Text, View } from 'react-native';
 import { FONT, T, useTheme, type Palette } from './theme';
 import { useUiText } from './text';

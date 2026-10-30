@@ -8,7 +8,7 @@ import { BRAND } from '@/brand';
 export function BrandMark({ className }: { className?: string }) {
   return (
     <span aria-hidden
-      className={cn('inline-block shrink-0 bg-[var(--najda-logo-mono)] [mask:url(/brand/mark-mono.png)_center/contain_no-repeat]', className)} />
+      className={cn('inline-block shrink-0 bg-[var(--sellekni-logo-mono)] [mask:url(/brand/mark-mono.png)_center/contain_no-repeat]', className)} />
   );
 }
 

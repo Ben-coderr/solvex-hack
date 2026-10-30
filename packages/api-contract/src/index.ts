@@ -1,6 +1,6 @@
 /**
- * @najda/api-contract — the JSON channel between the phone, the web pages and the API (docs/05 §2).
- * Schemas + types only. Protocol logic (encode/decode/assess/rank/merge) lives in @najda/shared.
+ * @sellekni/api-contract — the JSON channel between the phone, the web pages and the API (docs/05 §2).
+ * Schemas + types only. Protocol logic (encode/decode/assess/rank/merge) lives in @sellekni/shared.
  */
 import { z } from 'zod';
 

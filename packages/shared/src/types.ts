@@ -23,7 +23,7 @@ export interface DzmsdPacket {
   /** 5 chars, Crockford base32 (0-9 A-Z without I L O U), client-generated, idempotency key */
   id: string;
   band: Band;
-  /** 0..99 — NAJDA Severity Index (client-side hint; the server recomputes and is authoritative) */
+  /** 0..99 — SELLEKNI Severity Index (client-side hint; the server recomputes and is authoritative) */
   score: number;
   conf: Confidence;
   /** WGS84, encoded with 5 decimals (~1.1 m) */

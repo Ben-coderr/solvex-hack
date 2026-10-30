@@ -1,5 +1,5 @@
 'use client';
-import { packetView, type PacketToken } from '@najda/ui-core';
+import { packetView, type PacketToken } from '@sellekni/ui-core';
 import { Check, Copy } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';

@@ -1,4 +1,4 @@
-import type { Confidence } from '@najda/shared';
+import type { Confidence } from '@sellekni/shared';
 import { Info } from 'lucide-react-native';
 import { Text, View } from 'react-native';
 import { ConfidencePill } from './Badges';

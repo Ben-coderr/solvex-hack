@@ -1,8 +1,8 @@
 # 13 — Phone-first sensing: how Sellekni detects a crash with the phone alone, and how to prove it
 
-> **Decision (2026-10-30, team):** *the phone sensors are the main path.* ESP32 / OBD / a custom box are **roadmap only** (docs/16). This document is the detailed plan for the main path, and it ships with a **tested reference implementation**: `packages/detector` (`@najda/detector`, 20 tests, zero runtime dependencies).
+> **Decision (2026-10-30, team):** *the phone sensors are the main path.* ESP32 / OBD / a custom box are **roadmap only** (docs/16). This document is the detailed plan for the main path, and it ships with a **tested reference implementation**: `packages/detector` (`@sellekni/detector`, 20 tests, zero runtime dependencies).
 >
-> **Honesty first.** Everything below that is a number is either (1) *sourced* (link in §10), (2) *computed* by the reference code (reproducible: `pnpm --filter @najda/detector report`), or (3) an **ASSUMPTION** to tune with real recordings (§7). The tests use **synthetic traces I generated**; they prove the *logic* behaves as designed, **not** that it works on real roads. The real proof is the Realme field protocol in §6–§7.
+> **Honesty first.** Everything below that is a number is either (1) *sourced* (link in §10), (2) *computed* by the reference code (reproducible: `pnpm --filter @sellekni/detector report`), or (3) an **ASSUMPTION** to tune with real recordings (§7). The tests use **synthetic traces I generated**; they prove the *logic* behaves as designed, **not** that it works on real roads. The real proof is the Realme field protocol in §6–§7.
 
 ---
 
@@ -94,7 +94,7 @@ Machine keys → ar/fr/en sentences (no free text in the detector): `speed_colla
 
 ## 4. What the tests show (and don't)
 
-Run it: `pnpm --filter @najda/detector report` · `pnpm --filter @najda/detector test`. Results for 3 mounts × 20 seeds per cell:
+Run it: `pnpm --filter @sellekni/detector report` · `pnpm --filter @sellekni/detector test`. Results for 3 mounts × 20 seeds per cell:
 
 | Scenario (synthetic) | Must | ±4 g | ±8 g | ±16 g | ±32 g |
 |---|---|---|---|---|---|
@@ -123,7 +123,7 @@ Run it: `pnpm --filter @najda/detector report` · `pnpm --filter @najda/detector
 1. **Confirm window 5 s → 8 s** (§2.3). 2. The **"multi-axis gate"** I recommended in docs/12 §3 is demoted to a *reported cue* (`axesActive`): an axis-aligned mount sends a frontal crash almost entirely onto one axis, so a hard gate would reject real crashes; the gates that discriminate are speed history, high-g duration (incl. time at the ceiling), speed collapse and the stop (ablation table). Vendors list it as practice; re-evaluate on real traces. 3. **Δv window** is measured over the whole evaluation window, not "3 s", for the same latency reason. 4. **Sensors below ±8 g are refused** (UNSUPPORTED). 5. **Minimum sampling rate** is measured at runtime.
 
 ## 5. Replay traces (the stage safety net)
-`pnpm --filter @najda/detector traces` writes 22 CSVs + `manifest.json` to `packages/detector/traces/` (ranges ±8 and ±16 for all scenarios, plus ±200 g "BOX (simulated)" for the two crash scenarios; seed 1, tilted mount). Format: `t_ms,ax,ay,az,gx,gy,gz,speed_kmh` (speed only on rows where a GPS fix arrives) — the **same format the Sensor Lab (M9) records**, so a real trace drops in with no code change. Every replay is labelled **REPLAY · SYNTHETIC** on screen. Use `frontal_45` and `rollover_71` for the demo and `phone_drop` + `pothole_then_stop` to show the gates working ("the same code that rejects these two"). *If the team's detector already exists, feed these CSVs through it and compare the decisions — that is the quickest integration check.*
+`pnpm --filter @sellekni/detector traces` writes 22 CSVs + `manifest.json` to `packages/detector/traces/` (ranges ±8 and ±16 for all scenarios, plus ±200 g "BOX (simulated)" for the two crash scenarios; seed 1, tilted mount). Format: `t_ms,ax,ay,az,gx,gy,gz,speed_kmh` (speed only on rows where a GPS fix arrives) — the **same format the Sensor Lab (M9) records**, so a real trace drops in with no code change. Every replay is labelled **REPLAY · SYNTHETIC** on screen. Use `frontal_45` and `rollover_71` for the demo and `phone_drop` + `pothole_then_stop` to show the gates working ("the same code that rejects these two"). *If the team's detector already exists, feed these CSVs through it and compare the decisions — that is the quickest integration check.*
 
 ## 6. Field guide: Realme 10 Pro+
 

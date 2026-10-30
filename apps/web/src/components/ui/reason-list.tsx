@@ -1,5 +1,5 @@
 'use client';
-import type { Confidence } from '@najda/shared';
+import type { Confidence } from '@sellekni/shared';
 import { Info } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';

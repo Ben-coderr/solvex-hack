@@ -31,7 +31,7 @@ import { resolveCrashTime } from './packages/shared/src/index.ts';
 console.log(new Date(resolveCrashTime('1432', new Date()).getTime() + 7000).toISOString());")"
 
 TOKEN="$(curl -fsS "$SUPA_URL/auth/v1/token?grant_type=password" -H "apikey: $ANON" -H 'content-type: application/json' \
-  -d "{\"email\":\"dispatcher@najda.test\",\"password\":\"$PASS\"}" | python3 -c 'import sys,json;print(json.load(sys.stdin)["access_token"])')"
+  -d "{\"email\":\"dispatcher@sellekni.test\",\"password\":\"$PASS\"}" | python3 -c 'import sys,json;print(json.load(sys.stdin)["access_token"])')"
 auth=(-H "Authorization: Bearer $TOKEN")
 
 summ() { python3 -c '
@@ -62,9 +62,9 @@ echo "== forged webhook (bad signature) must be refused"
 printf '%-34s ' "6 unsigned/forged"
 curl -sS -o /dev/null -w 'HTTP %{http_code}\n' -X POST "$BASE_URL/api/sms/inbound" -H 'content-type: application/json' \
   -H "X-Timestamp: $(date +%s)" -H 'X-Signature: 00' -d '{"event":"sms:received","payload":{"message":"x"}}'
-echo "== same incident over the JSON channel (x-najda-key) = same report, other channel"
+echo "== same incident over the JSON channel (x-sellekni-key) = same report, other channel"
 printf '%-34s ' "7 JSON K7Q2M"
-curl -fsS -X POST "$BASE_URL/api/incidents" -H 'content-type: application/json' -H "x-najda-key: $INGEST_KEY" -w '\n' -d '{
+curl -fsS -X POST "$BASE_URL/api/incidents" -H 'content-type: application/json' -H "x-sellekni-key: $INGEST_KEY" -w '\n' -d '{
   "v":1,"incident_id":"K7Q2M","source":"auto","created_at":"'"$CRASH_AT"'",
   "location":{"lat":36.47213,"lon":2.82871},"crash":{"dv_kmh":71,"peak_g":38,"rollover":true,"no_response":true},
   "scene":{"vehicles":1,"persons":1,"kinds":["car"],"flags":[]},"vitals":{"hr":124,"spo2":89}}' | summ

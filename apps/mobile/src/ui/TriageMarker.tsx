@@ -1,5 +1,5 @@
-import type { Band } from '@najda/shared';
-import { TRIAGE_SIZE, triageGeometry, type TriageSize } from '@najda/ui-core';
+import type { Band } from '@sellekni/shared';
+import { TRIAGE_SIZE, triageGeometry, type TriageSize } from '@sellekni/ui-core';
 import { View } from 'react-native';
 import Svg, { Path, Text as SvgText } from 'react-native-svg';
 import { T, useTheme } from './theme';

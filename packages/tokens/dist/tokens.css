@@ -36,55 +36,55 @@
   --duration-slow: 360ms;
 }
 :root, [data-theme="light"] {
-  --najda-bg: #F6F4EF;
-  --najda-surface: #FFFFFF;
-  --najda-raised: #FBFAF7;
-  --najda-line: #D9D3C5;
-  --najda-text: #14181C;
-  --najda-muted: #566270;
-  --najda-brand-text: #1740B0;
-  --najda-on-brand: #FFFFFF;
-  --najda-brand-fill: #2B62F0;
-  --najda-triage-outline: #14181C;
-  --najda-status-ok: #0B6E85;
-  --najda-status-warn: #6A4BC4;
-  --najda-status-danger: #A3236F;
-  --najda-status-info: #1740B0;
-  --najda-logo-mono: #14181C;
+  --sellekni-bg: #F6F4EF;
+  --sellekni-surface: #FFFFFF;
+  --sellekni-raised: #FBFAF7;
+  --sellekni-line: #D9D3C5;
+  --sellekni-text: #14181C;
+  --sellekni-muted: #566270;
+  --sellekni-brand-text: #1740B0;
+  --sellekni-on-brand: #FFFFFF;
+  --sellekni-brand-fill: #2B62F0;
+  --sellekni-triage-outline: #14181C;
+  --sellekni-status-ok: #0B6E85;
+  --sellekni-status-warn: #6A4BC4;
+  --sellekni-status-danger: #A3236F;
+  --sellekni-status-info: #1740B0;
+  --sellekni-logo-mono: #14181C;
 }
 [data-theme="dark"] {
-  --najda-bg: #0E1114;
-  --najda-surface: #151A1F;
-  --najda-raised: #1D242B;
-  --najda-line: #2B343D;
-  --najda-text: #ECEFF2;
-  --najda-muted: #9AA6B2;
-  --najda-brand-text: #9DB8FF;
-  --najda-on-brand: #FFFFFF;
-  --najda-brand-fill: #2B62F0;
-  --najda-triage-outline: transparent;
-  --najda-status-ok: #4CCCE6;
-  --najda-status-warn: #B79CFF;
-  --najda-status-danger: #F27AC2;
-  --najda-status-info: #9DB8FF;
-  --najda-logo-mono: #ECEFF2;
+  --sellekni-bg: #0E1114;
+  --sellekni-surface: #151A1F;
+  --sellekni-raised: #1D242B;
+  --sellekni-line: #2B343D;
+  --sellekni-text: #ECEFF2;
+  --sellekni-muted: #9AA6B2;
+  --sellekni-brand-text: #9DB8FF;
+  --sellekni-on-brand: #FFFFFF;
+  --sellekni-brand-fill: #2B62F0;
+  --sellekni-triage-outline: transparent;
+  --sellekni-status-ok: #4CCCE6;
+  --sellekni-status-warn: #B79CFF;
+  --sellekni-status-danger: #F27AC2;
+  --sellekni-status-info: #9DB8FF;
+  --sellekni-logo-mono: #ECEFF2;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --najda-bg: #0E1114;
-    --najda-surface: #151A1F;
-    --najda-raised: #1D242B;
-    --najda-line: #2B343D;
-    --najda-text: #ECEFF2;
-    --najda-muted: #9AA6B2;
-    --najda-brand-text: #9DB8FF;
-    --najda-on-brand: #FFFFFF;
-    --najda-brand-fill: #2B62F0;
-    --najda-triage-outline: transparent;
-    --najda-status-ok: #4CCCE6;
-    --najda-status-warn: #B79CFF;
-    --najda-status-danger: #F27AC2;
-    --najda-status-info: #9DB8FF;
-    --najda-logo-mono: #ECEFF2;
+    --sellekni-bg: #0E1114;
+    --sellekni-surface: #151A1F;
+    --sellekni-raised: #1D242B;
+    --sellekni-line: #2B343D;
+    --sellekni-text: #ECEFF2;
+    --sellekni-muted: #9AA6B2;
+    --sellekni-brand-text: #9DB8FF;
+    --sellekni-on-brand: #FFFFFF;
+    --sellekni-brand-fill: #2B62F0;
+    --sellekni-triage-outline: transparent;
+    --sellekni-status-ok: #4CCCE6;
+    --sellekni-status-warn: #B79CFF;
+    --sellekni-status-danger: #F27AC2;
+    --sellekni-status-info: #9DB8FF;
+    --sellekni-logo-mono: #ECEFF2;
   }
 }

@@ -1,5 +1,5 @@
 /**
- * Silent SMS channel (docs/04 §3.4) over modules/najda-native (Kotlin, SmsManager). The result of a send arrives
+ * Silent SMS channel (docs/04 §3.4) over modules/sellekni-native (Kotlin, SmsManager). The result of a send arrives
  * later as an event: sent (left the phone) → delivered (status report from the network) or failed (with the
  * SmsManager / TP-Status code). Android only; `SEND_SMS` is Play-restricted, so this build is sideloaded.
  * The contract and the fake live in `sms-core.ts`.
@@ -16,7 +16,7 @@ interface NativeSms {
   addListener(event: 'onSmsResult', cb: (r: SmsResult) => void): { remove(): void };
 }
 
-const Native = Platform.OS === 'android' ? requireOptionalNativeModule<NativeSms>('NajdaNative') : null;
+const Native = Platform.OS === 'android' ? requireOptionalNativeModule<NativeSms>('SellekniNative') : null;
 // a dev build made before P5 has the module without the SMS functions
 const native = Native && typeof Native.sendSms === 'function' ? Native : null;
 

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { CROCKFORD, FLAG_ORDER, KIND_ORDER, SOURCE_VALUES } from '@najda/shared';
+import { CROCKFORD, FLAG_ORDER, KIND_ORDER, SOURCE_VALUES } from '@sellekni/shared';
 import { CrewUpdate, FLAG_LETTER, IncidentId, IncidentJson, KIND_LETTER, SOURCE_LETTER } from '../src/index';
 
 const example = {
@@ -11,7 +11,7 @@ const example = {
   vitals: { hr: 124, spo2: 89, source: 'ble_watch' },
   medical: { blood: 'O+', anticoagulant: false, allergies: [], consent: true },
   contact: { callback: '+213555000000', lang: 'ar' },
-  device: { app: 'najda/0.1', battery: 61 },
+  device: { app: 'sellekni/0.1', battery: 61 },
 };
 
 test('docs/05 §2 example parses', () => {

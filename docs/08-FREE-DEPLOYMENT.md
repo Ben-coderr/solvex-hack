@@ -31,7 +31,7 @@ Why: the venue network is the #1 killer of live demos. The SMS path is independe
 | Mobile builds | `npx expo run:android`, `eas build --local`, or Gradle on the laptop (unlimited) | EAS Build free tier | EAS free = a *limited quantity of low-priority builds* per month (sources disagree on the number; check expo.dev/pricing). Don't plan around it |
 | CI | | **GitHub Actions** | free minutes for public repos; private repos have a monthly quota |
 | Error tracking | `console` + audit log | (skip) | not needed for a hackathon |
-| Domain | `najda.local` (hosts file) / LAN IP | free `*.vercel.app` | don't spend money on a domain |
+| Domain | `sellekni.local` (hosts file) / LAN IP | free `*.vercel.app` | don't spend money on a domain |
 | Railway / Fly.io | — | **not free** | don't plan on them |
 
 ## 3. Step-by-step

@@ -17,10 +17,10 @@
     "screens:p3": "tsx scripts/p3-screens.mts"
   },
   "dependencies": {
-    "@najda/api-contract": "workspace:^",
-    "@najda/shared": "workspace:^",
-    "@najda/tokens": "workspace:^",
-    "@najda/ui-core": "workspace:^",
+    "@sellekni/api-contract": "workspace:^",
+    "@sellekni/shared": "workspace:^",
+    "@sellekni/tokens": "workspace:^",
+    "@sellekni/ui-core": "workspace:^",
     "@next/env": "16.4.3",
     "@protomaps/basemaps": "^5.7.2",
     "@supabase/ssr": "^0.12.7",

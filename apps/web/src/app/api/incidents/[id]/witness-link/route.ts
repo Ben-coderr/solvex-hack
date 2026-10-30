@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server';
-import { IncidentId } from '@najda/api-contract';
+import { IncidentId } from '@sellekni/api-contract';
 import { requireRole } from '@/server/auth';
 import { env } from '@/server/env';
 import { fail, json, limited } from '@/server/http';

@@ -1,6 +1,6 @@
 /**
  * Alert → DZ-MSD packet (the SMS form) + IncidentJson (the HTTPS form), built from ONE DzmsdPacket so both
- * channels carry the same id and content. Pure: encoding and the hint come from @najda/shared, never copied.
+ * channels carry the same id and content. Pure: encoding and the hint come from @sellekni/shared, never copied.
  * The band/score/conf are the phone's HINT; the server recomputes with assess() and is authoritative.
  * A phone's G is a LOWER BOUND (the accelerometer saturates at its range, docs/13 §2.1); the v1 contract has no
  * "sensor limited" field (docs/13 §3.3), so the richer cues stay on the phone (countdown reasons).
@@ -8,12 +8,12 @@
 import {
   FLAG_LETTER, KIND_LETTER, SOURCE_LETTER,
   type IncidentJson,
-} from '@najda/api-contract';
+} from '@sellekni/api-contract';
 import {
   assess, encodeDzmsd, encodePlusCode, formatHHMM, inputFromPacket,
   type DzmsdPacket, type Flag, type Kind, type Source,
-} from '@najda/shared';
-import type { PacketHints } from '@najda/detector';
+} from '@sellekni/shared';
+import type { PacketHints } from '@sellekni/detector';
 import { BRAND } from '../brand';
 
 export interface Fix {

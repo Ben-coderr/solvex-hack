@@ -1,5 +1,5 @@
 {
-  "name": "@najda/ui-core",
+  "name": "@sellekni/ui-core",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@najda/shared": "workspace:^"
+    "@sellekni/shared": "workspace:^"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

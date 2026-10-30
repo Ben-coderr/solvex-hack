@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 import type { TilesMode } from './status-strip';
 
 /** Offline basemap (docs/04): a regional extract served by Next from /public. Override with NEXT_PUBLIC_PMTILES_URL. */
-const PMTILES_URL = process.env.NEXT_PUBLIC_PMTILES_URL || '/tiles/najda.pmtiles';
+const PMTILES_URL = process.env.NEXT_PUBLIC_PMTILES_URL || '/tiles/sellekni.pmtiles';
 /** Online fallback (no key). Flagged "ONLINE TILES" in the status strip, never silent. */
 const ONLINE_STYLE = { dark: 'https://tiles.openfreemap.org/styles/dark', light: 'https://tiles.openfreemap.org/styles/positron' };
 const RTL_PLUGIN = 'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.3.0/dist/mapbox-gl-rtl-text.js';
@@ -62,7 +62,7 @@ function useTokenColors(theme: 'dark' | 'light') {
   return useMemo(() => {
     if (typeof window === 'undefined') return { route: 'currentColor', casing: 'transparent' };
     const css = getComputedStyle(document.documentElement);
-    return { route: css.getPropertyValue('--najda-brand-text').trim(), casing: css.getPropertyValue('--najda-bg').trim() };
+    return { route: css.getPropertyValue('--sellekni-brand-text').trim(), casing: css.getPropertyValue('--sellekni-bg').trim() };
   }, [theme]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 

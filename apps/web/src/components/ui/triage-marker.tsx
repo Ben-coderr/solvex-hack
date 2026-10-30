@@ -1,6 +1,6 @@
 'use client';
-import type { Band } from '@najda/shared';
-import { TRIAGE_SIZE, triageGeometry, type TriageSize } from '@najda/ui-core';
+import type { Band } from '@sellekni/shared';
+import { TRIAGE_SIZE, triageGeometry, type TriageSize } from '@sellekni/ui-core';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
@@ -43,13 +43,13 @@ export function TriageMarker({ band, size = 'row', selected, pulsing, className 
       style={{ width: px, height: px }}
     >
       {pulsing && (
-        <span aria-hidden className="najda-pulse absolute inset-0 rounded-full" style={{ background: unknown ? 'var(--najda-muted)' : FILL[band] }} />
+        <span aria-hidden className="sellekni-pulse absolute inset-0 rounded-full" style={{ background: unknown ? 'var(--sellekni-muted)' : FILL[band] }} />
       )}
       <svg viewBox="0 0 100 100" width={px} height={px} aria-hidden className="relative overflow-visible">
         <path
           d={g.path}
           fill={unknown ? 'none' : FILL[band]}
-          stroke={unknown ? 'var(--najda-muted)' : 'var(--najda-triage-outline)'}
+          stroke={unknown ? 'var(--sellekni-muted)' : 'var(--sellekni-triage-outline)'}
           strokeWidth={unknown ? 2.5 : 2}
           strokeDasharray={unknown ? '4 3' : undefined}
           vectorEffect="non-scaling-stroke"
@@ -61,7 +61,7 @@ export function TriageMarker({ band, size = 'row', selected, pulsing, className 
           textAnchor="middle"
           dominantBaseline="central"
           direction="ltr"
-          fill={unknown ? 'var(--najda-text)' : INK[band]}
+          fill={unknown ? 'var(--sellekni-text)' : INK[band]}
           fontSize={g.shape === 'triangle' ? 46 : 50}
           fontWeight={700}
           style={{ fontFamily: 'var(--font-display)' }}

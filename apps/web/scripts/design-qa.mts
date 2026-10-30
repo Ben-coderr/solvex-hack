@@ -90,7 +90,7 @@ for (const width of WIDTHS) {
 // reduced motion: the arrival pulse must not animate
 {
   const { ctx, page } = await open(1440, { theme: 'dark', locale: 'en', reducedMotion: true });
-  const anim = await page.evaluate(() => [...document.querySelectorAll('.najda-pulse')].map((e) => getComputedStyle(e).animationName));
+  const anim = await page.evaluate(() => [...document.querySelectorAll('.sellekni-pulse')].map((e) => getComputedStyle(e).animationName));
   if (anim.some((a) => a !== 'none')) defects.push({ check: 'reduced-motion', where: '1440 dark', detail: `pulse still animates: ${anim.join(',')}` });
   notes.push(`reduced motion: ${anim.length} pulse element(s), animation ${[...new Set(anim)].join(',')}`);
   await ctx.close();

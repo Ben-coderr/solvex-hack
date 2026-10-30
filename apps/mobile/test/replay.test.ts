@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { parseCsv, replay, type Decision } from '@najda/detector';
+import { parseCsv, replay, type Decision } from '@sellekni/detector';
 import { createDetectorHost, createSensorClock, RAD_TO_DEG, toGpsFix, toSample } from '../src/detector/adapter';
 import { BUNDLED_TRACES, TRACE_NAMES } from '../src/replay/bundled-traces';
 import { startReplay, type Clock } from '../src/replay/engine';

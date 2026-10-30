@@ -1,4 +1,4 @@
-import type { Band, Confidence, DzmsdPacket } from '@najda/shared';
+import type { Band, Confidence, DzmsdPacket } from '@sellekni/shared';
 import type { ClientHint } from '../domain/json-packet';
 
 export type Channel = 'https' | 'sms' | 'paste' | 'witness' | 'sim';

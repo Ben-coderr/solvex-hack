@@ -1,4 +1,4 @@
-// NAJDA mobile design system (React Native). Names match apps/web/src/components/ui.
+// SELLEKNI mobile design system (React Native). Names match apps/web/src/components/ui.
 export { ChannelBadge, ConfidencePill, StatusBanner, type Channel, type ChannelStatus, type ConnectivityMode } from './Badges';
 export { EmptyState, ErrorState, LocaleSwitch, Skeleton, WitnessStepper, type Locale } from './Controls';
 export { PacketChip, PacketLine } from './Packet';

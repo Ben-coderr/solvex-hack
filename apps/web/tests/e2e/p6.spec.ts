@@ -150,7 +150,7 @@ test('screens: witness ar/en light/dark, /demo, /phones', async ({ browser }) =>
     for (const locale of ['ar', 'en', 'fr'] as const) {
       const ctx = await browser.newContext({ viewport: { width: 360, height: 800 } });
       const o = new URL(witness.url).origin;
-      await ctx.addCookies([{ name: 'najda-theme', value: theme, url: o }, { name: 'NEXT_LOCALE', value: locale, url: o }]);
+      await ctx.addCookies([{ name: 'sellekni-theme', value: theme, url: o }, { name: 'NEXT_LOCALE', value: locale, url: o }]);
       const p = await ctx.newPage();
       watchConsole(p, errors);
       await p.goto(witness.url);
@@ -164,7 +164,7 @@ test('screens: witness ar/en light/dark, /demo, /phones', async ({ browser }) =>
   }
   const origin = new URL(witness.url).origin; // a cookie set from the /w/… URL would be scoped to that path
   for (const [theme, locale] of [['dark', 'ar'], ['light', 'en']] as const) {
-    await d.context().addCookies([{ name: 'najda-theme', value: theme, url: origin }, { name: 'NEXT_LOCALE', value: locale, url: origin }]);
+    await d.context().addCookies([{ name: 'sellekni-theme', value: theme, url: origin }, { name: 'NEXT_LOCALE', value: locale, url: origin }]);
     for (const width of [1440, 768, 360]) {
       await d.setViewportSize({ width, height: 900 });
       for (const page of ['demo', 'phones']) {

@@ -52,7 +52,7 @@
 
 ## 4. Collaborative development workflow for a team of four
 
-1. **One person, one branch (git worktree), one development stream.** Streams: *web*, *mobile*, *shared+data*, *design+pitch*. `git worktree add ../najda-mobile -b feat/mobile`. Merge to `main` only when `pnpm check` is green.
+1. **One person, one branch (git worktree), one development stream.** Streams: *web*, *mobile*, *shared+data*, *design+pitch*. `git worktree add ../sellekni-mobile -b feat/mobile`. Merge to `main` only when `pnpm check` is green.
 2. **Plan mode first** for anything bigger than a screen: review the architecture and design, then execute.
 3. **`DEVELOPMENT.md`** holds the commands and rules every session needs; keep it updated when you learn something new (e.g. "OSRM needs 8 GB RAM").
 4. **Focused tasks:** keep tasks well-isolated (e.g. "one task per replay trace", "one per locale file", "one to review the diff for RTL bugs").

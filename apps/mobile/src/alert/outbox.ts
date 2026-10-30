@@ -4,7 +4,7 @@
  * `runner.ts` drives both (docs/04 §3.3). Every channel's state is persisted in the item, so a killed app resumes
  * where it was; re-sending after a kill is harmless because ingest is idempotent on the incident id.
  */
-import type { IncidentJson, IngestAck } from '@najda/api-contract';
+import type { IncidentJson, IngestAck } from '@sellekni/api-contract';
 import type { PostResult } from './https';
 
 export type HttpsState = 'pending' | 'retrying' | 'acked' | 'rejected' | 'gave_up';

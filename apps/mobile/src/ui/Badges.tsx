@@ -1,4 +1,4 @@
-import type { Confidence } from '@najda/shared';
+import type { Confidence } from '@sellekni/shared';
 import { Check, CheckCheck, ClipboardPaste, CloudOff, Eye, FlaskConical, Globe, MessageSquareText, Play, RefreshCw, Wifi, X, type LucideIcon } from 'lucide-react-native';
 import { Text, View } from 'react-native';
 import { FONT, T, useTheme, type Palette } from './theme';

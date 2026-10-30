@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import type { IncidentJson } from '@najda/api-contract';
-import { generateIncidentId } from '@najda/shared';
+import type { IncidentJson } from '@sellekni/api-contract';
+import { generateIncidentId } from '@sellekni/shared';
 
 /**
  * D10 witness form: 4 fields (vehicles · who is hurt · danger · location confirm) + send.

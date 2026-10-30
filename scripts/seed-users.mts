@@ -11,9 +11,9 @@ if (!url || !serviceKey || !password) {
 }
 
 const USERS = [
-  { email: 'dispatcher@najda.test', role: 'dispatcher', hospital_id: null, display_name: 'Dispatcher (demo)' },
-  { email: 'hospital-a@najda.test', role: 'hospital', hospital_id: 'CHU-A', display_name: 'CHU A ED (demo)' },
-  { email: 'hospital-b@najda.test', role: 'hospital', hospital_id: 'EPH-B', display_name: 'EPH B ED (demo)' },
+  { email: 'dispatcher@sellekni.test', role: 'dispatcher', hospital_id: null, display_name: 'Dispatcher (demo)' },
+  { email: 'hospital-a@sellekni.test', role: 'hospital', hospital_id: 'CHU-A', display_name: 'CHU A ED (demo)' },
+  { email: 'hospital-b@sellekni.test', role: 'hospital', hospital_id: 'EPH-B', display_name: 'EPH B ED (demo)' },
 ] as const;
 
 const admin = createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });

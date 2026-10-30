@@ -1,6 +1,6 @@
 'use client';
-import type { Band, Confidence } from '@najda/shared';
-import { formatAge } from '@najda/ui-core';
+import type { Band, Confidence } from '@sellekni/shared';
+import { formatAge } from '@sellekni/ui-core';
 import { Layers, ShieldQuestion } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useNow } from '@/lib/use-now';
@@ -37,7 +37,7 @@ export function IncidentRow(p: IncidentRowProps) {
       className={cn(
         'grid w-full grid-cols-[auto_1fr_auto] items-center gap-x-3 gap-y-1 border-b border-line px-3 py-3 text-start',
         'hover:bg-raised focus-visible:bg-raised',
-        p.selected && 'bg-raised shadow-[inset_3px_0_0_var(--najda-brand-fill)] rtl:shadow-[inset_-3px_0_0_var(--najda-brand-fill)]',
+        p.selected && 'bg-raised shadow-[inset_3px_0_0_var(--sellekni-brand-fill)] rtl:shadow-[inset_-3px_0_0_var(--sellekni-brand-fill)]',
       )}
     >
       <TriageMarker band={p.band} size="pin" pulsing={p.isNew} className="row-span-2" />

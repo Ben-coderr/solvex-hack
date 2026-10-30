@@ -1,10 +1,10 @@
 /**
- * The thin adapter between the phone and `@najda/detector` (packages/detector/README.md). Pure TypeScript, no React,
+ * The thin adapter between the phone and `@sellekni/detector` (packages/detector/README.md). Pure TypeScript, no React,
  * no Expo imports, so the live sensors, the replay engine and the tests drive the SAME code path:
  *   samples / GPS fixes on ONE time base (ms) -> Detector -> decisions -> the app (countdown) -> acknowledge().
  * The detector itself is never re-implemented here: this file converts units and clocks, and keeps a UI snapshot.
  */
-import { Detector, PARAMS, type Decision, type DetectorState, type GpsFix, type Sample } from '@najda/detector';
+import { Detector, PARAMS, type Decision, type DetectorState, type GpsFix, type Sample } from '@sellekni/detector';
 
 export const RAD_TO_DEG = 180 / Math.PI;
 

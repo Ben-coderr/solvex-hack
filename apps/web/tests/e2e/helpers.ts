@@ -2,8 +2,8 @@ import { test, type Browser, type Page } from '@playwright/test';
 
 /** Shared by the e2e specs: demo logins, and a console/HTTP error sink that fails the test. */
 export const PASSWORD = process.env.DEMO_USER_PASSWORD ?? '';
-export const DISPATCHER = 'dispatcher@najda.test';
-export const HOSPITAL_A = 'hospital-a@najda.test';
+export const DISPATCHER = 'dispatcher@sellekni.test';
+export const HOSPITAL_A = 'hospital-a@sellekni.test';
 
 /**
  * Console errors, uncaught exceptions and any 4xx/5xx from our own origin fail the test. Third-party online tiles

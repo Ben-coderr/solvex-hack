@@ -1,5 +1,5 @@
 'use client';
-import { formatHHMM, type Band, type Confidence } from '@najda/shared';
+import { formatHHMM, type Band, type Confidence } from '@sellekni/shared';
 import { Clock } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useNow } from '@/lib/use-now';

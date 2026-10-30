@@ -10,13 +10,13 @@ const seconds = Number(process.argv.find((a) => a.startsWith('--seconds='))?.spl
 const TABLES = ['incidents', 'reports', 'assessments', 'prealerts'] as const;
 
 const supabase = createClient(url, anon, { auth: { persistSession: false } });
-const { error } = await supabase.auth.signInWithPassword({ email: 'dispatcher@najda.test', password });
+const { error } = await supabase.auth.signInWithPassword({ email: 'dispatcher@sellekni.test', password });
 if (error) {
   console.error(`realtime-probe: sign-in failed (${error.message}). Run pnpm db:users first.`);
   process.exit(1);
 }
 
-let channel = supabase.channel('najda-probe');
+let channel = supabase.channel('sellekni-probe');
 for (const table of TABLES) {
   channel = channel.on('postgres_changes', { event: '*', schema: 'public', table }, (p) => {
     const row = (p.new && Object.keys(p.new).length ? p.new : p.old) as Record<string, unknown>;

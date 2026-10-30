@@ -1,6 +1,6 @@
 'use client';
-import type { Band } from '@najda/shared';
-import { BAND_ORDER } from '@najda/ui-core';
+import type { Band } from '@sellekni/shared';
+import { BAND_ORDER } from '@sellekni/ui-core';
 import { Check, Copy, ExternalLink, Flame, Phone, QrCode, PhoneOff, ScrollText, Users, Wrench, X, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';

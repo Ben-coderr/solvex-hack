@@ -1,6 +1,6 @@
 'use client';
-import type { IngestAck } from '@najda/api-contract';
-import type { Band, Confidence, Flag, LoadStatus, RankedHospital } from '@najda/shared';
+import type { IngestAck } from '@sellekni/api-contract';
+import type { Band, Confidence, Flag, LoadStatus, RankedHospital } from '@sellekni/shared';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { Channel } from '@/components/ui/channel-badge';
 import { api } from './api';

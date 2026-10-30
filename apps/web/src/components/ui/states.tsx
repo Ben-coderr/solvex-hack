@@ -35,7 +35,7 @@ export function ErrorState({ title, body, onRetry, className }: { title?: string
 }
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div aria-hidden className={cn('najda-skeleton rounded-sm bg-raised', className)} />;
+  return <div aria-hidden className={cn('sellekni-skeleton rounded-sm bg-raised', className)} />;
 }
 
 /** Loading placeholder shaped like the queue it replaces (no layout jump when data lands). */

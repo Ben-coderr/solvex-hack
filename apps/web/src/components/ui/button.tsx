@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        // NAJDA: touch targets >= 48 px (docs/06 §7). `sm` (40 px) is for dense desktop rows only, never on the phone.
+        // SELLEKNI: touch targets >= 48 px (docs/06 §7). `sm` (40 px) is for dense desktop rows only, never on the phone.
         default:
           "h-12 gap-2 px-4 text-base has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3",
         sm: "h-10 gap-1.5 px-3 text-sm has-data-[icon=inline-end]:pe-2.5 has-data-[icon=inline-start]:ps-2.5 [&_svg:not([class*='size-'])]:size-4",

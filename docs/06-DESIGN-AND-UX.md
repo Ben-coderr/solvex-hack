@@ -39,7 +39,7 @@ Logo/mark: design an **original** mark (e.g. concentric arcs + a pulse, or a cal
 | brand text | `#9DB8FF` | `#1740B0` | 8.9:1 · 8.8:1 on surface |
 | brand fill + on-brand | `#2B62F0` + `#FFFFFF` | same | 5.1:1 |
 
-**Triage (reserved, never decorative):** R `#E5484D` · O `#F76B15` · Y `#FFC53D` · G `#30A46C` · U `#8B949E`; the letter inside is always ink `#14181C` (4.6–11.3:1). On dark surfaces every fill is ≥ 3:1 by itself. **On light surfaces O, Y, G and U fall below 3:1 (2.7 / 1.4 / 2.9 / 2.8), so markers carry a mandatory 2 px ink outline** (`triageOutline`). This is enforced by `pnpm --filter @najda/tokens test`.
+**Triage (reserved, never decorative):** R `#E5484D` · O `#F76B15` · Y `#FFC53D` · G `#30A46C` · U `#8B949E`; the letter inside is always ink `#14181C` (4.6–11.3:1). On dark surfaces every fill is ≥ 3:1 by itself. **On light surfaces O, Y, G and U fall below 3:1 (2.7 / 1.4 / 2.9 / 2.8), so markers carry a mandatory 2 px ink outline** (`triageOutline`). This is enforced by `pnpm --filter @sellekni/tokens test`.
 Status colours (`ok / warn / danger / info`) exist for generic UI states and are kept visually distinct from the triage set.
 
 **Type.** UI: **IBM Plex Sans Arabic** (covers Arabic + Latin). Packet/code: **IBM Plex Mono**. Big numerals (NSI, countdown, ETA): **Bricolage Grotesque**. Use **Western digits 0–9** in every language (standard in Algeria). Scale (px, 1.25 ratio): 12 · 14 · 16 (body min) · 20 · 25 · 31 · 39 · 49 · 61 (countdown). Line height 1.5 body / 1.15 display. Arabic needs +8% line height and no letter-spacing. Never fake bold on Arabic: use real weights (400/500/600).
@@ -136,7 +136,7 @@ Install: configure the Figma MCP server in `.mcp.json` or connect via HTTP.
 > Using the Sellekni design-system file, design the 12 mobile screens and 9 web screens listed in docs/03 §5, following the wireframe intent in docs/06 §5. Every screen: dark + light, ar (RTL) + en, plus loading/empty/error/offline/SMS-only variants for Home, Alert status and Dispatcher home. Use real packet text from docs/05 §1.2. Prototype the hero flow and the dispatcher flow.
 
 **(3) Implement a frame** *(A or B)*
-> Use `get_design_context` and `get_screenshot` for this Figma frame: <link>. Implement it in `apps/<mobile|web>` using only `@najda/tokens` and the existing components (`TriageMarker`, `PacketChip` …). Map new components with Code Connect. Match spacing and type exactly; support RTL and dark; then run the app, screenshot at 360/768/1440 and compare with the Figma screenshot; list differences and fix them.
+> Use `get_design_context` and `get_screenshot` for this Figma frame: <link>. Implement it in `apps/<mobile|web>` using only `@sellekni/tokens` and the existing components (`TriageMarker`, `PacketChip` …). Map new components with Code Connect. Match spacing and type exactly; support RTL and dark; then run the app, screenshot at 360/768/1440 and compare with the Figma screenshot; list differences and fix them.
 
 **(4) Design critique** *(any path)*
 > Act as a senior product designer with emergency-services experience. Review these screenshots against docs/06: glanceability under stress, honesty about uncertainty, triage-colour discipline, RTL correctness, contrast, and "does this look generated?" (generic cards, default fonts, gradients, emoji icons). Give a numbered list of the 10 highest-impact fixes, each with the exact component and token to change.
@@ -154,7 +154,7 @@ One module per app (`src/brand.ts`) holds these; no brand string literal anywher
 |---|---|---|
 | Name, Latin | **Sellekni** | team decision 2026-10-30 |
 | Name, Arabic | **سلّكني** | the team says it means “help me” in Algerian Darija; have a native speaker confirm the spelling and the diacritic |
-| Codename | `NAJDA` | stays in `@najda/*`, `x-najda-key`, env prefixes, skills, file names |
+| Code name | `sellekni` | `@sellekni/*`, `x-sellekni-key`, env prefixes, file names (the old codename NAJDA was retired at 24h-H5) |
 | Wire magic | `SLK1` | changes only with `scripts/rename-magic.mjs` (CRC covers it), docs/12 §2.2 |
 | SMS verbs | `SLK ACK` · `SLK STATUS CHU-A SAT` | one constant; hospital pre-alert text starts `SELLEKNI PRE-ALERTE` (docs/04 §6) |
 | Severity wording | UI: “estimated severity” · fr “gravité estimée” · ar “الخطورة المقدّرة” | `NSI` is an internal acronym and never appears in the UI; Arabic wording to be reviewed |

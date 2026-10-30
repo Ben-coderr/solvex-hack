@@ -1,5 +1,5 @@
 {
-  "name": "najda",
+  "name": "sellekni",
   "private": true,
   "packageManager": "pnpm@10.0.0",
   "engines": {
@@ -8,9 +8,9 @@
   "scripts": {
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
-    "vectors": "pnpm --filter @najda/shared vectors",
+    "vectors": "pnpm --filter @sellekni/shared vectors",
     "crosscheck": "python3 -I packages/shared/scripts/crosscheck.py",
-    "tokens": "pnpm --filter @najda/tokens build",
+    "tokens": "pnpm --filter @sellekni/tokens build",
     "check": "pnpm test && pnpm typecheck && pnpm crosscheck",
     "dev:web": "pnpm --filter web dev",
     "dev:mobile": "pnpm --filter mobile start",

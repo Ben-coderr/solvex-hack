@@ -1,5 +1,5 @@
-import type { Band } from '@najda/shared';
-import { BAND_ORDER } from '@najda/ui-core';
+import type { Band } from '@sellekni/shared';
+import { BAND_ORDER } from '@sellekni/ui-core';
 import type { ReactNode } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import {

@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const raw = await getLocale();
   const locale = isLocale(raw) ? raw : DEFAULT_LOCALE;
   // Night-first (docs/06 §1): dark unless the user chose light.
-  const theme = (await cookies()).get("najda-theme")?.value === "light" ? "light" : "dark";
+  const theme = (await cookies()).get("sellekni-theme")?.value === "light" ? "light" : "dark";
   return (
     <html
       lang={locale}

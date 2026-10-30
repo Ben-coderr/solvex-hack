@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { IncidentJson, type IngestAck } from '@najda/api-contract';
-import { decodeDzmsd, isGsm7Basic, SMS_SINGLE_MAX } from '@najda/shared';
-import { parseCsv, replay, toPacketHints } from '@najda/detector';
+import { IncidentJson, type IngestAck } from '@sellekni/api-contract';
+import { decodeDzmsd, isGsm7Basic, SMS_SINGLE_MAX } from '@sellekni/shared';
+import { parseCsv, replay, toPacketHints } from '@sellekni/detector';
 import { BUNDLED_TRACES } from '../src/replay/bundled-traces';
 import { postIncident, probeHealth, type Fetch } from '../src/alert/https';
 import { attemptHttps, backoffMs, GIVE_UP_MS, memoryStore, newItem } from '../src/alert/outbox';
@@ -125,7 +125,7 @@ test('outbox: gives up after 30 min and says so', async () => {
   assert.equal(out.https.state, 'gave_up');
 });
 
-test('https client: HEAD probe, POST with x-najda-key, ACK parsed, errors classified', async () => {
+test('https client: HEAD probe, POST with x-sellekni-key, ACK parsed, errors classified', async () => {
   const calls: { url: string; method: string; headers?: Record<string, string> }[] = [];
   const reply = (status: number, body: unknown): Fetch => async (url, init) => {
     calls.push({ url, method: init.method, ...(init.headers && { headers: init.headers }) });
@@ -139,7 +139,7 @@ test('https client: HEAD probe, POST with x-najda-key, ACK parsed, errors classi
   const json = buildAlert({ id: 'K7Q2M', source: 'M', now: NOW, fix: FIX }).json;
   const ok = await postIncident(reply(201, ACK), 'http://x', 'k3y', json);
   assert.deepEqual(ok, { ok: true, ack: ACK });
-  assert.equal(calls.at(-1)?.headers?.['x-najda-key'], 'k3y');
+  assert.equal(calls.at(-1)?.headers?.['x-sellekni-key'], 'k3y');
   assert.deepEqual(await postIncident(reply(401, {}), 'http://x', 'bad', json), { ok: false, kind: 'rejected', status: 401 });
   assert.deepEqual(await postIncident(reply(503, {}), 'http://x', 'k', json), { ok: false, kind: 'network', status: 503 });
   assert.deepEqual(await postIncident(reply(201, { nope: 1 }), 'http://x', 'k', json), { ok: false, kind: 'bad_response', status: 201 });

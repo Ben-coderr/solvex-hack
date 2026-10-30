@@ -3,8 +3,8 @@
 Read `docs/06-DESIGN-AND-UX.md` for the full system. These rules are non-negotiable.
 
 ## Tokens
-- Colours, spacing, radii and fonts come ONLY from `@najda/tokens` (`packages/tokens/tokens.json`). No raw hex, no magic numbers in components.
-- Need a new value? Add it to `tokens.json`, run `pnpm tokens`, and make `pnpm --filter @najda/tokens test` pass (it measures WCAG contrast).
+- Colours, spacing, radii and fonts come ONLY from `@sellekni/tokens` (`packages/tokens/tokens.json`). No raw hex, no magic numbers in components.
+- Need a new value? Add it to `tokens.json`, run `pnpm tokens`, and make `pnpm --filter @sellekni/tokens test` pass (it measures WCAG contrast).
 
 ## Triage colours are reserved
 - Red/orange/yellow/green/grey mean R/O/Y/G/U triage bands and NOTHING else. Never use them for decoration, charts, brand or generic success/error states (use `status.*` tokens for those, and keep them visually distinct).

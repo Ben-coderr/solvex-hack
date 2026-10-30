@@ -33,7 +33,7 @@ async function session(browser: Browser, email: string) {
 
 mkdirSync(OUT, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' });
-const roles = { dispatcher: await session(browser, 'dispatcher@najda.test'), hospital: await session(browser, 'hospital-a@najda.test') };
+const roles = { dispatcher: await session(browser, 'dispatcher@sellekni.test'), hospital: await session(browser, 'hospital-a@sellekni.test') };
 const pages = [
   { name: 'dashboard', role: 'dispatcher', path: `/?i=${incident}`, ready: '[data-testid="orientation"]' },
   { name: 'audit', role: 'dispatcher', path: `/audit?incident=${incident}`, ready: '[data-testid="audit-table"]' },
@@ -48,7 +48,7 @@ for (const p of pages) {
         const ctx = await browser.newContext({ storageState: roles[p.role], viewport: { width, height: width === 360 ? 780 : width === 768 ? 1024 : 900 } });
         await ctx.addCookies([
           { name: 'NEXT_LOCALE', value: locale, url: BASE },
-          { name: 'najda-theme', value: theme, url: BASE },
+          { name: 'sellekni-theme', value: theme, url: BASE },
         ]);
         const page = await ctx.newPage();
         page.on('pageerror', (e) => problems.push(`${p.name} ${width} ${theme} ${locale}: ${e.message}`));

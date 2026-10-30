@@ -1,4 +1,4 @@
-# @najda/detector — the phone crash detector (reference implementation)
+# @sellekni/detector — the phone crash detector (reference implementation)
 
 Pure TypeScript, no React, no Expo imports. The same code runs on the phone (live sensors) and in tests (synthetic or recorded traces).
 Design, physics, parameters and what the tests do and do not prove: **`docs/13-PHONE-SENSING-PLAN.md`**. Picture: `docs/diagrams/03-detector-pipeline.svg`.
@@ -7,7 +7,7 @@ Design, physics, parameters and what the tests do and do not prove: **`docs/13-P
 
 ## Use it (mobile, in `apps/mobile/src/detector`)
 ```ts
-import { Detector, toPacketHints } from '@najda/detector';
+import { Detector, toPacketHints } from '@sellekni/detector';
 
 const det = new Detector(rangeG);          // rangeG = the sensor's real max range in g (Sensor Lab T1)
 if (!det.supported) { /* range < 8 g: offer SOS + witness mode only and say why */ }
@@ -36,10 +36,10 @@ function handle(decisions) {
 
 ## Commands
 ```bash
-pnpm --filter @najda/detector test      # 21 tests: scenarios, ablations, rate and GPS-lag sweeps, CSV round trip, packet integration
-pnpm --filter @najda/detector report    # the scenario x sensor-range table (docs/13 section 4)
-pnpm --filter @najda/detector traces    # writes 22 CSVs + manifest.json to traces/ (replay and Sensor Lab format)
-pnpm --filter @najda/detector exec tsx scripts/example-packet.ts   # detector decision -> packet, ≤ 160 chars
+pnpm --filter @sellekni/detector test      # 21 tests: scenarios, ablations, rate and GPS-lag sweeps, CSV round trip, packet integration
+pnpm --filter @sellekni/detector report    # the scenario x sensor-range table (docs/13 section 4)
+pnpm --filter @sellekni/detector traces    # writes 22 CSVs + manifest.json to traces/ (replay and Sensor Lab format)
+pnpm --filter @sellekni/detector exec tsx scripts/example-packet.ts   # detector decision -> packet, ≤ 160 chars
 ```
 
 ## Trace format (the Sensor Lab records the same)
@@ -48,4 +48,4 @@ pnpm --filter @najda/detector exec tsx scripts/example-packet.ts   # detector de
 ## Change rules
 - All thresholds live in `PARAMS` and are assumptions. Change them only with evidence, and write the date and the evidence in `DECISIONS.md`.
 - A new scenario goes in `src/synth.ts` with its expected outcome, then in the report. A new gate needs an ablation test that shows the trap it stops.
-- The packet contract (`@najda/shared`) is not touched from here. Richer cues stay on the phone (docs/13 §3.3).
+- The packet contract (`@sellekni/shared`) is not touched from here. Richer cues stay on the phone (docs/13 §3.3).

@@ -1,5 +1,5 @@
 import { afterAll, beforeEach, describe, expect, it } from 'vitest';
-import { encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@najda/shared';
+import { encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@sellekni/shared';
 import { sql } from '../../db';
 import { ingest, type InboundMessage } from '../ingest';
 import { postgresStore } from '../store-postgres';

@@ -1,5 +1,5 @@
 /**
- * App timings that are not detector thresholds (those are `PARAMS` in @najda/detector). ASSUMPTIONS, sourced
+ * App timings that are not detector thresholds (those are `PARAMS` in @sellekni/detector). ASSUMPTIONS, sourced
  * starting points: Apple (10 + 30 s) and Google (60 s) crash-detection countdowns.
  */
 export const COUNTDOWN = {

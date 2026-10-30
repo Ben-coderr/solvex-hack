@@ -1,16 +1,16 @@
 import { requireOptionalNativeModule } from 'expo';
 import { accelerometerRangeG, type MotionSensor } from '../sensorlab/stats';
 
-/** modules/najda-native (Kotlin). Optional: absent on web and in a build made before the module existed. */
-const NajdaNative = requireOptionalNativeModule<{ getMotionSensors(): MotionSensor[] }>('NajdaNative');
+/** modules/sellekni-native (Kotlin). Optional: absent on web and in a build made before the module existed. */
+const SellekniNative = requireOptionalNativeModule<{ getMotionSensors(): MotionSensor[] }>('SellekniNative');
 
-export const nativeSensorInfoAvailable = NajdaNative !== null;
+export const nativeSensorInfoAvailable = SellekniNative !== null;
 
 /** T1 inventory; null = the native module is not in this build (enter the range by hand in the Sensor Lab). */
 export function readMotionSensors(): MotionSensor[] | null {
-  if (!NajdaNative) return null;
+  if (!SellekniNative) return null;
   try {
-    return NajdaNative.getMotionSensors();
+    return SellekniNative.getMotionSensors();
   } catch {
     return null;
   }

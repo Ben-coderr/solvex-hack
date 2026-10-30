@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@najda/tokens/dist/tokens.css";
+@import "@sellekni/tokens/dist/tokens.css";
 
 /* Dark follows the token theme switch: explicit [data-theme="dark"], else the OS preference unless forced light
    (on the root OR on any ancestor: /styleguide nests light and dark panels on one page). */
@@ -24,48 +24,48 @@
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --font-display: var(--font-bricolage), var(--font-plex-arabic), sans-serif;
 
-  --color-bg: var(--najda-bg);
-  --color-surface: var(--najda-surface);
-  --color-raised: var(--najda-raised);
-  --color-line: var(--najda-line);
-  --color-text: var(--najda-text);
-  --color-muted: var(--najda-raised);
-  --color-brand-text: var(--najda-brand-text);
-  --color-brand-fill: var(--najda-brand-fill);
-  --color-on-brand: var(--najda-on-brand);
-  --color-triage-outline: var(--najda-triage-outline);
+  --color-bg: var(--sellekni-bg);
+  --color-surface: var(--sellekni-surface);
+  --color-raised: var(--sellekni-raised);
+  --color-line: var(--sellekni-line);
+  --color-text: var(--sellekni-text);
+  --color-muted: var(--sellekni-raised);
+  --color-brand-text: var(--sellekni-brand-text);
+  --color-brand-fill: var(--sellekni-brand-fill);
+  --color-on-brand: var(--sellekni-on-brand);
+  --color-triage-outline: var(--sellekni-triage-outline);
   /* Generic UI states: text/icon only, never fills, never triage hues (tokens test enforces both). */
-  --color-status-ok: var(--najda-status-ok);
-  --color-status-warn: var(--najda-status-warn);
-  --color-status-danger: var(--najda-status-danger);
-  --color-status-info: var(--najda-status-info);
+  --color-status-ok: var(--sellekni-status-ok);
+  --color-status-warn: var(--sellekni-status-warn);
+  --color-status-danger: var(--sellekni-status-danger);
+  --color-status-info: var(--sellekni-status-info);
 
-  /* shadcn/ui semantic slots, mapped onto NAJDA tokens (no raw colours here). */
-  --color-background: var(--najda-bg);
-  --color-foreground: var(--najda-text);
-  --color-card: var(--najda-surface);
-  --color-card-foreground: var(--najda-text);
-  --color-popover: var(--najda-raised);
-  --color-popover-foreground: var(--najda-text);
-  --color-primary: var(--najda-brand-fill);
-  --color-primary-foreground: var(--najda-on-brand);
-  --color-secondary: var(--najda-raised);
-  --color-secondary-foreground: var(--najda-text);
-  --color-muted-foreground: var(--najda-muted);
-  --color-accent: var(--najda-raised);
-  --color-accent-foreground: var(--najda-text);
-  --color-destructive: var(--najda-status-danger);
-  --color-border: var(--najda-line);
-  --color-input: var(--najda-line);
-  --color-ring: var(--najda-brand-fill);
+  /* shadcn/ui semantic slots, mapped onto SELLEKNI tokens (no raw colours here). */
+  --color-background: var(--sellekni-bg);
+  --color-foreground: var(--sellekni-text);
+  --color-card: var(--sellekni-surface);
+  --color-card-foreground: var(--sellekni-text);
+  --color-popover: var(--sellekni-raised);
+  --color-popover-foreground: var(--sellekni-text);
+  --color-primary: var(--sellekni-brand-fill);
+  --color-primary-foreground: var(--sellekni-on-brand);
+  --color-secondary: var(--sellekni-raised);
+  --color-secondary-foreground: var(--sellekni-text);
+  --color-muted-foreground: var(--sellekni-muted);
+  --color-accent: var(--sellekni-raised);
+  --color-accent-foreground: var(--sellekni-text);
+  --color-destructive: var(--sellekni-status-danger);
+  --color-border: var(--sellekni-line);
+  --color-input: var(--sellekni-line);
+  --color-ring: var(--sellekni-brand-fill);
 }
 
 /* shadcn's raw-value aliases, kept so registry components that read var(--x) still resolve to tokens. */
 :root {
-  --background: var(--najda-bg);
-  --foreground: var(--najda-text);
-  --primary: var(--najda-brand-fill);
-  --secondary: var(--najda-raised);
+  --background: var(--sellekni-bg);
+  --foreground: var(--sellekni-text);
+  --primary: var(--sellekni-brand-fill);
+  --secondary: var(--sellekni-raised);
   --radius: var(--radius-lg);
 }
 
@@ -84,7 +84,7 @@
   }
   /* Focus ring: brand, >= 3:1, on every interactive element (docs/06 §7). */
   :focus-visible {
-    outline: 3px solid var(--najda-brand-fill);
+    outline: 3px solid var(--sellekni-brand-fill);
     outline-offset: 2px;
   }
   /* Packet text is always LTR, isolated from the surrounding (possibly Arabic) paragraph. */
@@ -96,29 +96,29 @@
 
 /* ───────────── motion language (docs/06 §3): 120 / 200 / 360 ms, ease-out ─────────────
    Only two signature motions: a marker pulse on arrival and the ring drain. Both vanish under reduced motion. */
-@keyframes najda-pulse {
+@keyframes sellekni-pulse {
   0% { transform: scale(1); opacity: 0.55; }
   100% { transform: scale(1.9); opacity: 0; }
 }
-.najda-pulse {
-  animation: najda-pulse 1.6s ease-out 3;
+.sellekni-pulse {
+  animation: sellekni-pulse 1.6s ease-out 3;
   transform-origin: center;
 }
-.najda-ring-drain {
+.sellekni-ring-drain {
   transition: stroke-dashoffset 1s linear;
 }
-@keyframes najda-shimmer {
+@keyframes sellekni-shimmer {
   0% { opacity: 0.55; }
   50% { opacity: 1; }
   100% { opacity: 0.55; }
 }
-.najda-skeleton {
-  animation: najda-shimmer 1.4s ease-in-out infinite;
+.sellekni-skeleton {
+  animation: sellekni-shimmer 1.4s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .najda-pulse, .najda-skeleton { animation: none; }
-  .najda-pulse { opacity: 0; }
-  .najda-ring-drain { transition: none; }
+  .sellekni-pulse, .sellekni-skeleton { animation: none; }
+  .sellekni-pulse { opacity: 0; }
+  .sellekni-ring-drain { transition: none; }
   *, *::before, *::after { transition-duration: 0ms !important; scroll-behavior: auto !important; }
 }
 

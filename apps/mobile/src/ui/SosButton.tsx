@@ -1,4 +1,4 @@
-import { ringDash } from '@najda/ui-core';
+import { ringDash } from '@sellekni/ui-core';
 import { Check, Loader } from 'lucide-react-native';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Pressable, Text } from 'react-native';

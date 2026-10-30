@@ -90,7 +90,7 @@ def main() -> None:
     fit(mono(mark), 256, 1.0).save(BRAND / "mark-mono.png")
     fit(mono(full), 512, 1.0).save(BRAND / "logo-mono.png")
 
-    # web console: the same mono mask (tinted with --najda-logo-mono) and the red icon for the tab / home screen
+    # web console: the same mono mask (tinted with --sellekni-logo-mono) and the red icon for the tab / home screen
     icon = fit(mark_k, 512, 0.84, DARK_BG + (255,))
     fit(mono(mark), 256, 1.0).save(WEB / "public/brand/mark-mono.png")
     icon.convert("RGB").save(WEB / "src/app/icon.png")

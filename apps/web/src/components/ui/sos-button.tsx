@@ -2,7 +2,7 @@
 import { Check, Loader } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { ringDash } from '@najda/ui-core';
+import { ringDash } from '@sellekni/ui-core';
 import { cn } from '@/lib/utils';
 
 export type SosState = 'idle' | 'sending' | 'sent';
@@ -72,8 +72,8 @@ export function SosButton({ state = 'idle', onConfirm, holdMs = 1500, previewPro
       )}
     >
       <svg viewBox="0 0 100 100" aria-hidden className="absolute inset-0 -rotate-90">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--najda-on-brand)" strokeOpacity={holding ? 0.25 : 0} strokeWidth="6" />
-        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--najda-on-brand)" strokeWidth="6" strokeLinecap="round"
+        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--sellekni-on-brand)" strokeOpacity={holding ? 0.25 : 0} strokeWidth="6" />
+        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--sellekni-on-brand)" strokeWidth="6" strokeLinecap="round"
           strokeDasharray={circumference} strokeDashoffset={offset} opacity={holding ? 1 : 0} />
       </svg>
       <span className="relative flex flex-col items-center gap-0.5">

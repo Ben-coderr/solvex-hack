@@ -1,7 +1,7 @@
 /**
  * Copies the replay traces the app ships VERBATIM from packages/detector/traces (CSV text + manifest metadata) into
  * src/replay/bundled-traces.ts. It never generates or edits a trace: regenerate them in the package
- * (`pnpm --filter @najda/detector traces`), then run this.  Usage: pnpm --filter mobile traces
+ * (`pnpm --filter @sellekni/detector traces`), then run this.  Usage: pnpm --filter mobile traces
  * test/replay.test.ts fails if the bundle drifts from the package files.
  */
 import { readFileSync, writeFileSync } from 'node:fs';

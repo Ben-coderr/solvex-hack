@@ -1,7 +1,7 @@
 import 'server-only';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import type { IngestAck } from '@najda/api-contract';
+import type { IngestAck } from '@sellekni/api-contract';
 import { encodeDzmsd, encodePlusCode, formatHHMM, generateIncidentId, WitnessForm, type DzmsdPacket } from '../domain';
 import { sql as getSql } from '../db';
 import { ingest } from './ingest';

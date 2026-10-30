@@ -1,8 +1,8 @@
 /**
  * HTTPS channel (docs/04 §3.3): a 2 s HEAD /api/health probe (not "connected" according to the OS), then
- * POST /api/incidents with x-najda-key (full JSON 8 s, compact JSON 15 s). The HTTP response IS the ACK. `fetch` is injected for tests.
+ * POST /api/incidents with x-sellekni-key (full JSON 8 s, compact JSON 15 s). The HTTP response IS the ACK. `fetch` is injected for tests.
  */
-import { IngestAck, type IncidentJson } from '@najda/api-contract';
+import { IngestAck, type IncidentJson } from '@sellekni/api-contract';
 
 export type Fetch = (url: string, init: { method: string; headers?: Record<string, string>; body?: string; signal: AbortSignal }) =>
   Promise<{ status: number; ok: boolean; json(): Promise<unknown> }>;
@@ -47,7 +47,7 @@ export async function postIncident(fetchFn: Fetch, baseUrl: string, key: string,
     const res = await withTimeout(timeoutMs, (signal) =>
       fetchFn(join(baseUrl, '/api/incidents'), {
         method: 'POST',
-        headers: { 'content-type': 'application/json', 'x-najda-key': key },
+        headers: { 'content-type': 'application/json', 'x-sellekni-key': key },
         body: JSON.stringify(body),
         signal,
       }),

@@ -1,4 +1,4 @@
-import { toPacketHints, type ReasonKey } from '@najda/detector';
+import { toPacketHints, type ReasonKey } from '@sellekni/detector';
 import { useKeepAwake } from 'expo-keep-awake';
 import { Redirect, router } from 'expo-router';
 import { Check, Siren } from 'lucide-react-native';

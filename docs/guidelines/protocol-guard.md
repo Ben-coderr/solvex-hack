@@ -2,7 +2,7 @@
 
 `packages/shared` is the single source of truth: mobile, dashboard and API all import it. Never fork its logic.
 
-1. The wire format is specified in `docs/05-PROTOCOL-SCORING-RANKING.md`. A change to tokens, order, CRC or ranges = a new protocol version (`SLK2` or `NAJDA2`), not a silent edit.
+1. The wire format is specified in `docs/05-PROTOCOL-SCORING-RANKING.md`. A change to tokens, order, CRC or ranges = a new protocol version (`SLK2` or `SELLEKNI2`), not a silent edit.
 2. SMS packets must be pure basic GSM-7 (A-Z 0-9 space `. , + - #`) and <= 160 characters. No Arabic, no accents, no `{}[]~\^|`.
 3. After ANY change in `packages/shared`: `pnpm vectors` (regenerate golden vectors), then `pnpm check` (TS tests + typecheck + the independent Python cross-check). All three must pass. Never edit a vector by hand to make a test pass.
 4. The server is authoritative: recompute band/score/confidence with `assess()` from the decoded packet. The client's band is a hint, logged for audit only.

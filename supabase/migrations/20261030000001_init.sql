@@ -1,4 +1,4 @@
--- NAJDA 0001 — initial schema (docs/04 §5).
+-- SELLEKNI 0001 — initial schema (docs/04 §5).
 -- All writes go through Next.js route handlers on a server-only connection; browsers only SELECT under RLS.
 -- No char(n) anywhere: Supabase Realtime truncates char(n) values to one character (checked on 2026-10-30),
 -- which also breaks its per-subscriber RLS check. Fixed-length codes are text + CHECK.

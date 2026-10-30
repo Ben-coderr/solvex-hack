@@ -1,5 +1,5 @@
 'use client';
-import { LIFECYCLE_STEPS, type LifecycleStep } from '@najda/ui-core';
+import { LIFECYCLE_STEPS, type LifecycleStep } from '@sellekni/ui-core';
 import { Ban, GitMerge } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';

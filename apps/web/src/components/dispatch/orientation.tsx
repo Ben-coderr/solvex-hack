@@ -1,6 +1,6 @@
 'use client';
-import type { RankedHospital } from '@najda/shared';
-import type { CapabilityCode } from '@najda/ui-core';
+import type { RankedHospital } from '@sellekni/shared';
+import type { CapabilityCode } from '@sellekni/ui-core';
 import { AlertTriangle, CheckCheck, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';

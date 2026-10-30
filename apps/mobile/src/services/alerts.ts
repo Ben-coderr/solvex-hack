@@ -1,5 +1,5 @@
-import { generateIncidentId, type Source } from '@najda/shared';
-import type { PacketHints } from '@najda/detector';
+import { generateIncidentId, type Source } from '@sellekni/shared';
+import type { PacketHints } from '@sellekni/detector';
 import Constants from 'expo-constants';
 import { getRandomBytes } from 'expo-crypto';
 import { AppState, Linking } from 'react-native';

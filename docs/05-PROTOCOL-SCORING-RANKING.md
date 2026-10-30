@@ -88,7 +88,7 @@ Same semantics, richer. `POST /api/incidents` (idempotent on `incident_id`):
   "vitals": { "hr": 124, "spo2": 89, "source": "ble_watch" },
   "medical": { "blood": "O+", "anticoagulant": false, "allergies": [], "consent": true },
   "contact": { "callback": "+213XXXXXXXXX", "lang": "ar" },
-  "device": { "app": "najda/0.1", "battery": 61 }
+  "device": { "app": "sellekni/0.1", "battery": 61 }
 }
 ```
 - Validate with **zod** on the server. `medical` is accepted only with `consent: true` and is stored separately with a short retention. Never log it.
@@ -100,7 +100,7 @@ The ambulance crew can submit GCS / SBP / SpO₂ / HR / ETA from a web page `/cr
 
 ---
 
-## 3. NSI — NAJDA Severity Index (internal name; the UI says “estimated severity”)
+## 3. NSI — SELLEKNI Severity Index (internal name; the UI says “estimated severity”)
 
 ```
 raw   = min(50, physics) + everything else
