@@ -1,0 +1,272 @@
+#!/usr/bin/env bash
+# NAJDA local runner — start, stop, check and test everything with one command.
+#
+#   ./najda up [--prod] [--mobile] [--replace]
+#                                    Docker/colima → Supabase → env + demo logins → web app (dev, or build+start)
+#                                    --replace: stop another `next dev` already running for apps/web (one per folder)
+#   ./najda open                     Chrome with two windows already signed in: dispatcher + hospital CHU-A
+#   ./najda login                    print the demo accounts and password
+#   ./najda status                   what is running, on which port
+#   ./najda reset                    empty the demo database (incidents, pre-alerts, audit)
+#   ./najda test                     pnpm check + the e2e hero flow against the running app
+#   ./najda logs [web|mobile]        follow a log
+#   ./najda down [--all]             stop what this script started (--all: Supabase too)
+#
+# Env: PORT (default: first free from 3000), BASE_URL (skip starting: test/open an app already running there).
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RUN="$ROOT/.najda"            # pids, logs, chosen port (gitignored)
+ENV_FILE="$ROOT/.env.local"
+mkdir -p "$RUN"
+
+if [[ -t 1 ]]; then B=$'\e[1m'; G=$'\e[32m'; Y=$'\e[33m'; R=$'\e[31m'; D=$'\e[2m'; N=$'\e[0m'; else B= G= Y= R= D= N=; fi
+say()  { printf '%s\n' "${B}▸${N} $*"; }
+ok()   { printf '%s\n' "  ${G}✓${N} $*"; }
+warn() { printf '%s\n' "  ${Y}!${N} $*"; }
+die()  { printf '%s\n' "  ${R}✗${N} $*" >&2; exit 1; }
+
+# value of KEY in .env.local, without an inline "# comment"
+envget() { [[ -f "$ENV_FILE" ]] && grep -E "^$1=" "$ENV_FILE" | tail -1 | cut -d= -f2- | sed -E 's/[[:space:]]+#.*$//; s/^"(.*)"$/\1/' || true; }
+
+port_busy() { lsof -nP -iTCP:"$1" -sTCP:LISTEN >/dev/null 2>&1; }
+# spawn NAME DIR CMD…: detached, all three streams redirected (so `./najda up | tee` ends), pid in .najda/NAME.pid
+spawn() {
+  local name="$1" dir="$2"; shift 2
+  (cd "$dir" && exec nohup "$@" >"$RUN/$name.log" 2>&1 </dev/null) &
+  echo $! >"$RUN/$name.pid"
+}
+pid_alive() { [[ -f "$RUN/$1.pid" ]] && kill -0 "$(cat "$RUN/$1.pid")" 2>/dev/null; }
+base_url() {
+  if [[ -n "${BASE_URL:-}" ]]; then echo "$BASE_URL"
+  elif [[ -f "$RUN/web.port" ]]; then echo "http://localhost:$(cat "$RUN/web.port")"
+  else echo "http://localhost:${PORT:-3000}"; fi
+}
+healthy() { curl -fsS -m 3 "$1/api/health" >/dev/null 2>&1; }
+
+need() { command -v "$1" >/dev/null 2>&1 || die "$1 is not installed. $2"; }
+
+# ───────────────────────── steps ─────────────────────────
+
+check_tools() {
+  say "Tools"
+  need node "Install Node 22+ (see .nvmrc)."
+  need pnpm "Run: corepack enable"
+  need docker "Install Docker Desktop or colima (brew install colima docker)."
+  need supabase "Run: brew install supabase/tap/supabase"
+  ok "node $(node -v) · pnpm $(pnpm -v) · supabase $(supabase --version 2>/dev/null | head -1)"
+}
+
+start_docker() {
+  say "Docker"
+  if docker info >/dev/null 2>&1; then ok "running"; return; fi
+  if command -v colima >/dev/null 2>&1; then
+    warn "not running — starting colima (≈ 30 s)"
+    colima start >/dev/null
+    docker info >/dev/null 2>&1 && ok "colima started" || die "colima did not start: run 'colima start' and read its output"
+  else
+    die "Docker is not running. Open Docker Desktop, then run ./najda up again."
+  fi
+}
+
+install_deps() {
+  say "Dependencies"
+  if [[ ! -d "$ROOT/node_modules" || "$ROOT/pnpm-lock.yaml" -nt "$ROOT/node_modules/.modules.yaml" ]]; then
+    (cd "$ROOT" && pnpm install --frozen-lockfile) && ok "installed"
+  else
+    ok "up to date"
+  fi
+}
+
+start_supabase() {
+  say "Supabase (Postgres + Auth + Realtime)"
+  if (cd "$ROOT" && supabase status >/dev/null 2>&1); then ok "already running"
+  else
+    (cd "$ROOT" && supabase start >"$RUN/supabase.log" 2>&1) || { tail -20 "$RUN/supabase.log"; die "supabase start failed (log: .najda/supabase.log)"; }
+    ok "started"
+  fi
+  ok "Studio: http://127.0.0.1:54323 · e-mails: http://127.0.0.1:54324"
+}
+
+prepare_env_and_users() {
+  say "Environment + demo logins"
+  (cd "$ROOT" && pnpm -s env:local >/dev/null) && ok ".env.local filled (only empty keys)"
+  [[ "$(envget DEMO_MODE)" == "true" ]] || warn "DEMO_MODE is not 'true' in .env.local: Simulate SMS, /demo and /phones are hidden"
+  (cd "$ROOT" && pnpm -s db:users >"$RUN/users.log" 2>&1) || { cat "$RUN/users.log"; die "could not create the demo logins"; }
+  ok "dispatcher@najda.test · hospital-a@najda.test · hospital-b@najda.test"
+}
+
+# pid of a `next dev` started elsewhere for this same app (Next 16 allows only one dev server per folder)
+other_dev_pid() {
+  local pid
+  for pid in $(pgrep -f "next dev|next-server" 2>/dev/null); do
+    [[ -f "$RUN/web.pid" ]] && pgrep -P "$(cat "$RUN/web.pid")" 2>/dev/null | grep -qx "$pid" && continue
+    if [[ "$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')" == "$ROOT/apps/web" ]] \
+       && lsof -a -p "$pid" -iTCP -sTCP:LISTEN >/dev/null 2>&1 \
+       && ps -o command= -p "$pid" | grep -qv "next start"; then
+      echo "$pid"; return
+    fi
+  done
+}
+
+pick_port() {
+  local p="${PORT:-3000}"
+  if [[ -n "${PORT:-}" ]]; then port_busy "$p" && die "port $p is busy (lsof -nP -iTCP:$p -sTCP:LISTEN)"; echo "$p"; return; fi
+  while port_busy "$p"; do p=$((p + 1)); [[ $p -gt 3020 ]] && die "no free port between 3000 and 3020"; done
+  echo "$p"
+}
+
+start_web() {
+  local mode="$1" port
+  say "Web app (Next.js, $mode)"
+  if pid_alive web && healthy "$(base_url)"; then ok "already running at $(base_url)"; return; fi
+  port="$(pick_port)"
+  [[ "$port" != "3000" ]] && warn "port 3000 is busy → using $port"
+  echo "$port" >"$RUN/web.port"
+  if [[ "$mode" == "prod" ]]; then
+    (cd "$ROOT" && pnpm --filter web build >"$RUN/build.log" 2>&1) || { tail -30 "$RUN/build.log"; die "build failed (log: .najda/build.log)"; }
+    ok "built"
+    spawn web "$ROOT/apps/web" pnpm exec next start -p "$port"
+  else
+    local other; other="$(other_dev_pid || true)"
+    if [[ -n "$other" ]]; then
+      local oport; oport="$(lsof -a -p "$other" -nP -iTCP -sTCP:LISTEN 2>/dev/null | awk 'NR>1 {sub(/.*:/,"",$9); print $9; exit}')"
+      if [[ "$REPLACE" == 1 ]]; then
+        warn "stopping the other next dev (pid $other, port $oport)"
+        kill -TERM "$other" 2>/dev/null || true; sleep 2
+      else
+        rm -f "$RUN/web.port"
+        die "another 'next dev' already runs for apps/web (pid $other, http://localhost:$oport). Next allows one per folder.
+      Choose one:  ./najda up --replace     (stop it and start a fresh one)
+                   ./najda up --prod        (production build on another port, runs alongside)
+                   BASE_URL=http://localhost:$oport ./najda open   (use that one as is)"
+      fi
+    fi
+    spawn web "$ROOT/apps/web" pnpm dev -p "$port"
+  fi
+  printf '  waiting for http://localhost:%s ' "$port"
+  for _ in $(seq 1 90); do
+    if healthy "http://localhost:$port"; then
+      echo; ok "up at http://localhost:$port"
+      # warm the first page so the first click is not a 10 s dev compile
+      curl -s -o /dev/null -m 60 "http://localhost:$port/login" || true
+      return
+    fi
+    pid_alive web || { echo; tail -30 "$RUN/web.log"; die "web app exited (log: .najda/web.log)"; }
+    printf '.'; sleep 1
+  done
+  echo; tail -20 "$RUN/web.log"; die "web app did not answer /api/health within 90 s (log: .najda/web.log)"
+}
+
+start_mobile() {
+  say "Mobile (Expo Metro for the development build)"
+  if pid_alive mobile; then ok "already running"; return; fi
+  spawn mobile "$ROOT" pnpm dev:mobile
+  ok "Metro starting (log: ./najda logs mobile). Open the NAJDA dev build on the phone — NOT Expo Go."
+  warn "first install on a phone: pnpm --filter mobile android (USB debugging on)"
+}
+
+print_login() {
+  local url pw
+  url="$(base_url)"; pw="$(envget DEMO_USER_PASSWORD)"
+  [[ -n "$pw" ]] || die "DEMO_USER_PASSWORD is empty: run ./najda up"
+  cat <<EOF
+
+${B}NAJDA is ready${N}  ${D}(synthetic data only)${N}
+
+  Open           ${B}$url/login${N}
+  Password       ${B}$pw${N}   ${D}(same for every demo account, from .env.local)${N}
+
+  Dispatcher     dispatcher@najda.test    → $url/
+  Hospital CHU-A hospital-a@najda.test    → $url/hospital/CHU-A
+  Hospital EPH-B hospital-b@najda.test    → $url/hospital/EPH-B
+
+  ${D}Use one normal window for the dispatcher and a private window for the hospital (separate sessions),${N}
+  ${D}or let the script do it:${N}  ${B}./najda open${N}
+
+  Audit log      $url/audit
+  Styleguide     $url/styleguide       (no login)
+  Supabase       http://127.0.0.1:54323 (Studio)
+EOF
+}
+
+stop_pid() {
+  local name="$1"
+  if pid_alive "$name"; then
+    local pid; pid="$(cat "$RUN/$name.pid")"
+    pkill -TERM -P "$pid" 2>/dev/null || true   # pnpm's child (next / expo)
+    kill -TERM "$pid" 2>/dev/null || true
+    ok "$name stopped"
+  fi
+  rm -f "$RUN/$name.pid"
+}
+
+# ───────────────────────── commands ─────────────────────────
+
+cmd_up() {
+  local mode=dev mobile=0
+  REPLACE=0
+  for a in "$@"; do case "$a" in --prod) mode=prod ;; --mobile) mobile=1 ;; --replace) REPLACE=1 ;; *) die "unknown option $a" ;; esac; done
+  check_tools; start_docker; install_deps; start_supabase; prepare_env_and_users
+  start_web "$mode"
+  [[ $mobile == 1 ]] && start_mobile
+  print_login
+}
+
+cmd_status() {
+  local url; url="$(base_url)"
+  say "Status"
+  docker info >/dev/null 2>&1 && ok "docker" || warn "docker: not running"
+  (cd "$ROOT" && supabase status >/dev/null 2>&1) && ok "supabase: running (API 127.0.0.1:54321)" || warn "supabase: stopped"
+  if healthy "$url"; then ok "web: $url  $(curl -s -m 3 "$url/api/health")"; else warn "web: nothing healthy at $url"; fi
+  pid_alive mobile && ok "mobile Metro: running" || true
+  local others; others="$(lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null | awk '/node|next/ {print $9}' | grep -oE ':(30[0-9][0-9]|3100)$' | sort -u | tr '\n' ' ' || true)"
+  [[ -n "$others" ]] && printf '  %s\n' "${D}node servers listening on ports:${N} $others"
+}
+
+cmd_reset() {
+  local url; url="$(base_url)"
+  healthy "$url" || die "no app at $url (./najda up first)"
+  (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm -s exec tsx scripts/open-demo.mts --reset-only)
+}
+
+cmd_open() {
+  local url; url="$(base_url)"
+  healthy "$url" || die "no app at $url (./najda up first)"
+  say "Opening Chrome: dispatcher + hospital CHU-A, already signed in (close both windows to quit)"
+  (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm -s exec tsx scripts/open-demo.mts "$@")
+}
+
+cmd_test() {
+  local url; url="$(base_url)"
+  healthy "$url" || die "no app at $url (./najda up first)"
+  say "Unit tests, typecheck, protocol cross-check"
+  (cd "$ROOT" && pnpm check)
+  say "E2E hero flow against $url (resets the demo database)"
+  (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm exec playwright test)
+}
+
+cmd_logs() {
+  local f="$RUN/${1:-web}.log"
+  [[ -f "$f" ]] || die "no log $f"
+  tail -n 50 -f "$f"
+}
+
+cmd_down() {
+  say "Stopping"
+  stop_pid web; stop_pid mobile; rm -f "$RUN/web.port"
+  if [[ "${1:-}" == "--all" ]]; then (cd "$ROOT" && supabase stop >/dev/null 2>&1) && ok "supabase stopped (data kept)"; fi
+}
+
+case "${1:-up}" in
+  up) shift || true; cmd_up "$@" ;;
+  login) print_login ;;
+  open) shift; cmd_open "$@" ;;
+  status) cmd_status ;;
+  reset) cmd_reset ;;
+  test) cmd_test ;;
+  logs) cmd_logs "${2:-web}" ;;
+  down) cmd_down "${2:-}" ;;
+  -h|--help|help) sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//' ;;
+  *) die "unknown command '$1' (./najda help)" ;;
+esac

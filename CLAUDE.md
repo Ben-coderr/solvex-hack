@@ -15,6 +15,8 @@ P3 (gate-H20): dispatcher dashboard `/` (status strip, queue, MapLibre map, deta
 TODO: the native side and the remaining phases (see phase prompts P4–P8).
 
 ## Commands
+Quickest: `./najda up` (Docker → Supabase → env + demo logins → web), `./najda open` (signed-in dispatcher + hospital windows),
+`./najda test`, `./najda down`. Run/test guide with accounts: `README.md`.
 ```bash
 pnpm install
 pnpm check            # shared tests + typecheck + tokens contrast + independent Python cross-check — must be green before every merge
