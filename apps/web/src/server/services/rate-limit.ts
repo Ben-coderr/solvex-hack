@@ -1,0 +1,40 @@
+/**
+ * In-memory sliding-window rate limiter. Good enough for the single-process stage server;
+ * a multi-instance deploy (Vercel backup) gets per-instance limits — documented in DECISIONS.md.
+ */
+export interface Limit { limit: number; windowMs: number }
+export type RateResult = { ok: true; remaining: number } | { ok: false; retryAfterS: number };
+
+export class RateLimiter {
+  private hits = new Map<string, number[]>();
+  constructor(private readonly now: () => number = Date.now) {}
+
+  check(key: string, { limit, windowMs }: Limit): RateResult {
+    const t = this.now();
+    const recent = (this.hits.get(key) ?? []).filter((x) => t - x < windowMs);
+    if (recent.length >= limit) {
+      this.hits.set(key, recent);
+      return { ok: false, retryAfterS: Math.max(1, Math.ceil((recent[0]! + windowMs - t) / 1000)) };
+    }
+    recent.push(t);
+    this.hits.set(key, recent);
+    if (this.hits.size > 10_000) this.sweep(t, windowMs);
+    return { ok: true, remaining: limit - recent.length };
+  }
+
+  private sweep(t: number, windowMs: number) {
+    for (const [k, v] of this.hits) if (v.every((x) => t - x >= windowMs)) this.hits.delete(k);
+  }
+}
+
+/** Limits per public endpoint (also listed in DECISIONS.md). */
+export const LIMITS = {
+  /** per API key + IP */
+  incidentsJson: { limit: 30, windowMs: 60_000 },
+  /** per gateway (the phone retries with backoff; generous) */
+  smsWebhook: { limit: 120, windowMs: 60_000 },
+  /** docs/05 §7: ≤ 3 auto alerts per hour per SMS sender (excess is still STORED, flagged, never dropped) */
+  smsPerSender: { limit: 3, windowMs: 3_600_000 },
+  /** dispatcher API per user */
+  dispatcher: { limit: 120, windowMs: 60_000 },
+} as const satisfies Record<string, Limit>;

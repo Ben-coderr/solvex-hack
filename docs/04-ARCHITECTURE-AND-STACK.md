@@ -262,7 +262,7 @@ create table sms_outbox (id uuid primary key default gen_random_uuid(), to_numbe
 **SMS gateway parsing:** isolate everything gateway-specific in `src/server/services/sms/gateway.ts` (`parseInbound(body)`, `sendSms()`), with recorded fixtures. **Before coding it, open docs.sms-gate.app** and confirm the webhook event/field names and the send endpoint; the names in the old plan (`payload.phoneNumber`, `payload.message`, `receivedAt`) were never confirmed. If cleartext HTTP to a LAN address is blocked by the phone app, use a free Cloudflare Tunnel for an HTTPS URL.
 
 **Hospital pre-alert SMS template (GSM-7, no accents):**
-`NAJDA PRE-ALERTE K7Q2M R75 ETA 24min. 1 victime. Tonneau, dv~71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M`
+`NAJDA PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M`  (basic GSM-7 only: the earlier `~` is a 2-septet extension char; "risque estime" per the medical-language rules)
 
 ---
 
