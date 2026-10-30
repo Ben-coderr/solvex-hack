@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@najda/tokens/dist/tokens.css";
+
+/* Dark follows the token theme switch: explicit [data-theme="dark"], else the OS preference unless forced light. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+/* next/font hashes family names, so point the token font slots at its CSS variables. */
+@theme inline {
+  --font-ui: var(--font-plex-arabic), system-ui, sans-serif;
+  --font-sans: var(--font-plex-arabic), system-ui, sans-serif;
+  --font-heading: var(--font-bricolage), var(--font-plex-arabic), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-display: var(--font-bricolage), var(--font-plex-arabic), sans-serif;
+
+  --color-bg: var(--najda-bg);
+  --color-surface: var(--najda-surface);
+  --color-raised: var(--najda-raised);
+  --color-line: var(--najda-line);
+  --color-text: var(--najda-text);
+  --color-muted: var(--najda-raised);
+  --color-brand-text: var(--najda-brand-text);
+
+  /* shadcn/ui semantic slots, mapped onto NAJDA tokens (no raw colours here). */
+  --color-background: var(--najda-bg);
+  --color-foreground: var(--najda-text);
+  --color-card: var(--najda-surface);
+  --color-card-foreground: var(--najda-text);
+  --color-popover: var(--najda-raised);
+  --color-popover-foreground: var(--najda-text);
+  --color-primary: var(--najda-brand-fill);
+  --color-primary-foreground: var(--najda-on-brand);
+  --color-secondary: var(--najda-raised);
+  --color-secondary-foreground: var(--najda-text);
+  --color-muted-foreground: var(--najda-muted);
+  --color-accent: var(--najda-raised);
+  --color-accent-foreground: var(--najda-text);
+  /* TODO(P2): status.danger is in tokens.json but not emitted to tokens.css; never borrow triage R here. */
+  --color-destructive: var(--najda-text);
+  --color-border: var(--najda-line);
+  --color-input: var(--najda-line);
+  --color-ring: var(--najda-brand-fill);
+}
+
+/* shadcn's raw-value aliases, kept so registry components that read var(--x) still resolve to tokens. */
+:root {
+  --background: var(--najda-bg);
+  --foreground: var(--najda-text);
+  --primary: var(--najda-brand-fill);
+  --secondary: var(--najda-raised);
+  --radius: var(--radius-lg);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}

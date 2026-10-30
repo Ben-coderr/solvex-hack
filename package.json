@@ -11,11 +11,17 @@
     "vectors": "pnpm --filter @najda/shared vectors",
     "crosscheck": "python3 -I packages/shared/scripts/crosscheck.py",
     "tokens": "pnpm --filter @najda/tokens build",
-    "check": "pnpm test && pnpm typecheck && pnpm crosscheck"
+    "check": "pnpm test && pnpm typecheck && pnpm crosscheck",
+    "dev:web": "pnpm --filter web dev",
+    "dev:mobile": "pnpm --filter mobile start"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild"
+    ],
+    "ignoredBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
     ]
   }
 }
