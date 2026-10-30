@@ -198,7 +198,11 @@
     "close": "Fermer",
     "unparsed": "Messages illisibles",
     "unparsedHint": "Affichés tels que reçus. Lisez-les, rappelez si besoin.",
-    "notAllowed": "Ce compte ne peut pas ouvrir la salle de régulation."
+    "notAllowed": "Ce compte ne peut pas ouvrir la salle de régulation.",
+    "stale": "Serveur injoignable — dernière liste reçue affichée.",
+    "unparsedError": "Illisible : {error}",
+    "nav": "Principal",
+    "view": "Vue"
   },
   "strip": {
     "online": "En ligne",
@@ -213,7 +217,12 @@
     "osrmDown": "Itinéraires indisponibles : estimations",
     "tilesOnline": "TUILES EN LIGNE",
     "tilesOffline": "Carte hors ligne",
-    "clock": "Heure locale"
+    "clock": "Heure locale",
+    "label": "État du système",
+    "noInternet": "Pas d'internet — les SMS arrivent toujours",
+    "realtimeConnecting": "Temps réel : connexion…",
+    "tilesNone": "Pas de fond de carte",
+    "pollingFallback": "Actualisation toutes les 15 s à la place"
   },
   "detail": {
     "tabs": {
@@ -241,7 +250,11 @@
     "overridden": "Niveau fixé par {actor}",
     "crashed": "Choc {time}",
     "loadError": "Impossible de charger cet incident.",
-    "computed": "Calculé {band} {nsi}"
+    "computed": "Calculé {band} {nsi}",
+    "title": "Incident {id}",
+    "packet": "Paquet reçu",
+    "fullAudit": "Ouvrir le journal d'audit complet",
+    "tabsLabel": "Sections de l'incident"
   },
   "override": {
     "titleBand": "Changer le niveau",
@@ -250,7 +263,10 @@
     "reasonHint": "Il est enregistré dans le journal d'audit avec votre nom.",
     "confirm": "Confirmer",
     "cancel": "Annuler",
-    "band": "Nouveau niveau"
+    "band": "Nouveau niveau",
+    "hospitalHint": "{chosen} n'est pas la première recommandation ({top}). Dites pourquoi.",
+    "confirmPrealert": "Confirmer et pré-alerter",
+    "computedTag": "calculée"
   },
   "orient": {
     "loading": "Classement des établissements…",
@@ -261,13 +277,21 @@
     "acked": "Pris en compte {time} ✓",
     "waiting": "Pas de réponse depuis {minutes} min",
     "chosen": "Établissement choisi",
-    "notes": "Itinéraires : {notes}"
+    "notes": "Itinéraires : {notes}",
+    "rule": "Règle : temps 45 % · capacités 35 % · charge 15 % · niveau 5 % (poids supposés). Vous choisissez.",
+    "viaWeb": "carte web",
+    "viaWebSms": "carte web + SMS",
+    "awaiting": "En attente d'accusé"
   },
   "lifecycle2": {
     "cancel": "Fausse alerte…",
     "cancelTitle": "Annuler : fausse alerte",
     "cancelled": "Annulé",
-    "merged": "Fusionné avec un autre incident"
+    "merged": "Fusionné avec un autre incident",
+    "whyDone": "Déjà fait",
+    "whyFinal": "Cet incident est clos",
+    "whyOrder": "D'abord l'étape suivante : {next}",
+    "cancelHint": "L'incident quitte la file. La raison est enregistrée avec votre nom."
   },
   "sim": {
     "open": "Simuler un SMS",
@@ -290,7 +314,8 @@
       "merged": "Fusionné avec {id}",
       "updated": "{id} mis à jour",
       "duplicate": "Déjà reçu",
-      "unparsed": "Conservé comme illisible : {error}"
+      "unparsed": "Conservé comme illisible : {error}",
+      "open": "Ouvrir"
     }
   },
   "auditPage": {
@@ -303,7 +328,9 @@
     "before": "Avant",
     "after": "Après",
     "reason": "Motif",
-    "empty": "Aucun événement."
+    "empty": "Aucun événement.",
+    "apply": "Filtrer",
+    "emptyBody": "Chaque suggestion et chaque décision humaine apparaît ici."
   },
   "hospitalView": {
     "title": "Service des urgences",
@@ -311,6 +338,42 @@
     "none": "Aucun patient attendu.",
     "status": "Notre statut",
     "expires": "Expire après 6 h",
-    "set": "Passer à {status}"
+    "set": "Passer à {status}",
+    "setAt": "{status} depuis {time} · reste {hours} h",
+    "unknown": "Statut inconnu (non défini depuis 6 h)",
+    "noneBody": "Les pré-alertes de la salle d'opérations apparaissent ici en quelques secondes."
+  },
+  "source": {
+    "auto": "Automatique (téléphone)",
+    "witness": "Témoin",
+    "sos": "Bouton SOS",
+    "crew": "Équipe",
+    "unknown": "Source inconnue"
+  },
+  "action": {
+    "incident": {
+      "created": "Incident créé",
+      "report_merged": "Signalement fusionné",
+      "report_updated": "Signalement mis à jour",
+      "transition": "Statut modifié",
+      "band_override": "Bande modifiée à la main",
+      "override_cleared": "Retour à la bande calculée",
+      "hospital_set": "Établissement choisi",
+      "hospital_override": "Autre établissement choisi",
+      "unit_assigned": "Unité affectée"
+    },
+    "prealert": {
+      "sent": "Pré-alerte envoyée",
+      "acked": "Pré-alerte accusée"
+    },
+    "hospital": {
+      "status": "Statut de l'établissement"
+    },
+    "report": {
+      "unparsed": "Message illisible conservé"
+    },
+    "demo": {
+      "reset": "Réinitialisation démo"
+    }
   }
 }

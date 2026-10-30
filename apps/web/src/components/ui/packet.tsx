@@ -31,7 +31,7 @@ export function PacketChip({ token, copyable = true }: PacketChipProps) {
   const t = useTranslations('packet');
   const [done, setDone] = useState(false);
   const cls = cn(
-    'inline-flex min-h-8 max-w-full items-center break-all rounded-sm border px-1.5 font-mono text-[0.9375rem] leading-none tracking-tight',
+    'inline-flex min-h-8 max-w-full items-center break-all rounded-sm border px-1.5 font-mono text-base leading-none tracking-tight',
     'border-line bg-raised text-text',
     KIND_STYLE[token.kind],
     token.state === 'suspect' && 'border-dashed border-status-warn',

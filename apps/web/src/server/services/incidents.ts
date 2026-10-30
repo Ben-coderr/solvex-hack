@@ -64,7 +64,7 @@ export async function getIncidentDetail(id: string) {
     from public.incidents i where i.id = ${id}`;
   if (!incident) return null;
   delete incident.location;
-  const [reports, assessments, prealerts, audit] = await Promise.all([
+  const [reports, assessments, prealerts, audit, callback] = await Promise.all([
     sql`select id, client_id, channel, source, raw, parsed, parse_error, received_at
         from public.reports where incident_id = ${id} order by received_at`,
     sql`select version, band, nsi, conf, reasons, inputs, engine_version, created_at
@@ -73,6 +73,12 @@ export async function getIncidentDetail(id: string) {
         from public.prealerts where incident_id = ${id} order by sent_at`,
     sql`select id, actor, action, before, after, reason, at
         from public.audit_events where incident_id = ${id} order by at, id`,
+    // Reports keep only a hash of the sender; the number the ACK SMS went to is the call-back number.
+    sql<{ to_number: string }[]>`select to_number from public.sms_outbox
+        where incident_id = ${id} and purpose = 'ack' and to_number is not null order by created_at desc limit 1`,
   ]);
-  return { incident, assessment: assessments[0] ?? null, assessments, reports, prealerts, audit };
+  return {
+    incident, assessment: assessments[0] ?? null, assessments, reports, prealerts, audit,
+    callback: callback[0]?.to_number ?? null,
+  };
 }

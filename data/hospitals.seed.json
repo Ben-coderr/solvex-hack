@@ -1,9 +1,9 @@
 {
-  "$comment": "SYNTHETIC, ILLUSTRATIVE facilities for the demo only. Names, positions, levels and capabilities are invented and NOT verified. Do not present them as real hospitals. CHU-A / EPH-B / CHU-C reproduce the worked example in docs/05 §5.1 around the demo origin 36.47213,2.82871 (EPH-B is closest but has no neurosurgery/ICU: closest != best). Capabilities use the fixed vocabulary of docs/04 §5. Generate supabase/seed.sql with `pnpm db:seed-sql`.",
+  "$comment": "SYNTHETIC, ILLUSTRATIVE facilities for the demo only. Names, positions, levels and capabilities are invented and NOT verified. Do not present them as real hospitals. CHU-A / EPH-B / CHU-C reproduce the worked example in docs/05 §5.1 around the demo origin 36.47213,2.82871 (EPH-B is closest but has no neurosurgery/ICU: closest != best). Capabilities use the fixed vocabulary of docs/04 §5. Generate supabase/seed.sql with `pnpm db:seed-sql`. phone_sms numbers are synthetic (+213 555 0001xx) so pre-alert SMS land in sms_outbox; in SMSGATE_MODE=sim nothing is sent.",
   "hospitals": [
-    { "id": "CHU-A", "name": "CHU A (illustrative)", "level": "A", "wilaya_code": 9, "lat": 36.592, "lon": 2.949, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "pediatrics"] },
-    { "id": "EPH-B", "name": "EPH B (illustrative)", "level": "B", "wilaya_code": 9, "lat": 36.53, "lon": 2.829, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct"] },
-    { "id": "CHU-C", "name": "CHU C (illustrative)", "level": "A", "wilaya_code": 9, "lat": 36.172, "lon": 2.559, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "burns"] },
+    { "id": "CHU-A", "phone_sms": "+213555000101", "name": "CHU A (illustrative)", "level": "A", "wilaya_code": 9, "lat": 36.592, "lon": 2.949, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "pediatrics"] },
+    { "id": "EPH-B", "phone_sms": "+213555000102", "name": "EPH B (illustrative)", "level": "B", "wilaya_code": 9, "lat": 36.53, "lon": 2.829, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct"] },
+    { "id": "CHU-C", "phone_sms": "+213555000103", "name": "CHU C (illustrative)", "level": "A", "wilaya_code": 9, "lat": 36.172, "lon": 2.559, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "burns"] },
     { "id": "EPH-D", "name": "EPH D (illustrative)", "level": "B", "wilaya_code": 9, "lat": 36.41, "lon": 2.74, "capabilities": ["ed24", "general_surgery", "pediatrics"] },
     { "id": "PU-E", "name": "Polyclinic E (illustrative)", "level": "C", "wilaya_code": 9, "lat": 36.45, "lon": 2.9, "capabilities": ["ed24"] },
 

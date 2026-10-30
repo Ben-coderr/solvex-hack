@@ -64,6 +64,24 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [H12] mobile — NOT visually verified: no Android device attached, and the react-native-web preview (Expo server output) did not apply RN styles/fonts reliably (time-boxed at 15 min). Evidence = typecheck + Android export (29 TTF assets bundled). On-device check of `app/styleguide` is a P4 task.
 - [H12] repo — docs/pitch/design holds ~22 MB of QA screenshots; trim to the pitch-worthy ones before sharing the repo.
 
+## P3 — Dispatcher dashboard (G2)
+- [H14] figma — no Figma frames (Path C): screens follow the wireframe intent of docs/06 §5 with the P2 components.
+- [H14] realtime — BUG FOUND: on a full page load the browser joined Realtime with no access token (session still loading from cookies) → RLS as anon → zero events, while the status strip said "live". Fix: `getSession()` → `realtime.setAuth()` → subscribe; `onAuthStateChange` keeps the token fresh; unique channel topic per mount; one full refetch on every SUBSCRIBED. Covered by the e2e (ACK seen after a reload).
+- [H14] map — MapLibre v6 loads its worker relative to its bundle, which Turbopack does not emit: `scripts/copy-map-worker.mjs` (predev/prebuild) copies it to `public/` and `setWorkerUrl()` points at it (gitignored).
+- [H14] map — offline basemap = `public/tiles/najda.pmtiles` (not in the repo yet: P5/P8 extracts the region). `/api/health` reports `offlineTiles`; without it the map uses OpenFreeMap (no key) and the strip says ONLINE TILES. Offline style drops text labels unless `NEXT_PUBLIC_MAP_GLYPHS` serves glyphs locally.
+- [H14] map — route on hover is a straight line (dashed + "estimated" when the ETA is the haversine fallback): OSRM geometry not drawn yet (OSRM is down on this laptop, port 5000 = AirPlay).
+- [H14] ui — projection scale: on dispatcher pages at ≥ 1024 px, root font 112.5% so text-base = 18 px (docs/03 §7). Packet chips raised to text-base. Labels/captions stay text-sm (15.75 px there).
+- [H14] ui — LifecycleBar uses `aria-disabled` (not `disabled`) so blocked steps show their "why" tooltip; reasons come from the same transition table as the server (`server/domain/lifecycle.ts`, pure, imported client-side).
+- [H14] ui — Pre-alerting / choosing a facility other than the top recommendation opens the reason dialog first (Confirm disabled < 5 chars; server returns 422 anyway). Pre-alert = set_hospital + POST prealert; warning when no ACK after 2 min.
+- [H14] data — the three demo facilities (CHU-A, EPH-B, CHU-C) got synthetic SMS numbers (+213 555 0001xx) so pre-alerts create an `sms_outbox` row; SMSGATE_MODE=sim sends nothing.
+- [H14] api — call-back number = the number the ACK SMS went to (`sms_outbox`, purpose ack); reports keep only a hash.
+- [H14] routes — `(dispatch)` route group dropped for plain `/` + `/audit` with a `DispatchGate` server component (hospital accounts are redirected to `/hospital/[id]`).
+- [H14] e2e — `apps/web/tests/e2e/hero-flow.spec.ts` (Playwright library with the installed Chrome; Playwright MCP not available in-session). Fails on console errors, page errors and any 4xx/5xx from our origin. `BASE_URL` defaults to :3001.
+- [H14] dev — the long-running `next dev -p 3001` stopped seeing route/CSS changes after `app/page.tsx` was deleted; verification ran against `next build && next start -p 3100`. Restart the dev server before the next session.
+- [H14] i18n — 293 keys, parity ar/fr/en; the new Arabic strings also need the native-speaker review.
+
 ## Open items
 - ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).
 - [H0] tooling — Supabase CLI not installed: `brew install supabase/tap/supabase` failed because github.com was unreachable from this machine/session at H0. Needed for P1.
+- [H14] G2 — the "stranger completes the hero flow in < 90 s without help" test has NOT been run with a person yet (automated run: ~11 s).
+- [H14] lint — `components/ui/locale-switch.tsx` (P2) trips react-hooks/immutability on `document.cookie`.

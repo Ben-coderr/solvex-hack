@@ -198,7 +198,11 @@
     "close": "Close",
     "unparsed": "Unparsed messages",
     "unparsedHint": "Shown exactly as received. Read it, call back if needed.",
-    "notAllowed": "This account cannot open the dispatch room."
+    "notAllowed": "This account cannot open the dispatch room.",
+    "stale": "Server unreachable — showing the last list received.",
+    "unparsedError": "Unreadable: {error}",
+    "nav": "Main",
+    "view": "View"
   },
   "strip": {
     "online": "Online",
@@ -213,7 +217,12 @@
     "osrmDown": "Routing down: estimates only",
     "tilesOnline": "ONLINE TILES",
     "tilesOffline": "Offline map",
-    "clock": "Local time"
+    "clock": "Local time",
+    "label": "System status",
+    "noInternet": "No internet — SMS still arrives",
+    "realtimeConnecting": "Live updates: connecting",
+    "tilesNone": "No map tiles",
+    "pollingFallback": "Refreshing every 15 s instead"
   },
   "detail": {
     "tabs": {
@@ -241,7 +250,11 @@
     "overridden": "Band set by {actor}",
     "crashed": "Impact {time}",
     "loadError": "Could not load this incident.",
-    "computed": "Computed {band} {nsi}"
+    "computed": "Computed {band} {nsi}",
+    "title": "Incident {id}",
+    "packet": "Packet received",
+    "fullAudit": "Open the full audit log",
+    "tabsLabel": "Incident sections"
   },
   "override": {
     "titleBand": "Change the band",
@@ -250,7 +263,10 @@
     "reasonHint": "It is recorded in the audit log with your name.",
     "confirm": "Confirm",
     "cancel": "Cancel",
-    "band": "New band"
+    "band": "New band",
+    "hospitalHint": "{chosen} is not the top recommendation ({top}). Say why.",
+    "confirmPrealert": "Confirm and pre-alert",
+    "computedTag": "computed"
   },
   "orient": {
     "loading": "Ranking facilities…",
@@ -261,13 +277,21 @@
     "acked": "Acknowledged {time} ✓",
     "waiting": "No acknowledgement for {minutes} min",
     "chosen": "Chosen facility",
-    "notes": "Routing: {notes}"
+    "notes": "Routing: {notes}",
+    "rule": "Rule: time 45% · capabilities 35% · load 15% · level 5% (assumed weights). You choose.",
+    "viaWeb": "web card",
+    "viaWebSms": "web card + SMS",
+    "awaiting": "Waiting for acknowledgement"
   },
   "lifecycle2": {
     "cancel": "False alarm…",
     "cancelTitle": "Cancel as false alarm",
     "cancelled": "Cancelled",
-    "merged": "Merged into another incident"
+    "merged": "Merged into another incident",
+    "whyDone": "Already done",
+    "whyFinal": "This incident is closed",
+    "whyOrder": "Next step first: {next}",
+    "cancelHint": "The incident leaves the queue. The reason is recorded with your name."
   },
   "sim": {
     "open": "Simulate SMS",
@@ -290,7 +314,8 @@
       "merged": "Merged into {id}",
       "updated": "Updated {id}",
       "duplicate": "Already received",
-      "unparsed": "Kept as unparsed: {error}"
+      "unparsed": "Kept as unparsed: {error}",
+      "open": "Open"
     }
   },
   "auditPage": {
@@ -303,7 +328,9 @@
     "before": "Before",
     "after": "After",
     "reason": "Reason",
-    "empty": "No events yet."
+    "empty": "No events yet.",
+    "apply": "Filter",
+    "emptyBody": "Every suggestion and every human decision appears here."
   },
   "hospitalView": {
     "title": "Emergency department",
@@ -311,6 +338,42 @@
     "none": "No incoming patient.",
     "status": "Our status",
     "expires": "Expires after 6 h",
-    "set": "Set {status}"
+    "set": "Set {status}",
+    "setAt": "{status} since {time} · {hours} h left",
+    "unknown": "Status unknown (not set in the last 6 h)",
+    "noneBody": "Pre-alerts from the operations room appear here within seconds."
+  },
+  "source": {
+    "auto": "Automatic (phone)",
+    "witness": "Witness",
+    "sos": "SOS button",
+    "crew": "Crew",
+    "unknown": "Unknown source"
+  },
+  "action": {
+    "incident": {
+      "created": "Incident created",
+      "report_merged": "Report merged",
+      "report_updated": "Report updated",
+      "transition": "Status changed",
+      "band_override": "Band changed by hand",
+      "override_cleared": "Back to computed band",
+      "hospital_set": "Facility chosen",
+      "hospital_override": "Other facility chosen",
+      "unit_assigned": "Unit assigned"
+    },
+    "prealert": {
+      "sent": "Pre-alert sent",
+      "acked": "Pre-alert acknowledged"
+    },
+    "hospital": {
+      "status": "Facility status set"
+    },
+    "report": {
+      "unparsed": "Unreadable message kept"
+    },
+    "demo": {
+      "reset": "Demo reset"
+    }
   }
 }

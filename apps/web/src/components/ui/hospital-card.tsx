@@ -8,6 +8,7 @@ import { Button } from './button';
 export type LoadStatus = 'OK' | 'BUSY' | 'SATURATED' | 'UNKNOWN';
 
 export interface HospitalCardProps {
+  /** 1-based; 0 = shown outside the ranking (the nearest ED appended below the top 3) */
   rank: number;
   name: string;
   level: 'A' | 'B' | 'C';
@@ -42,7 +43,7 @@ export function HospitalCard(p: HospitalCardProps) {
   return (
     <article className={cn('flex min-w-0 flex-col gap-3 rounded-md border border-line bg-surface p-4 wrap-anywhere', p.rank === 1 && 'border-brand-fill', p.className)}>
       <header className="flex flex-wrap items-start gap-3">
-        <span className="packet-ltr font-display text-sm text-muted-foreground">{t('hospital.rank', { rank: p.rank })}</span>
+        {p.rank > 0 && <span className="packet-ltr font-display text-sm text-muted-foreground">{t('hospital.rank', { rank: p.rank })}</span>}
         <div className="min-w-0 flex-1 basis-40">
           <h3 className="text-lg font-semibold leading-snug">
             {p.name}
@@ -103,8 +104,8 @@ export function HospitalCard(p: HospitalCardProps) {
       </ul>
 
       <div className="flex flex-wrap gap-2">
-        <Button onClick={p.onPrealert}>{t('hospital.prealert')}</Button>
-        <Button variant="outline" onClick={p.onChoose}>{t('hospital.choose')}</Button>
+        <Button onClick={p.onPrealert} disabled={!p.onPrealert}>{t('hospital.prealert')}</Button>
+        <Button variant="outline" onClick={p.onChoose} disabled={!p.onChoose}>{t('hospital.choose')}</Button>
       </div>
     </article>
   );

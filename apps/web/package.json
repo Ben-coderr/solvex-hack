@@ -10,7 +10,11 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:db": "vitest run --config vitest.db.config.mts",
-    "design:qa": "tsx scripts/design-qa.mts"
+    "design:qa": "tsx scripts/design-qa.mts",
+    "test:e2e": "playwright test",
+    "predev": "node scripts/copy-map-worker.mjs",
+    "prebuild": "node scripts/copy-map-worker.mjs",
+    "screens:p3": "tsx scripts/p3-screens.mts"
   },
   "dependencies": {
     "@najda/api-contract": "workspace:^",

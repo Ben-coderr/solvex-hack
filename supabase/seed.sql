@@ -2,9 +2,9 @@
 -- Synthetic, illustrative facilities only (verified = false).
 
 insert into public.hospitals (id, name, level, wilaya_code, phone_sms, capabilities, location, source, verified) values
-  ('CHU-A', 'CHU A (illustrative)', 'A', 9, null, array['ed24','general_surgery','trauma_surgery','ct','icu','neurosurgery','pediatrics']::text[], extensions.st_setsrid(extensions.st_makepoint(2.949, 36.592), 4326)::extensions.geography, 'illustrative', false),
-  ('EPH-B', 'EPH B (illustrative)', 'B', 9, null, array['ed24','general_surgery','trauma_surgery','ct']::text[], extensions.st_setsrid(extensions.st_makepoint(2.829, 36.53), 4326)::extensions.geography, 'illustrative', false),
-  ('CHU-C', 'CHU C (illustrative)', 'A', 9, null, array['ed24','general_surgery','trauma_surgery','ct','icu','neurosurgery','burns']::text[], extensions.st_setsrid(extensions.st_makepoint(2.559, 36.172), 4326)::extensions.geography, 'illustrative', false),
+  ('CHU-A', 'CHU A (illustrative)', 'A', 9, '+213555000101', array['ed24','general_surgery','trauma_surgery','ct','icu','neurosurgery','pediatrics']::text[], extensions.st_setsrid(extensions.st_makepoint(2.949, 36.592), 4326)::extensions.geography, 'illustrative', false),
+  ('EPH-B', 'EPH B (illustrative)', 'B', 9, '+213555000102', array['ed24','general_surgery','trauma_surgery','ct']::text[], extensions.st_setsrid(extensions.st_makepoint(2.829, 36.53), 4326)::extensions.geography, 'illustrative', false),
+  ('CHU-C', 'CHU C (illustrative)', 'A', 9, '+213555000103', array['ed24','general_surgery','trauma_surgery','ct','icu','neurosurgery','burns']::text[], extensions.st_setsrid(extensions.st_makepoint(2.559, 36.172), 4326)::extensions.geography, 'illustrative', false),
   ('EPH-D', 'EPH D (illustrative)', 'B', 9, null, array['ed24','general_surgery','pediatrics']::text[], extensions.st_setsrid(extensions.st_makepoint(2.74, 36.41), 4326)::extensions.geography, 'illustrative', false),
   ('PU-E', 'Polyclinic E (illustrative)', 'C', 9, null, array['ed24']::text[], extensions.st_setsrid(extensions.st_makepoint(2.9, 36.45), 4326)::extensions.geography, 'illustrative', false),
   ('CHU-F', 'CHU F (illustrative)', 'A', 16, null, array['ed24','general_surgery','trauma_surgery','ct','icu','neurosurgery','pediatrics','burns']::text[], extensions.st_setsrid(extensions.st_makepoint(3.06, 36.745), 4326)::extensions.geography, 'illustrative', false),

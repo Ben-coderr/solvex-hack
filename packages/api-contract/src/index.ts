@@ -153,6 +153,8 @@ export const Health = z.object({
   time: z.string(),
   version: z.string(),
   demo: z.boolean(),
+  /** the offline basemap is installed on the server (dashboard map works without internet) */
+  offlineTiles: z.boolean().optional(),
 });
 export type Health = z.infer<typeof Health>;
 

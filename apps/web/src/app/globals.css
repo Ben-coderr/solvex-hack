@@ -121,3 +121,11 @@
   .najda-ring-drain { transition: none; }
   *, *::before, *::after { transition-duration: 0ms !important; scroll-behavior: auto !important; }
 }
+
+/* Projection scale (docs/03 §7): dispatcher screens are read from 5 m on a 1366×768 projector, so on desktop
+   widths 1rem = 18 px there (text-base = 18 px). Phones and the hospital view keep the 16 px base. */
+@media (min-width: 1024px) {
+  :root:has([data-projection]) {
+    font-size: 112.5%;
+  }
+}

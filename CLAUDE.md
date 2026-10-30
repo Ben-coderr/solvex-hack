@@ -10,7 +10,9 @@ A phone detects a crash (or a witness reports it in 5 taps) and sends a 160-char
 DONE and tested: `packages/shared` (codec, CRC-8, GSM-7, Plus Codes, NSI scoring, hospital ranking, merge) and `packages/tokens` (design tokens + WCAG tests).
 P0 skeletons: `apps/web` (Next 16) and `apps/mobile` (Expo SDK 58 dev build) render a real packet from `@najda/shared`.
 P1 (gate-H10): `supabase/` schema+RLS+seed, `packages/api-contract`, `apps/web/src/server` (ingest, lifecycle, routing, pre-alert, SMS gateway) and `/api/*` routes.
-TODO: the real app screens and the native side (see phase prompts P2–P8).
+P2 (gate-design-1): tokens fixes, web + mobile design systems, `/styleguide`.
+P3 (gate-H20): dispatcher dashboard `/` (status strip, queue, MapLibre map, detail drawer, orientation, lifecycle, pre-alert, paste/simulate SMS), `/audit`, minimal hospital view `/hospital/[id]`; e2e `pnpm --filter web test:e2e`.
+TODO: the native side and the remaining phases (see phase prompts P4–P8).
 
 ## Commands
 ```bash
@@ -24,6 +26,8 @@ pnpm env:local          # fill EMPTY keys of the root .env.local (local keys + r
 pnpm db:users           # demo logins dispatcher@najda.test / hospital-a@najda.test (password: DEMO_USER_PASSWORD)
 pnpm --filter web test:db   # ingest through real Postgres (truncates local incident tables)
 pnpm realtime:probe     # print Realtime events as the dispatcher sees them (RLS)
+pnpm --filter web test:e2e   # G2 hero flow (Playwright + installed Chrome; app running, BASE_URL=http://localhost:3001)
+pnpm --filter web screens:p3 <ID>  # screenshot matrix → docs/pitch/design/p3
 scripts/curl-demo.sh    # G1 drill through the signed SMS webhook (BASE_URL=http://localhost:3000)
 pnpm dev:web          # = pnpm --filter web dev  (also: build | start | typecheck)
 pnpm dev:mobile       # Metro for the dev build (first install: pnpm --filter mobile android, JAVA_HOME = Android Studio JBR 17)
@@ -57,4 +61,6 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 - Supabase Realtime truncates `char(n)` to 1 char and then drops the event under RLS: never use char(n); text + CHECK.
 - postgres.js v4 renders `${sql(obj, keys)}` from the keyword before it: keep it directly after `set`/`insert`, never inside a nested fragment.
 - Next's env loader caches its first load and skips `.env.local` when NODE_ENV=test.
+- Supabase Realtime in the browser: set the session token (`realtime.setAuth`) BEFORE subscribing, or RLS sees anon and no event ever arrives (the channel still says SUBSCRIBED).
+- MapLibre v6 + Turbopack: the worker must be served from /public (`scripts/copy-map-worker.mjs`).
 - Supabase Free pauses after 7 idle days. Vercel Hobby is non-commercial. Render free sleeps after 15 min.
