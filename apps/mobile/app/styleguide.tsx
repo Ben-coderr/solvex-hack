@@ -8,8 +8,10 @@ import {
 } from '@/src/ui';
 
 // Mobile design-system QA screen: every component × state, light + dark, LTR + RTL. Synthetic data.
-const EX1 = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
-const BAD = EX1.replace('#04', '#05');
+const EX1 = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
+// change the last CRC digit: a checksum failure whatever the magic (scripts/rename-magic.mjs)
+const corruptCrc = (wire: string) => wire.slice(0, -1) + (wire.endsWith('F') ? 'E' : 'F');
+const BAD = corruptCrc(EX1);
 
 function Panel({ mode, rtl, children }: { mode: 'light' | 'dark'; rtl?: boolean; children: (m: 'light' | 'dark') => ReactNode }) {
   const { c } = useTheme(mode);

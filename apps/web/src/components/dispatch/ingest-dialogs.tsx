@@ -64,7 +64,7 @@ export function IngestButtons({ demo, onOpenIncident }: { demo: boolean; onOpenI
         <form className="flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); if (text.trim()) ingest.mutate({ kind: 'paste', text }); }}>
           <label htmlFor={id} className="text-base font-medium">{t('paste.label')}</label>
           <textarea id={id} dir="ltr" rows={4} value={text} onChange={(e) => setText(e.target.value)} maxLength={1000}
-            placeholder="NAJDA1 K7Q2M R75H 36.47213,2.82871 …" className={cn(fieldCls, 'font-mono')} />
+            placeholder="SLK1 K7Q2M R75H 36.47213,2.82871 …" className={cn(fieldCls, 'font-mono')} />
           {ingest.data && <AckLine ack={ingest.data} onOpen={go} />}
           {ingest.error && <p role="alert" className="text-sm text-status-danger">{ingest.error.message}</p>}
           <div className="flex justify-end">

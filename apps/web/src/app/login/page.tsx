@@ -5,6 +5,7 @@ import { Suspense, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LocaleSwitch } from '@/components/ui/locale-switch';
 import { supabaseBrowser } from '@/lib/supabase/client';
+import { BRAND } from '@/brand';
 
 function LoginForm() {
   const t = useTranslations('login');
@@ -49,7 +50,7 @@ export default function LoginPage() {
   return (
     <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-8 px-4 py-12">
       <div className="flex flex-col gap-2">
-        <h1 className="font-display text-4xl font-semibold">NAJDA <span className="font-ui text-2xl font-normal text-muted-foreground">نجدة</span></h1>
+        <h1 className="font-display text-4xl font-semibold">{BRAND.name} <span className="font-ui text-2xl font-normal text-muted-foreground">{BRAND.nameAr}</span></h1>
         <p className="text-base text-muted-foreground">{t('subtitle')}</p>
       </div>
       <Suspense>

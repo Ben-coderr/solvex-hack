@@ -5,8 +5,10 @@ import { ingest, type InboundMessage } from '../ingest';
 import { postgresStore } from '../store-postgres';
 
 // Same scenarios as ingest.test.ts, but through real SQL (PostGIS merge query, FOR UPDATE, advisory lock, jsonb).
-const EX1 = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
-const EX2 = 'NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55';
+const EX1 = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
+// change the last CRC digit: a checksum failure whatever the magic (scripts/rename-magic.mjs)
+const corruptCrc = (wire: string) => wire.slice(0, -1) + (wire.endsWith('F') ? 'E' : 'F');
+const EX2 = 'SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30';
 const AT = new Date('2026-10-30T13:40:00Z');
 const sms = (text: string, over: Partial<Extract<InboundMessage, { kind: 'text' }>> = {}): InboundMessage => ({
   kind: 'text', channel: 'sim', text, receivedAt: AT, senderHash: 'db-test', replyTo: null, ...over,
@@ -32,7 +34,7 @@ describe('postgres store (local Supabase)', () => {
     const store = postgresStore(db);
     expect((await ingest(sms(EX1), store)).assessment).toMatchObject({ band: 'R', nsi: 75, conf: 'H' });
     expect((await ingest(sms(EX2, { receivedAt: new Date('2026-10-30T08:20:00Z') }), store)).assessment).toMatchObject({ band: 'Y', nsi: 44 });
-    expect(await ingest(sms(EX1.replace('#04', '#05')), store)).toMatchObject({ outcome: 'unparsed', error: 'checksum_mismatch' });
+    expect(await ingest(sms(corruptCrc(EX1)), store)).toMatchObject({ outcome: 'unparsed', error: 'checksum_mismatch' });
     expect(await ingest(sms(EX1), store)).toMatchObject({ outcome: 'duplicate', incident_id: 'K7Q2M' });
     const m = await ingest(sms(pkt({ flags: ['X'] })), store);
     expect(m).toMatchObject({ outcome: 'merged', incident_id: 'K7Q2M', merged_count: 2 });

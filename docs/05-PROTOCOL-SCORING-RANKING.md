@@ -40,7 +40,7 @@ CRC       = 2HEXDIG(upper)         ; CRC-8 over `body` (everything before " #")
 Rules:
 - **Tokens after the header are order-free**; the encoder always emits the *canonical* order shown above, with `K` and `F` letters in canonical order (`C M T B P X` / `N U B H E D X C F`). `decode(encode(p))` is a fixed point.
 - **Pure basic GSM-7**: only `A-Z 0-9 space . , + - #`. No Arabic, no accents, no `{ } [ ] ~ \ ^ |` (extension chars cost 2 septets, and *one* non-GSM char makes the SMS UCS-2 = 70 chars max).
-- **Length budget** (measured): typical auto-detected packet = **91 chars (69 spare)**; witness packet = 72; **absolute worst case = 113 (47 spare)**. Limit = 160.
+- **Length budget** (measured): typical auto-detected packet = **91 chars (69 spare)**; witness packet = 72; **absolute worst case = 111 (49 spare)**. Limit = 160.
 - **Unknown tokens** with an unassigned prefix are ignored with a warning (forward compatibility). Known tokens that are malformed are errors.
 - The callback number is **not** in the packet: the SMS sender ID carries it. Medical profile data **never** goes in an SMS.
 - Tolerant input: the decoder trims, collapses whitespace (incl. NBSP) and upper-cases before checking the CRC (SMS keyboards auto-correct).
@@ -229,5 +229,5 @@ If your backend dev prefers Python/FastAPI: copy `scripts/crosscheck.py` (strict
 ## 7. Security notes (what to say and what to build)
 
 - **CRC ≠ authentication.** A forged SMS with a valid CRC is trivial. Mitigations that fit the hackathon: the gateway number is private to the operations room; webhook secret/HMAC; per-sender rate limit (≤ 3 auto alerts/hour/sender); unconfirmed-auto badge until call-back or a witness merge; every incident needs a human click to dispatch.
-- **Production roadmap:** per-device key provisioned at install + a short truncated HMAC tag in v2 (the 47-char worst-case headroom allows ~8–10 chars of tag); operator short code; replay protection with `T` + id.
+- **Production roadmap:** per-device key provisioned at install + a short truncated HMAC tag in v2 (the 49-char worst-case headroom allows ~8–10 chars of tag); operator short code; replay protection with `T` + id.
 - **Privacy:** no names, no national ID. The medical profile is a separate opt-in and **never** travels by SMS. Law 18-07 (as amended by Law 25-11 of 2025) treats health data as sensitive: see `11-CORRECTIONS-AND-RISKS.md`.

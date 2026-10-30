@@ -15,9 +15,9 @@ PASS="$(envval DEMO_USER_PASSWORD)"
 for v in SECRET INGEST_KEY SUPA_URL ANON PASS; do [ -n "${!v}" ] || { echo "missing $v in .env.local (run pnpm env:local)"; exit 1; }; done
 
 # docs/05 §1.2 golden packets
-EX1='NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04'
-EX2='NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55'
-BAD="${EX1%#04}#05"
+EX1='SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E'
+EX2='SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30'
+BAD="${EX1%?}F"   # last CRC digit changed (EX1 must not end in F)
 # Third report: different id, ~120 m north (+0.00108 deg lat) and 4 min after EX1, built by the shared encoder.
 NEAR="$(pnpm -s exec tsx -e "
 import { encodeDzmsd, encodePlusCode } from './packages/shared/src/index.ts';

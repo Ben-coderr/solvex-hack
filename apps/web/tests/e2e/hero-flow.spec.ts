@@ -163,10 +163,10 @@ test('D6: a corrupted SMS is kept and shown as an unparsed report', async ({ bro
   const errors: string[] = [];
   const d = await login(browser, DISPATCHER, errors);
   await d.getByTestId('open-paste').click();
-  await d.getByLabel('SMS text').fill(`NAJDA1 GARBAGE ${Date.now()}`);
+  await d.getByLabel('SMS text').fill(`SLK1 GARBAGE ${Date.now()}`);
   await d.getByRole('button', { name: 'Add to queue' }).click();
   await expect(d.getByTestId('ingest-result')).toHaveAttribute('data-outcome', 'unparsed');
   await d.keyboard.press('Escape');
-  await expect(d.getByTestId('unparsed').getByText('NAJDA1 GARBAGE', { exact: false }).first()).toBeVisible();
+  await expect(d.getByTestId('unparsed').getByText('SLK1 GARBAGE', { exact: false }).first()).toBeVisible();
   expect(errors, errors.join('\n')).toEqual([]);
 });

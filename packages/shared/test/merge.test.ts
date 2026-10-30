@@ -2,8 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { assess, decodeDzmsdOrThrow, mergePackets, shouldMerge, type DzmsdPacket } from '../src/index';
 
-const WIRE1 = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
-const WIRE2 = 'NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55';
+const WIRE1 = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
+const WIRE2 = 'SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30';
 const at = (iso: string) => new Date(iso);
 
 test('shouldMerge: same id always; otherwise <= 300 m AND <= 10 min (inclusive edges)', () => {

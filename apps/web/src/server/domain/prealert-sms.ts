@@ -1,4 +1,5 @@
 import { SMS_SINGLE_MAX, gsm7Length, type Band, type Flag } from '@najda/shared';
+import { BRAND } from '../../brand';
 
 export interface PrealertFacts {
   id: string;
@@ -24,10 +25,10 @@ const FLAG_PRIORITY: readonly Flag[] = ['U', 'B', 'H', 'N', 'X', 'E', 'D', 'C', 
 /**
  * Hospital pre-alert, one SMS of BASIC GSM-7 only (docs/04 §6 template, minus its `~`, an extension char;
  * "estimated risk" wording per najda-medical-language):
- * NAJDA PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M
+ * SELLEKNI PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M
  */
 export function prealertSms(f: PrealertFacts): string {
-  const head = `NAJDA PRE-ALERTE ${f.id} risque estime ${f.band}${String(f.nsi).padStart(2, '0')}` +
+  const head = `${BRAND.smsName} PRE-ALERTE ${f.id} risque estime ${f.band}${String(f.nsi).padStart(2, '0')}` +
     (f.etaMin !== null ? ` ETA ${Math.round(f.etaMin)}min.` : '.');
   const tail = ` Repondre OK ${f.id}`;
   const details: string[] = [];

@@ -5,6 +5,7 @@ import {
 } from '../domain';
 import { packetFromJson, rawFromJson, type ClientHint } from '../domain/json-packet';
 import type { Channel, IncidentRow, IngestStore, IngestTx, ReportSource } from './ingest-store';
+import { BRAND } from '../../brand';
 
 export type InboundMessage =
   | {
@@ -129,7 +130,7 @@ export function ingest(msg: InboundMessage, store: IngestStore): Promise<IngestA
     if (msg.kind === 'text' && msg.channel === 'sms' && msg.replyTo) {
       await tx.enqueueSms({
         to: msg.replyTo,
-        body: `NAJDA RECU ${packet.id} ${formatHHMM(msg.receivedAt)}. Appelez le 14 si vous pouvez.`,
+        body: `${BRAND.smsName} RECU ${packet.id} ${formatHHMM(msg.receivedAt)}. Appelez le 14 si vous pouvez.`,
         purpose: 'ack',
         incidentId: next.id,
       });
@@ -165,7 +166,7 @@ async function storeUnparsed(tx: IngestTx, msg: Extract<InboundMessage, { kind: 
   if (msg.channel === 'sms' && msg.replyTo && !msg.quarantine) {
     await tx.enqueueSms({
       to: msg.replyTo,
-      body: 'NAJDA: message recu mais illisible. Appelez le 14.',
+      body: `${BRAND.smsName}: message recu mais illisible. Appelez le 14.`,
       purpose: 'ack',
       incidentId: null,
     });

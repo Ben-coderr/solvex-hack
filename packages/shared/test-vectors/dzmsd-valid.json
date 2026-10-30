@@ -27,7 +27,7 @@
         "spo2": 89,
         "plus": "8F84FRCH+VF"
       },
-      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04"
+      "wire": "SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E"
     },
     {
       "name": "spec-example-2",
@@ -52,7 +52,7 @@
         ],
         "plus": "8C7XM9R8+CQ"
       },
-      "wire": "NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55"
+      "wire": "SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30"
     },
     {
       "name": "random-1",
@@ -83,7 +83,7 @@
         "spo2": 70,
         "plus": "8F68X7WW+C9"
       },
-      "wire": "NAJDA1 BGDGQ G18H 34.99611,6.29594 T0032 SW V6 P8 KMTB G74 FBHCF HR39 SP70 8F68X7WW+C9 #6A"
+      "wire": "SLK1 BGDGQ G18H 34.99611,6.29594 T0032 SW V6 P8 KMTB G74 FBHCF HR39 SP70 8F68X7WW+C9 #A0"
     },
     {
       "name": "random-2",
@@ -112,7 +112,7 @@
         "spo2": 75,
         "plus": "8C9R5CGC+GX"
       },
-      "wire": "NAJDA1 H9QXR O22M 37.17626,-3.57757 T0618 SA V4 P6 KBP D98 FBDF HR52 SP75 8C9R5CGC+GX #A8"
+      "wire": "SLK1 H9QXR O22M 37.17626,-3.57757 T0618 SA V4 P6 KBP D98 FBDF HR52 SP75 8C9R5CGC+GX #86"
     },
     {
       "name": "random-3",
@@ -134,7 +134,7 @@
         "dv": 125,
         "plus": "8F27WCCR+2V"
       },
-      "wire": "NAJDA1 C89G6 Y41L 30.92002,5.44217 T1049 SW V0 P5 KBP D125 8F27WCCR+2V #FA"
+      "wire": "SLK1 C89G6 Y41L 30.92002,5.44217 T1049 SW V0 P5 KBP D125 8F27WCCR+2V #9F"
     },
     {
       "name": "random-4",
@@ -161,7 +161,7 @@
         ],
         "plus": "7CQX4XVV+95"
       },
-      "wire": "NAJDA1 33KYE G63L 25.14347,-0.00702 T2218 SW V4 P8 KX D101 G77 FNCF 7CQX4XVV+95 #B7"
+      "wire": "SLK1 33KYE G63L 25.14347,-0.00702 T2218 SW V4 P8 KX D101 G77 FNCF 7CQX4XVV+95 #3A"
     },
     {
       "name": "random-5",
@@ -189,7 +189,7 @@
         "hr": 184,
         "plus": "7FX45228+QV"
       },
-      "wire": "NAJDA1 TEPJD Y39M 29.15198,2.01722 T0415 SM V5 P9 KMB FHDXF HR184 7FX45228+QV #44"
+      "wire": "SLK1 TEPJD Y39M 29.15198,2.01722 T0415 SM V5 P9 KMB FHDXF HR184 7FX45228+QV #0A"
     },
     {
       "name": "random-6",
@@ -215,7 +215,7 @@
         ],
         "spo2": 89
       },
-      "wire": "NAJDA1 G7QBG Y59H 24.85781,-8.19184 T2349 SW V3 P2 KT D92 FUBX SP89 #E0"
+      "wire": "SLK1 G7QBG Y59H 24.85781,-8.19184 T2349 SW V3 P2 KT D92 FUBX SP89 #04"
     },
     {
       "name": "random-7",
@@ -241,7 +241,7 @@
         "spo2": 91,
         "plus": "7FQ668MH+XH"
       },
-      "wire": "NAJDA1 63706 R68M 25.23492,4.32890 T0639 SM V1 P5 KX D84 FNH SP91 7FQ668MH+XH #07"
+      "wire": "SLK1 63706 R68M 25.23492,4.32890 T0639 SM V1 P5 KX D84 FNH SP91 7FQ668MH+XH #49"
     },
     {
       "name": "random-8",
@@ -269,7 +269,7 @@
         "hr": 183,
         "plus": "8C2HPMCW+Q7"
       },
-      "wire": "NAJDA1 K8T02 G24H 30.72189,-8.30436 T0730 SA V9 P9 KX D98 FBHDC HR183 8C2HPMCW+Q7 #F6"
+      "wire": "SLK1 K8T02 G24H 30.72189,-8.30436 T0730 SA V9 P9 KX D98 FBHDC HR183 8C2HPMCW+Q7 #A9"
     },
     {
       "name": "random-9",
@@ -303,7 +303,7 @@
         "spo2": 75,
         "plus": "7CWJ4JXM+J9"
       },
-      "wire": "NAJDA1 DXKN8 U81L 28.14906,-7.36657 T2141 SW V8 P3 KTBX D33 G38 RO FUEDXCF SP75 7CWJ4JXM+J9 #DE"
+      "wire": "SLK1 DXKN8 U81L 28.14906,-7.36657 T2141 SW V8 P3 KTBX D33 G38 RO FUEDXCF SP75 7CWJ4JXM+J9 #5C"
     },
     {
       "name": "random-10",
@@ -327,7 +327,7 @@
         "hr": 35,
         "plus": "8C8V4QFV+53"
       },
-      "wire": "NAJDA1 BHSCY U86H 36.12298,-2.20727 T0917 SM V2 P6 KCT D92 G24 HR35 8C8V4QFV+53 #A3"
+      "wire": "SLK1 BHSCY U86H 36.12298,-2.20727 T0917 SM V2 P6 KCT D92 G24 HR35 8C8V4QFV+53 #2E"
     },
     {
       "name": "random-11",
@@ -349,7 +349,7 @@
         "g": 41,
         "plus": "7FJGG9JF+J8"
       },
-      "wire": "NAJDA1 G9SFX G19L 22.53151,10.37329 T0827 SM V4 P4 KMB G41 7FJGG9JF+J8 #F2"
+      "wire": "SLK1 G9SFX G19L 22.53151,10.37329 T0827 SM V4 P4 KMB G41 7FJGG9JF+J8 #97"
     },
     {
       "name": "random-12",
@@ -375,7 +375,7 @@
         ],
         "plus": "7FXGC7RW+83"
       },
-      "wire": "NAJDA1 JZ6YQ G48H 29.44078,10.29521 T1556 SM V7 P5 KMPX FNE 7FXGC7RW+83 #22"
+      "wire": "SLK1 JZ6YQ G48H 29.44078,10.29521 T1556 SM V7 P5 KMPX FNE 7FXGC7RW+83 #1E"
     },
     {
       "name": "random-13",
@@ -399,7 +399,7 @@
         ],
         "plus": "8F5865H8+96"
       },
-      "wire": "NAJDA1 NM3FP Y90L 33.22843,6.16550 T1322 SA V9 P7 KTX FC 8F5865H8+96 #7C"
+      "wire": "SLK1 NM3FP Y90L 33.22843,6.16550 T1322 SA V9 P7 KTX FC 8F5865H8+96 #CE"
     },
     {
       "name": "random-14",
@@ -422,7 +422,7 @@
         "g": 6,
         "plus": "7FP242RG+VG"
       },
-      "wire": "NAJDA1 EG6GM U94M 24.14216,0.02630 T0832 SW V4 P3 KMBP G6 7FP242RG+VG #26"
+      "wire": "SLK1 EG6GM U94M 24.14216,0.02630 T0832 SW V4 P3 KMBP G6 7FP242RG+VG #31"
     },
     {
       "name": "random-15",
@@ -453,7 +453,7 @@
         "spo2": 73,
         "plus": "8F4CGG9J+GX"
       },
-      "wire": "NAJDA1 1RQ3G U29H 32.51881,8.53239 T1104 SW V0 P6 KMTBX D5 G18 RO FNC SP73 8F4CGG9J+GX #FA"
+      "wire": "SLK1 1RQ3G U29H 32.51881,8.53239 T1104 SW V0 P6 KMTBX D5 G18 RO FNC SP73 8F4CGG9J+GX #30"
     },
     {
       "name": "random-16",
@@ -476,7 +476,7 @@
         "spo2": 76,
         "plus": "8F689V7H+6J"
       },
-      "wire": "NAJDA1 4J6SX R49M 34.36303,6.87902 T0543 SW V3 P3 KMP G50 SP76 8F689V7H+6J #0C"
+      "wire": "SLK1 4J6SX R49M 34.36303,6.87902 T0543 SW V3 P3 KMP G50 SP76 8F689V7H+6J #17"
     },
     {
       "name": "random-17",
@@ -506,7 +506,7 @@
         ],
         "plus": "7FJ33GG6+G6"
       },
-      "wire": "NAJDA1 Z2CH6 Y34M 22.07635,1.51057 T2018 SW V1 P5 KMTBPX D87 G69 FUF 7FJ33GG6+G6 #0E"
+      "wire": "SLK1 Z2CH6 Y34M 22.07635,1.51057 T2018 SW V1 P5 KMTBPX D87 G69 FUF 7FJ33GG6+G6 #A4"
     },
     {
       "name": "random-18",
@@ -536,7 +536,7 @@
         "hr": 68,
         "plus": "7FF9F2QH+FF"
       },
-      "wire": "NAJDA1 4WFKQ O72M 19.48869,7.02868 T1621 SM V0 P0 KCBX G52 FNUBC HR68 7FF9F2QH+FF #25"
+      "wire": "SLK1 4WFKQ O72M 19.48869,7.02868 T1621 SM V0 P0 KCBX G52 FNUBC HR68 7FF9F2QH+FF #7A"
     },
     {
       "name": "random-19",
@@ -559,7 +559,7 @@
         "roll": true,
         "plus": "7CHJ4C28+VP"
       },
-      "wire": "NAJDA1 JR47C O04M 21.10213,-7.58314 T2038 SW V2 P7 KBP D24 RO 7CHJ4C28+VP #61"
+      "wire": "SLK1 JR47C O04M 21.10213,-7.58314 T2038 SW V2 P7 KBP D24 RO 7CHJ4C28+VP #64"
     },
     {
       "name": "random-20",
@@ -592,7 +592,7 @@
         "hr": 87,
         "plus": "8F46WCW4+5H"
       },
-      "wire": "NAJDA1 GGQNB G73M 32.94539,4.40642 T0852 SW V1 P3 KMTBX D104 G79 RO FNUBC HR87 8F46WCW4+5H #2F"
+      "wire": "SLK1 GGQNB G73M 32.94539,4.40642 T0852 SW V1 P3 KMTBX D104 G79 RO FNUBC HR87 8F46WCW4+5H #19"
     },
     {
       "name": "random-21",
@@ -618,7 +618,7 @@
         "spo2": 75,
         "plus": "8F79QC2X+9J"
       },
-      "wire": "NAJDA1 7CXMB G96L 35.75090,7.44904 T1500 SW V9 P7 KBPX D11 G18 HR69 SP75 8F79QC2X+9J #99"
+      "wire": "SLK1 7CXMB G96L 35.75090,7.44904 T1500 SW V9 P7 KBPX D11 G18 HR69 SP75 8F79QC2X+9J #FA"
     },
     {
       "name": "random-22",
@@ -649,7 +649,7 @@
         ],
         "plus": "8C8X5XV2+HC"
       },
-      "wire": "NAJDA1 GPPGR R46H 36.19394,-0.04888 T1637 SA V0 P6 KMT D41 RO FNUHDXC 8C8X5XV2+HC #5C"
+      "wire": "SLK1 GPPGR R46H 36.19394,-0.04888 T1637 SA V0 P6 KMT D41 RO FNUHDXC 8C8X5XV2+HC #03"
     },
     {
       "name": "random-23",
@@ -671,7 +671,7 @@
         "spo2": 75,
         "plus": "8F894QJ8+QF"
       },
-      "wire": "NAJDA1 01QPB G99L 36.13190,7.76615 T1721 SW V4 P6 KC HR174 SP75 8F894QJ8+QF #59"
+      "wire": "SLK1 01QPB G99L 36.13190,7.76615 T1721 SW V4 P6 KC HR174 SP75 8F894QJ8+QF #18"
     },
     {
       "name": "random-24",
@@ -696,7 +696,7 @@
         "hr": 152,
         "spo2": 75
       },
-      "wire": "NAJDA1 SJ26C Y16L 20.97732,9.66780 T1854 SA V7 P1 KX FUB HR152 SP75 #23"
+      "wire": "SLK1 SJ26C Y16L 20.97732,9.66780 T1854 SA V7 P1 KX FUB HR152 SP75 #C7"
     },
     {
       "name": "random-25",
@@ -725,7 +725,7 @@
         "spo2": 80,
         "plus": "7FF42865+FM"
       },
-      "wire": "NAJDA1 5AM88 Y41M 19.01120,2.30919 T1159 SM V2 P3 KCBPX G18 FNX SP80 7FF42865+FM #67"
+      "wire": "SLK1 5AM88 Y41M 19.01120,2.30919 T1159 SM V2 P3 KCBPX G18 FNX SP80 7FF42865+FM #CD"
     },
     {
       "name": "random-26",
@@ -754,7 +754,7 @@
         ],
         "plus": "8C4P7R9Q+84"
       },
-      "wire": "NAJDA1 KJDXG R62L 32.26827,-5.16216 T2204 SW V0 P4 KMX D31 G69 FBEXF 8C4P7R9Q+84 #1D"
+      "wire": "SLK1 KJDXG R62L 32.26827,-5.16216 T2204 SW V0 P4 KMX D31 G69 FBEXF 8C4P7R9Q+84 #B7"
     },
     {
       "name": "random-27",
@@ -782,7 +782,7 @@
         "hr": 93,
         "plus": "8C4R5HG6+29"
       },
-      "wire": "NAJDA1 112FE Y40L 32.17505,-3.43909 T1154 SM V3 P0 KCMT D115 G60 FF HR93 8C4R5HG6+29 #97"
+      "wire": "SLK1 112FE Y40L 32.17505,-3.43909 T1154 SM V3 P0 KCMT D115 G60 FF HR93 8C4R5HG6+29 #F4"
     },
     {
       "name": "random-28",
@@ -810,7 +810,7 @@
         "spo2": 79,
         "plus": "8C3RWXQ6+2J"
       },
-      "wire": "NAJDA1 83JM1 R36L 31.93761,-3.03848 T0024 SW V7 P4 KM D40 FNUEF SP79 8C3RWXQ6+2J #10"
+      "wire": "SLK1 83JM1 R36L 31.93761,-3.03848 T0024 SW V7 P4 KM D40 FNUEF SP79 8C3RWXQ6+2J #BA"
     },
     {
       "name": "random-29",
@@ -834,7 +834,7 @@
         "spo2": 81,
         "plus": "8C7PPPH2+FQ"
       },
-      "wire": "NAJDA1 NER80 G75L 35.72871,-5.29808 T2101 SA V2 P2 KP D117 G77 RO SP81 8C7PPPH2+FQ #39"
+      "wire": "SLK1 NER80 G75L 35.72871,-5.29808 T2101 SA V2 P2 KP D117 G77 RO SP81 8C7PPPH2+FQ #A3"
     },
     {
       "name": "random-30",
@@ -868,7 +868,7 @@
         "hr": 123,
         "plus": "7FF38399+8R"
       },
-      "wire": "NAJDA1 S697P U66H 19.31826,1.06950 T1440 SM V1 P5 KMTB D37 RO FNUBHEDC HR123 7FF38399+8R #70"
+      "wire": "SLK1 S697P U66H 19.31826,1.06950 T1440 SM V1 P5 KMTB D37 RO FNUBHEDC HR123 7FF38399+8R #1F"
     },
     {
       "name": "random-31",
@@ -899,7 +899,7 @@
         "hr": 36,
         "plus": "7FV2HXH3+J5"
       },
-      "wire": "NAJDA1 SK94V Y85M 27.57908,0.95299 T0254 SA V8 P4 KCMP D38 RO FBEXF HR36 7FV2HXH3+J5 #78"
+      "wire": "SLK1 SK94V Y85M 27.57908,0.95299 T0254 SA V8 P4 KCMP D38 RO FBEXF HR36 7FV2HXH3+J5 #1B"
     },
     {
       "name": "random-32",
@@ -921,7 +921,7 @@
         ],
         "plus": "7FPFW8QW+28"
       },
-      "wire": "NAJDA1 DCRJA R50M 24.93755,9.34585 T1736 SM V8 P3 KCBP 7FPFW8QW+28 #A1"
+      "wire": "SLK1 DCRJA R50M 24.93755,9.34585 T1736 SM V8 P3 KCBP 7FPFW8QW+28 #EC"
     },
     {
       "name": "random-33",
@@ -950,7 +950,7 @@
         "hr": 46,
         "plus": "7FR7FG37+R6"
       },
-      "wire": "NAJDA1 BN76Z Y41M 26.45459,5.51304 T1220 SA V4 P5 KCX D128 G0 FHXF HR46 7FR7FG37+R6 #D7"
+      "wire": "SLK1 BN76Z Y41M 26.45459,5.51304 T1220 SA V4 P5 KCX D128 G0 FHXF HR46 7FR7FG37+R6 #18"
     },
     {
       "name": "random-34",
@@ -973,7 +973,7 @@
         "spo2": 77,
         "plus": "7CJXM3HP+M5"
       },
-      "wire": "NAJDA1 AS2Z0 O49L 22.67917,-0.91460 T1223 SM V5 P7 KM D126 G25 SP77 7CJXM3HP+M5 #DB"
+      "wire": "SLK1 AS2Z0 O49L 22.67917,-0.91460 T1223 SM V5 P7 KM D126 G25 SP77 7CJXM3HP+M5 #56"
     },
     {
       "name": "random-35",
@@ -996,7 +996,7 @@
         "spo2": 93,
         "plus": "7FGCPX7G+2H"
       },
-      "wire": "NAJDA1 WTPF4 U50M 20.71261,8.97647 T1437 SW V8 P0 KC D128 HR80 SP93 7FGCPX7G+2H #D1"
+      "wire": "SLK1 WTPF4 U50M 20.71261,8.97647 T1437 SW V8 P0 KC D128 HR80 SP93 7FGCPX7G+2H #5C"
     },
     {
       "name": "random-36",
@@ -1018,7 +1018,7 @@
         "hr": 143,
         "plus": "7CGP765G+QW"
       },
-      "wire": "NAJDA1 6G4NW U35H 20.25941,-5.77266 T1037 SW V8 P4 KB D100 HR143 7CGP765G+QW #72"
+      "wire": "SLK1 6G4NW U35H 20.25941,-5.77266 T1037 SW V8 P4 KB D100 HR143 7CGP765G+QW #B2"
     },
     {
       "name": "random-37",
@@ -1043,7 +1043,7 @@
         "spo2": 80,
         "plus": "7FHG57FW+32"
       },
-      "wire": "NAJDA1 JY2R5 R06H 21.17265,10.29500 T2014 SA V9 P2 KCBX D55 G78 SP80 7FHG57FW+32 #90"
+      "wire": "SLK1 JY2R5 R06H 21.17265,10.29500 T2014 SA V9 P2 KCBX D55 G78 SP80 7FHG57FW+32 #3A"
     },
     {
       "name": "random-38",
@@ -1066,7 +1066,7 @@
         "hr": 46,
         "plus": "7CWH5M7Q+4R"
       },
-      "wire": "NAJDA1 YBD94 G68M 28.16275,-8.31042 T0940 SA V3 P6 KMT D78 HR46 7CWH5M7Q+4R #E0"
+      "wire": "SLK1 YBD94 G68M 28.16275,-8.31042 T0940 SA V3 P6 KMT D78 HR46 7CWH5M7Q+4R #A1"
     },
     {
       "name": "random-39",
@@ -1097,7 +1097,7 @@
         "spo2": 78,
         "plus": "8C4RMRFQ+5P"
       },
-      "wire": "NAJDA1 749TP G61M 32.67288,-3.16067 T1045 SW V4 P1 KCTBPX G40 RO FND SP78 8C4RMRFQ+5P #6D"
+      "wire": "SLK1 749TP G61M 32.67288,-3.16067 T1045 SW V4 P1 KCTBPX G40 RO FND SP78 8C4RMRFQ+5P #43"
     },
     {
       "name": "random-40",
@@ -1121,7 +1121,7 @@
         "spo2": 84,
         "plus": "7CFPXXF3+WF"
       },
-      "wire": "NAJDA1 ZJB4G Y70H 19.97480,-5.04633 T1150 SA V7 P4 KTP D66 RO SP84 7CFPXXF3+WF #29"
+      "wire": "SLK1 ZJB4G Y70H 19.97480,-5.04633 T1150 SA V7 P4 KTP D66 RO SP84 7CFPXXF3+WF #C4"
     },
     {
       "name": "random-41",
@@ -1148,7 +1148,7 @@
           "F"
         ]
       },
-      "wire": "NAJDA1 ZJGDP Y01L 35.45028,-8.59775 T0307 SA V4 P3 KP D44 G22 FNBDF #18"
+      "wire": "SLK1 ZJGDP Y01L 35.45028,-8.59775 T0307 SA V4 P3 KP D44 G22 FNBDF #FC"
     },
     {
       "name": "random-42",
@@ -1173,7 +1173,7 @@
         "spo2": 94,
         "plus": "8F745R7C+RJ"
       },
-      "wire": "NAJDA1 8ZMJF O75M 35.16453,2.82154 T0430 SM V7 P0 KTBPX D63 SP94 8F745R7C+RJ #07"
+      "wire": "SLK1 8ZMJF O75M 35.16453,2.82154 T0430 SM V7 P0 KTBPX D63 SP94 8F745R7C+RJ #C7"
     },
     {
       "name": "random-43",
@@ -1202,7 +1202,7 @@
         ],
         "plus": "7CVM9W99+PG"
       },
-      "wire": "NAJDA1 YRPM5 G29M 27.36927,-6.08120 T0641 SA V6 P3 KMB D122 FNUBHC 7CVM9W99+PG #B1"
+      "wire": "SLK1 YRPM5 G29M 27.36927,-6.08120 T0641 SA V6 P3 KMB D122 FNUBHC 7CVM9W99+PG #5C"
     },
     {
       "name": "random-44",
@@ -1232,7 +1232,7 @@
         "spo2": 76,
         "plus": "8F87FPJX+6Q"
       },
-      "wire": "NAJDA1 Z8KTY R77H 36.48061,5.74949 T0017 SA V9 P4 KT D72 G54 RO FEDXF SP76 8F87FPJX+6Q #BF"
+      "wire": "SLK1 Z8KTY R77H 36.48061,5.74949 T0017 SA V9 P4 KT D72 G54 RO FEDXF SP76 8F87FPJX+6Q #75"
     },
     {
       "name": "random-45",
@@ -1255,7 +1255,7 @@
         "roll": true,
         "plus": "8F427VMF+F7"
       },
-      "wire": "NAJDA1 FFQ0R U46H 32.28365,0.87313 T1715 SA V1 P9 KMB G19 RO 8F427VMF+F7 #4A"
+      "wire": "SLK1 FFQ0R U46H 32.28365,0.87313 T1715 SA V1 P9 KMB G19 RO 8F427VMF+F7 #FE"
     },
     {
       "name": "random-46",
@@ -1278,7 +1278,7 @@
         "roll": true,
         "hr": 164
       },
-      "wire": "NAJDA1 9YWGD R40M 33.45708,-3.34332 T2008 SM V3 P4 KT D78 G29 RO HR164 #18"
+      "wire": "SLK1 9YWGD R40M 33.45708,-3.34332 T2008 SM V3 P4 KT D78 G29 RO HR164 #7D"
     },
     {
       "name": "random-47",
@@ -1303,7 +1303,7 @@
         "spo2": 93,
         "plus": "7FP337GR+64"
       },
-      "wire": "NAJDA1 8CCC5 G91L 24.07555,1.29032 T0126 SM V3 P1 KCMX G66 HR86 SP93 7FP337GR+64 #28"
+      "wire": "SLK1 8CCC5 G91L 24.07555,1.29032 T0126 SM V3 P1 KCMX G66 HR86 SP93 7FP337GR+64 #82"
     },
     {
       "name": "random-48",
@@ -1332,7 +1332,7 @@
         ],
         "spo2": 80
       },
-      "wire": "NAJDA1 CD3N2 O15M 28.83131,3.08616 T0008 SW V7 P7 KMB D0 G66 FUBDC SP80 #7B"
+      "wire": "SLK1 CD3N2 O15M 28.83131,3.08616 T0008 SW V7 P7 KMB D0 G66 FUBDC SP80 #47"
     },
     {
       "name": "random-49",
@@ -1357,7 +1357,7 @@
         "dv": 87,
         "plus": "8F9548XM+JC"
       },
-      "wire": "NAJDA1 XD5F7 O98H 37.14906,3.33361 T1304 SM V6 P6 KCMTBX D87 8F9548XM+JC #6E"
+      "wire": "SLK1 XD5F7 O98H 37.14906,3.33361 T1304 SM V6 P6 KCMTBX D87 8F9548XM+JC #DA"
     },
     {
       "name": "random-50",
@@ -1378,7 +1378,7 @@
         "spo2": 85,
         "plus": "8F4G9QJV+PF"
       },
-      "wire": "NAJDA1 MFRXH U63M 32.38185,10.79374 T0913 SM V2 P4 KX SP85 8F4G9QJV+PF #53"
+      "wire": "SLK1 MFRXH U63M 32.38185,10.79374 T0913 SM V2 P4 KX SP85 8F4G9QJV+PF #36"
     },
     {
       "name": "random-51",
@@ -1409,7 +1409,7 @@
         "spo2": 84,
         "plus": "7FM62799+46"
       },
-      "wire": "NAJDA1 2K2PH U09H 23.01778,4.26806 T0815 SA V0 P2 KMPX D77 G4 FNUX HR178 SP84 7FM62799+46 #28"
+      "wire": "SLK1 2K2PH U09H 23.01778,4.26806 T0815 SA V0 P2 KMPX D77 G4 FNUX HR178 SP84 7FM62799+46 #22"
     },
     {
       "name": "random-52",
@@ -1431,7 +1431,7 @@
         "hr": 63,
         "plus": "8F558VCV+J8"
       },
-      "wire": "NAJDA1 ZTB8Y Y87L 33.32160,3.89335 T0839 SA V7 P0 KB RO HR63 8F558VCV+J8 #FC"
+      "wire": "SLK1 ZTB8Y Y87L 33.32160,3.89335 T0839 SA V7 P0 KB RO HR63 8F558VCV+J8 #48"
     },
     {
       "name": "random-53",
@@ -1454,7 +1454,7 @@
         "roll": true,
         "plus": "7FH9X35P+M3"
       },
-      "wire": "NAJDA1 SJ5Y1 G74M 21.95918,7.08524 T2030 SM V6 P1 KM D110 G32 RO 7FH9X35P+M3 #EB"
+      "wire": "SLK1 SJ5Y1 G74M 21.95918,7.08524 T2030 SM V6 P1 KM D110 G32 RO 7FH9X35P+M3 #2B"
     },
     {
       "name": "random-54",
@@ -1477,7 +1477,7 @@
         "spo2": 73,
         "plus": "7CRRW4HR+RJ"
       },
-      "wire": "NAJDA1 6Z4FH U38L 26.92956,-3.85847 T0059 SM V2 P4 KC G77 RO SP73 7CRRW4HR+RJ #98"
+      "wire": "SLK1 6Z4FH U38L 26.92956,-3.85847 T0059 SM V2 P4 KC G77 RO SP73 7CRRW4HR+RJ #D6"
     },
     {
       "name": "random-55",
@@ -1506,7 +1506,7 @@
         ],
         "plus": "8C8Q57WJ+G9"
       },
-      "wire": "NAJDA1 W9D4N R51H 36.19635,-4.71912 T1103 SW V2 P1 KCBP D91 G67 RO FUE 8C8Q57WJ+G9 #BD"
+      "wire": "SLK1 W9D4N R51H 36.19635,-4.71912 T1103 SW V2 P1 KCBP D91 G67 RO FUE 8C8Q57WJ+G9 #27"
     },
     {
       "name": "random-56",
@@ -1531,7 +1531,7 @@
         "hr": 109,
         "plus": "7CWQR489+3X"
       },
-      "wire": "NAJDA1 94MF8 U96M 28.81515,-4.88005 T2344 SM V1 P0 KX G52 FH HR109 7CWQR489+3X #C6"
+      "wire": "SLK1 94MF8 U96M 28.81515,-4.88005 T2344 SM V1 P0 KX G52 FH HR109 7CWQR489+3X #2B"
     },
     {
       "name": "random-57",
@@ -1554,7 +1554,7 @@
         "spo2": 95,
         "plus": "7FV7CJ99+MW"
       },
-      "wire": "NAJDA1 QZW1C G48L 27.41918,5.61987 T2234 SW V5 P4 KT D35 G76 SP95 7FV7CJ99+MW #9B"
+      "wire": "SLK1 QZW1C G48L 27.41918,5.61987 T2234 SW V5 P4 KT D35 G76 SP95 7FV7CJ99+MW #D5"
     },
     {
       "name": "random-58",
@@ -1580,7 +1580,7 @@
         ],
         "plus": "7FP37XQR+M7"
       },
-      "wire": "NAJDA1 YY0FF O10L 24.28920,1.99070 T1043 SA V8 P6 KCT RO FNC 7FP37XQR+M7 #FD"
+      "wire": "SLK1 YY0FF O10L 24.28920,1.99070 T1043 SA V8 P6 KCT RO FNC 7FP37XQR+M7 #49"
     },
     {
       "name": "random-59",
@@ -1607,7 +1607,7 @@
         ],
         "plus": "7FW39G7V+R4"
       },
-      "wire": "NAJDA1 PPJJK R82H 28.36462,1.54278 T0414 SM V0 P3 KMT D52 G28 RO FN 7FW39G7V+R4 #A1"
+      "wire": "SLK1 PPJJK R82H 28.36462,1.54278 T0414 SM V0 P3 KMT D52 G28 RO FN 7FW39G7V+R4 #2C"
     },
     {
       "name": "random-60",
@@ -1637,7 +1637,7 @@
         ],
         "plus": "7FFC38MM+V6"
       },
-      "wire": "NAJDA1 2PNPR G94M 19.08467,8.33307 T1945 SW V5 P6 KMBP G30 FUHECF 7FFC38MM+V6 #A3"
+      "wire": "SLK1 2PNPR G94M 19.08467,8.33307 T1945 SW V5 P6 KMBP G30 FUHECF 7FFC38MM+V6 #ED"
     },
     {
       "name": "random-61",
@@ -1666,7 +1666,7 @@
         ],
         "plus": "7CFMQFHF+33"
       },
-      "wire": "NAJDA1 4666T Y77M 19.77763,-6.52732 T1117 SA V3 P4 KB D19 G33 RO FBHED 7CFMQFHF+33 #84"
+      "wire": "SLK1 4666T Y77M 19.77763,-6.52732 T1117 SA V3 P4 KB D19 G33 RO FBHED 7CFMQFHF+33 #1E"
     },
     {
       "name": "random-62",
@@ -1688,7 +1688,7 @@
         "spo2": 72,
         "plus": "7CHWQPCG+M7"
       },
-      "wire": "NAJDA1 HB9PT O12L 21.77171,-1.27429 T0923 SA V0 P8 KP D88 SP72 7CHWQPCG+M7 #65"
+      "wire": "SLK1 HB9PT O12L 21.77171,-1.27429 T0923 SA V0 P8 KP D88 SP72 7CHWQPCG+M7 #7E"
     },
     {
       "name": "random-63",
@@ -1715,7 +1715,7 @@
         ],
         "plus": "8F3G6XX3+XC"
       },
-      "wire": "NAJDA1 58QA9 R89L 31.24993,10.95356 T1408 SA V8 P0 KMP D119 G17 FNC 8F3G6XX3+XC #58"
+      "wire": "SLK1 58QA9 R89L 31.24993,10.95356 T1408 SA V8 P0 KMP D119 G17 FNC 8F3G6XX3+XC #D5"
     },
     {
       "name": "random-64",
@@ -1747,7 +1747,7 @@
         "hr": 142,
         "plus": "8C6QXF35+X4"
       },
-      "wire": "NAJDA1 1Q7RQ O33M 34.95490,-4.54219 T0219 SM V6 P2 KCMTPX D85 G68 FNHX HR142 8C6QXF35+X4 #22"
+      "wire": "SLK1 1Q7RQ O33M 34.95490,-4.54219 T0219 SM V6 P2 KCMTPX D85 G68 FNHX HR142 8C6QXF35+X4 #4D"
     },
     {
       "name": "random-65",
@@ -1776,7 +1776,7 @@
         "hr": 144,
         "plus": "7CWHHPFX+5G"
       },
-      "wire": "NAJDA1 B7BZ0 O84H 28.57295,-8.25123 T1754 SA V5 P8 KTBX D73 G35 FBC HR144 7CWHHPFX+5G #AE"
+      "wire": "SLK1 B7BZ0 O84H 28.57295,-8.25123 T1754 SA V5 P8 KTBX D73 G35 FBC HR144 7CWHHPFX+5G #80"
     },
     {
       "name": "random-66",
@@ -1806,7 +1806,7 @@
         "hr": 32,
         "plus": "7FF36R85+JR"
       },
-      "wire": "NAJDA1 XS366 O06M 19.21656,1.80960 T0139 SW V3 P4 KTBP D90 FUHXF HR32 7FF36R85+JR #7F"
+      "wire": "SLK1 XS366 O06M 19.21656,1.80960 T0139 SW V3 P4 KTBP D90 FUHXF HR32 7FF36R85+JR #20"
     },
     {
       "name": "random-67",
@@ -1829,7 +1829,7 @@
         "g": 41,
         "plus": "7CPJ4Q2G+PH"
       },
-      "wire": "NAJDA1 CRENG O57M 24.10175,-7.22354 T1346 SW V2 P8 KMB D50 G41 7CPJ4Q2G+PH #84"
+      "wire": "SLK1 CRENG O57M 24.10175,-7.22354 T1346 SW V2 P8 KMB D50 G41 7CPJ4Q2G+PH #9F"
     },
     {
       "name": "random-68",
@@ -1851,7 +1851,7 @@
         "dv": 35,
         "plus": "7CJQH7CF+JW"
       },
-      "wire": "NAJDA1 ZWP6Y U59M 22.57160,-4.72524 T1459 SW V6 P4 KTB D35 7CJQH7CF+JW #4B"
+      "wire": "SLK1 ZWP6Y U59M 22.57160,-4.72524 T1459 SW V6 P4 KTB D35 7CJQH7CF+JW #2E"
     },
     {
       "name": "random-69",
@@ -1880,7 +1880,7 @@
         ],
         "hr": 170
       },
-      "wire": "NAJDA1 KDWJP Y68L 32.93667,-6.51169 T0158 SM V6 P6 KCMB D63 G63 FBHX HR170 #53"
+      "wire": "SLK1 KDWJP Y68L 32.93667,-6.51169 T0158 SM V6 P6 KCMB D63 G63 FBHX HR170 #48"
     },
     {
       "name": "random-70",
@@ -1912,7 +1912,7 @@
         ],
         "plus": "7FWFP35V+P6"
       },
-      "wire": "NAJDA1 4JY42 G93H 28.70927,9.09310 T1005 SA V6 P8 KMTBX D89 G67 RO FNBEX 7FWFP35V+P6 #72"
+      "wire": "SLK1 4JY42 G93H 28.70927,9.09310 T1005 SA V6 P8 KMTBX D89 G67 RO FNBEX 7FWFP35V+P6 #11"
     },
     {
       "name": "random-71",
@@ -1940,7 +1940,7 @@
         "hr": 39,
         "plus": "7FXF2QCC+8Q"
       },
-      "wire": "NAJDA1 EQ3CV R11M 29.02078,9.77199 T2156 SW V4 P6 KCMX G18 FUF HR39 7FXF2QCC+8Q #A3"
+      "wire": "SLK1 EQ3CV R11M 29.02078,9.77199 T2156 SW V4 P6 KCMX G18 FUF HR39 7FXF2QCC+8Q #2E"
     },
     {
       "name": "random-72",
@@ -1969,7 +1969,7 @@
         ],
         "plus": "8F7G9C64+J3"
       },
-      "wire": "NAJDA1 V5RZW G24M 35.36153,10.40522 T1755 SA V4 P7 KCMPX G46 FEDF 8F7G9C64+J3 #1D"
+      "wire": "SLK1 V5RZW G24M 35.36153,10.40522 T1755 SA V4 P7 KCMPX G46 FEDF 8F7G9C64+J3 #53"
     },
     {
       "name": "random-73",
@@ -1998,7 +1998,7 @@
         "spo2": 75,
         "plus": "7CFHJVRG+55"
       },
-      "wire": "NAJDA1 09ABD R96M 19.64045,-8.12462 T1206 SA V9 P3 KM D20 G37 FBDF HR126 SP75 7CFHJVRG+55 #A0"
+      "wire": "SLK1 09ABD R96M 19.64045,-8.12462 T1206 SA V9 P3 KM D20 G37 FBDF HR126 SP75 7CFHJVRG+55 #AA"
     },
     {
       "name": "random-74",
@@ -2022,7 +2022,7 @@
         "hr": 94,
         "plus": "7CMWVHVJ+8H"
       },
-      "wire": "NAJDA1 75PJV R61M 23.89334,-1.41856 T2208 SW V5 P0 KTX D36 G31 HR94 7CMWVHVJ+8H #19"
+      "wire": "SLK1 75PJV R61M 23.89334,-1.41856 T2208 SW V5 P0 KTX D36 G31 HR94 7CMWVHVJ+8H #94"
     },
     {
       "name": "random-75",
@@ -2045,7 +2045,7 @@
         "g": 15,
         "plus": "7FQ2WMQQ+RH"
       },
-      "wire": "NAJDA1 J7MT9 O21L 25.93955,0.68897 T2213 SA V8 P6 KCPX G15 7FQ2WMQQ+RH #74"
+      "wire": "SLK1 J7MT9 O21L 25.93955,0.68897 T2213 SA V8 P6 KCPX G15 7FQ2WMQQ+RH #11"
     },
     {
       "name": "random-76",
@@ -2074,7 +2074,7 @@
         "spo2": 85,
         "plus": "7FVFP27R+84"
       },
-      "wire": "NAJDA1 P7JX4 Y90L 27.71329,9.04026 T0408 SW V9 P5 KB D50 G71 FBEXC SP85 7FVFP27R+84 #CE"
+      "wire": "SLK1 P7JX4 Y90L 27.71329,9.04026 T0408 SW V9 P5 KB D50 G71 FBEXC SP85 7FVFP27R+84 #01"
     },
     {
       "name": "random-77",
@@ -2097,7 +2097,7 @@
         "g": 78,
         "plus": "7FH5H325+J7"
       },
-      "wire": "NAJDA1 7PE9Q R67L 21.55151,3.05823 T1512 SW V7 P7 KMP D83 G78 7FH5H325+J7 #68"
+      "wire": "SLK1 7PE9Q R67L 21.55151,3.05823 T1512 SW V7 P7 KMP D83 G78 7FH5H325+J7 #6D"
     },
     {
       "name": "random-78",
@@ -2121,7 +2121,7 @@
         "spo2": 73,
         "plus": "7FPF5RGQ+2M"
       },
-      "wire": "NAJDA1 JVGEJ Y67H 24.17502,9.83923 T1908 SW V1 P3 KMP G73 RO SP73 7FPF5RGQ+2M #75"
+      "wire": "SLK1 JVGEJ Y67H 24.17502,9.83923 T1908 SW V1 P3 KMP G73 RO SP73 7FPF5RGQ+2M #3B"
     },
     {
       "name": "random-79",
@@ -2148,7 +2148,7 @@
         ],
         "plus": "8C8P7W89+F7"
       },
-      "wire": "NAJDA1 WQRVF O86M 36.26617,-5.08177 T0331 SA V4 P3 KC D16 G72 FNED 8C8P7W89+F7 #B5"
+      "wire": "SLK1 WQRVF O86M 36.26617,-5.08177 T0331 SA V4 P3 KC D16 G72 FNED 8C8P7W89+F7 #58"
     },
     {
       "name": "random-80",
@@ -2171,7 +2171,7 @@
         "spo2": 82,
         "plus": "8C8HWJQ2+3J"
       },
-      "wire": "NAJDA1 YRFE8 Y60L 36.93774,-8.39840 T0124 SM V5 P2 KMB D56 SP82 8C8HWJQ2+3J #35"
+      "wire": "SLK1 YRFE8 Y60L 36.93774,-8.39840 T0124 SM V5 P2 KMB D56 SP82 8C8HWJQ2+3J #74"
     },
     {
       "name": "random-81",
@@ -2197,7 +2197,7 @@
         "hr": 85,
         "plus": "7FHGW8VW+49"
       },
-      "wire": "NAJDA1 MGB11 R49L 21.94277,10.34593 T1132 SM V8 P3 KMB G66 FD HR85 7FHGW8VW+49 #C0"
+      "wire": "SLK1 MGB11 R49L 21.94277,10.34593 T1132 SM V8 P3 KMB G66 FD HR85 7FHGW8VW+49 #2D"
     },
     {
       "name": "random-82",
@@ -2224,7 +2224,7 @@
         ],
         "hr": 33
       },
-      "wire": "NAJDA1 2PNDK O44H 19.27951,-1.37209 T1541 SW V5 P2 KCMT D34 G76 FN HR33 #30"
+      "wire": "SLK1 2PNDK O44H 19.27951,-1.37209 T1541 SW V5 P2 KCMT D34 G76 FN HR33 #0C"
     },
     {
       "name": "random-83",
@@ -2247,7 +2247,7 @@
         "dv": 58,
         "plus": "7CXQ57XJ+CJ"
       },
-      "wire": "NAJDA1 9JCD7 R66M 29.19854,-4.71844 T1518 SM V7 P8 KCPX D58 7CXQ57XJ+CJ #E3"
+      "wire": "SLK1 9JCD7 R66M 29.19854,-4.71844 T1518 SM V7 P8 KCPX D58 7CXQ57XJ+CJ #DF"
     },
     {
       "name": "random-84",
@@ -2274,7 +2274,7 @@
         ],
         "plus": "7FX5J534+34"
       },
-      "wire": "NAJDA1 3BHG6 Y80M 29.60264,3.15534 T1450 SA V6 P7 KCTB FNHC 7FX5J534+34 #BA"
+      "wire": "SLK1 3BHG6 Y80M 29.60264,3.15534 T1450 SA V6 P7 KCTB FNHC 7FX5J534+34 #86"
     },
     {
       "name": "random-85",
@@ -2300,7 +2300,7 @@
         "roll": true,
         "plus": "7FW9VM2H+52"
       },
-      "wire": "NAJDA1 5PB81 U26H 28.85048,7.67756 T0800 SW V0 P2 KCTBP D59 G59 RO 7FW9VM2H+52 #89"
+      "wire": "SLK1 5PB81 U26H 28.85048,7.67756 T0800 SW V0 P2 KCTBP D59 G59 RO 7FW9VM2H+52 #64"
     },
     {
       "name": "random-86",
@@ -2327,7 +2327,7 @@
         "hr": 192,
         "plus": "7FJH4MXJ+4W"
       },
-      "wire": "NAJDA1 QQVYG R46H 22.14776,11.68230 T1306 SA V7 P3 KCP D40 FNX HR192 7FJH4MXJ+4W #FD"
+      "wire": "SLK1 QQVYG R46H 22.14776,11.68230 T1306 SA V7 P3 KCP D40 FNX HR192 7FJH4MXJ+4W #57"
     },
     {
       "name": "random-87",
@@ -2349,7 +2349,7 @@
         "dv": 31,
         "spo2": 82
       },
-      "wire": "NAJDA1 BK5EG O99M 36.24951,-6.14248 T0344 SW V5 P2 KMT D31 SP82 #8D"
+      "wire": "SLK1 BK5EG O99M 36.24951,-6.14248 T0344 SW V5 P2 KMT D31 SP82 #48"
     },
     {
       "name": "random-88",
@@ -2372,7 +2372,7 @@
         "spo2": 79,
         "plus": "8F3F97JR+72"
       },
-      "wire": "NAJDA1 RCRAX Y29H 31.38070,9.29001 T1154 SW V4 P3 KCB G13 SP79 8F3F97JR+72 #46"
+      "wire": "SLK1 RCRAX Y29H 31.38070,9.29001 T1154 SW V4 P3 KCB G13 SP79 8F3F97JR+72 #5D"
     },
     {
       "name": "random-89",
@@ -2396,7 +2396,7 @@
         "hr": 56,
         "plus": "7FV8GRW8+X2"
       },
-      "wire": "NAJDA1 YCRRQ U75L 27.54746,6.81512 T0529 SA V0 P4 KCMT D10 HR56 7FV8GRW8+X2 #5A"
+      "wire": "SLK1 YCRRQ U75L 27.54746,6.81512 T0529 SA V0 P4 KCMT D10 HR56 7FV8GRW8+X2 #1B"
     },
     {
       "name": "random-90",
@@ -2425,7 +2425,7 @@
         "hr": 125,
         "plus": "7FJFF5P9+92"
       },
-      "wire": "NAJDA1 HKRTK U81H 22.48591,9.16752 T0213 SW V3 P7 KC RO FNBEXC HR125 7FJFF5P9+92 #74"
+      "wire": "SLK1 HKRTK U81H 22.48591,9.16752 T0213 SW V3 P7 KC RO FNBEXC HR125 7FJFF5P9+92 #DE"
     },
     {
       "name": "random-91",
@@ -2448,7 +2448,7 @@
         "g": 7,
         "plus": "7FGFWR2J+56"
       },
-      "wire": "NAJDA1 DKY55 G14M 20.90039,9.83061 T0050 SW V8 P8 KMP D42 G7 7FGFWR2J+56 #8A"
+      "wire": "SLK1 DKY55 G14M 20.90039,9.83061 T0050 SW V8 P8 KMP D42 G7 7FGFWR2J+56 #3E"
     },
     {
       "name": "random-92",
@@ -2477,7 +2477,7 @@
         ],
         "plus": "7FHFR59Q+88"
       },
-      "wire": "NAJDA1 XHVRT Y73L 21.81826,9.18827 T1208 SA V6 P9 KCMBX D17 FBCF 7FHFR59Q+88 #14"
+      "wire": "SLK1 XHVRT Y73L 21.81826,9.18827 T1208 SA V6 P9 KCMBX D17 FBCF 7FHFR59Q+88 #D4"
     },
     {
       "name": "random-93",
@@ -2505,7 +2505,7 @@
         ],
         "plus": "7FQ46MP7+P9"
       },
-      "wire": "NAJDA1 DN7KM Y10M 25.23685,2.66340 T1839 SA V8 P7 KMB D51 FEXCF 7FQ46MP7+P9 #2A"
+      "wire": "SLK1 DN7KM Y10M 25.23685,2.66340 T1839 SA V8 P7 KMB D51 FEXCF 7FQ46MP7+P9 #6B"
     },
     {
       "name": "random-94",
@@ -2530,7 +2530,7 @@
         "spo2": 100,
         "plus": "7FV56GQC+55"
       },
-      "wire": "NAJDA1 KCPMC R23H 27.23788,3.52045 T1549 SW V8 P2 KX FUC SP100 7FV56GQC+55 #55"
+      "wire": "SLK1 KCPMC R23H 27.23788,3.52045 T1549 SW V8 P2 KX FUC SP100 7FV56GQC+55 #4E"
     },
     {
       "name": "random-95",
@@ -2557,7 +2557,7 @@
         ],
         "plus": "8F38MR3V+CX"
       },
-      "wire": "NAJDA1 QDTAJ G32L 31.65354,6.84492 T2033 SM V4 P1 KX D13 G68 FNBC 8F38MR3V+CX #98"
+      "wire": "SLK1 QDTAJ G32L 31.65354,6.84492 T2033 SM V4 P1 KX D13 G68 FNBC 8F38MR3V+CX #D6"
     },
     {
       "name": "random-96",
@@ -2584,7 +2584,7 @@
         "spo2": 79,
         "plus": "8F455R49+GV"
       },
-      "wire": "NAJDA1 KRW6X O08L 32.15630,3.81971 T1937 SA V2 P1 KC G78 RO FUB SP79 8F455R49+GV #8A"
+      "wire": "SLK1 KRW6X O08L 32.15630,3.81971 T1937 SA V2 P1 KC G78 RO FUB SP79 8F455R49+GV #20"
     },
     {
       "name": "random-97",
@@ -2612,7 +2612,7 @@
         "hr": 73,
         "plus": "8F4353G6+PF"
       },
-      "wire": "NAJDA1 YYEKQ Y46H 32.17687,1.06114 T0432 SA V0 P1 KPX D78 FBXC HR73 8F4353G6+PF #49"
+      "wire": "SLK1 YYEKQ Y46H 32.17687,1.06114 T0432 SA V0 P1 KPX D78 FBXC HR73 8F4353G6+PF #C4"
     },
     {
       "name": "random-98",
@@ -2640,7 +2640,7 @@
         "hr": 135,
         "plus": "7FH7JRX7+CR"
       },
-      "wire": "NAJDA1 CTD9Z Y33H 21.64857,5.81457 T2057 SM V2 P2 KT G79 FUHXC HR135 7FH7JRX7+CR #E5"
+      "wire": "SLK1 CTD9Z Y33H 21.64857,5.81457 T2057 SM V2 P2 KT G79 FUHXC HR135 7FH7JRX7+CR #4F"
     },
     {
       "name": "random-99",
@@ -2663,7 +2663,7 @@
         "g": 73,
         "spo2": 92
       },
-      "wire": "NAJDA1 GXGAY R25M 19.92470,3.30674 T1319 SA V8 P8 KCMB G73 SP92 #0F"
+      "wire": "SLK1 GXGAY R25M 19.92470,3.30674 T1319 SA V8 P8 KCMB G73 SP92 #CA"
     },
     {
       "name": "random-100",
@@ -2688,7 +2688,7 @@
         ],
         "spo2": 93
       },
-      "wire": "NAJDA1 QRNKZ U18L 36.47632,-2.22784 T0933 SW V4 P7 KT FHEX SP93 #86"
+      "wire": "SLK1 QRNKZ U18L 36.47632,-2.22784 T0933 SW V4 P7 KT FHEX SP93 #43"
     },
     {
       "name": "random-101",
@@ -2712,7 +2712,7 @@
         "roll": true,
         "plus": "7FV5HHPP+RX"
       },
-      "wire": "NAJDA1 845Q8 U38L 27.58709,3.58743 T2318 SM V8 P7 KCB D47 G41 RO 7FV5HHPP+RX #7A"
+      "wire": "SLK1 845Q8 U38L 27.58709,3.58743 T2318 SM V8 P7 KCB D47 G41 RO 7FV5HHPP+RX #BA"
     },
     {
       "name": "random-102",
@@ -2742,7 +2742,7 @@
         "spo2": 85,
         "plus": "7CXJ3QVX+5R"
       },
-      "wire": "NAJDA1 FRS3R U60H 29.09292,-7.20046 T0909 SW V8 P4 KBPX FNBDC HR161 SP85 7CXJ3QVX+5R #2E"
+      "wire": "SLK1 FRS3R U60H 29.09292,-7.20046 T0909 SW V8 P4 KBPX FNBDC HR161 SP85 7CXJ3QVX+5R #4D"
     },
     {
       "name": "random-103",
@@ -2766,7 +2766,7 @@
         "hr": 41,
         "plus": "7FPHRV34+6H"
       },
-      "wire": "NAJDA1 AQVZH R50L 24.80309,11.85649 T1259 SM V2 P9 KMT D13 G11 HR41 7FPHRV34+6H #C9"
+      "wire": "SLK1 AQVZH R50L 24.80309,11.85649 T1259 SM V2 P9 KMT D13 G11 HR41 7FPHRV34+6H #44"
     },
     {
       "name": "random-104",
@@ -2796,7 +2796,7 @@
         "spo2": 78,
         "plus": "7FM43XH2+PV"
       },
-      "wire": "NAJDA1 3JY73 G06L 23.07928,2.95218 T1026 SA V6 P6 KCMTBX G75 FHX SP78 7FM43XH2+PV #66"
+      "wire": "SLK1 3JY73 G06L 23.07928,2.95218 T1026 SA V6 P6 KCMTBX G75 FHX SP78 7FM43XH2+PV #39"
     },
     {
       "name": "random-105",
@@ -2828,7 +2828,7 @@
         "spo2": 77,
         "plus": "7FFG8JW7+G4"
       },
-      "wire": "NAJDA1 KM62N R82M 19.34635,10.61284 T0823 SM V8 P6 KCPX D93 G20 FUEXC HR164 SP77 7FFG8JW7+G4 #D2"
+      "wire": "SLK1 KM62N R82M 19.34635,10.61284 T0823 SM V8 P6 KCPX D93 G20 FUEXC HR164 SP77 7FFG8JW7+G4 #55"
     },
     {
       "name": "random-106",
@@ -2855,7 +2855,7 @@
         "hr": 91,
         "plus": "8F38G9MM+Q2"
       },
-      "wire": "NAJDA1 NGABE Y36H 31.53441,6.38257 T1334 SW V4 P9 KMTPX FN HR91 8F38G9MM+Q2 #49"
+      "wire": "SLK1 NGABE Y36H 31.53441,6.38257 T1334 SW V4 P9 KMTPX FN HR91 8F38G9MM+Q2 #08"
     },
     {
       "name": "random-107",
@@ -2886,7 +2886,7 @@
         ],
         "hr": 194
       },
-      "wire": "NAJDA1 MDDP4 Y57M 24.44842,3.38367 T1944 SA V7 P3 KCBP D48 G49 FNUHEF HR194 #0B"
+      "wire": "SLK1 MDDP4 Y57M 24.44842,3.38367 T1944 SA V7 P3 KCBP D48 G49 FNUHEF HR194 #4A"
     },
     {
       "name": "random-108",
@@ -2911,7 +2911,7 @@
         "spo2": 92,
         "plus": "7FGF7M5V+JJ"
       },
-      "wire": "NAJDA1 VP8NZ U46H 20.25911,9.69410 T0120 SM V2 P9 KTBX D123 HR32 SP92 7FGF7M5V+JJ #F9"
+      "wire": "SLK1 VP8NZ U46H 20.25911,9.69410 T0120 SM V2 P9 KTBX D123 HR32 SP92 7FGF7M5V+JJ #A6"
     },
     {
       "name": "random-109",
@@ -2937,7 +2937,7 @@
           "D"
         ]
       },
-      "wire": "NAJDA1 H5NJR R70H 32.70328,5.52623 T2153 SM V9 P5 KCX D52 RO FBD #37"
+      "wire": "SLK1 H5NJR R70H 32.70328,5.52623 T2153 SM V9 P5 KCX D52 RO FBD #62"
     },
     {
       "name": "random-110",
@@ -2965,7 +2965,7 @@
         "spo2": 89,
         "plus": "8F522MQM+VR"
       },
-      "wire": "NAJDA1 D812G U51M 33.03965,0.68456 T0441 SA V1 P7 KM D13 G0 FEDX SP89 8F522MQM+VR #A8"
+      "wire": "SLK1 D812G U51M 33.03965,0.68456 T0441 SA V1 P7 KM D13 G0 FEDX SP89 8F522MQM+VR #F7"
     },
     {
       "name": "random-111",
@@ -2990,7 +2990,7 @@
         ],
         "plus": "7CMR8WXM+W5"
       },
-      "wire": "NAJDA1 2TFG7 U56M 23.34985,-3.06704 T1505 SW V0 P9 KTP D12 FF 7CMR8WXM+W5 #8B"
+      "wire": "SLK1 2TFG7 U56M 23.34985,-3.06704 T1505 SW V0 P9 KTP D12 FF 7CMR8WXM+W5 #8E"
     },
     {
       "name": "random-112",
@@ -3018,7 +3018,7 @@
         "spo2": 73,
         "plus": "8F3GCCG2+9R"
       },
-      "wire": "NAJDA1 F2AGR U57H 31.42593,10.40208 T0818 SM V7 P2 KTP RO FHDX SP73 8F3GCCG2+9R #24"
+      "wire": "SLK1 F2AGR U57H 31.42593,10.40208 T0818 SM V7 P2 KTP RO FHDX SP73 8F3GCCG2+9R #A9"
     },
     {
       "name": "random-113",
@@ -3050,7 +3050,7 @@
         "spo2": 72,
         "plus": "7CHWFFH6+MH"
       },
-      "wire": "NAJDA1 1F01E O74L 21.47917,-1.53860 T0859 SA V8 P2 KCBP D48 G47 FNUEF HR138 SP72 7CHWFFH6+MH #92"
+      "wire": "SLK1 1F01E O74L 21.47917,-1.53860 T0859 SA V8 P2 KCBP D48 G47 FNUEF HR138 SP72 7CHWFFH6+MH #15"
     },
     {
       "name": "random-114",
@@ -3074,7 +3074,7 @@
         "spo2": 70,
         "plus": "8F55H673+9Q"
       },
-      "wire": "NAJDA1 C5RVE U97M 33.56347,3.20446 T0311 SM V8 P9 KCX D72 G9 SP70 8F55H673+9Q #D0"
+      "wire": "SLK1 C5RVE U97M 33.56347,3.20446 T0311 SM V8 P9 KCX D72 G9 SP70 8F55H673+9Q #9E"
     },
     {
       "name": "random-115",
@@ -3102,7 +3102,7 @@
         ],
         "plus": "8C4X97F9+VR"
       },
-      "wire": "NAJDA1 DRHR1 R16M 32.37467,-0.73039 T2059 SM V2 P4 KTP D31 G39 FHEF 8C4X97F9+VR #20"
+      "wire": "SLK1 DRHR1 R16M 32.37467,-0.73039 T2059 SM V2 P4 KTP D31 G39 FHEF 8C4X97F9+VR #AD"
     },
     {
       "name": "random-116",
@@ -3127,7 +3127,7 @@
         "hr": 187,
         "plus": "8C3XRH7M+PJ"
       },
-      "wire": "NAJDA1 TCYA9 Y53M 31.81426,-0.41599 T2342 SM V0 P2 KC G57 FH HR187 8C3XRH7M+PJ #42"
+      "wire": "SLK1 TCYA9 Y53M 31.81426,-0.41599 T2342 SM V0 P2 KC G57 FH HR187 8C3XRH7M+PJ #AF"
     },
     {
       "name": "random-117",
@@ -3152,7 +3152,7 @@
         "spo2": 93,
         "plus": "8C4MF85F+89"
       },
-      "wire": "NAJDA1 KQXZJ G84L 32.45825,-6.67652 T1716 SA V7 P1 KCMT D99 HR32 SP93 8C4MF85F+89 #28"
+      "wire": "SLK1 KQXZJ G84L 32.45825,-6.67652 T1716 SA V7 P1 KCMT D99 HR32 SP93 8C4MF85F+89 #77"
     },
     {
       "name": "random-118",
@@ -3183,7 +3183,7 @@
         "spo2": 91,
         "plus": "7FJ6G3C8+Q8"
       },
-      "wire": "NAJDA1 AM9KJ U78H 22.52199,4.06587 T0226 SM V5 P5 KMX FNBHEXF HR187 SP91 7FJ6G3C8+Q8 #23"
+      "wire": "SLK1 AM9KJ U78H 22.52199,4.06587 T0226 SM V5 P5 KMX FNBHEXF HR187 SP91 7FJ6G3C8+Q8 #40"
     },
     {
       "name": "random-119",
@@ -3212,7 +3212,7 @@
         ],
         "spo2": 79
       },
-      "wire": "NAJDA1 WT8VR G48M 30.15261,0.79230 T2004 SA V6 P0 KX G50 FNUEDXF SP79 #D4"
+      "wire": "SLK1 WT8VR G48M 30.15261,0.79230 T2004 SA V6 P0 KX G50 FNUEDXF SP79 #C3"
     },
     {
       "name": "random-120",
@@ -3242,7 +3242,7 @@
         ],
         "hr": 154
       },
-      "wire": "NAJDA1 5HPNK Y47H 37.17598,-2.48188 T1015 SM V1 P5 KCPX D50 G68 FEXCF HR154 #C6"
+      "wire": "SLK1 5HPNK Y47H 37.17598,-2.48188 T1015 SM V1 P5 KCPX D50 G68 FEXCF HR154 #87"
     },
     {
       "name": "random-121",
@@ -3273,7 +3273,7 @@
         "hr": 169,
         "plus": "7FG2PVC5+M5"
       },
-      "wire": "NAJDA1 G15QD U25L 20.72168,0.85792 T0425 SW V9 P4 KMP G59 RO FNHEDX HR169 7FG2PVC5+M5 #41"
+      "wire": "SLK1 G15QD U25L 20.72168,0.85792 T0425 SW V9 P4 KMP G59 RO FNHEDX HR169 7FG2PVC5+M5 #6F"
     },
     {
       "name": "random-122",
@@ -3303,7 +3303,7 @@
           "X"
         ]
       },
-      "wire": "NAJDA1 V8PT4 Y37H 33.79270,0.37346 T0450 SM V3 P3 KCTB D52 G46 FUBHEX #2E"
+      "wire": "SLK1 V8PT4 Y37H 33.79270,0.37346 T0450 SM V3 P3 KCTB D52 G46 FUBHEX #39"
     },
     {
       "name": "random-123",
@@ -3330,7 +3330,7 @@
         ],
         "plus": "7CWRQ3G6+QM"
       },
-      "wire": "NAJDA1 S42VY G62M 28.77690,-3.93827 T1219 SA V8 P3 KCTB D101 G37 FD 7CWRQ3G6+QM #F3"
+      "wire": "SLK1 S42VY G62M 28.77690,-3.93827 T1219 SA V8 P3 KCTB D101 G37 FD 7CWRQ3G6+QM #7E"
     },
     {
       "name": "random-124",
@@ -3361,7 +3361,7 @@
         "spo2": 80,
         "plus": "7FJFMQMG+WP"
       },
-      "wire": "NAJDA1 RHQR9 O87M 22.68477,9.77684 T0221 SM V6 P4 KCTB G74 FBHEXF SP80 7FJFMQMG+WP #20"
+      "wire": "SLK1 RHQR9 O87M 22.68477,9.77684 T0221 SM V6 P4 KCTB G74 FBHEXF SP80 7FJFMQMG+WP #BA"
     },
     {
       "name": "random-125",
@@ -3384,7 +3384,7 @@
         "hr": 195,
         "plus": "8F6CV963+R3"
       },
-      "wire": "NAJDA1 8EY6P U62M 34.86204,8.35263 T1238 SA V4 P0 KTX RO HR195 8F6CV963+R3 #22"
+      "wire": "SLK1 8EY6P U62M 34.86204,8.35263 T1238 SA V4 P0 KTX RO HR195 8F6CV963+R3 #39"
     },
     {
       "name": "random-126",
@@ -3414,7 +3414,7 @@
         "spo2": 71,
         "plus": "7CWR4776+W8"
       },
-      "wire": "NAJDA1 GM3VC O62H 28.11482,-3.73916 T2158 SW V0 P9 KCMTP D83 G45 FUD SP71 7CWR4776+W8 #1F"
+      "wire": "SLK1 GM3VC O62H 28.11482,-3.73916 T2158 SW V0 P9 KCMTP D83 G45 FUD SP71 7CWR4776+W8 #31"
     },
     {
       "name": "random-127",
@@ -3442,7 +3442,7 @@
         "spo2": 99,
         "plus": "8F46MC2X+WV"
       },
-      "wire": "NAJDA1 2RGBK Y67H 32.65231,4.44967 T0452 SW V9 P8 KMTP FNBH SP99 8F46MC2X+WV #5A"
+      "wire": "SLK1 2RGBK Y67H 32.65231,4.44967 T0452 SW V9 P8 KMTP FNBH SP99 8F46MC2X+WV #9A"
     },
     {
       "name": "random-128",
@@ -3466,7 +3466,7 @@
         "spo2": 92,
         "plus": "8C7WR828+MG"
       },
-      "wire": "NAJDA1 QSV8A R23L 35.80170,-1.68375 T1954 SA V3 P7 KMTX G8 SP92 8C7WR828+MG #7C"
+      "wire": "SLK1 QSV8A R23L 35.80170,-1.68375 T1954 SA V3 P7 KMTX G8 SP92 8C7WR828+MG #3D"
     },
     {
       "name": "random-129",
@@ -3497,7 +3497,7 @@
         "spo2": 73,
         "plus": "7FP235VV+6M"
       },
-      "wire": "NAJDA1 7A3E7 U61L 24.09308,0.19418 T1314 SA V9 P3 KM D95 FNBHEXF HR171 SP73 7FP235VV+6M #C9"
+      "wire": "SLK1 7A3E7 U61L 24.09308,0.19418 T1314 SA V9 P3 KM D95 FNBHEXF HR171 SP73 7FP235VV+6M #B1"
     },
     {
       "name": "random-130",
@@ -3521,7 +3521,7 @@
         "hr": 157,
         "plus": "7FGFMWHX+GP"
       },
-      "wire": "NAJDA1 FPEYN U98L 20.67877,9.94928 T0105 SA V2 P5 KMBX RO HR157 7FGFMWHX+GP #BD"
+      "wire": "SLK1 FPEYN U98L 20.67877,9.94928 T0105 SA V2 P5 KMBX RO HR157 7FGFMWHX+GP #FC"
     },
     {
       "name": "random-131",
@@ -3544,7 +3544,7 @@
         "hr": 190,
         "plus": "7CRHMH95+PM"
       },
-      "wire": "NAJDA1 SEZ0R G99M 26.66931,-8.44085 T0529 SM V6 P3 KP D68 G60 HR190 7CRHMH95+PM #EA"
+      "wire": "SLK1 SEZ0R G99M 26.66931,-8.44085 T0529 SM V6 P3 KP D68 G60 HR190 7CRHMH95+PM #67"
     },
     {
       "name": "random-132",
@@ -3568,7 +3568,7 @@
         "hr": 179,
         "plus": "7FGH5JQ2+P6"
       },
-      "wire": "NAJDA1 QBVW2 G22L 20.18932,11.60056 T0101 SW V8 P2 KMX D7 G58 HR179 7FGH5JQ2+P6 #5A"
+      "wire": "SLK1 QBVW2 G22L 20.18932,11.60056 T0101 SW V8 P2 KMX D7 G58 HR179 7FGH5JQ2+P6 #D7"
     },
     {
       "name": "random-133",
@@ -3594,7 +3594,7 @@
         ],
         "plus": "7FH4GGPF+72"
       },
-      "wire": "NAJDA1 K0QYW R60M 21.53568,2.52253 T0251 SW V3 P7 KP D124 FNUH 7FH4GGPF+72 #8B"
+      "wire": "SLK1 K0QYW R60M 21.53568,2.52253 T0251 SW V3 P7 KP D124 FNUH 7FH4GGPF+72 #90"
     },
     {
       "name": "random-134",
@@ -3623,7 +3623,7 @@
         "spo2": 82,
         "plus": "7CHW24F5+CP"
       },
-      "wire": "NAJDA1 B67W6 R08L 21.02357,-1.89068 T0349 SA V5 P3 KT D13 G69 FNEX HR107 SP82 7CHW24F5+CP #0A"
+      "wire": "SLK1 B67W6 R08L 21.02357,-1.89068 T0349 SA V5 P3 KT D13 G69 FNEX HR107 SP82 7CHW24F5+CP #00"
     },
     {
       "name": "random-135",
@@ -3647,7 +3647,7 @@
         "hr": 75,
         "plus": "8C3MXX25+2M"
       },
-      "wire": "NAJDA1 2FMD3 G18H 31.95002,-6.04076 T2219 SW V4 P9 KMTP G31 HR75 8C3MXX25+2M #60"
+      "wire": "SLK1 2FMD3 G18H 31.95002,-6.04076 T2219 SW V4 P9 KMTP G31 HR75 8C3MXX25+2M #A0"
     },
     {
       "name": "random-136",
@@ -3671,7 +3671,7 @@
         ],
         "plus": "8C8RJ2PJ+55"
       },
-      "wire": "NAJDA1 ZV5SP U18L 36.63547,-3.96955 T2249 SM V3 P0 KX RO FE 8C8RJ2PJ+55 #B5"
+      "wire": "SLK1 ZV5SP U18L 36.63547,-3.96955 T2249 SM V3 P0 KX RO FE 8C8RJ2PJ+55 #89"
     },
     {
       "name": "random-137",
@@ -3696,7 +3696,7 @@
         ],
         "plus": "7FW6WHMV+RF"
       },
-      "wire": "NAJDA1 Y768T U06M 28.93460,4.59366 T1936 SM V3 P2 KPX FND 7FW6WHMV+RF #6E"
+      "wire": "SLK1 Y768T U06M 28.93460,4.59366 T1936 SM V3 P2 KPX FND 7FW6WHMV+RF #79"
     },
     {
       "name": "random-138",
@@ -3725,7 +3725,7 @@
         "hr": 131,
         "plus": "7FP5JR69+2W"
       },
-      "wire": "NAJDA1 GZDWZ R01L 24.61007,3.81978 T2056 SW V7 P1 KBP FUBDCF HR131 7FP5JR69+2W #BA"
+      "wire": "SLK1 GZDWZ R01L 24.61007,3.81978 T2056 SW V7 P1 KBP FUBDCF HR131 7FP5JR69+2W #57"
     },
     {
       "name": "random-139",
@@ -3756,7 +3756,7 @@
         ],
         "plus": "7CXR787R+GJ"
       },
-      "wire": "NAJDA1 XHQ0Y R91M 29.26379,-3.65850 T2117 SW V5 P1 KPX D101 G65 FUBHECF 7CXR787R+GJ #C3"
+      "wire": "SLK1 XHQ0Y R91M 29.26379,-3.65850 T2117 SW V5 P1 KPX D101 G65 FUBHECF 7CXR787R+GJ #0C"
     },
     {
       "name": "random-140",
@@ -3784,7 +3784,7 @@
         ],
         "plus": "8C3PGJHM+P3"
       },
-      "wire": "NAJDA1 HBQC4 Y93H 31.52929,-5.36726 T1522 SM V1 P9 KCTPX D109 FUB 8C3PGJHM+P3 #97"
+      "wire": "SLK1 HBQC4 Y93H 31.52929,-5.36726 T1522 SM V1 P9 KCTPX D109 FUB 8C3PGJHM+P3 #D9"
     },
     {
       "name": "random-141",
@@ -3807,7 +3807,7 @@
         "g": 13,
         "plus": "8F6GVG49+8J"
       },
-      "wire": "NAJDA1 G0QAV G99H 34.85576,10.51902 T1444 SA V9 P3 KCBP G13 8F6GVG49+8J #BD"
+      "wire": "SLK1 G0QAV G99H 34.85576,10.51902 T1444 SA V9 P3 KCBP G13 8F6GVG49+8J #81"
     },
     {
       "name": "random-142",
@@ -3835,7 +3835,7 @@
         "hr": 90,
         "plus": "8C3QC4HR+CQ"
       },
-      "wire": "NAJDA1 GCYTN O66H 31.42854,-4.85806 T0639 SA V7 P4 KMB D61 G63 FED HR90 8C3QC4HR+CQ #D4"
+      "wire": "SLK1 GCYTN O66H 31.42854,-4.85806 T0639 SA V7 P4 KMB D61 G63 FED HR90 8C3QC4HR+CQ #1B"
     },
     {
       "name": "random-143",
@@ -3863,7 +3863,7 @@
         "spo2": 74,
         "plus": "7FWFHPQ9+X8"
       },
-      "wire": "NAJDA1 9GGPJ R26L 28.58993,9.71834 T1759 SM V8 P2 KX D43 FNUED SP74 7FWFHPQ9+X8 #8E"
+      "wire": "SLK1 9GGPJ R26L 28.58993,9.71834 T1759 SM V8 P2 KX D43 FNUED SP74 7FWFHPQ9+X8 #03"
     },
     {
       "name": "random-144",
@@ -3892,7 +3892,7 @@
         "spo2": 72,
         "plus": "8C8WG5V8+2V"
       },
-      "wire": "NAJDA1 9Z2N0 Y28L 36.54252,-1.83281 T2115 SW V6 P5 KCB RO FUDCF SP72 8C8WG5V8+2V #99"
+      "wire": "SLK1 9Z2N0 Y28L 36.54252,-1.83281 T2115 SW V6 P5 KCB RO FUDCF SP72 8C8WG5V8+2V #33"
     },
     {
       "name": "random-145",
@@ -3918,7 +3918,7 @@
         "hr": 190,
         "plus": "8F2558VM+3F"
       },
-      "wire": "NAJDA1 JKB2G G45H 30.19264,3.33367 T2207 SW V1 P0 KMP G55 FN HR190 8F2558VM+3F #56"
+      "wire": "SLK1 JKB2G G45H 30.19264,3.33367 T2207 SW V1 P0 KMP G55 FN HR190 8F2558VM+3F #BB"
     },
     {
       "name": "random-146",
@@ -3947,7 +3947,7 @@
         ],
         "plus": "7CPP4VHV+3M"
       },
-      "wire": "NAJDA1 Q2DCD Y48H 24.12763,-5.10585 T2344 SM V5 P8 KCMTP G56 FNHC 7CPP4VHV+3M #FA"
+      "wire": "SLK1 Q2DCD Y48H 24.12763,-5.10585 T2344 SM V5 P8 KCMTP G56 FNHC 7CPP4VHV+3M #B4"
     },
     {
       "name": "random-147",
@@ -3975,7 +3975,7 @@
         ],
         "plus": "8F55522C+MW"
       },
-      "wire": "NAJDA1 B6H0E Y24L 33.15170,3.02231 T1424 SA V6 P9 KCTX FUDCF 8F55522C+MW #DD"
+      "wire": "SLK1 B6H0E Y24L 33.15170,3.02231 T1424 SA V6 P9 KCTX FUDCF 8F55522C+MW #69"
     },
     {
       "name": "random-148",
@@ -3997,7 +3997,7 @@
         "dv": 90,
         "plus": "8F27P57H+FH"
       },
-      "wire": "NAJDA1 T5X4J Y93L 30.71368,5.17897 T1034 SA V6 P5 KMT D90 8F27P57H+FH #02"
+      "wire": "SLK1 T5X4J Y93L 30.71368,5.17897 T1034 SA V6 P5 KMT D90 8F27P57H+FH #15"
     },
     {
       "name": "random-149",
@@ -4029,7 +4029,7 @@
         "spo2": 87,
         "plus": "8F992GPM+M7"
       },
-      "wire": "NAJDA1 S4ASE Y85H 37.03663,7.53321 T2101 SW V1 P5 KCMBX G60 RO FNUBE SP87 8F992GPM+M7 #73"
+      "wire": "SLK1 S4ASE Y85H 37.03663,7.53321 T2101 SW V1 P5 KCMBX G60 RO FNUBE SP87 8F992GPM+M7 #5D"
     },
     {
       "name": "random-150",
@@ -4058,7 +4058,7 @@
         ],
         "plus": "8F65H3G6+8J"
       },
-      "wire": "NAJDA1 DETDW U38L 34.57580,3.06151 T0328 SA V6 P9 KMP RO FNBHEC 8F65H3G6+8J #EB"
+      "wire": "SLK1 DETDW U38L 34.57580,3.06151 T0328 SA V6 P9 KMP RO FNBHEC 8F65H3G6+8J #AA"
     },
     {
       "name": "random-151",
@@ -4084,7 +4084,7 @@
         ],
         "spo2": 77
       },
-      "wire": "NAJDA1 260XH U22H 34.33673,-2.91582 T0028 SA V3 P8 KB D102 FHDF SP77 #B1"
+      "wire": "SLK1 260XH U22H 34.33673,-2.91582 T0028 SA V3 P8 KB D102 FHDF SP77 #03"
     },
     {
       "name": "random-152",
@@ -4106,7 +4106,7 @@
         ],
         "plus": "7CGQ58HG+C7"
       },
-      "wire": "NAJDA1 T1TP5 G97L 20.17854,-4.67437 T1819 SW V9 P4 KCTB 7CGQ58HG+C7 #5F"
+      "wire": "SLK1 T1TP5 G97L 20.17854,-4.67437 T1819 SW V9 P4 KCTB 7CGQ58HG+C7 #BB"
     },
     {
       "name": "random-153",
@@ -4129,7 +4129,7 @@
         "hr": 170,
         "spo2": 70
       },
-      "wire": "NAJDA1 2ES5T U61M 28.65533,-1.28062 T1242 SA V9 P5 KB D122 RO HR170 SP70 #EF"
+      "wire": "SLK1 2ES5T U61M 28.65533,-1.28062 T1242 SA V9 P5 KB D122 RO HR170 SP70 #5B"
     },
     {
       "name": "random-154",
@@ -4158,7 +4158,7 @@
         "hr": 119,
         "plus": "7CFJ53V9+4J"
       },
-      "wire": "NAJDA1 XJQ7Y Y60L 19.19275,-7.93100 T1735 SA V6 P2 KBX D28 G42 RO FBF HR119 7CFJ53V9+4J #0F"
+      "wire": "SLK1 XJQ7Y Y60L 19.19275,-7.93100 T1735 SA V6 P2 KBX D28 G42 RO FBF HR119 7CFJ53V9+4J #77"
     },
     {
       "name": "random-155",
@@ -4184,7 +4184,7 @@
         "spo2": 98,
         "plus": "8F7FVVHP+MW"
       },
-      "wire": "NAJDA1 T01D3 O04H 35.87917,9.88725 T0816 SM V2 P2 KCPX G30 RO HR150 SP98 8F7FVVHP+MW #B3"
+      "wire": "SLK1 T01D3 O04H 35.87917,9.88725 T0816 SM V2 P2 KCPX G30 RO HR150 SP98 8F7FVVHP+MW #D0"
     },
     {
       "name": "random-156",
@@ -4208,7 +4208,7 @@
         "spo2": 91,
         "plus": "7FP7J2HC+QQ"
       },
-      "wire": "NAJDA1 XBKW9 Y26M 24.62940,5.02188 T0906 SM V6 P5 KTB D125 G9 SP91 7FP7J2HC+QQ #FD"
+      "wire": "SLK1 XBKW9 Y26M 24.62940,5.02188 T0906 SM V6 P5 KTB D125 G9 SP91 7FP7J2HC+QQ #10"
     },
     {
       "name": "random-157",
@@ -4238,7 +4238,7 @@
         ],
         "plus": "7CWM4493+8R"
       },
-      "wire": "NAJDA1 XWTGY G40H 28.11829,-6.89549 T0506 SW V2 P2 KCBX D68 G17 RO FNUF 7CWM4493+8R #7B"
+      "wire": "SLK1 XWTGY G40H 28.11829,-6.89549 T0506 SW V2 P2 KCBX D68 G17 RO FNUF 7CWM4493+8R #B4"
     },
     {
       "name": "random-158",
@@ -4264,7 +4264,7 @@
         "hr": 134,
         "plus": "8F832Q76+6G"
       },
-      "wire": "NAJDA1 TMB0X U02H 36.01312,1.76126 T2010 SA V1 P5 KC FEDC HR134 8F832Q76+6G #58"
+      "wire": "SLK1 TMB0X U02H 36.01312,1.76126 T2010 SA V1 P5 KC FEDC HR134 8F832Q76+6G #19"
     },
     {
       "name": "random-159",
@@ -4285,7 +4285,7 @@
         "dv": 47,
         "spo2": 86
       },
-      "wire": "NAJDA1 0H8GH G71H 31.36808,-0.61577 T1125 SM V2 P6 KX D47 SP86 #C7"
+      "wire": "SLK1 0H8GH G71H 31.36808,-0.61577 T1125 SM V2 P6 KX D47 SP86 #32"
     },
     {
       "name": "random-160",
@@ -4310,7 +4310,7 @@
         "spo2": 73,
         "plus": "7FP4HGCW+QR"
       },
-      "wire": "NAJDA1 RZ4WA R32H 24.57193,2.54703 T1913 SA V6 P6 KMP D79 G13 RO SP73 7FP4HGCW+QR #C2"
+      "wire": "SLK1 RZ4WA R32H 24.57193,2.54703 T1913 SA V6 P6 KMP D79 G13 RO SP73 7FP4HGCW+QR #9D"
     },
     {
       "name": "random-161",
@@ -4339,7 +4339,7 @@
         ],
         "spo2": 80
       },
-      "wire": "NAJDA1 VTTQZ Y56L 18.93621,-2.49948 T1445 SA V9 P6 KT D95 G70 FUBXCF SP80 #E4"
+      "wire": "SLK1 VTTQZ Y56L 18.93621,-2.49948 T1445 SA V9 P6 KT D95 G70 FUBXCF SP80 #E1"
     },
     {
       "name": "random-162",
@@ -4369,7 +4369,7 @@
         "spo2": 75,
         "plus": "8C7JWX8H+66"
       },
-      "wire": "NAJDA1 MTFNZ G52L 35.91552,-7.02196 T1007 SM V2 P9 KMT D70 G31 FEDXF SP75 8C7JWX8H+66 #B2"
+      "wire": "SLK1 MTFNZ G52L 35.91552,-7.02196 T1007 SM V2 P9 KMT D70 G31 FEDXF SP75 8C7JWX8H+66 #9C"
     },
     {
       "name": "random-163",
@@ -4390,7 +4390,7 @@
         "g": 55,
         "plus": "7FJ8X2HW+JF"
       },
-      "wire": "NAJDA1 RTKXJ R20L 22.97906,6.04615 T1441 SM V3 P1 KM G55 7FJ8X2HW+JF #74"
+      "wire": "SLK1 RTKXJ R20L 22.97906,6.04615 T1441 SM V3 P1 KM G55 7FJ8X2HW+JF #C6"
     },
     {
       "name": "random-164",
@@ -4417,7 +4417,7 @@
         "spo2": 78,
         "plus": "8F84X6GR+2M"
       },
-      "wire": "NAJDA1 BRSD3 R81H 36.97504,2.24171 T0153 SA V4 P9 KTB FNBC SP78 8F84X6GR+2M #8F"
+      "wire": "SLK1 BRSD3 R81H 36.97504,2.24171 T0153 SA V4 P9 KTB FNBC SP78 8F84X6GR+2M #CE"
     },
     {
       "name": "random-165",
@@ -4441,7 +4441,7 @@
         "spo2": 89,
         "plus": "7FVCP94V+CR"
       },
-      "wire": "NAJDA1 GJKPK O98L 27.70610,8.39457 T0358 SW V7 P0 KM D13 RO HR94 SP89 7FVCP94V+CR #BC"
+      "wire": "SLK1 GJKPK O98L 27.70610,8.39457 T0358 SW V7 P0 KM D13 RO HR94 SP89 7FVCP94V+CR #E3"
     },
     {
       "name": "random-166",
@@ -4473,7 +4473,7 @@
         ],
         "spo2": 72
       },
-      "wire": "NAJDA1 Q80EN G81M 28.08237,-4.34496 T0000 SA V8 P6 KMTB D125 G40 RO FNBDCF SP72 #B1"
+      "wire": "SLK1 Q80EN G81M 28.08237,-4.34496 T0000 SA V8 P6 KMTB D125 G40 RO FNBDCF SP72 #3C"
     },
     {
       "name": "random-167",
@@ -4500,7 +4500,7 @@
         ],
         "plus": "8F363CFH+R4"
       },
-      "wire": "NAJDA1 MKKV8 U94L 31.07458,4.42787 T1101 SM V5 P7 KCP G40 FUXF 8F363CFH+R4 #EC"
+      "wire": "SLK1 MKKV8 U94L 31.07458,4.42787 T1101 SM V5 P7 KCP G40 FUXF 8F363CFH+R4 #F7"
     },
     {
       "name": "random-168",
@@ -4527,7 +4527,7 @@
         ],
         "spo2": 74
       },
-      "wire": "NAJDA1 2KBS9 G46H 21.65603,-6.32848 T0750 SA V1 P4 KCT G61 RO FBH SP74 #AE"
+      "wire": "SLK1 2KBS9 G46H 21.65603,-6.32848 T0750 SA V1 P4 KCT G61 RO FBH SP74 #CB"
     },
     {
       "name": "random-169",
@@ -4550,7 +4550,7 @@
         "dv": 105,
         "g": 64
       },
-      "wire": "NAJDA1 G6F6G G96L 20.07338,-1.68723 T0635 SW V4 P2 KMBX D105 G64 #AD"
+      "wire": "SLK1 G6F6G G96L 20.07338,-1.68723 T0635 SW V4 P2 KMBX D105 G64 #F8"
     },
     {
       "name": "random-170",
@@ -4572,7 +4572,7 @@
         "g": 13,
         "plus": "8F256464+66"
       },
-      "wire": "NAJDA1 F1XZ2 U67M 30.21055,3.10556 T1731 SA V8 P0 KCB G13 8F256464+66 #AD"
+      "wire": "SLK1 F1XZ2 U67M 30.21055,3.10556 T1731 SA V8 P0 KCB G13 8F256464+66 #BA"
     },
     {
       "name": "random-171",
@@ -4595,7 +4595,7 @@
           "U"
         ]
       },
-      "wire": "NAJDA1 JR40F R27H 31.98979,-5.26107 T0516 SA V4 P4 KT D62 FU #F1"
+      "wire": "SLK1 JR40F R27H 31.98979,-5.26107 T0516 SA V4 P4 KT D62 FU #91"
     },
     {
       "name": "random-172",
@@ -4621,7 +4621,7 @@
         ],
         "plus": "7CHV4PW3+RJ"
       },
-      "wire": "NAJDA1 W3AX2 U75M 21.14708,-2.29592 T2248 SM V5 P2 KX G20 FHDX 7CHV4PW3+RJ #2C"
+      "wire": "SLK1 W3AX2 U75M 21.14708,-2.29592 T2248 SM V5 P2 KX G20 FHDX 7CHV4PW3+RJ #37"
     },
     {
       "name": "random-173",
@@ -4652,7 +4652,7 @@
         "spo2": 80,
         "plus": "7CMWWP6Q+88"
       },
-      "wire": "NAJDA1 QM26E Y24L 23.91078,-1.26173 T0414 SW V9 P5 KCTP D64 G71 FEXF HR164 SP80 7CMWWP6Q+88 #65"
+      "wire": "SLK1 QM26E Y24L 23.91078,-1.26173 T0414 SW V9 P5 KCTP D64 G71 FEXF HR164 SP80 7CMWWP6Q+88 #E7"
     },
     {
       "name": "random-174",
@@ -4674,7 +4674,7 @@
         "dv": 67,
         "spo2": 76
       },
-      "wire": "NAJDA1 WG7CT Y02M 27.59153,5.58311 T0024 SW V7 P0 KCX D67 SP76 #85"
+      "wire": "SLK1 WG7CT Y02M 27.59153,5.58311 T0024 SW V7 P0 KCX D67 SP76 #70"
     },
     {
       "name": "random-175",
@@ -4703,7 +4703,7 @@
         ],
         "plus": "7CPJXJ93+R5"
       },
-      "wire": "NAJDA1 1JT1S G23L 24.96954,-7.39703 T2102 SA V0 P2 KMBX D54 FUDXC 7CPJXJ93+R5 #31"
+      "wire": "SLK1 1JT1S G23L 24.96954,-7.39703 T2102 SA V0 P2 KMBX D54 FUDXC 7CPJXJ93+R5 #7F"
     },
     {
       "name": "random-176",
@@ -4732,7 +4732,7 @@
         ],
         "plus": "8C4VX2FC+FQ"
       },
-      "wire": "NAJDA1 CDHKW Y12H 32.97370,-2.97810 T1121 SA V6 P4 KT D86 G21 FNUBEC 8C4VX2FC+FQ #6F"
+      "wire": "SLK1 CDHKW Y12H 32.97370,-2.97810 T1121 SA V6 P4 KT D86 G21 FNUBEC 8C4VX2FC+FQ #C5"
     },
     {
       "name": "random-177",
@@ -4760,7 +4760,7 @@
         "spo2": 71,
         "plus": "7CWX225G+C7"
       },
-      "wire": "NAJDA1 Y3CGQ U79H 28.00862,-0.97434 T1103 SA V2 P1 KM D106 FHEDC SP71 7CWX225G+C7 #AC"
+      "wire": "SLK1 Y3CGQ U79H 28.00862,-0.97434 T1103 SA V2 P1 KM D106 FHEDC SP71 7CWX225G+C7 #F3"
     },
     {
       "name": "random-178",
@@ -4784,7 +4784,7 @@
         "hr": 127,
         "spo2": 75
       },
-      "wire": "NAJDA1 89VEH O59M 23.33081,-5.09371 T0040 SA V1 P8 KMBP G69 HR127 SP75 #37"
+      "wire": "SLK1 89VEH O59M 23.33081,-5.09371 T0040 SA V1 P8 KMBP G69 HR127 SP75 #52"
     },
     {
       "name": "random-179",
@@ -4806,7 +4806,7 @@
         "spo2": 91,
         "plus": "7FP8X5QF+7C"
       },
-      "wire": "NAJDA1 3DE0H G24L 24.98816,6.17354 T1027 SA V8 P9 KM G7 SP91 7FP8X5QF+7C #E5"
+      "wire": "SLK1 3DE0H G24L 24.98816,6.17354 T1027 SA V8 P9 KM G7 SP91 7FP8X5QF+7C #51"
     },
     {
       "name": "random-180",
@@ -4829,7 +4829,7 @@
         "g": 75,
         "hr": 137
       },
-      "wire": "NAJDA1 G9TM5 O40M 27.82413,10.93394 T2016 SW V5 P1 KCMP G75 HR137 #E8"
+      "wire": "SLK1 G9TM5 O40M 27.82413,10.93394 T2016 SW V5 P1 KCMP G75 HR137 #44"
     },
     {
       "name": "random-181",
@@ -4857,7 +4857,7 @@
         ],
         "plus": "7CFR6CRC+4F"
       },
-      "wire": "NAJDA1 FAZ9T G70M 19.24037,-3.57884 T1351 SA V7 P1 KTX G48 FUBHD 7CFR6CRC+4F #6C"
+      "wire": "SLK1 FAZ9T G70M 19.24037,-3.57884 T1351 SA V7 P1 KTX G48 FUBHD 7CFR6CRC+4F #AC"
     },
     {
       "name": "random-182",
@@ -4880,7 +4880,7 @@
         "spo2": 75,
         "plus": "7FV5C57R+J4"
       },
-      "wire": "NAJDA1 6ZWC1 Y80H 27.41411,3.19033 T1353 SA V1 P5 KMB D124 SP75 7FV5C57R+J4 #72"
+      "wire": "SLK1 6ZWC1 Y80H 27.41411,3.19033 T1353 SA V1 P5 KMB D124 SP75 7FV5C57R+J4 #33"
     },
     {
       "name": "random-183",
@@ -4905,7 +4905,7 @@
         ],
         "hr": 194
       },
-      "wire": "NAJDA1 G1JM6 Y14M 28.14900,-5.50367 T1321 SM V8 P5 KT FHDX HR194 #2C"
+      "wire": "SLK1 G1JM6 Y14M 28.14900,-5.50367 T1321 SM V8 P5 KT FHDX HR194 #79"
     },
     {
       "name": "random-184",
@@ -4934,7 +4934,7 @@
         ],
         "spo2": 100
       },
-      "wire": "NAJDA1 8D01Z R40M 26.07729,-0.14396 T1344 SM V9 P5 KTP D60 G66 RO FUDF SP100 #44"
+      "wire": "SLK1 8D01Z R40M 26.07729,-0.14396 T1344 SM V9 P5 KTP D60 G66 RO FUDF SP100 #84"
     },
     {
       "name": "random-185",
@@ -4956,7 +4956,7 @@
         "g": 1,
         "spo2": 82
       },
-      "wire": "NAJDA1 E0GGE R83L 26.19739,9.56813 T1437 SA V0 P4 KC D27 G1 SP82 #A2"
+      "wire": "SLK1 E0GGE R83L 26.19739,9.56813 T1437 SA V0 P4 KC D27 G1 SP82 #F7"
     },
     {
       "name": "random-186",
@@ -4983,7 +4983,7 @@
         ],
         "plus": "8F6HR8G4+8M"
       },
-      "wire": "NAJDA1 N1VAD O61L 34.82580,11.30663 T0135 SA V8 P7 KX D14 G61 RO FND 8F6HR8G4+8M #08"
+      "wire": "SLK1 N1VAD O61L 34.82580,11.30663 T0135 SA V8 P7 KX D14 G61 RO FND 8F6HR8G4+8M #A2"
     },
     {
       "name": "random-187",
@@ -5006,7 +5006,7 @@
         "g": 27,
         "plus": "7FXHJ7GX+W9"
       },
-      "wire": "NAJDA1 4KWSA O96L 29.62726,11.29843 T1114 SW V8 P6 KCTB G27 7FXHJ7GX+W9 #0A"
+      "wire": "SLK1 4KWSA O96L 29.62726,11.29843 T1114 SW V8 P6 KCTB G27 7FXHJ7GX+W9 #36"
     },
     {
       "name": "random-188",
@@ -5032,7 +5032,7 @@
         ],
         "plus": "7FX92G46+RJ"
       },
-      "wire": "NAJDA1 QQ5HK O26H 29.00704,7.51160 T2158 SM V1 P4 KCTP G76 FF 7FX92G46+RJ #59"
+      "wire": "SLK1 QQ5HK O26H 29.00704,7.51160 T2158 SM V1 P4 KCTP G76 FF 7FX92G46+RJ #5C"
     },
     {
       "name": "random-189",
@@ -5055,7 +5055,7 @@
         "hr": 87,
         "plus": "8C4R4F4C+XW"
       },
-      "wire": "NAJDA1 M4KBJ R80M 32.10739,-3.52773 T1554 SM V9 P6 KT D126 G1 HR87 8C4R4F4C+XW #26"
+      "wire": "SLK1 M4KBJ R80M 32.10739,-3.52773 T1554 SM V9 P6 KT D126 G1 HR87 8C4R4F4C+XW #CB"
     },
     {
       "name": "random-190",
@@ -5083,7 +5083,7 @@
         "spo2": 91,
         "plus": "8C8R72VJ+M5"
       },
-      "wire": "NAJDA1 18NZC R53M 36.29418,-3.96955 T1312 SA V8 P9 KCT FNDCF SP91 8C8R72VJ+M5 #42"
+      "wire": "SLK1 18NZC R53M 36.29418,-3.96955 T1312 SA V8 P9 KCT FNDCF SP91 8C8R72VJ+M5 #0C"
     },
     {
       "name": "random-191",
@@ -5111,7 +5111,7 @@
         "spo2": 81,
         "plus": "8C5XMR76+GM"
       },
-      "wire": "NAJDA1 BSBEQ U58H 33.66385,-0.18837 T2341 SA V0 P0 KC D23 FNBD HR126 SP81 8C5XMR76+GM #61"
+      "wire": "SLK1 BSBEQ U58H 33.66385,-0.18837 T2341 SA V0 P0 KC D23 FNBD HR126 SP81 8C5XMR76+GM #4F"
     },
     {
       "name": "random-192",
@@ -5141,7 +5141,7 @@
         "spo2": 83,
         "plus": "7CWQR24F+38"
       },
-      "wire": "NAJDA1 A2FHF R45M 28.80516,-4.97669 T0026 SW V6 P8 KMTBX D101 RO FED SP83 7CWQR24F+38 #A2"
+      "wire": "SLK1 A2FHF R45M 28.80516,-4.97669 T0026 SW V6 P8 KMTBX D101 RO FED SP83 7CWQR24F+38 #8C"
     },
     {
       "name": "random-193",
@@ -5168,7 +5168,7 @@
           "D"
         ]
       },
-      "wire": "NAJDA1 ND38R G51M 22.13610,6.16201 T2218 SW V9 P8 KCT D69 G63 FNHD #28"
+      "wire": "SLK1 ND38R G51M 22.13610,6.16201 T2218 SW V9 P8 KCT D69 G63 FNHD #65"
     },
     {
       "name": "random-194",
@@ -5195,7 +5195,7 @@
         "hr": 89,
         "plus": "8F27X5RM+XP"
       },
-      "wire": "NAJDA1 0NJ6E R21M 30.99249,5.18433 T1155 SA V2 P0 KCX G35 FNB HR89 8F27X5RM+XP #61"
+      "wire": "SLK1 0NJ6E R21M 30.99249,5.18433 T1155 SA V2 P0 KCX G35 FNB HR89 8F27X5RM+XP #8C"
     },
     {
       "name": "random-195",
@@ -5219,7 +5219,7 @@
           "C"
         ]
       },
-      "wire": "NAJDA1 JD521 O82M 31.27196,6.38233 T0118 SA V3 P8 KX FBEC #20"
+      "wire": "SLK1 JD521 O82M 31.27196,6.38233 T0118 SA V3 P8 KX FBEC #A1"
     },
     {
       "name": "random-196",
@@ -5246,7 +5246,7 @@
         "hr": 124,
         "plus": "7FGG2HCR+55"
       },
-      "wire": "NAJDA1 RN8B8 G14H 20.02040,10.59042 T1614 SM V1 P4 KTP RO FEX HR124 7FGG2HCR+55 #E3"
+      "wire": "SLK1 RN8B8 G14H 20.02040,10.59042 T1614 SM V1 P4 KTP RO FEX HR124 7FGG2HCR+55 #6E"
     },
     {
       "name": "random-197",
@@ -5273,7 +5273,7 @@
         ],
         "plus": "7FPG46FW+Q6"
       },
-      "wire": "NAJDA1 6BRRY U58L 24.12446,10.24562 T0416 SM V8 P2 KCMP G52 FHC 7FPG46FW+Q6 #02"
+      "wire": "SLK1 6BRRY U58L 24.12446,10.24562 T0416 SM V8 P2 KCMP G52 FHC 7FPG46FW+Q6 #43"
     },
     {
       "name": "random-198",
@@ -5301,7 +5301,7 @@
         "hr": 178,
         "plus": "8C7M765R+JP"
       },
-      "wire": "NAJDA1 QM9QB G68L 35.25911,-6.75819 T2240 SA V2 P8 KX D50 G53 FNBD HR178 8C7M765R+JP #AA"
+      "wire": "SLK1 QM9QB G68L 35.25911,-6.75819 T2240 SA V2 P8 KX D50 G53 FNBD HR178 8C7M765R+JP #C9"
     },
     {
       "name": "random-199",
@@ -5330,7 +5330,7 @@
         ],
         "plus": "8F5G8WXR+F2"
       },
-      "wire": "NAJDA1 VG11J O25M 33.34869,10.94004 T0039 SM V6 P3 KMB D122 FBHEDF 8F5G8WXR+F2 #3B"
+      "wire": "SLK1 VG11J O25M 33.34869,10.94004 T0039 SM V6 P3 KMB D122 FBHEDF 8F5G8WXR+F2 #D6"
     },
     {
       "name": "random-200",
@@ -5355,7 +5355,7 @@
         "hr": 64,
         "plus": "7FVCJXHX+Q9"
       },
-      "wire": "NAJDA1 QGNNA U14L 27.62943,8.99848 T2145 SA V7 P7 KBP D26 G61 RO HR64 7FVCJXHX+Q9 #80"
+      "wire": "SLK1 QGNNA U14L 27.62943,8.99848 T2145 SA V7 P7 KBP D26 G61 RO HR64 7FVCJXHX+Q9 #DF"
     },
     {
       "name": "random-201",
@@ -5386,7 +5386,7 @@
         "spo2": 90,
         "plus": "8F3GFX2G+QC"
       },
-      "wire": "NAJDA1 4HCX7 O39L 31.45189,10.97601 T2029 SW V0 P6 KCX D94 G62 RO FECF HR153 SP90 8F3GFX2G+QC #36"
+      "wire": "SLK1 4HCX7 O39L 31.45189,10.97601 T2029 SW V0 P6 KCX D94 G62 RO FECF HR153 SP90 8F3GFX2G+QC #AA"
     },
     {
       "name": "random-202",
@@ -5409,7 +5409,7 @@
         "spo2": 95,
         "plus": "7FFCM56H+MR"
       },
-      "wire": "NAJDA1 7G5J5 U24L 19.66173,8.17951 T1236 SM V4 P2 KCMT SP95 7FFCM56H+MR #98"
+      "wire": "SLK1 7G5J5 U24L 19.66173,8.17951 T1236 SM V4 P2 KCMT SP95 7FFCM56H+MR #A4"
     },
     {
       "name": "random-203",
@@ -5432,7 +5432,7 @@
         "roll": true,
         "plus": "7CPVQM83+MV"
       },
-      "wire": "NAJDA1 AZ0J3 G70L 24.76667,-2.34529 T1118 SA V0 P1 KCB D52 RO 7CPVQM83+MV #96"
+      "wire": "SLK1 AZ0J3 G70L 24.76667,-2.34529 T1118 SA V0 P1 KCB D52 RO 7CPVQM83+MV #93"
     },
     {
       "name": "random-204",
@@ -5461,7 +5461,7 @@
         ],
         "spo2": 90
       },
-      "wire": "NAJDA1 D8DAQ G43M 28.90399,-2.64897 T1020 SA V8 P8 KBX D38 G60 RO FECF SP90 #EB"
+      "wire": "SLK1 D8DAQ G43M 28.90399,-2.64897 T1020 SA V8 P8 KBX D38 G60 RO FECF SP90 #AA"
     },
     {
       "name": "random-205",
@@ -5490,7 +5490,7 @@
           "F"
         ]
       },
-      "wire": "NAJDA1 NW2WR Y49L 27.21300,8.72041 T0228 SW V3 P5 KP D90 FNUBHDCF #CC"
+      "wire": "SLK1 NW2WR Y49L 27.21300,8.72041 T0228 SW V3 P5 KP D90 FNUBHDCF #60"
     },
     {
       "name": "random-206",
@@ -5514,7 +5514,7 @@
           "N"
         ]
       },
-      "wire": "NAJDA1 1H3W2 Y29H 19.30923,-2.42961 T0605 SA V2 P3 KCP D122 FN #17"
+      "wire": "SLK1 1H3W2 Y29H 19.30923,-2.42961 T0605 SA V2 P3 KCP D122 FN #E2"
     },
     {
       "name": "random-207",
@@ -5541,7 +5541,7 @@
         ],
         "plus": "7FPH2WH8+3J"
       },
-      "wire": "NAJDA1 VQ47H Y30H 24.02765,11.91658 T2236 SA V2 P2 KMT G15 FNUX 7FPH2WH8+3J #48"
+      "wire": "SLK1 VQ47H Y30H 24.02765,11.91658 T2236 SA V2 P2 KMT G15 FNUX 7FPH2WH8+3J #09"
     },
     {
       "name": "random-208",
@@ -5565,7 +5565,7 @@
         "hr": 197,
         "plus": "8F76VQPM+J6"
       },
-      "wire": "NAJDA1 ECB9Y U69L 35.88650,4.78304 T1030 SW V6 P8 KCB D66 G39 HR197 8F76VQPM+J6 #01"
+      "wire": "SLK1 ECB9Y U69L 35.88650,4.78304 T1030 SW V6 P8 KCB D66 G39 HR197 8F76VQPM+J6 #8C"
     },
     {
       "name": "random-209",
@@ -5589,7 +5589,7 @@
         "spo2": 76,
         "plus": "7FG2R84M+G6"
       },
-      "wire": "NAJDA1 S41VD G39M 20.80630,0.33308 T0506 SM V4 P1 KTB RO HR116 SP76 7FG2R84M+G6 #CC"
+      "wire": "SLK1 S41VD G39M 20.80630,0.33308 T0506 SM V4 P1 KTB RO HR116 SP76 7FG2R84M+G6 #41"
     },
     {
       "name": "random-210",
@@ -5618,7 +5618,7 @@
         "spo2": 72,
         "plus": "8F65V4C4+C2"
       },
-      "wire": "NAJDA1 HRTM8 Y08L 34.87100,3.10500 T1031 SM V6 P8 KP D72 G56 FNBED SP72 8F65V4C4+C2 #5D"
+      "wire": "SLK1 HRTM8 Y08L 34.87100,3.10500 T1031 SM V6 P8 KP D72 G56 FNBED SP72 8F65V4C4+C2 #92"
     },
     {
       "name": "random-211",
@@ -5651,7 +5651,7 @@
         "spo2": 77,
         "plus": "7FC4XWV5+XR"
       },
-      "wire": "NAJDA1 C5AK7 R62M 18.99493,2.90953 T0022 SM V1 P3 KCMX D104 G33 FUBHDXC SP77 7FC4XWV5+XR #19"
+      "wire": "SLK1 C5AK7 R62M 18.99493,2.90953 T0022 SM V1 P3 KCMX D104 G33 FUBHDXC SP77 7FC4XWV5+XR #76"
     },
     {
       "name": "random-212",
@@ -5675,7 +5675,7 @@
         "spo2": 93,
         "plus": "7FJ58XWJ+2H"
       },
-      "wire": "NAJDA1 ST6KG U56M 22.34504,3.98141 T1507 SW V9 P1 KT D107 G48 HR76 SP93 7FJ58XWJ+2H #FB"
+      "wire": "SLK1 ST6KG U56M 22.34504,3.98141 T1507 SW V9 P1 KT D107 G48 HR76 SP93 7FJ58XWJ+2H #34"
     },
     {
       "name": "random-213",
@@ -5699,7 +5699,7 @@
         ],
         "plus": "7FVHF9X9+MV"
       },
-      "wire": "NAJDA1 1SNRY O08L 27.49924,11.36966 T0922 SW V9 P1 KCMBPX 7FVHF9X9+MV #FB"
+      "wire": "SLK1 1SNRY O08L 27.49924,11.36966 T0922 SW V9 P1 KCMBPX 7FVHF9X9+MV #EC"
     },
     {
       "name": "random-214",
@@ -5726,7 +5726,7 @@
         ],
         "plus": "7FH33GP7+2J"
       },
-      "wire": "NAJDA1 7EK0N G14H 21.08500,1.51412 T0759 SM V6 P6 KM RO FNUBH 7FH33GP7+2J #C3"
+      "wire": "SLK1 7EK0N G14H 21.08500,1.51412 T0759 SM V6 P6 KM RO FNUBH 7FH33GP7+2J #C6"
     },
     {
       "name": "random-215",
@@ -5756,7 +5756,7 @@
         ],
         "hr": 186
       },
-      "wire": "NAJDA1 26DG2 G15H 32.15341,5.40619 T1427 SM V3 P8 KCMP D49 G50 FBDCF HR186 #A0"
+      "wire": "SLK1 26DG2 G15H 32.15341,5.40619 T1427 SM V3 P8 KCMP D49 G50 FBDCF HR186 #BB"
     },
     {
       "name": "random-216",
@@ -5785,7 +5785,7 @@
         ],
         "plus": "7CMWHW8F+G6"
       },
-      "wire": "NAJDA1 KYFEV G75M 23.56626,-1.07696 T1009 SW V8 P4 KMBP G24 RO FBCF 7CMWHW8F+G6 #EE"
+      "wire": "SLK1 KYFEV G75M 23.56626,-1.07696 T1009 SW V8 P4 KMBP G24 RO FBCF 7CMWHW8F+G6 #63"
     },
     {
       "name": "random-217",
@@ -5808,7 +5808,7 @@
         "hr": 48,
         "plus": "7CXM5H79+J7"
       },
-      "wire": "NAJDA1 FMRNY U69M 29.16410,-6.43177 T2156 SW V4 P8 KCT G39 HR48 7CXM5H79+J7 #B0"
+      "wire": "SLK1 FMRNY U69M 29.16410,-6.43177 T2156 SW V4 P8 KCT G39 HR48 7CXM5H79+J7 #F1"
     },
     {
       "name": "random-218",
@@ -5838,7 +5838,7 @@
         "hr": 155,
         "plus": "8F553RWC+J6"
       },
-      "wire": "NAJDA1 KY7QD O91M 33.09660,3.82058 T1536 SM V1 P0 KTPX D3 G57 FNHD HR155 8F553RWC+J6 #96"
+      "wire": "SLK1 KY7QD O91M 33.09660,3.82058 T1536 SM V1 P0 KTPX D3 G57 FNHD HR155 8F553RWC+J6 #F5"
     },
     {
       "name": "random-219",
@@ -5863,7 +5863,7 @@
           "C"
         ]
       },
-      "wire": "NAJDA1 DE44V U69H 27.42603,11.31462 T0724 SM V6 P6 KT G16 RO FXC #C2"
+      "wire": "SLK1 DE44V U69H 27.42603,11.31462 T0724 SM V6 P6 KT G16 RO FXC #97"
     },
     {
       "name": "random-220",
@@ -5890,7 +5890,7 @@
         "hr": 48,
         "spo2": 90
       },
-      "wire": "NAJDA1 T5YKV U44L 21.75721,2.85952 T0837 SA V2 P7 KCMPX D34 G3 RO HR48 SP90 #90"
+      "wire": "SLK1 T5YKV U44L 21.75721,2.85952 T0837 SA V2 P7 KCMPX D34 G3 RO HR48 SP90 #D1"
     },
     {
       "name": "random-221",
@@ -5918,7 +5918,7 @@
         ],
         "hr": 139
       },
-      "wire": "NAJDA1 CPKZ4 O75M 33.96950,0.79212 T0910 SM V0 P0 KMB D48 G68 FEDX HR139 #83"
+      "wire": "SLK1 CPKZ4 O75M 33.96950,0.79212 T0910 SM V0 P0 KMB D48 G68 FEDX HR139 #37"
     },
     {
       "name": "random-222",
@@ -5945,7 +5945,7 @@
         "spo2": 88,
         "plus": "7FF5WR5Q+JF"
       },
-      "wire": "NAJDA1 PNFSN R99H 19.90912,3.83867 T0637 SM V8 P0 KMBPX D106 G31 RO SP88 7FF5WR5Q+JF #24"
+      "wire": "SLK1 PNFSN R99H 19.90912,3.83867 T0637 SM V8 P0 KMBPX D106 G31 RO SP88 7FF5WR5Q+JF #47"
     },
     {
       "name": "random-223",
@@ -5973,7 +5973,7 @@
         ],
         "plus": "7CJQCPGM+39"
       },
-      "wire": "NAJDA1 607HY G42H 22.42518,-4.26654 T0841 SM V6 P5 KC D95 FNBHEF 7CJQCPGM+39 #3D"
+      "wire": "SLK1 607HY G42H 22.42518,-4.26654 T0841 SM V6 P5 KC D95 FNBHEF 7CJQCPGM+39 #FD"
     },
     {
       "name": "random-224",
@@ -5998,7 +5998,7 @@
         ],
         "plus": "7CQXXC9W+R9"
       },
-      "wire": "NAJDA1 JQP88 O76L 25.96953,-0.55403 T0431 SA V8 P5 KX RO FHE 7CQXXC9W+R9 #4D"
+      "wire": "SLK1 JQP88 O76L 25.96953,-0.55403 T0431 SA V8 P5 KX RO FHE 7CQXXC9W+R9 #F9"
     },
     {
       "name": "random-225",
@@ -6023,7 +6023,7 @@
         "spo2": 98,
         "plus": "7CFWVF5J+7C"
       },
-      "wire": "NAJDA1 ES3G9 O42L 19.85820,-1.51892 T2242 SM V4 P6 KTX D107 G60 RO SP98 7CFWVF5J+7C #8B"
+      "wire": "SLK1 ES3G9 O42L 19.85820,-1.51892 T2242 SM V4 P6 KTX D107 G60 RO SP98 7CFWVF5J+7C #44"
     },
     {
       "name": "random-226",
@@ -6049,7 +6049,7 @@
         "spo2": 99,
         "plus": "7CFW2CF2+RR"
       },
-      "wire": "NAJDA1 8PYEN Y96L 19.02460,-1.59799 T0533 SM V3 P6 KCMBX D62 RO SP99 7CFW2CF2+RR #FB"
+      "wire": "SLK1 8PYEN Y96L 19.02460,-1.59799 T0533 SM V3 P6 KCMBX D62 RO SP99 7CFW2CF2+RR #51"
     },
     {
       "name": "random-227",
@@ -6073,7 +6073,7 @@
         "hr": 146,
         "plus": "8C2M9FRR+X2"
       },
-      "wire": "NAJDA1 J2BAG Y43M 30.39240,-6.50994 T0621 SM V2 P4 KBX G6 RO HR146 8C2M9FRR+X2 #28"
+      "wire": "SLK1 J2BAG Y43M 30.39240,-6.50994 T0621 SM V2 P4 KBX G6 RO HR146 8C2M9FRR+X2 #C5"
     },
     {
       "name": "random-228",
@@ -6097,7 +6097,7 @@
         "roll": true,
         "plus": "8F7H4MFH+J8"
       },
-      "wire": "NAJDA1 RR8KY O01M 35.12412,11.67836 T0528 SW V8 P6 KCMTB RO 8F7H4MFH+J8 #0D"
+      "wire": "SLK1 RR8KY O01M 35.12412,11.67836 T0528 SW V8 P6 KCMTB RO 8F7H4MFH+J8 #31"
     },
     {
       "name": "random-229",
@@ -6126,7 +6126,7 @@
         ],
         "plus": "7FP9CMC4+54"
       },
-      "wire": "NAJDA1 BPJ8E G07H 24.42040,7.65527 T1721 SA V9 P5 KCMX D39 G46 FHDC 7FP9CMC4+54 #13"
+      "wire": "SLK1 BPJ8E G07H 24.42040,7.65527 T1721 SA V9 P5 KCMX D39 G46 FHDC 7FP9CMC4+54 #9E"
     },
     {
       "name": "random-230",
@@ -6149,7 +6149,7 @@
         "hr": 131,
         "plus": "8C7PQWP9+RC"
       },
-      "wire": "NAJDA1 BVA72 G75H 35.78703,-5.08140 T0512 SM V4 P9 KP D115 G7 HR131 8C7PQWP9+RC #EC"
+      "wire": "SLK1 BVA72 G75H 35.78703,-5.08140 T0512 SM V4 P9 KP D115 G7 HR131 8C7PQWP9+RC #61"
     },
     {
       "name": "random-231",
@@ -6170,7 +6170,7 @@
         "hr": 40,
         "plus": "8F39CC49+H9"
       },
-      "wire": "NAJDA1 8N86A U68H 31.40638,7.41843 T2248 SA V0 P1 KX HR40 8F39CC49+H9 #00"
+      "wire": "SLK1 8N86A U68H 31.40638,7.41843 T2248 SA V0 P1 KX HR40 8F39CC49+H9 #17"
     },
     {
       "name": "random-232",
@@ -6192,7 +6192,7 @@
         "spo2": 83,
         "plus": "8F2GJRR4+GR"
       },
-      "wire": "NAJDA1 EGBNZ U01H 30.64136,10.80703 T0717 SW V5 P8 KT D45 SP83 8F2GJRR4+GR #B7"
+      "wire": "SLK1 EGBNZ U01H 30.64136,10.80703 T0717 SW V5 P8 KT D45 SP83 8F2GJRR4+GR #AC"
     },
     {
       "name": "random-233",
@@ -6221,7 +6221,7 @@
         "hr": 78,
         "plus": "7CVW6X3M+FR"
       },
-      "wire": "NAJDA1 7V4MC Y33L 27.20371,-1.01545 T0950 SW V8 P0 KC G31 FUHXCF HR78 7CVW6X3M+FR #D9"
+      "wire": "SLK1 7V4MC Y33L 27.20371,-1.01545 T0950 SW V8 P0 KC G31 FUHXCF HR78 7CVW6X3M+FR #86"
     },
     {
       "name": "random-234",
@@ -6247,7 +6247,7 @@
         ],
         "plus": "7CWJF82V+8W"
       },
-      "wire": "NAJDA1 QPA06 Y38L 28.45087,-7.65517 T1904 SA V2 P7 KCB D36 G48 FF 7CWJF82V+8W #5D"
+      "wire": "SLK1 QPA06 Y38L 28.45087,-7.65517 T1904 SA V2 P7 KCB D36 G48 FF 7CWJF82V+8W #13"
     },
     {
       "name": "random-235",
@@ -6275,7 +6275,7 @@
         "spo2": 78,
         "plus": "7CMP92VJ+FF"
       },
-      "wire": "NAJDA1 RH07X R97L 23.39371,-5.96883 T0453 SA V3 P8 KT G18 FUHE HR44 SP78 7CMP92VJ+FF #72"
+      "wire": "SLK1 RH07X R97L 23.39371,-5.96883 T0453 SA V3 P8 KT G18 FUHE HR44 SP78 7CMP92VJ+FF #11"
     },
     {
       "name": "random-236",
@@ -6306,7 +6306,7 @@
         "hr": 98,
         "plus": "8C5M2GJQ+GG"
       },
-      "wire": "NAJDA1 CN246 Y98H 33.03126,-6.46115 T2354 SA V4 P6 KTP D105 G52 FUBEXF HR98 8C5M2GJQ+GG #BA"
+      "wire": "SLK1 CN246 Y98H 33.03126,-6.46115 T2354 SA V4 P6 KTP D105 G52 FUBEXF HR98 8C5M2GJQ+GG #C2"
     },
     {
       "name": "random-237",
@@ -6330,7 +6330,7 @@
         "spo2": 99,
         "plus": "8F58J346+P7"
       },
-      "wire": "NAJDA1 DNB4X G95L 33.60684,6.06070 T0107 SW V2 P5 KCB D83 G23 SP99 8F58J346+P7 #C7"
+      "wire": "SLK1 DNB4X G95L 33.60684,6.06070 T0107 SW V2 P5 KCB D83 G23 SP99 8F58J346+P7 #2A"
     },
     {
       "name": "random-238",
@@ -6354,7 +6354,7 @@
         "hr": 110,
         "plus": "8F7GCW3C+8G"
       },
-      "wire": "NAJDA1 JN64W Y16M 35.40334,10.92126 T2327 SM V5 P1 KBX D117 G1 HR110 8F7GCW3C+8G #C2"
+      "wire": "SLK1 JN64W Y16M 35.40334,10.92126 T2327 SM V5 P1 KBX D117 G1 HR110 8F7GCW3C+8G #68"
     },
     {
       "name": "random-239",
@@ -6384,7 +6384,7 @@
         "spo2": 85,
         "plus": "7FW6537V+G2"
       },
-      "wire": "NAJDA1 6V9M8 Y79M 28.16384,4.09254 T0357 SW V3 P9 KBX D94 FDXCF HR70 SP85 7FW6537V+G2 #34"
+      "wire": "SLK1 6V9M8 Y79M 28.16384,4.09254 T0357 SW V3 P9 KBX D94 FDXCF HR70 SP85 7FW6537V+G2 #1A"
     },
     {
       "name": "random-240",
@@ -6415,7 +6415,7 @@
         "hr": 168,
         "plus": "8F2H6XX2+8Q"
       },
-      "wire": "NAJDA1 SQT08 O32H 30.24837,11.95191 T0339 SM V0 P2 KCMTB G56 FNBHE HR168 8F2H6XX2+8Q #6B"
+      "wire": "SLK1 SQT08 O32H 30.24837,11.95191 T0339 SM V0 P2 KCMTB G56 FNBHE HR168 8F2H6XX2+8Q #08"
     },
     {
       "name": "random-241",
@@ -6444,7 +6444,7 @@
         ],
         "plus": "7CHJVQW6+25"
       },
-      "wire": "NAJDA1 VXP1K O79H 21.89502,-7.23961 T1430 SW V3 P7 KCTX D79 G40 FUDX 7CHJVQW6+25 #2D"
+      "wire": "SLK1 VXP1K O79H 21.89502,-7.23961 T1430 SW V3 P7 KCTX D79 G40 FUDX 7CHJVQW6+25 #87"
     },
     {
       "name": "random-242",
@@ -6469,7 +6469,7 @@
         "spo2": 72,
         "plus": "8F222GWP+7M"
       },
-      "wire": "NAJDA1 NJDQ7 Y95L 30.04564,0.53665 T0645 SW V1 P8 KMP D102 RO HR199 SP72 8F222GWP+7M #D4"
+      "wire": "SLK1 NJDQ7 Y95L 30.04564,0.53665 T0645 SW V1 P8 KMP D102 RO HR199 SP72 8F222GWP+7M #B7"
     },
     {
       "name": "random-243",
@@ -6493,7 +6493,7 @@
         "g": 28,
         "plus": "8C8JXM3Q+2W"
       },
-      "wire": "NAJDA1 M8D37 Y36M 36.95262,-7.31021 T1424 SA V6 P3 KMBX D38 G28 8C8JXM3Q+2W #3E"
+      "wire": "SLK1 M8D37 Y36M 36.95262,-7.31021 T1424 SA V6 P3 KMBX D38 G28 8C8JXM3Q+2W #7F"
     },
     {
       "name": "random-244",
@@ -6525,7 +6525,7 @@
         "hr": 179,
         "plus": "8C5RW52X+C7"
       },
-      "wire": "NAJDA1 69T9S U12H 33.90112,-3.80186 T1740 SW V2 P5 KCBX D30 G3 RO FNUBX HR179 8C5RW52X+C7 #6B"
+      "wire": "SLK1 69T9S U12H 33.90112,-3.80186 T1740 SW V2 P5 KCBX D30 G3 RO FNUBX HR179 8C5RW52X+C7 #61"
     },
     {
       "name": "random-245",
@@ -6555,7 +6555,7 @@
         ],
         "plus": "8C2VHGC4+4Q"
       },
-      "wire": "NAJDA1 3G3V8 U20M 30.57036,-2.49306 T0303 SM V8 P4 KCTBP G27 FEDXF 8C2VHGC4+4Q #C7"
+      "wire": "SLK1 3G3V8 U20M 30.57036,-2.49306 T0303 SM V8 P4 KCTBP G27 FEDXF 8C2VHGC4+4Q #2A"
     },
     {
       "name": "random-246",
@@ -6578,7 +6578,7 @@
         "hr": 68,
         "plus": "7FJFRFF7+F5"
       },
-      "wire": "NAJDA1 VT8D2 O81M 22.82363,9.46296 T1022 SW V3 P1 KTX G42 HR68 7FJFRFF7+F5 #5B"
+      "wire": "SLK1 VT8D2 O81M 22.82363,9.46296 T1022 SW V3 P1 KTX G42 HR68 7FJFRFF7+F5 #40"
     },
     {
       "name": "random-247",
@@ -6603,7 +6603,7 @@
         "spo2": 90,
         "plus": "7FG42C3P+GW"
       },
-      "wire": "NAJDA1 M4322 G66M 20.00382,2.43734 T2328 SW V6 P7 KTPX D113 HR105 SP90 7FG42C3P+GW #0D"
+      "wire": "SLK1 M4322 G66M 20.00382,2.43734 T2328 SW V6 P7 KTPX D113 HR105 SP90 7FG42C3P+GW #97"
     },
     {
       "name": "random-248",
@@ -6633,7 +6633,7 @@
         "spo2": 98,
         "plus": "7FW7P3HV+79"
       },
-      "wire": "NAJDA1 KW0D4 R77L 28.72821,5.09341 T1805 SA V8 P9 KMTP G2 RO FHXF SP98 7FW7P3HV+79 #90"
+      "wire": "SLK1 KW0D4 R77L 28.72821,5.09341 T1805 SA V8 P9 KMTP G2 RO FHXF SP98 7FW7P3HV+79 #0A"
     },
     {
       "name": "random-249",
@@ -6655,7 +6655,7 @@
         "spo2": 90,
         "plus": "7FQ2WGMW+44"
       },
-      "wire": "NAJDA1 KJKQS Y87H 25.93279,0.54535 T0035 SA V4 P3 KB D7 SP90 7FQ2WGMW+44 #19"
+      "wire": "SLK1 KJKQS Y87H 25.93279,0.54535 T0035 SA V4 P3 KB D7 SP90 7FQ2WGMW+44 #AD"
     },
     {
       "name": "random-250",
@@ -6679,7 +6679,7 @@
         "hr": 169,
         "plus": "7CHWWQ6M+64"
       },
-      "wire": "NAJDA1 RQAX6 Y89M 21.91054,-1.21717 T2231 SA V4 P4 KMX D90 G23 HR169 7CHWWQ6M+64 #45"
+      "wire": "SLK1 RQAX6 Y89M 21.91054,-1.21717 T2231 SA V4 P4 KMX D90 G23 HR169 7CHWWQ6M+64 #EF"
     },
     {
       "name": "random-251",
@@ -6702,7 +6702,7 @@
         "dv": 85,
         "plus": "8F89WXM2+W4"
       },
-      "wire": "NAJDA1 RSKV5 R80H 36.93487,7.95029 T0224 SM V4 P8 KMTX D85 8F89WXM2+W4 #12"
+      "wire": "SLK1 RSKV5 R80H 36.93487,7.95029 T0224 SM V4 P8 KMTX D85 8F89WXM2+W4 #77"
     },
     {
       "name": "random-252",
@@ -6726,7 +6726,7 @@
         "hr": 175,
         "plus": "7CHJCGFH+R6"
       },
-      "wire": "NAJDA1 XQ6SB R36M 21.42453,-7.47196 T0713 SW V4 P6 KTP D76 G17 HR175 7CHJCGFH+R6 #97"
+      "wire": "SLK1 XQ6SB R36M 21.42453,-7.47196 T0713 SW V4 P6 KTP D76 G17 HR175 7CHJCGFH+R6 #3D"
     },
     {
       "name": "random-253",
@@ -6754,7 +6754,7 @@
           "F"
         ]
       },
-      "wire": "NAJDA1 Q6HM7 U81H 31.88633,10.03014 T2036 SM V1 P2 KMT D76 G56 FNDXF #10"
+      "wire": "SLK1 Q6HM7 U81H 31.88633,10.03014 T2036 SM V1 P2 KMT D76 G56 FNDXF #A2"
     },
     {
       "name": "random-254",
@@ -6775,7 +6775,7 @@
         "g": 38,
         "hr": 84
       },
-      "wire": "NAJDA1 S0D6F U98H 21.30416,-1.30447 T0813 SM V7 P0 KP G38 HR84 #07"
+      "wire": "SLK1 S0D6F U98H 21.30416,-1.30447 T0813 SM V7 P0 KP G38 HR84 #F2"
     },
     {
       "name": "random-255",
@@ -6796,7 +6796,7 @@
         "dv": 58,
         "g": 8
       },
-      "wire": "NAJDA1 J2BTD R91L 35.11928,-2.74158 T2219 SW V4 P0 KT D58 G8 #B3"
+      "wire": "SLK1 J2BTD R91L 35.11928,-2.74158 T2219 SW V4 P0 KT D58 G8 #D3"
     },
     {
       "name": "random-256",
@@ -6818,7 +6818,7 @@
         "g": 23,
         "plus": "7FG37JP4+76"
       },
-      "wire": "NAJDA1 W7MTW R10L 20.28573,1.60552 T1317 SA V0 P2 KC D126 G23 7FG37JP4+76 #0C"
+      "wire": "SLK1 W7MTW R10L 20.28573,1.60552 T1317 SA V0 P2 KC D126 G23 7FG37JP4+76 #09"
     },
     {
       "name": "random-257",
@@ -6844,7 +6844,7 @@
         "spo2": 72,
         "plus": "7CGRGR6H+87"
       },
-      "wire": "NAJDA1 5Q30H G05L 20.51077,-3.17180 T0033 SM V3 P2 KB G12 FU HR189 SP72 7CGRGR6H+87 #BB"
+      "wire": "SLK1 5Q30H G05L 20.51077,-3.17180 T0033 SM V3 P2 KB G12 FU HR189 SP72 7CGRGR6H+87 #74"
     },
     {
       "name": "random-258",
@@ -6869,7 +6869,7 @@
         "spo2": 71,
         "plus": "8F8CF2P3+84"
       },
-      "wire": "NAJDA1 WVG2F G77M 36.48582,8.00284 T0925 SA V8 P4 KCPX D106 HR111 SP71 8F8CF2P3+84 #4C"
+      "wire": "SLK1 WVG2F G77M 36.48582,8.00284 T0925 SA V8 P4 KCPX D106 HR111 SP71 8F8CF2P3+84 #D6"
     },
     {
       "name": "random-259",
@@ -6897,7 +6897,7 @@
         "spo2": 94,
         "plus": "8F29RR67+7C"
       },
-      "wire": "NAJDA1 A92DS R42H 30.81072,7.81351 T0337 SA V2 P6 KX D97 G19 RO FBF SP94 8F29RR67+7C #3F"
+      "wire": "SLK1 A92DS R42H 30.81072,7.81351 T0337 SA V2 P6 KX D97 G19 RO FBF SP94 8F29RR67+7C #5C"
     },
     {
       "name": "random-260",
@@ -6919,7 +6919,7 @@
         "hr": 85,
         "plus": "8F87Q8R4+JH"
       },
-      "wire": "NAJDA1 28W89 O31H 36.79160,5.30648 T0308 SA V2 P1 KT G47 HR85 8F87Q8R4+JH #24"
+      "wire": "SLK1 28W89 O31H 36.79160,5.30648 T0308 SA V2 P1 KT G47 HR85 8F87Q8R4+JH #21"
     },
     {
       "name": "random-261",
@@ -6943,7 +6943,7 @@
         "roll": true,
         "plus": "8F249XMJ+75"
       },
-      "wire": "NAJDA1 DET70 U69L 30.38323,2.98039 T1334 SW V2 P5 KCP D34 G20 RO 8F249XMJ+75 #C9"
+      "wire": "SLK1 DET70 U69L 30.38323,2.98039 T1334 SW V2 P5 KCP D34 G20 RO 8F249XMJ+75 #09"
     },
     {
       "name": "random-262",
@@ -6968,7 +6968,7 @@
         ],
         "hr": 146
       },
-      "wire": "NAJDA1 JQSEG Y05L 34.81062,11.55192 T1256 SM V2 P3 KX RO FNE HR146 #AF"
+      "wire": "SLK1 JQSEG Y05L 34.81062,11.55192 T1256 SM V2 P3 KX RO FNE HR146 #E2"
     },
     {
       "name": "random-263",
@@ -6990,7 +6990,7 @@
         "spo2": 73,
         "plus": "7CXMXQP2+W5"
       },
-      "wire": "NAJDA1 Y5457 O17M 29.98733,-6.24960 T1616 SM V5 P5 KT D70 SP73 7CXMXQP2+W5 #32"
+      "wire": "SLK1 Y5457 O17M 29.98733,-6.24960 T1616 SM V5 P5 KT D70 SP73 7CXMXQP2+W5 #29"
     },
     {
       "name": "random-264",
@@ -7011,7 +7011,7 @@
         "dv": 53,
         "g": 68
       },
-      "wire": "NAJDA1 JDXWS Y69M 20.00561,-6.70229 T0213 SW V9 P4 KB D53 G68 #1C"
+      "wire": "SLK1 JDXWS Y69M 20.00561,-6.70229 T0213 SW V9 P4 KB D53 G68 #3B"
     },
     {
       "name": "random-265",
@@ -7039,7 +7039,7 @@
         "hr": 126,
         "plus": "7FR3WVRW+9P"
       },
-      "wire": "NAJDA1 20KTY O59H 26.94092,1.89685 T0920 SM V4 P3 KTB D127 FNUF HR126 7FR3WVRW+9P #44"
+      "wire": "SLK1 20KTY O59H 26.94092,1.89685 T0920 SM V4 P3 KTB D127 FNUF HR126 7FR3WVRW+9P #1B"
     },
     {
       "name": "random-266",
@@ -7065,7 +7065,7 @@
         "hr": 182,
         "spo2": 100
       },
-      "wire": "NAJDA1 QRJ6A G90M 34.41952,3.41929 T1036 SA V1 P4 KC G2 FBD HR182 SP100 #3D"
+      "wire": "SLK1 QRJ6A G90M 34.41952,3.41929 T1036 SA V1 P4 KC G2 FBD HR182 SP100 #01"
     },
     {
       "name": "random-267",
@@ -7088,7 +7088,7 @@
         "spo2": 74,
         "plus": "8F2GFMF5+WG"
       },
-      "wire": "NAJDA1 2DT8T Y47H 30.47487,10.65882 T1908 SM V5 P6 KX D14 G75 SP74 8F2GFMF5+WG #51"
+      "wire": "SLK1 2DT8T Y47H 30.47487,10.65882 T1908 SM V5 P6 KX D14 G75 SP74 8F2GFMF5+WG #BC"
     },
     {
       "name": "random-268",
@@ -7115,7 +7115,7 @@
         ],
         "hr": 110
       },
-      "wire": "NAJDA1 WK4N9 U44L 28.54793,-0.35889 T2337 SW V7 P2 KMB D79 G56 FUE HR110 #A9"
+      "wire": "SLK1 WK4N9 U44L 28.54793,-0.35889 T2337 SW V7 P2 KMB D79 G56 FUE HR110 #1D"
     },
     {
       "name": "random-269",
@@ -7140,7 +7140,7 @@
         ],
         "plus": "7FRGX827+PP"
       },
-      "wire": "NAJDA1 C9EF4 U36M 26.95181,10.31433 T0247 SM V4 P3 KTP D2 FE 7FRGX827+PP #3E"
+      "wire": "SLK1 C9EF4 U36M 26.95181,10.31433 T0247 SM V4 P3 KTP D2 FE 7FRGX827+PP #8A"
     },
     {
       "name": "random-270",
@@ -7167,7 +7167,7 @@
         ],
         "spo2": 77
       },
-      "wire": "NAJDA1 2AY8T O05M 34.33892,-8.50048 T1928 SW V4 P3 KP D24 G12 FBHC SP77 #13"
+      "wire": "SLK1 2AY8T O05M 34.33892,-8.50048 T1928 SW V4 P3 KP D24 G12 FBHC SP77 #2F"
     },
     {
       "name": "random-271",
@@ -7189,7 +7189,7 @@
           "X"
         ]
       },
-      "wire": "NAJDA1 JG8XA G24M 22.41099,-2.73561 T2142 SW V2 P0 KCMTX #80"
+      "wire": "SLK1 JG8XA G24M 22.41099,-2.73561 T2142 SW V2 P0 KCMTX #DA"
     },
     {
       "name": "random-272",
@@ -7213,7 +7213,7 @@
         "hr": 151,
         "plus": "7CHQ9PWP+FH"
       },
-      "wire": "NAJDA1 KP8YD Y51L 21.39618,-4.26352 T0632 SW V5 P0 KCTBP HR151 7CHQ9PWP+FH #C6"
+      "wire": "SLK1 KP8YD Y51L 21.39618,-4.26352 T0632 SW V5 P0 KCTBP HR151 7CHQ9PWP+FH #DD"
     },
     {
       "name": "random-273",
@@ -7241,7 +7241,7 @@
         "hr": 180,
         "plus": "7FR6RP86+9P"
       },
-      "wire": "NAJDA1 GFXB1 O03L 26.81589,4.71187 T0214 SM V0 P0 KBP D117 G23 FEX HR180 7FR6RP86+9P #E7"
+      "wire": "SLK1 GFXB1 O03L 26.81589,4.71187 T0214 SM V0 P0 KBP D117 G23 FEX HR180 7FR6RP86+9P #84"
     },
     {
       "name": "random-274",
@@ -7270,7 +7270,7 @@
         ],
         "plus": "7FP39C7P+G5"
       },
-      "wire": "NAJDA1 HKXRG G16M 24.36379,1.43547 T1340 SW V8 P0 KMTPX D17 G74 RO FH 7FP39C7P+G5 #69"
+      "wire": "SLK1 HKXRG G16M 24.36379,1.43547 T1340 SW V8 P0 KMTPX D17 G74 RO FH 7FP39C7P+G5 #36"
     },
     {
       "name": "random-275",
@@ -7295,7 +7295,7 @@
           "C"
         ]
       },
-      "wire": "NAJDA1 X2V5E G29L 27.06928,-7.13595 T1944 SA V9 P0 KMTX FEC #AF"
+      "wire": "SLK1 X2V5E G29L 27.06928,-7.13595 T1944 SA V9 P0 KMTX FEC #0C"
     },
     {
       "name": "random-276",
@@ -7319,7 +7319,7 @@
         "spo2": 80,
         "plus": "8F84HW6X+G6"
       },
-      "wire": "NAJDA1 HDDS9 Y84H 36.56125,2.94803 T1145 SA V1 P8 KX D91 G44 RO SP80 8F84HW6X+G6 #8D"
+      "wire": "SLK1 HDDS9 Y84H 36.56125,2.94803 T1145 SA V1 P8 KX D91 G44 RO SP80 8F84HW6X+G6 #27"
     },
     {
       "name": "random-277",
@@ -7342,7 +7342,7 @@
         "spo2": 82,
         "plus": "8F54V92C+34"
       },
-      "wire": "NAJDA1 9Q903 G87L 33.85016,2.37027 T0153 SA V2 P7 KP D86 G52 SP82 8F54V92C+34 #CB"
+      "wire": "SLK1 9Q903 G87L 33.85016,2.37027 T0153 SA V2 P7 KP D86 G52 SP82 8F54V92C+34 #85"
     },
     {
       "name": "random-278",
@@ -7363,7 +7363,7 @@
         "g": 67,
         "spo2": 81
       },
-      "wire": "NAJDA1 T07AZ G08M 27.67331,-3.89005 T1638 SW V3 P0 KC G67 SP81 #67"
+      "wire": "SLK1 T07AZ G08M 27.67331,-3.89005 T1638 SW V3 P0 KC G67 SP81 #92"
     },
     {
       "name": "random-279",
@@ -7387,7 +7387,7 @@
         "hr": 176,
         "plus": "7FR7XMFC+F5"
       },
-      "wire": "NAJDA1 6J9XJ O19L 26.97363,5.67040 T1624 SW V1 P3 KT D85 G72 RO HR176 7FR7XMFC+F5 #10"
+      "wire": "SLK1 6J9XJ O19L 26.97363,5.67040 T1624 SW V1 P3 KT D85 G72 RO HR176 7FR7XMFC+F5 #4F"
     },
     {
       "name": "random-280",
@@ -7410,7 +7410,7 @@
         "g": 50,
         "hr": 96
       },
-      "wire": "NAJDA1 RTCB8 Y18L 31.18969,7.54430 T0650 SA V3 P5 KCM D19 G50 HR96 #86"
+      "wire": "SLK1 RTCB8 Y18L 31.18969,7.54430 T0650 SA V3 P5 KCM D19 G50 HR96 #CB"
     },
     {
       "name": "random-281",
@@ -7437,7 +7437,7 @@
         ],
         "plus": "7CFX2Q5R+JG"
       },
-      "wire": "NAJDA1 5M9ER R86L 19.00912,-0.20864 T1317 SM V8 P6 KMTP D57 G17 FU 7CFX2Q5R+JG #06"
+      "wire": "SLK1 5M9ER R86L 19.00912,-0.20864 T1317 SM V8 P6 KMTP D57 G17 FU 7CFX2Q5R+JG #EB"
     },
     {
       "name": "random-282",
@@ -7460,7 +7460,7 @@
         "hr": 164,
         "plus": "7CJJ6824+P2"
       },
-      "wire": "NAJDA1 KR6TV U07H 22.20175,-7.69491 T2316 SW V8 P3 KPX RO HR164 7CJJ6824+P2 #8B"
+      "wire": "SLK1 KR6TV U07H 22.20175,-7.69491 T2316 SW V8 P3 KPX RO HR164 7CJJ6824+P2 #CA"
     },
     {
       "name": "random-283",
@@ -7492,7 +7492,7 @@
         "hr": 159,
         "plus": "8F229JV6+RF"
       },
-      "wire": "NAJDA1 YYJXH G50M 30.39453,0.61117 T0553 SW V3 P2 KCMTPX G24 FUHCF HR159 8F229JV6+RF #FA"
+      "wire": "SLK1 YYJXH G50M 30.39453,0.61117 T0553 SW V3 P2 KCMTPX G24 FUHCF HR159 8F229JV6+RF #99"
     },
     {
       "name": "random-284",
@@ -7520,7 +7520,7 @@
           "X"
         ]
       },
-      "wire": "NAJDA1 W1P4A R68H 21.89210,9.77471 T1231 SW V8 P6 KPX D6 FNUBDX #6B"
+      "wire": "SLK1 W1P4A R68H 21.89210,9.77471 T1231 SW V8 P6 KPX D6 FNUBDX #AE"
     },
     {
       "name": "random-285",
@@ -7542,7 +7542,7 @@
         "hr": 112,
         "spo2": 94
       },
-      "wire": "NAJDA1 19FFQ R62L 33.78398,-0.57333 T1740 SA V3 P9 KBX HR112 SP94 #96"
+      "wire": "SLK1 19FFQ R62L 33.78398,-0.57333 T1740 SA V3 P9 KBX HR112 SP94 #3A"
     },
     {
       "name": "random-286",
@@ -7574,7 +7574,7 @@
         "hr": 146,
         "spo2": 77
       },
-      "wire": "NAJDA1 WS8AB O89H 26.39770,6.47510 T0747 SM V5 P6 KCMBP G2 RO FNBDF HR146 SP77 #02"
+      "wire": "SLK1 WS8AB O89H 26.39770,6.47510 T0747 SM V5 P6 KCMBP G2 RO FNBDF HR146 SP77 #EF"
     },
     {
       "name": "random-287",
@@ -7598,7 +7598,7 @@
         "roll": true,
         "plus": "8C6WM3WR+G2"
       },
-      "wire": "NAJDA1 XVFZ2 R68M 34.69630,-1.90990 T1752 SM V8 P3 KMTB G69 RO 8C6WM3WR+G2 #57"
+      "wire": "SLK1 XVFZ2 R68M 34.69630,-1.90990 T1752 SM V8 P3 KMTB G69 RO 8C6WM3WR+G2 #4C"
     },
     {
       "name": "random-288",
@@ -7621,7 +7621,7 @@
         "spo2": 86,
         "plus": "7CQMR62W+MG"
       },
-      "wire": "NAJDA1 Y1HWV U40H 25.80165,-6.75370 T1911 SW V9 P7 KM G9 HR108 SP86 7CQMR62W+MG #FB"
+      "wire": "SLK1 Y1HWV U40H 25.80165,-6.75370 T1911 SW V9 P7 KM G9 HR108 SP86 7CQMR62W+MG #76"
     },
     {
       "name": "random-289",
@@ -7646,7 +7646,7 @@
         ],
         "plus": "8C2PRX9V+8H"
       },
-      "wire": "NAJDA1 T8D8V O09M 30.81827,-5.00601 T0657 SM V4 P9 KP D30 FBX 8C2PRX9V+8H #15"
+      "wire": "SLK1 T8D8V O09M 30.81827,-5.00601 T0657 SM V4 P9 KP D30 FBX 8C2PRX9V+8H #10"
     },
     {
       "name": "random-290",
@@ -7678,7 +7678,7 @@
         "spo2": 84,
         "plus": "8C6M5MGP+82"
       },
-      "wire": "NAJDA1 73ZJ9 O59L 34.17584,-6.31493 T0445 SA V7 P3 KM D105 G39 FNUBHEXF SP84 8C6M5MGP+82 #47"
+      "wire": "SLK1 73ZJ9 O59L 34.17584,-6.31493 T0445 SA V7 P3 KM D105 G39 FNUBHEXF SP84 8C6M5MGP+82 #28"
     },
     {
       "name": "random-291",
@@ -7703,7 +7703,7 @@
         "hr": 170,
         "plus": "7FXC86CF+MF"
       },
-      "wire": "NAJDA1 9ZGSV R93M 29.32173,8.22368 T1700 SW V8 P2 KTB D121 G78 RO HR170 7FXC86CF+MF #BB"
+      "wire": "SLK1 9ZGSV R93M 29.32173,8.22368 T1700 SW V8 P2 KTB D121 G78 RO HR170 7FXC86CF+MF #74"
     },
     {
       "name": "random-292",
@@ -7725,7 +7725,7 @@
         ],
         "dv": 97
       },
-      "wire": "NAJDA1 EVFW7 R70L 28.15072,-4.01658 T0848 SW V8 P8 KMPX D97 #B8"
+      "wire": "SLK1 EVFW7 R70L 28.15072,-4.01658 T0848 SW V8 P8 KMPX D97 #1B"
     },
     {
       "name": "random-293",
@@ -7748,7 +7748,7 @@
         "spo2": 78,
         "plus": "8C2WG75C+62"
       },
-      "wire": "NAJDA1 SSEWJ O42L 30.50812,-1.72992 T1248 SA V3 P2 KM D51 G27 SP78 8C2WG75C+62 #B6"
+      "wire": "SLK1 SSEWJ O42L 30.50812,-1.72992 T1248 SA V3 P2 KM D51 G27 SP78 8C2WG75C+62 #5B"
     },
     {
       "name": "random-294",
@@ -7775,7 +7775,7 @@
         "spo2": 72,
         "plus": "8C2MPQM4+CR"
       },
-      "wire": "NAJDA1 TS5GC R77H 30.73354,-6.24300 T0211 SA V3 P4 KCTPX D95 RO HR196 SP72 8C2MPQM4+CR #E7"
+      "wire": "SLK1 TS5GC R77H 30.73354,-6.24300 T0211 SA V3 P4 KCTPX D95 RO HR196 SP72 8C2MPQM4+CR #2D"
     },
     {
       "name": "random-295",
@@ -7800,7 +7800,7 @@
         "spo2": 77,
         "plus": "8F5CP48H+QH"
       },
-      "wire": "NAJDA1 PYFPS R69H 33.71690,8.12891 T1326 SW V7 P3 KPX D19 G46 HR92 SP77 8F5CP48H+QH #9E"
+      "wire": "SLK1 PYFPS R69H 33.71690,8.12891 T1326 SW V7 P3 KPX D19 G46 HR92 SP77 8F5CP48H+QH #51"
     },
     {
       "name": "random-296",
@@ -7828,7 +7828,7 @@
         ],
         "plus": "8F86PVFG+PP"
       },
-      "wire": "NAJDA1 B53B8 G69H 36.72435,4.87680 T0308 SA V8 P7 KB D33 G28 FHXCF 8F86PVFG+PP #A2"
+      "wire": "SLK1 B53B8 G69H 36.72435,4.87680 T0308 SA V8 P7 KB D33 G28 FHXCF 8F86PVFG+PP #4F"
     },
     {
       "name": "random-297",
@@ -7857,7 +7857,7 @@
         ],
         "plus": "8C2JCPG6+JM"
       },
-      "wire": "NAJDA1 BV8ZM G16M 30.42652,-7.28830 T0321 SW V6 P0 KCMB G43 FUBEF 8C2JCPG6+JM #A6"
+      "wire": "SLK1 BV8ZM G16M 30.42652,-7.28830 T0321 SW V6 P0 KCMB G43 FUBEF 8C2JCPG6+JM #E8"
     },
     {
       "name": "random-298",
@@ -7883,7 +7883,7 @@
         ],
         "plus": "7CWP5Q2P+9H"
       },
-      "wire": "NAJDA1 D0Z42 O65M 28.15088,-5.21355 T0427 SA V4 P8 KC D45 FEDC 7CWP5Q2P+9H #27"
+      "wire": "SLK1 D0Z42 O65M 28.15088,-5.21355 T0427 SA V4 P8 KC D45 FEDC 7CWP5Q2P+9H #3C"
     },
     {
       "name": "random-299",
@@ -7913,7 +7913,7 @@
         "spo2": 91,
         "plus": "7FP8G453+F8"
       },
-      "wire": "NAJDA1 Z75YB O95H 24.50870,6.10333 T2026 SM V1 P8 KCBX D13 FUDF HR47 SP91 7FP8G453+F8 #16"
+      "wire": "SLK1 Z75YB O95H 24.50870,6.10333 T2026 SM V1 P8 KCBX D13 FUDF HR47 SP91 7FP8G453+F8 #38"
     },
     {
       "name": "random-300",
@@ -7941,7 +7941,7 @@
         ],
         "plus": "8F8CQW78+8M"
       },
-      "wire": "NAJDA1 PJKVT U19M 36.76336,8.91672 T1319 SM V8 P0 KTP D36 G57 FUEF 8F8CQW78+8M #C8"
+      "wire": "SLK1 PJKVT U19M 36.76336,8.91672 T1319 SM V8 P0 KTP D36 G57 FUEF 8F8CQW78+8M #25"
     }
   ]
 }

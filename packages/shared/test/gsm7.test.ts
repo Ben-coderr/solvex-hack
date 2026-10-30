@@ -5,7 +5,7 @@ import { gsm7Length, isGsm7, isGsm7Basic, __internal } from '../src/gsm7';
 test('basic table has 128 entries', () => assert.equal([...__internal.BASIC].length, 128));
 
 test('plain ASCII packet chars are basic GSM-7', () => {
-  const s = 'NAJDA1 K7Q2M R75H 36.47213,-2.82871 T1432 SA V1 P1 KC #04 8F84FRCH+VF';
+  const s = 'SLK1 K7Q2M R75H 36.47213,-2.82871 T1432 SA V1 P1 KC #92 8F84FRCH+VF';
   assert.equal(gsm7Length(s), s.length);
   assert.ok(isGsm7Basic(s));
 });

@@ -31,7 +31,7 @@ def pick_order(items, order):
 
 # ───────────── wire format ─────────────
 def encode(p):
-    t = ["NAJDA1", p["id"], f'{p["band"]}{p["score"]:02d}{p["conf"]}',
+    t = ["SLK1", p["id"], f'{p["band"]}{p["score"]:02d}{p["conf"]}',
          f'{p["lat"]:.5f},{p["lon"]:.5f}'.replace("-0.00000", "0.00000"),
          f'T{p["time"]}', f'S{p["src"]}', f'V{p["veh"]}', f'P{p["pers"]}',
          "K" + pick_order(p["kinds"], KIND_ORDER)]
@@ -55,7 +55,7 @@ TIME_RE = re.compile(r"^([01]\d|2[0-3])[0-5]\d$")
 def decode(s):
     """STRICT decoder (same rules as src/dzmsd.ts). Raises DecodeError on anything invalid."""
     s = re.sub(r"\s+", " ", s.strip()).upper()
-    if not s.startswith("NAJDA1 "): raise DecodeError("bad_magic")
+    if not s.startswith("SLK1 "): raise DecodeError("bad_magic")
     if " #" not in s: raise DecodeError("missing_checksum")
     body, cs = s.rsplit(" #", 1)
     if not re.fullmatch(r"[0-9A-F]{2}", cs): raise DecodeError("bad_checksum_format")

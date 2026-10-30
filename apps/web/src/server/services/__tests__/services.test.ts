@@ -27,7 +27,7 @@ describe('lifecycle', () => {
 describe('pre-alert SMS', () => {
   it('matches the docs/04 §6 template with estimated-risk wording', () => {
     const s = prealertSms({ id: 'K7Q2M', band: 'R', nsi: 75, etaMin: 24, persons: 1, rollover: true, dvKmh: 71, spo2: 89, flags: ['N'] });
-    expect(s).toBe('NAJDA PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M');
+    expect(s).toBe('SELLEKNI PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M');
     expect(isGsm7Basic(s)).toBe(true);
   });
   it('always fits one GSM-7 SMS and keeps the reply instruction, even with every flag', () => {
@@ -41,7 +41,7 @@ describe('pre-alert SMS', () => {
     expect(s).toContain('ne repond pas'); // highest-priority observation survives truncation
   });
   it('says nothing about ETA when unknown', () => {
-    expect(prealertSms({ id: 'AAAAA', band: 'Y', nsi: 5, etaMin: null })).toBe('NAJDA PRE-ALERTE AAAAA risque estime Y05. Repondre OK AAAAA');
+    expect(prealertSms({ id: 'AAAAA', band: 'Y', nsi: 5, etaMin: null })).toBe('SELLEKNI PRE-ALERTE AAAAA risque estime Y05. Repondre OK AAAAA');
   });
 });
 
@@ -148,7 +148,7 @@ describe('rate limiting never drops a message', () => {
   });
   it('a quarantined (rate-limited) SMS is stored raw, creates no incident and gets no reply', async () => {
     const s = new MemoryStore();
-    const text = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
+    const text = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
     const a = await ingest({
       kind: 'text', channel: 'sms', text, receivedAt: new Date('2026-10-30T13:40:00Z'),
       senderHash: 'flood', replyTo: '+2135', quarantine: 'rate_limited',

@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { dirOf, isLocale, DEFAULT_LOCALE } from "@/i18n/config";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { BRAND } from '@/brand';
 
 const plexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-plex-arabic",
@@ -25,7 +26,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "NAJDA",
+  title: BRAND.name,
   description: "Decision support for road-accident response (prototype, synthetic data).",
 };
 

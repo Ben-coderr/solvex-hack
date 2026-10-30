@@ -5,9 +5,11 @@ import { ingest, type InboundMessage } from '../ingest';
 import { MemoryStore } from './memory-store';
 
 // docs/05 §1.2 golden packets
-const EX1 = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
-const EX2 = 'NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55';
-const BAD_CRC = EX1.replace('#04', '#05');
+const EX1 = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
+// change the last CRC digit: a checksum failure whatever the magic (scripts/rename-magic.mjs)
+const corruptCrc = (wire: string) => wire.slice(0, -1) + (wire.endsWith('F') ? 'E' : 'F');
+const EX2 = 'SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30';
+const BAD_CRC = corruptCrc(EX1);
 
 // 14:40 local (UTC+1) on the demo day: both packets resolve to the same day.
 const AT = new Date('2026-10-30T13:40:00Z');
@@ -188,6 +190,6 @@ describe('ingest — same id on two channels, server authority, atomicity', () =
     await ingest(viaJson({ ...json, incident_id: 'B2C3D' }), s);
     expect(s.state.outbox).toHaveLength(0);
     await ingest(sms(EX2, { receivedAt: new Date('2026-10-30T08:20:00Z') }), s);
-    expect(s.state.outbox[0]!.body).toMatch(/^NAJDA RECU P3N8D \d{4}\./);
+    expect(s.state.outbox[0]!.body).toMatch(/^SELLEKNI RECU P3N8D \d{4}\./);
   });
 });

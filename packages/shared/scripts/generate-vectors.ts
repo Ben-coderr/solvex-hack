@@ -17,7 +17,7 @@ mkdirSync(out, { recursive: true });
 const write = (name: string, data: unknown) => writeFileSync(join(out, name), JSON.stringify(data, null, 2) + '\n');
 
 // 1 — CRC-8
-const crcInputs = ['', '123456789', 'NAJDA1', 'A', '#', 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF'];
+const crcInputs = ['', '123456789', 'SLK1', 'A', '#', 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF'];
 write('crc8.json', {
   description: 'CRC-8 poly 0x07 init 0x00 refin/refout false xorout 0 (CRC-8/SMBUS). check("123456789") = F4',
   cases: crcInputs.map((input) => ({ input, crc: crc8Hex(input) })),
@@ -37,7 +37,7 @@ write('dzmsd-valid.json', {
 
 // 3 — invalid messages (all must be rejected; "code" is the TypeScript error code)
 const sign = (body: string) => `${body} #${crc8Hex(body)}`;
-const base = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC';
+const base = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC';
 const handmade: Array<[string, string]> = [
   ['', 'empty'], ['HELLO', 'bad_magic'], [base, 'missing_checksum'], [`${base} #ZZ`, 'bad_checksum_format'],
   [`${base} #00`, 'checksum_mismatch'],

@@ -6,8 +6,8 @@ import {
 } from '../src/index';
 import { randomPacket, rng } from './helpers';
 
-const WIRE1 = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
-const WIRE2 = 'NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55';
+const WIRE1 = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
+const WIRE2 = 'SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30';
 const PKT1: DzmsdPacket = {
   id: 'K7Q2M', band: 'R', score: 75, conf: 'H', lat: 36.47213, lon: 2.82871, time: '1432', src: 'A', veh: 1, pers: 1,
   kinds: ['C'], dv: 71, g: 38, roll: true, flags: ['N'], hr: 124, spo2: 89, plus: '8F84FRCH+VF',
@@ -17,11 +17,11 @@ const PKT2: DzmsdPacket = {
   kinds: ['C', 'P'], flags: ['X', 'C'], plus: '8C7XM9R8+CQ',
 };
 
-test('canonical spec examples encode byte-for-byte (CRC #04 and #55, 93 and 74 chars)', () => {
+test('canonical spec examples encode byte-for-byte (CRC #0E and #30, 91 and 72 chars)', () => {
   assert.equal(encodeDzmsd(PKT1), WIRE1);
   assert.equal(encodeDzmsd(PKT2), WIRE2);
-  assert.equal(WIRE1.length, 93);
-  assert.equal(WIRE2.length, 74);
+  assert.equal(WIRE1.length, 91);
+  assert.equal(WIRE2.length, 72);
 });
 
 test('canonical spec examples decode to the expected packets', () => {
@@ -93,8 +93,8 @@ test('rejects structurally invalid messages with precise codes', () => {
   const cases: Array<[string, string]> = [
     ['', 'empty'],
     ['HELLO WORLD', 'bad_magic'],
-    ['NAJDA1 K7Q2M R75H 36.47213,2.82871', 'missing_checksum'],
-    ['NAJDA1 K7Q2M R75H 36.47213,2.82871 #ZZ', 'bad_checksum_format'],
+    ['SLK1 K7Q2M R75H 36.47213,2.82871', 'missing_checksum'],
+    ['SLK1 K7Q2M R75H 36.47213,2.82871 #ZZ', 'bad_checksum_format'],
   ];
   for (const [input, code] of cases) {
     const d = decodeDzmsd(input);
@@ -107,7 +107,7 @@ test('rejects structurally invalid messages with precise codes', () => {
 const sign = (body: string) => `${body} #${crc8Hex(body)}`;
 
 test('parser-level validation (valid CRC, invalid content)', () => {
-  const base = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC';
+  const base = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC';
   const ok = decodeDzmsd(sign(base));
   assert.ok(ok.ok, 'minimal packet is valid');
 
@@ -138,19 +138,19 @@ test('parser-level validation (valid CRC, invalid content)', () => {
 });
 
 test('order-free after the header (spec: "order-free after the header")', () => {
-  const d = decodeDzmsd(sign('NAJDA1 K7Q2M R75H 36.47213,2.82871 8F84FRCH+VF SP89 HR124 FN RO G38 D71 KC P1 V1 SA T1432'));
+  const d = decodeDzmsd(sign('SLK1 K7Q2M R75H 36.47213,2.82871 8F84FRCH+VF SP89 HR124 FN RO G38 D71 KC P1 V1 SA T1432'));
   assert.ok(d.ok);
   assert.deepEqual(d.packet, PKT1);
 });
 
 test('unknown future tokens are ignored with a warning, not rejected', () => {
-  const d = decodeDzmsd(sign('NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC ZQ5'));
+  const d = decodeDzmsd(sign('SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC ZQ5'));
   assert.ok(d.ok);
   assert.deepEqual(d.warnings, ['unknown token "ZQ5" ignored']);
 });
 
 test('plus code that disagrees with the coordinates produces a warning', () => {
-  const d = decodeDzmsd(sign('NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC 8C7XM9R8+CQ'));
+  const d = decodeDzmsd(sign('SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC 8C7XM9R8+CQ'));
   assert.ok(d.ok);
   assert.equal(d.warnings.length, 1);
   assert.match(d.warnings[0]!, /plus code/);

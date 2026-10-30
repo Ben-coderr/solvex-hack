@@ -19,12 +19,15 @@ import { EmptyState, ErrorState, SkeletonRows } from '@/components/ui/states';
 import { StatusBanner, type ConnectivityMode } from '@/components/ui/status-banner';
 import { TriageMarker } from '@/components/ui/triage-marker';
 import { WitnessStepper } from '@/components/ui/witness-stepper';
+import { BRAND } from '@/brand';
 
 // ── fixtures: canonical packets (docs/05 §1.2) and the ranking worked example (docs/05 §5.1). Synthetic. ──
 const NOW = new Date('2026-10-30T13:40:00Z'); // frozen clock: deterministic screenshots
-const EX1 = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04';
-const EX2 = 'NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55';
-const BAD = EX1.replace('#04', '#05');
+const EX1 = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E';
+// change the last CRC digit: a checksum failure whatever the magic (scripts/rename-magic.mjs)
+const corruptCrc = (wire: string) => wire.slice(0, -1) + (wire.endsWith('F') ? 'E' : 'F');
+const EX2 = 'SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30';
+const BAD = corruptCrc(EX1);
 const R_REASONS = [{ code: 'dv', points: 30 }, { code: 'spo2_low', points: 20 }, { code: 'rollover', points: 15 }];
 const REQ_R_N = ['ed24', 'trauma_surgery', 'ct', 'icu', 'neurosurgery'] as const;
 const ago = (min: number) => new Date(NOW.getTime() - min * 60_000);
@@ -76,7 +79,7 @@ export function Styleguide() {
     <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-10 px-4 py-8 wrap-anywhere">
       <header className="flex flex-col gap-3">
         <StatusBanner mode="demo" className="rounded-md border" />
-        <h1 className="font-display text-4xl font-semibold wrap-anywhere">NAJDA — styleguide</h1>
+        <h1 className="font-display text-4xl font-semibold wrap-anywhere">{BRAND.name} — styleguide</h1>
         <p className="max-w-3xl text-base text-muted-foreground">
           Every design-system component in every state, in light and dark, English (LTR) and Arabic (RTL). Synthetic data; facility names are illustrative. Clock frozen at 14:40 local for stable screenshots.
         </p>

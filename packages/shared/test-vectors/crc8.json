@@ -10,8 +10,8 @@
       "crc": "F4"
     },
     {
-      "input": "NAJDA1",
-      "crc": "96"
+      "input": "SLK1",
+      "crc": "E1"
     },
     {
       "input": "A",
@@ -22,8 +22,8 @@
       "crc": "E9"
     },
     {
-      "input": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF",
-      "crc": "04"
+      "input": "SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF",
+      "crc": "0E"
     }
   ]
 }

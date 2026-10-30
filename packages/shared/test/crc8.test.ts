@@ -9,7 +9,7 @@ test('CRC-8/SMBUS standard check value', () => {
 
 test('hex is 2 uppercase digits', () => {
   assert.equal(crc8Hex('\u0001'), '07');
-  assert.match(crc8Hex('NAJDA1'), /^[0-9A-F]{2}$/);
+  assert.match(crc8Hex('SLK1'), /^[0-9A-F]{2}$/);
 });
 
 test('rejects non-ASCII', () => {
@@ -17,7 +17,7 @@ test('rejects non-ASCII', () => {
 });
 
 test('a single-character change is always detected (exhaustive over substitutions)', () => {
-  const body = 'NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF';
+  const body = 'SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF';
   const ref = crc8(body);
   const alphabet = ' 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ+,.-#';
   let tested = 0;

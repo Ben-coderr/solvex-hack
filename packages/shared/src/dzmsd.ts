@@ -6,7 +6,7 @@ import {
   type Band, type Confidence, type DzmsdPacket, type Flag, type Kind, type Source,
 } from './types';
 
-export const MAGIC = 'NAJDA1';
+export const MAGIC = 'SLK1';
 export const CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // no I L O U
 const ID_RE = /^[0-9A-HJKMNP-TV-Z]{5}$/;
 
