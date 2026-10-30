@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Switch, View } from 'react-native';
 import { probeHealth } from '@/src/alert/https';
 import { Btn, Field, Screen, Section, Segmented, Txt } from '@/src/components/kit';
+import { SmsSetup } from '@/src/components/SmsSetup';
 import { applyLocale } from '@/src/i18n';
 import { testAlarm } from '@/src/services/alarm';
 import { PHONE_RE, URL_RE, useSettings } from '@/src/state/settings';
@@ -20,16 +21,18 @@ export default function SettingsScreen() {
   const [ingestKey, setIngestKey] = useState(s.ingestKey);
   const [gw1, setGw1] = useState(s.gw1);
   const [gw2, setGw2] = useState(s.gw2);
+  const [contacts, setContacts] = useState(() => [0, 1, 2].map((i) => s.contacts[i] ?? ''));
   const [probe, setProbe] = useState<'idle' | 'busy' | 'ok' | 'fail'>('idle');
   const [saved, setSaved] = useState(false);
 
   const urlErr = serverUrl && !URL_RE.test(serverUrl.trim()) ? t('settings.invalidUrl') : null;
   const gw1Err = gw1 && !PHONE_RE.test(gw1.trim()) ? t('settings.invalidPhone') : null;
   const gw2Err = gw2 && !PHONE_RE.test(gw2.trim()) ? t('settings.invalidPhone') : null;
-  const invalid = !!(urlErr || gw1Err || gw2Err);
+  const contactErr = contacts.map((v) => (v && !PHONE_RE.test(v.trim()) ? t('settings.invalidPhone') : null));
+  const invalid = !!(urlErr || gw1Err || gw2Err || contactErr.some(Boolean));
 
   const save = () => {
-    s.set({ serverUrl: serverUrl.trim(), ingestKey: ingestKey.trim(), gw1: gw1.trim(), gw2: gw2.trim() });
+    s.set({ serverUrl: serverUrl.trim(), ingestKey: ingestKey.trim(), gw1: gw1.trim(), gw2: gw2.trim(), contacts: contacts.map((v) => v.trim()).filter(Boolean) });
     setSaved(true);
     setTimeout(() => setSaved(false), 2_000);
   };
@@ -63,8 +66,15 @@ export default function SettingsScreen() {
       <Section title={t('settings.gateways')}>
         <Field label={t('settings.gw1')} value={gw1} onChangeText={setGw1} hint={t('settings.gwHint')} error={gw1Err} ltr keyboardType="phone-pad" />
         <Field label={t('settings.gw2')} value={gw2} onChangeText={setGw2} hint={t('settings.gwHint')} error={gw2Err} ltr keyboardType="phone-pad" />
-        <Txt v="label">{t('settings.sim')}</Txt>
-        <Txt v="small" tone="muted">{t('settings.simLater')}</Txt>
+        <SmsSetup />
+      </Section>
+
+      <Section title={t('settings.contacts')}>
+        <Txt v="small" tone="muted">{t('settings.contactsHint')}</Txt>
+        {contacts.map((v, i) => (
+          <Field key={i} testID={`contact-${i}`} label={t('settings.contact', { n: i + 1 })} value={v} onChangeText={(x) => setContacts(contacts.map((y, j) => (j === i ? x : y)))}
+            hint={t('settings.gwHint')} error={contactErr[i]} ltr keyboardType="phone-pad" />
+        ))}
       </Section>
 
       <Section title={t('settings.demo')} right={

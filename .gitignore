@@ -16,6 +16,8 @@ supabase/.temp
 data/osrm/*.osrm*
 data/*.pbf
 data/*.pmtiles
+# real gateway webhooks (contain phone numbers): anonymise before copying into fixtures
+data/captures/
 
 # ./najda runtime (pids, logs, port)
 /.najda/

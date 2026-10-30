@@ -3,13 +3,15 @@ import { Check, MessageSquareText, Phone, X } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { hhmm, httpsBadge } from '@/src/components/AlertSummary';
+import { hhmm } from '@/src/components/AlertSummary';
+import { ChannelRows } from '@/src/components/ChannelRows';
 import { Btn, Notice, Screen, Section, Txt } from '@/src/components/kit';
-import { EMERGENCY, openDialler, openSmsComposer, type SmsOpen } from '@/src/services/alerts';
+import { channelRows } from '@/src/alert/chain';
+import { chainConfig, EMERGENCY, openDialler, openSmsComposer, type SmsOpen } from '@/src/services/alerts';
 import { stopDrive } from '@/src/services/drive';
 import { useSession } from '@/src/state/session';
 import { useSettings } from '@/src/state/settings';
-import { ChannelBadge, EmptyState, GoldenRing, PacketLine, T, useTheme } from '@/src/ui';
+import { EmptyState, GoldenRing, PacketLine, T, useTheme } from '@/src/ui';
 
 /**
  * Alert status (M5): the packet first (what travelled), one row per channel, "Received by rescuers" on ACK,
@@ -23,7 +25,9 @@ export default function AlertStatus() {
   const item = useSession((s) => (id ? s.alerts[id] : undefined));
   const replaying = useSession((s) => s.replay !== null);
   const link = useSession((s) => s.link);
-  const gateway = useSettings((s) => s.gw1 || s.gw2);
+  // re-render when Settings or the SMS permission change (chainConfig reads them)
+  useSettings((s) => `${s.gw1}|${s.gw2}|${s.contacts.join(',')}`);
+  useSession((s) => s.perms.sms);
   const [smsResult, setSmsResult] = useState<SmsOpen | null>(null);
   const [now, setNow] = useState(Date.now());
   useEffect(() => {
@@ -44,13 +48,12 @@ export default function AlertStatus() {
     );
   }
 
-  const h = item.https;
-  const httpsText =
-    h.state === 'acked' ? t('alert.https_acked')
-    : h.state === 'rejected' ? t('alert.https_rejected', { code: h.lastError ?? '' })
-    : h.state === 'gave_up' ? t('alert.https_gave_up')
-    : h.state === 'retrying' && h.nextAt ? t('alert.https_retrying', { s: Math.max(0, Math.ceil((h.nextAt - now) / 1000)) })
-    : t('alert.https_pending');
+  const cfg = chainConfig();
+  const rows = channelRows(item, cfg);
+  const composer = rows.find((r) => r.channel === 'composer');
+  // a numeric code = the radio itself refused (SmsManager / RIL result: no credit, no signal, barred…)
+  const radioRefused = !item.ackAt && rows.some((r) => (r.channel === 'gw1' || r.channel === 'gw2' || r.channel === 'contacts') && r.state === 'retrying' && /^\d+$/.test(r.code ?? ''));
+  const smsDelivered = rows.some((r) => (r.channel === 'gw1' || r.channel === 'gw2') && r.state === 'delivered');
   const loc = item.json.location;
   const outcome = item.ack?.outcome;
 
@@ -80,26 +83,20 @@ export default function AlertStatus() {
           {item.diallerOpenedAt ? <Check size={18} color={c.statusOk} /> : <X size={18} color={c.statusWarn} />}
           <Txt style={{ flex: 1 }}>{item.diallerOpenedAt ? t('alert.dialler') : t('alert.diallerNot')}</Txt>
         </View>
-        <View style={{ gap: T.space[1] }}>
-          <ChannelBadge channel="https" status={httpsBadge(item)} />
-          <Txt v="small" tone="muted">{httpsText}</Txt>
-        </View>
-        <View style={{ gap: T.space[2] }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[2] }}>
-            <MessageSquareText size={18} color={item.sms.composerOpenedAt ? c.statusOk : c.muted} />
-            <Txt style={{ flex: 1 }}>
-              {item.sms.composerOpenedAt
-                ? t('alert.smsOpened', { time: hhmm(item.sms.composerOpenedAt), to: item.sms.to ?? '' })
-                : `${t('alert.sms')} · ${gateway ? t('alert.smsReady') : t('alert.smsNoGateway')}`}
-            </Txt>
+        <ChannelRows rows={rows} now={now} nextAt={item.https.nextAt} />
+        {radioRefused && !item.gaveUpAt ? <Notice text={t('alert.smsRadioFail')} tone="statusWarn" /> : null}
+        {item.gaveUpAt ? <Notice text={t('alert.gaveUp')} tone="statusDanger" /> : null}
+        {smsDelivered && !item.ackAt ? <Txt v="small" tone="muted">{t('alert.deliveredNote')}</Txt> : null}
+        {composer && composer.state !== 'off' && (
+          <View style={{ gap: T.space[2] }}>
+            {!item.ackAt && link !== 'online' && !item.sms.composerOpenedAt ? <Notice text={t('alert.composerNote')} tone="statusInfo" /> : null}
+            {smsResult === 'unavailable' && <Notice text={t('alert.smsUnavailable')} tone="statusWarn" />}
+            <Btn testID="alert-sms" kind="secondary" icon={MessageSquareText}
+              label={item.sms.composerOpenedAt ? t('alert.smsAgain') : t('alert.smsSend')}
+              onPress={() => void openSmsComposer(item.id).then(setSmsResult)} />
           </View>
-          {!item.ackAt && link !== 'online' && !item.sms.composerOpenedAt && gateway ? <Notice text={t('alert.smsAdvice')} tone="statusInfo" /> : null}
-          {smsResult === 'unavailable' && <Notice text={t('alert.smsUnavailable')} tone="statusWarn" />}
-          <Btn testID="alert-sms" kind="secondary" icon={MessageSquareText} disabled={!gateway}
-            label={item.sms.composerOpenedAt ? t('alert.smsAgain') : t('alert.smsSend')}
-            hint={gateway ? undefined : t('alert.smsNoGateway')}
-            onPress={() => void openSmsComposer(item.id).then(setSmsResult)} />
-        </View>
+        )}
+        {composer?.state === 'off' && !item.ackAt ? <Txt v="small" tone="statusWarn">{t('alert.smsNoGateway')}</Txt> : null}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: T.space[2] }}>
           {[EMERGENCY.civil, EMERGENCY.civilAlt, EMERGENCY.gendarmerie].map((n, i) => (
             <View key={n} style={{ flexGrow: 1, flexBasis: '30%' }}>

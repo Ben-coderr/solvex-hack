@@ -13,6 +13,8 @@ const Env = z.object({
   SMSGATE_USER: z.string().optional(),
   SMSGATE_PASSWORD: z.string().optional(),
   SMSGATE_WEBHOOK_SECRET: z.string().min(16),
+  /** dev only: write every SIGNED webhook (body + headers) here to record real fixtures (P5). Never in production. */
+  SMSGATE_CAPTURE_DIR: z.string().optional().or(z.literal('')),
   OSRM_URL: z.string().url().optional().or(z.literal('')),
   ORS_API_KEY: z.string().optional(),
   DEMO_MODE: z

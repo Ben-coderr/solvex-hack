@@ -11,4 +11,6 @@ export const BRAND = {
   codename: 'NAJDA',
   /** JSON `device.app` prefix, seen by the dispatcher in the raw report */
   appId: 'sellekni-mobile',
+  /** prefix of the readable SMS to emergency contacts (GSM-7, same as the web's pre-alert prefix) */
+  smsName: 'SELLEKNI',
 } as const;

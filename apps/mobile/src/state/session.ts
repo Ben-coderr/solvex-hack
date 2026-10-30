@@ -22,7 +22,8 @@ export interface Session {
   lastRejection: { at: number; rejected: RejectKey[] } | null;
   fix: (Fix & { speedKmh: number | null }) | null;
   battery: number | null;
-  perms: { location: PermState };
+  /** sms = SEND_SMS for the silent channel ('denied' also when the build has no native module) */
+  perms: { location: PermState; sms: PermState };
   /** an ALERT decision from the detector, waiting for the countdown screen */
   pending: { decision: Decision; rangeG: number } | null;
   alerts: Record<string, OutboxItem>;
@@ -37,7 +38,7 @@ export const useSession = create<Session>()((set) => ({
   lastRejection: null,
   fix: null,
   battery: null,
-  perms: { location: 'undetermined' },
+  perms: { location: 'undetermined', sms: 'undetermined' },
   pending: null,
   alerts: {},
   set: (p) => set(p),

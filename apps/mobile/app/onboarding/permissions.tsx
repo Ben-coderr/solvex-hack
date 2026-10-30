@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, View } from 'react-native';
 import { Btn, Screen, Section, Txt } from '@/src/components/kit';
+import { SmsSetup } from '@/src/components/SmsSetup';
 import { testAlarm } from '@/src/services/alarm';
 import { useSession, type PermState } from '@/src/state/session';
 import { useSettings } from '@/src/state/settings';
@@ -34,8 +35,8 @@ function PermCard({ icon: Icon, title, why, state, deniedText, onAllow, info }: 
 
 /**
  * M1 step 3: each permission with its reason; refusing never dead-ends (the degraded mode is described). Only what
- * this build uses is asked: location. No notification (no background service, docs/17 §2), no SMS permission (the
- * alert SMS goes through the system composer).
+ * this build uses is asked: location and SEND_SMS (+ phone access only to tell two SIMs apart). No notification (no
+ * background service, docs/17 §2). Refusing SMS leaves the composer fallback.
  */
 export default function Permissions() {
   const { t } = useTranslation();
@@ -48,7 +49,7 @@ export default function Permissions() {
   useEffect(() => {
     void (async () => {
       const loc = await Location.getForegroundPermissionsAsync();
-      setSession({ perms: { location: loc.granted ? 'granted' : loc.canAskAgain ? 'undetermined' : 'denied' } });
+      setSession({ perms: { ...useSession.getState().perms, location: loc.granted ? 'granted' : loc.canAskAgain ? 'undetermined' : 'denied' } });
     })();
   }, [setSession]);
 
@@ -68,7 +69,15 @@ export default function Permissions() {
       <Txt v="h1" accessibilityRole="header">{t('onboarding.permTitle')}</Txt>
       <Txt tone="muted">{t('onboarding.permBody')}</Txt>
       <PermCard icon={MapPin} title={t('onboarding.locTitle')} why={t('onboarding.locWhy')} state={perms.location} deniedText={t('onboarding.locDenied')} onAllow={() => void askLocation()} />
-      <PermCard icon={MessageSquareText} title={t('onboarding.smsTitle')} why={t('onboarding.smsWhy')} state="undetermined" deniedText={t('onboarding.smsDegraded')} info />
+      <Section>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[3] }}>
+          <MessageSquareText size={22} color={c.brandText} />
+          <Txt v="title" style={{ flex: 1 }}>{t('onboarding.smsTitle')}</Txt>
+        </View>
+        <Txt v="small" tone="muted">{t('onboarding.smsWhy')}</Txt>
+        <SmsSetup />
+        {perms.sms !== 'granted' && <Txt v="small">{t('onboarding.smsDegraded')}</Txt>}
+      </Section>
       <Section>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[3] }}>
           <Volume2 size={22} color={c.brandText} />

@@ -15,6 +15,12 @@ export interface Settings {
   ingestKey: string;
   gw1: string;
   gw2: string;
+  /** up to 3 numbers that get a readable SMS when the alert is not confirmed within a minute */
+  contacts: string[];
+  /** dual-SIM: the subscription that sends alerts, asked once (null = the phone's default SMS SIM) */
+  simSubscriptionId: number | null;
+  /** what the person chose, shown in Settings: slot (0-based) and carrier at the time */
+  simLabel: { slot: number; carrier: string } | null;
   /**
    * The accelerometer's real range in g (Sensor Lab T1): read from Android by the native module, or typed in from
    * the T1 inventory. null = unknown: Drive mode cannot detect until it is set. Under 8 g: SOS and witness only.
@@ -36,6 +42,9 @@ export const useSettings = create<Settings>()(
       ingestKey: process.env.EXPO_PUBLIC_NAJDA_INGEST_KEY ?? '',
       gw1: '',
       gw2: '',
+      contacts: [],
+      simSubscriptionId: null,
+      simLabel: null,
       rangeG: null,
       rangeSource: null,
       demoMode: false,

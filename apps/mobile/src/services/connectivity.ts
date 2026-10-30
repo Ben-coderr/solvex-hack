@@ -8,8 +8,13 @@ import { useSettings } from '../state/settings';
  * no credit is not online). Probes every 10 s and at once on any network change; listeners hear every transition.
  */
 const PERIOD_MS = 10_000;
-/** P5 sets this when the native SMS channel is ready; until then "no data" is shown as offline, honestly. */
-export let smsChannelReady = false;
+/** true when the native SMS channel can carry an alert (module + SEND_SMS + a gateway): "no data" is then "SMS only". */
+let smsChannelReady = false;
+export function setSmsChannelReady(ready: boolean) {
+  if (ready === smsChannelReady) return;
+  smsChannelReady = ready;
+  void probeNow();
+}
 
 type Listener = (link: Link, prev: Link) => void;
 const listeners = new Set<Listener>();

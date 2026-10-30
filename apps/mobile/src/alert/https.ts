@@ -1,6 +1,6 @@
 /**
  * HTTPS channel (docs/04 §3.3): a 2 s HEAD /api/health probe (not "connected" according to the OS), then
- * POST /api/incidents with x-najda-key (8 s). The HTTP response IS the ACK. `fetch` is injected for tests.
+ * POST /api/incidents with x-najda-key (full JSON 8 s, compact JSON 15 s). The HTTP response IS the ACK. `fetch` is injected for tests.
  */
 import { IngestAck, type IncidentJson } from '@najda/api-contract';
 
@@ -9,6 +9,7 @@ export type Fetch = (url: string, init: { method: string; headers?: Record<strin
 
 export const PROBE_TIMEOUT_MS = 2_000;
 export const POST_TIMEOUT_MS = 8_000;
+export const COMPACT_TIMEOUT_MS = 15_000;
 
 const join = (base: string, path: string) => `${base.replace(/\/+$/, '')}${path}`;
 
@@ -41,9 +42,9 @@ export type PostResult =
 /** 4xx other than 408/429 will not get better by retrying the same body (bad key, invalid JSON). */
 const retryable = (status: number) => status >= 500 || status === 408 || status === 429;
 
-export async function postIncident(fetchFn: Fetch, baseUrl: string, key: string, body: IncidentJson): Promise<PostResult> {
+export async function postIncident(fetchFn: Fetch, baseUrl: string, key: string, body: IncidentJson, timeoutMs = POST_TIMEOUT_MS): Promise<PostResult> {
   try {
-    const res = await withTimeout(POST_TIMEOUT_MS, (signal) =>
+    const res = await withTimeout(timeoutMs, (signal) =>
       fetchFn(join(baseUrl, '/api/incidents'), {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-najda-key': key },

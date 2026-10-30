@@ -6,6 +6,7 @@ import { deliverOutbox } from '@/server/services/outbox';
 import { LIMITS } from '@/server/services/rate-limit';
 import { senderHash } from '@/server/services/sender';
 import { parseInbound, verifySignature } from '@/server/services/sms/gateway';
+import { captureWebhook } from '@/server/services/sms/capture';
 import { postgresStore } from '@/server/services/store-postgres';
 
 /**
@@ -20,6 +21,7 @@ export async function POST(req: NextRequest) {
 
   const sig = verifySignature(raw.raw, req.headers.get('x-timestamp'), req.headers.get('x-signature'), env().SMSGATE_WEBHOOK_SECRET);
   if (!sig.ok) return fail(401, `webhook signature ${sig.why}`); // not from our gateway: not a message to keep
+  await captureWebhook(raw.raw, req.headers);
 
   let body: unknown;
   try {
