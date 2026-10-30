@@ -42,7 +42,15 @@ export const useSettings = create<Settings>()(
       demoCountdownS: COUNTDOWN.demoSeconds,
       set: (p) => set(p),
     }),
-    { name: 'najda.settings.v1', storage: createJSONStorage(() => Storage) },
+    {
+      name: 'najda.settings.v1',
+      storage: createJSONStorage(() => Storage),
+      // a value saved EMPTY (first launch before the demo build had one) must not hide the build's default forever
+      merge: (saved, current) => {
+        const s = (saved ?? {}) as Partial<Settings>;
+        return { ...current, ...s, serverUrl: s.serverUrl || current.serverUrl, ingestKey: s.ingestKey || current.ingestKey };
+      },
+    },
   ),
 );
 
