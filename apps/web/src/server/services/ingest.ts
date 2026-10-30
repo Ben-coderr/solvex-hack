@@ -17,7 +17,7 @@ export type InboundMessage =
       /** sender number for the ACK SMS (sms channel only); goes to sms_outbox, never into reports */
       replyTo: string | null;
       /** stored raw with this code instead of decoding (e.g. 'rate_limited'): kept and shown, never creates an incident */
-      quarantine?: 'rate_limited';
+      quarantine?: 'rate_limited' | 'bad_webhook_payload';
     }
   | {
       kind: 'json';

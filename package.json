@@ -15,7 +15,10 @@
     "dev:web": "pnpm --filter web dev",
     "dev:mobile": "pnpm --filter mobile start",
     "db:seed-sql": "node scripts/gen-seed-sql.mjs",
-    "db:reset": "node scripts/gen-seed-sql.mjs && supabase db reset"
+    "db:reset": "node scripts/gen-seed-sql.mjs && supabase db reset",
+    "env:local": "node scripts/env-local.mjs",
+    "db:users": "tsx --env-file=.env.local scripts/seed-users.mts",
+    "realtime:probe": "tsx --env-file=.env.local scripts/realtime-probe.mts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -25,5 +28,9 @@
       "sharp",
       "unrs-resolver"
     ]
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "tsx": "^4.19.0"
   }
 }
