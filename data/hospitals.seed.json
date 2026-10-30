@@ -1,0 +1,23 @@
+{
+  "$comment": "SYNTHETIC, ILLUSTRATIVE facilities for the demo only. Names, positions, levels and capabilities are invented and NOT verified. Do not present them as real hospitals. CHU-A / EPH-B / CHU-C reproduce the worked example in docs/05 §5.1 around the demo origin 36.47213,2.82871 (EPH-B is closest but has no neurosurgery/ICU: closest != best). Capabilities use the fixed vocabulary of docs/04 §5. Generate supabase/seed.sql with `pnpm db:seed-sql`.",
+  "hospitals": [
+    { "id": "CHU-A", "name": "CHU A (illustrative)", "level": "A", "wilaya_code": 9, "lat": 36.592, "lon": 2.949, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "pediatrics"] },
+    { "id": "EPH-B", "name": "EPH B (illustrative)", "level": "B", "wilaya_code": 9, "lat": 36.53, "lon": 2.829, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct"] },
+    { "id": "CHU-C", "name": "CHU C (illustrative)", "level": "A", "wilaya_code": 9, "lat": 36.172, "lon": 2.559, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "burns"] },
+    { "id": "EPH-D", "name": "EPH D (illustrative)", "level": "B", "wilaya_code": 9, "lat": 36.41, "lon": 2.74, "capabilities": ["ed24", "general_surgery", "pediatrics"] },
+    { "id": "PU-E", "name": "Polyclinic E (illustrative)", "level": "C", "wilaya_code": 9, "lat": 36.45, "lon": 2.9, "capabilities": ["ed24"] },
+
+    { "id": "CHU-F", "name": "CHU F (illustrative)", "level": "A", "wilaya_code": 16, "lat": 36.745, "lon": 3.06, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "pediatrics", "burns"] },
+    { "id": "EPH-G", "name": "EPH G (illustrative)", "level": "B", "wilaya_code": 16, "lat": 36.72, "lon": 2.98, "capabilities": ["ed24", "general_surgery", "ct", "icu"] },
+    { "id": "EPH-H", "name": "EPH H (illustrative)", "level": "B", "wilaya_code": 16, "lat": 36.69, "lon": 3.17, "capabilities": ["ed24", "general_surgery", "pediatrics"] },
+
+    { "id": "CHU-O", "name": "CHU O (illustrative)", "level": "A", "wilaya_code": 31, "lat": 35.705, "lon": -0.615, "capabilities": ["ed24", "general_surgery", "trauma_surgery", "ct", "icu", "neurosurgery", "pediatrics"] },
+    { "id": "EPH-P", "name": "EPH P (illustrative)", "level": "B", "wilaya_code": 31, "lat": 35.68, "lon": -0.65, "capabilities": ["ed24", "general_surgery", "ct", "pediatrics"] },
+    { "id": "EPH-Q", "name": "EPH Q (illustrative)", "level": "B", "wilaya_code": 31, "lat": 35.74, "lon": -0.56, "capabilities": ["ed24", "general_surgery", "trauma_surgery"] },
+    { "id": "PU-R", "name": "Polyclinic R (illustrative)", "level": "C", "wilaya_code": 31, "lat": 35.66, "lon": -0.7, "capabilities": ["ed24"] }
+  ],
+  "statuses": [
+    { "hospital_id": "EPH-B", "status": "OK", "set_by": "seed" },
+    { "hospital_id": "CHU-C", "status": "SATURATED", "set_by": "seed" }
+  ]
+}

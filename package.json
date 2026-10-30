@@ -13,7 +13,9 @@
     "tokens": "pnpm --filter @najda/tokens build",
     "check": "pnpm test && pnpm typecheck && pnpm crosscheck",
     "dev:web": "pnpm --filter web dev",
-    "dev:mobile": "pnpm --filter mobile start"
+    "dev:mobile": "pnpm --filter mobile start",
+    "db:seed-sql": "node scripts/gen-seed-sql.mjs",
+    "db:reset": "node scripts/gen-seed-sql.mjs && supabase db reset"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
