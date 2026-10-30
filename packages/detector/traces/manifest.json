@@ -1,0 +1,587 @@
+[
+  {
+    "file": "frontal_45_r8.csv",
+    "scenario": "frontal_45",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "alert",
+    "note": "full-frontal, Δv 45 km/h, half-sine 32 g / 63 ms, stops dead",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "alert",
+        "rule": "a",
+        "reasons": [
+          "speed_collapse",
+          "impact_sustained",
+          "impact_at_sensor_limit",
+          "came_to_stop"
+        ],
+        "rejected": [],
+        "metrics": {
+          "peakG": 8,
+          "sensorLimited": true,
+          "tHighMs": 60,
+          "tSaturatedMs": 50,
+          "axesActive": 3,
+          "rotationDeg": 5,
+          "speedBeforeKmh": 45,
+          "speedAfterKmh": 0,
+          "dvKmh": 45,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "rollover_71_r8.csv",
+    "scenario": "rollover_71",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "alert",
+    "note": "kerb trip 20 g / 60 ms, ~360° roll in 1.1 s, two ground impacts 9 g, slides to a stop",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "alert",
+        "rule": "a",
+        "reasons": [
+          "speed_collapse",
+          "impact_sustained",
+          "impact_at_sensor_limit",
+          "rotation",
+          "came_to_stop"
+        ],
+        "rejected": [],
+        "metrics": {
+          "peakG": 8,
+          "sensorLimited": true,
+          "tHighMs": 60,
+          "tSaturatedMs": 60,
+          "axesActive": 3,
+          "rotationDeg": 365,
+          "speedBeforeKmh": 72,
+          "speedAfterKmh": 0,
+          "dvKmh": 72,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "speed_bump_r8.csv",
+    "scenario": "speed_bump",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "brakes 50->25 km/h, then a hard bump 6 g / 60 ms; never stops (the stop gate is what rejects it)",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "still_moving"
+        ],
+        "metrics": {
+          "peakG": 6.9,
+          "sensorLimited": false,
+          "tHighMs": 40,
+          "tSaturatedMs": 0,
+          "axesActive": 2,
+          "rotationDeg": 10,
+          "speedBeforeKmh": 50,
+          "speedAfterKmh": 25,
+          "dvKmh": 25,
+          "stopped": false
+        }
+      }
+    ]
+  },
+  {
+    "file": "hard_brake_r8.csv",
+    "scenario": "hard_brake",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "90 km/h to 0 at 0.8 g: a big speed change with no impact",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "phone_drop_r8.csv",
+    "scenario": "phone_drop",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "phone falls off the seat: 0.3 s free fall then 3 band-limited impacts (clipped at the range); the car keeps going",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "too_short",
+          "no_speed_drop",
+          "still_moving"
+        ],
+        "metrics": {
+          "peakG": 8,
+          "sensorLimited": true,
+          "tHighMs": 20,
+          "tSaturatedMs": 20,
+          "axesActive": 3,
+          "rotationDeg": 2,
+          "speedBeforeKmh": 61,
+          "speedAfterKmh": 59,
+          "dvKmh": 1,
+          "stopped": false
+        }
+      }
+    ]
+  },
+  {
+    "file": "pothole_80_r8.csv",
+    "scenario": "pothole_80",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "pothole at 60 km/h: 6 g / 20 ms vertical, speed unchanged",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "too_short",
+          "no_speed_drop",
+          "still_moving"
+        ],
+        "metrics": {
+          "peakG": 7,
+          "sensorLimited": false,
+          "tHighMs": 10,
+          "tSaturatedMs": 0,
+          "axesActive": 1,
+          "rotationDeg": 11,
+          "speedBeforeKmh": 61,
+          "speedAfterKmh": 60,
+          "dvKmh": 1,
+          "stopped": false
+        }
+      }
+    ]
+  },
+  {
+    "file": "pothole_then_stop_r8.csv",
+    "scenario": "pothole_then_stop",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "pothole 6 g / 20 ms, then the driver brakes hard to a red light and stops: speed collapse + stop are both true, ONLY the duration gate rejects it",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "too_short"
+        ],
+        "metrics": {
+          "peakG": 5.4,
+          "sensorLimited": false,
+          "tHighMs": 20,
+          "tSaturatedMs": 0,
+          "axesActive": 1,
+          "rotationDeg": 11,
+          "speedBeforeKmh": 60,
+          "speedAfterKmh": 0,
+          "dvKmh": 60,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "door_slam_r8.csv",
+    "scenario": "door_slam",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 20,
+    "expect": "no-alert",
+    "note": "parked car, door slam 3 g / 30 ms: never armed",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "walking_pocket_r8.csv",
+    "scenario": "walking_pocket",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 20,
+    "expect": "no-alert",
+    "note": "phone in a pocket, walking 5 km/h: never armed",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "fender_bender_12_r8.csv",
+    "scenario": "fender_bender_12",
+    "rangeG": 8,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "KNOWN LIMITATION: 12 km/h shunt, below the 25 km/h speed gate, deliberately not detected (witness/SOS cover it)",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "frontal_45_r16.csv",
+    "scenario": "frontal_45",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "alert",
+    "note": "full-frontal, Δv 45 km/h, half-sine 32 g / 63 ms, stops dead",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "alert",
+        "rule": "a",
+        "reasons": [
+          "speed_collapse",
+          "impact_sustained",
+          "impact_at_sensor_limit",
+          "came_to_stop"
+        ],
+        "rejected": [],
+        "metrics": {
+          "peakG": 16,
+          "sensorLimited": true,
+          "tHighMs": 60,
+          "tSaturatedMs": 40,
+          "axesActive": 3,
+          "rotationDeg": 5,
+          "speedBeforeKmh": 45,
+          "speedAfterKmh": 0,
+          "dvKmh": 45,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "rollover_71_r16.csv",
+    "scenario": "rollover_71",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "alert",
+    "note": "kerb trip 20 g / 60 ms, ~360° roll in 1.1 s, two ground impacts 9 g, slides to a stop",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "alert",
+        "rule": "a",
+        "reasons": [
+          "speed_collapse",
+          "impact_sustained",
+          "impact_at_sensor_limit",
+          "rotation",
+          "came_to_stop"
+        ],
+        "rejected": [],
+        "metrics": {
+          "peakG": 16,
+          "sensorLimited": true,
+          "tHighMs": 60,
+          "tSaturatedMs": 20,
+          "axesActive": 3,
+          "rotationDeg": 365,
+          "speedBeforeKmh": 72,
+          "speedAfterKmh": 0,
+          "dvKmh": 72,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "speed_bump_r16.csv",
+    "scenario": "speed_bump",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "brakes 50->25 km/h, then a hard bump 6 g / 60 ms; never stops (the stop gate is what rejects it)",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "still_moving"
+        ],
+        "metrics": {
+          "peakG": 6.9,
+          "sensorLimited": false,
+          "tHighMs": 40,
+          "tSaturatedMs": 0,
+          "axesActive": 2,
+          "rotationDeg": 10,
+          "speedBeforeKmh": 50,
+          "speedAfterKmh": 25,
+          "dvKmh": 25,
+          "stopped": false
+        }
+      }
+    ]
+  },
+  {
+    "file": "hard_brake_r16.csv",
+    "scenario": "hard_brake",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "90 km/h to 0 at 0.8 g: a big speed change with no impact",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "phone_drop_r16.csv",
+    "scenario": "phone_drop",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "phone falls off the seat: 0.3 s free fall then 3 band-limited impacts (clipped at the range); the car keeps going",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "too_short",
+          "no_speed_drop",
+          "still_moving"
+        ],
+        "metrics": {
+          "peakG": 16,
+          "sensorLimited": true,
+          "tHighMs": 20,
+          "tSaturatedMs": 10,
+          "axesActive": 3,
+          "rotationDeg": 2,
+          "speedBeforeKmh": 61,
+          "speedAfterKmh": 59,
+          "dvKmh": 1,
+          "stopped": false
+        }
+      }
+    ]
+  },
+  {
+    "file": "pothole_80_r16.csv",
+    "scenario": "pothole_80",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "pothole at 60 km/h: 6 g / 20 ms vertical, speed unchanged",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "too_short",
+          "no_speed_drop",
+          "still_moving"
+        ],
+        "metrics": {
+          "peakG": 7,
+          "sensorLimited": false,
+          "tHighMs": 10,
+          "tSaturatedMs": 0,
+          "axesActive": 1,
+          "rotationDeg": 11,
+          "speedBeforeKmh": 61,
+          "speedAfterKmh": 60,
+          "dvKmh": 1,
+          "stopped": false
+        }
+      }
+    ]
+  },
+  {
+    "file": "pothole_then_stop_r16.csv",
+    "scenario": "pothole_then_stop",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "pothole 6 g / 20 ms, then the driver brakes hard to a red light and stops: speed collapse + stop are both true, ONLY the duration gate rejects it",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": [
+      {
+        "kind": "rejected",
+        "rule": null,
+        "reasons": [],
+        "rejected": [
+          "too_short"
+        ],
+        "metrics": {
+          "peakG": 5.4,
+          "sensorLimited": false,
+          "tHighMs": 20,
+          "tSaturatedMs": 0,
+          "axesActive": 1,
+          "rotationDeg": 11,
+          "speedBeforeKmh": 60,
+          "speedAfterKmh": 0,
+          "dvKmh": 60,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "door_slam_r16.csv",
+    "scenario": "door_slam",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 20,
+    "expect": "no-alert",
+    "note": "parked car, door slam 3 g / 30 ms: never armed",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "walking_pocket_r16.csv",
+    "scenario": "walking_pocket",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 20,
+    "expect": "no-alert",
+    "note": "phone in a pocket, walking 5 km/h: never armed",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "fender_bender_12_r16.csv",
+    "scenario": "fender_bender_12",
+    "rangeG": 16,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "no-alert",
+    "note": "KNOWN LIMITATION: 12 km/h shunt, below the 25 km/h speed gate, deliberately not detected (witness/SOS cover it)",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC",
+    "detector": []
+  },
+  {
+    "file": "frontal_45_r200.csv",
+    "scenario": "frontal_45",
+    "rangeG": 200,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "alert",
+    "note": "full-frontal, Δv 45 km/h, half-sine 32 g / 63 ms, stops dead",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC · BOX (simulated, roadmap)",
+    "detector": [
+      {
+        "kind": "alert",
+        "rule": "a",
+        "reasons": [
+          "speed_collapse",
+          "impact_sustained",
+          "came_to_stop"
+        ],
+        "rejected": [],
+        "metrics": {
+          "peakG": 32.1,
+          "sensorLimited": false,
+          "tHighMs": 60,
+          "tSaturatedMs": 0,
+          "axesActive": 3,
+          "rotationDeg": 5,
+          "speedBeforeKmh": 45,
+          "speedAfterKmh": 0,
+          "dvKmh": 45,
+          "stopped": true
+        }
+      }
+    ]
+  },
+  {
+    "file": "rollover_71_r200.csv",
+    "scenario": "rollover_71",
+    "rangeG": 200,
+    "rateHz": 100,
+    "durationS": 30,
+    "expect": "alert",
+    "note": "kerb trip 20 g / 60 ms, ~360° roll in 1.1 s, two ground impacts 9 g, slides to a stop",
+    "synthetic": true,
+    "label": "REPLAY · SYNTHETIC · BOX (simulated, roadmap)",
+    "detector": [
+      {
+        "kind": "alert",
+        "rule": "a",
+        "reasons": [
+          "speed_collapse",
+          "impact_sustained",
+          "rotation",
+          "came_to_stop"
+        ],
+        "rejected": [],
+        "metrics": {
+          "peakG": 19.8,
+          "sensorLimited": false,
+          "tHighMs": 60,
+          "tSaturatedMs": 0,
+          "axesActive": 3,
+          "rotationDeg": 365,
+          "speedBeforeKmh": 72,
+          "speedAfterKmh": 0,
+          "dvKmh": 72,
+          "stopped": true
+        }
+      }
+    ]
+  }
+]

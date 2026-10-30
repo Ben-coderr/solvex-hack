@@ -3,13 +3,15 @@
 > Read this before you reuse anything from the earlier plan (`PLAN_V3.md` and the English research set 00–09). Those files were useful for ideas; the items below are the places where they would have hurt you in front of a jury or in the code.
 > Severity: **🔴 would break the build or the credibility** · **🟠 wrong but recoverable** · **🟡 polish**.
 
+> **Later corrections (2026-10-30)** are in docs/12 (rename, sensor range, OBD/IoT verdicts), docs/13 §4.1 (detector), docs/14 §1 and docs/15 §4 (unsourced numbers, unconfirmed jury criteria, corrected Q&A).
+
 ## A. Corrections to the earlier documents
 
 | # | Sev | Where | Problem | What this pack does |
 |---|---|---|---|---|
 | 1 | 🔴 | V3 §3.2–3.3 | `expo-sms` is listed as the way to "send SMS natively, no 4G". It **only opens the SMS composer**; the user must tap Send. It cannot send silently | Local Kotlin Expo module over `SmsManager`; composer is the fallback. `SEND_SMS` is Play-restricted → sideload; iOS impossible |
 | 2 | 🔴 | V3 §3.1/§3.2 | Accelerometer polling "in the background" via `expo-sensors`: it stops when the app is backgrounded | Foreground "Drive mode" + keep-awake + location foreground service; replay mode for the demo; Kotlin service = stretch |
-| 3 | 🔴 | V3 §5 vs 06 §6 | **Two incompatible packet formats.** V3's example `NAJDA1 A7K3F2 1423 3630N00308E R H RO 085094 8FVC9G2P #3A` has no verified CRC, a 6-char id, French band letters (R/O/J/V/N), and coordinates too coarse to locate a car | One format (06's tokens), implemented, 5,000-packet property tested, CRC verified by an independent implementation |
+| 3 | 🔴 | V3 §5 vs 06 §6 | **Two incompatible packet formats.** V3's example `NAJDA1 A7K3F2 1423 3630N00308E R H RO 085094 8FVC9G2P #3A` has no verified CRC, a 6-char id, French band letters (R/O/J/V/N), and coordinates too coarse to locate a car | One format (06's tokens), implemented, 5,000-packet property tested, CRC verified by an independent implementation | <!-- keep-magic: historical quote of the old plan, do not rewrite -->
 | 4 | 🔴 | V3 §16, §11 | Witness page `/w/<id>` "shows GPS coordinates, accident type, victim state" to anyone with the link. A 5-char id is guessable; that exposes where an injured person is | Link carries an unguessable token; page shows only a coarse location (~100 m), no victim data; rate-limited |
 | 5 | 🟠 | V3 §6.1 | NSI examples: raw 90 → "78" is **77**; raw 150 → "92" is **91**; "range 1–99, never 0" is false (raw 0 → 0). Test vector `scoring-001` says raw 110 → 84; it is **83** | Fixed and pinned by tests (`scoreFromRaw`) |
 | 6 | 🟠 | V3 §6.3 | Vittel code contradicts its own table and vector: it *raises* every band to O when mechanism = H (table says "mech L + normal vitals → green/yellow"); the vector claims R→O capping that the code never performs; **HR > 130 is treated as a Vittel criterion**, but to our knowledge the classic Vittel physiological criteria are GCS < 13, SBP < 90, SpO₂ < 90 | Clean rule: physiology can force R, mechanism-only is capped at O, HR is only a "shock proxy" (15 points, counts as physiological evidence). **Have a clinician confirm** before presenting it as "Vittel" — we say "Vittel-style" |
@@ -24,9 +26,10 @@
 | 15 | 🟠 | V3 §15.5 Q3 | Privacy answer claims SMS data is "encrypted server-side (HTTPS)" and "nothing stored on the phone". GSM SMS is not end-to-end encrypted; the outbox is stored on the phone | Honest wording: SMS carries only non-sensitive essentials; the medical profile never uses SMS; local outbox is cleared after ACK/30 min |
 | 16 | 🟠 | V3 §15 | "AI triage / IA" wording | It is a transparent rules engine: say "rules" |
 | 17 | 🟠 | V3 Q7 | Claims data from the "registre MSP" and 50 scenarios tested | Not done; say what is curated/illustrative |
-| 18 | 🟡 | 06 §6.2 | "≥ 67 spare characters" is true for a typical auto packet (93 chars) but the worst case is 115 (45 spare) | Both numbers documented |
+| 18 | 🟡 | 06 §6.2 | "≥ 69 spare characters" is true for a typical auto packet (91 chars) but the worst case is 113 (47 spare) | Both numbers documented |
 | 19 | 🟡 | V3 §14 | Mobile only starts at H28 — the riskiest part (native SMS, sensors) comes last | Mobile starts at H0, native SMS has its own gate (G4, H30) |
 | 20 | 🟡 | 06 §3.3 | Flutter plan | Superseded (Expo + Next.js as requested) |
+| 21 | 🔴 | docs 03–05, 10 (this pack) | **Our own error:** the docs treat a phone as measuring crash peaks like 38 g. Phone accelerometers saturate (typically ±8–16 g, device-specific; Apple needed a 256 g sensor for iPhone 14 Crash Detection) | Detector is range-aware, traces clipped, `G = min(peak, range)`, demo says "sensor ceiling"; high-g only for a hardware box (docs/12 §3) |
 
 ## B. Risk register
 

@@ -50,6 +50,7 @@
   --najda-status-warn: #6A4BC4;
   --najda-status-danger: #A3236F;
   --najda-status-info: #1740B0;
+  --najda-logo-mono: #14181C;
 }
 [data-theme="dark"] {
   --najda-bg: #0E1114;
@@ -66,6 +67,7 @@
   --najda-status-warn: #B79CFF;
   --najda-status-danger: #F27AC2;
   --najda-status-info: #9DB8FF;
+  --najda-logo-mono: #ECEFF2;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -83,5 +85,6 @@
     --najda-status-warn: #B79CFF;
     --najda-status-danger: #F27AC2;
     --najda-status-info: #9DB8FF;
+    --najda-logo-mono: #ECEFF2;
   }
 }

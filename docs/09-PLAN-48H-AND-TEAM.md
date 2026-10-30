@@ -51,4 +51,20 @@ Stand-up every 4 hours, 5 minutes, standing: *what's merged, what's blocked, wha
 Accounts (Supabase, Vercel, Figma with the right seat, Expo, OpenRouteService, GitHub), tooling check (`07` §5), Android SDK + JDK 17 + a successful dev build of an empty Expo app on both demo phones, OSRM extract built and tested, PMTiles extract for the demo region, gateway phone with SIM tested at the venue's operators, reading `05` end to end, rehearse the 90-second hero flow script on paper.
 
 ## 7. If you only have 24 hours
+> **The team is in this case (2026-10-30). Use `docs/17-24H-PLAN.md`**: hour blocks, the cut list, sleep shifts and the pitch without interviews. It wins over the sketch below.
+
 Gates compress by half: G0 H1 · G1 H5 · G2 H10 · G4 H15 · freeze H18 · rehearse H18–24. Cut items 1–6 from the start; replace the native SMS module by the composer + Simulate SMS unless Role A has done a Kotlin Expo module before.
+
+## 8. Additions from the phone-first pass (2026-10-30)
+Phone sensors are the main path (docs/13); OBD and the box are roadmap (docs/16). What that adds to the plan, in order of value:
+
+| When | Who | Task | Evidence to keep |
+|---|---|---|---|
+| H0–H2 | A | On the **Realme 10 Pro+**: tests **T1** (sensor inventory: range, resolution) and **T3** (real sampling rate), 30 min. Set `rangeG` from T1; if the rate is under 50 Hz say so in the app | screenshots in `docs/field-notes/` |
+| H2–H10 | A, C | Integrate `packages/detector` (README there). Feed `traces/*.csv` through the app's replay screen and compare with `manifest.json` | replay screenshots |
+| H0–H36, in parallel | D (+ anyone) | **Design Thinking evidence:** five short conversations, a five-person test log, an iteration table (docs/15 §2). Nothing invented; “not yet validated” is allowed | one page per conversation, no names |
+| H10–H30 | D | BMC slide (docs/14), roadmap slide (docs/16), sources slide, competitor table filled by *installing and trying* each app | slides |
+| H30–H36 | A | Realme tests **T5, T6, T8, T10** (GPS lag, screen-off survival, hard negatives, airplane-mode drill) | CSV traces + decisions |
+| H24+ (optional, 2–3 h) | B + A | Source selector `Phone | BOX (simulated)` on `/phones` (docs/16 §4). Cut it before the witness web page | screenshot |
+
+Add to the **cut list** (§4): the simulated BOX selector goes right after the crew page; Sensor Lab (M9) stays cut-able, but T1 and T3 must have been run once.

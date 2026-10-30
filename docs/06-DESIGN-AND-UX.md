@@ -52,7 +52,7 @@ Motion: 120 / 200 / 360 ms; ease-out; the countdown ring is the only continuous 
 |---|---|---|
 | `TriageMarker` | band R/O/Y/G/U × size (pin 32, row 20, hero 64) × theme × selected/pulsing | shape + letter + colour + outline on light |
 | `PacketChip` | token kinds (id, band, coords, time, physics, flag, vital, plus, crc) × state (ok / suspect / invalid) | monospace; copy on tap |
-| `PacketLine` | full packet with wrap + char counter "93/160" | shows GSM-7 ok badge |
+| `PacketLine` | full packet with wrap + char counter "91/160" | shows GSM-7 ok badge |
 | `GoldenRing` | elapsed 0–60 min, ticks, paused | SVG |
 | `CountdownRing` | 30 s drain, final 5 s urgent | big numerals inside |
 | `SosButton` | idle / pressed (hold progress) / sending / sent | 72 dp, hold-to-confirm ring |
@@ -87,7 +87,7 @@ Motion: 120 / 200 / 360 ms; ease-out; the countdown ring is the only continuous 
 ```
 **Alert status (mobile)** — packet first:
 ```
- NAJDA1 K7Q2M R75H 36.47213,2.82871 …   ← PacketLine (chips, 93/160)
+ SLK1 K7Q2M R75H 36.47213,2.82871 …   ← PacketLine (chips, 91/160)
  ── Channels ──────────────────────────
  ✓ Dialler opened (14)      [ Call 14 ] [ 1021 ] [ 1055 ]
  ⟳ Internet: no connection  retry 40 s
@@ -130,10 +130,10 @@ Install (one of): `claude plugin install figma@claude-plugins-official` then `/p
 ### 8.1 Prompts to paste into Claude Code
 
 **(1) Build the design system in Figma** *(Path A)*
-> Use the Figma MCP. Create a new Figma file "NAJDA — Design System". Read `packages/tokens/tokens.json` and docs/06 §3–§4. Create variable collections Primitives and Semantic with Dark/Light modes exactly matching the tokens (names: `bg, surface, raised, line, text, muted, brand/*, triage/R…U, onTriage/*`). Create text styles from the scale in §3. Build the components in §4 with variants and states, using auto-layout, named exactly as listed. Put TriageMarker on its own frame in all bands × sizes × themes (light themes include the 2 px outline). After each group, take a screenshot, check contrast and RTL, and fix. Don't use any colour that isn't a variable.
+> Use the Figma MCP. Create a new Figma file "Sellekni — Design System". Read `packages/tokens/tokens.json` and docs/06 §3–§4. Create variable collections Primitives and Semantic with Dark/Light modes exactly matching the tokens (names: `bg, surface, raised, line, text, muted, brand/*, triage/R…U, onTriage/*`). Create text styles from the scale in §3. Build the components in §4 with variants and states, using auto-layout, named exactly as listed. Put TriageMarker on its own frame in all bands × sizes × themes (light themes include the 2 px outline). After each group, take a screenshot, check contrast and RTL, and fix. Don't use any colour that isn't a variable.
 
 **(2) Design the screens** *(Path A)*
-> Using the NAJDA design-system file, design the 12 mobile screens and 9 web screens listed in docs/03 §5, following the wireframe intent in docs/06 §5. Every screen: dark + light, ar (RTL) + en, plus loading/empty/error/offline/SMS-only variants for Home, Alert status and Dispatcher home. Use real packet text from docs/05 §1.2. Prototype the hero flow and the dispatcher flow.
+> Using the Sellekni design-system file, design the 12 mobile screens and 9 web screens listed in docs/03 §5, following the wireframe intent in docs/06 §5. Every screen: dark + light, ar (RTL) + en, plus loading/empty/error/offline/SMS-only variants for Home, Alert status and Dispatcher home. Use real packet text from docs/05 §1.2. Prototype the hero flow and the dispatcher flow.
 
 **(3) Implement a frame** *(A or B)*
 > Use `get_design_context` and `get_screenshot` for this Figma frame: <link>. Implement it in `apps/<mobile|web>` using only `@najda/tokens` and the existing components (`TriageMarker`, `PacketChip` …). Map new components with Code Connect. Match spacing and type exactly; support RTL and dark; then run the app, screenshot at 360/768/1440 and compare with the Figma screenshot; list differences and fix them.
@@ -146,3 +146,18 @@ Inter/Roboto/system font look · purple-blue gradients · identical rounded card
 
 ## 10. Design QA before every demo rehearsal
 1. Squint test (blur 8 px): can you still see band, time and the one primary action? 2. Greyscale test: markers still distinct? 3. Projector test at 1366×768 from 5 m. 4. `ar` + dark pass on all 21 screens. 5. Offline: unplug the network, every screen still renders. 6. Reduced-motion pass. 7. 200% text pass.
+
+## 11. Brand constants (Sellekni)
+One module per app (`src/brand.ts`) holds these; no brand string literal anywhere else. Changing one is a search-and-replace job for the whole team, so decide before the pitch deck prints them.
+
+| Constant | Value | Notes |
+|---|---|---|
+| Name, Latin | **Sellekni** | team decision 2026-10-30 |
+| Name, Arabic | **سلّكني** | the team says it means “help me” in Algerian Darija; have a native speaker confirm the spelling and the diacritic |
+| Codename | `NAJDA` | stays in `@najda/*`, `x-najda-key`, env prefixes, skills, file names |
+| Wire magic | `SLK1` | changes only with `scripts/rename-magic.mjs` (CRC covers it), docs/12 §2.2 |
+| SMS verbs | `SLK ACK` · `SLK STATUS CHU-A SAT` | one constant; hospital pre-alert text starts `SELLEKNI PRE-ALERTE` (docs/04 §6) |
+| Severity wording | UI: “estimated severity” · fr “gravité estimée” · ar “الخطورة المقدّرة” | `NSI` is an internal acronym and never appears in the UI; Arabic wording to be reviewed |
+| Logo | single-colour (`logoMono`) inside the product | the red version only on splash, store icon and pitch (tokens tests enforce it); never use the Red Crescent, Red Cross or Protection civile emblems |
+| Tagline | none decided | do not invent one in code |
+| Domain and trademark | not checked | search INAPI and the domain before the deck is printed |

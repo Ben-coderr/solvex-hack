@@ -56,7 +56,7 @@ pnpm install && pnpm --filter web build && pnpm --filter web start    # http://l
 2. Choose **local server mode** (phone and laptop on the same network) or **cloud mode** (phone talks to the vendor's server; you then need a public HTTPS webhook URL → Cloudflare Tunnel). *Read docs.sms-gate.app first:* confirm webhook event names, payload fields, signing, and the send endpoint, then update `gateway.ts` and its fixtures.
 3. Webhook target: `POST http://<laptop-ip>:3000/api/sms/inbound` with your `SMSGATE_WEBHOOK_SECRET`.
 4. Disable battery optimisation for the app, keep the phone on charge, screen on during the demo.
-5. Test: send an SMS from another phone containing `NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04` → pin appears.
+5. Test: send an SMS from another phone containing `SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E` → pin appears.
 
 ### 3.3 Cloud backup (do on day −1)
 1. **Supabase:** create a project (region closest to Algeria is typically Europe: pick the nearest), `supabase link --project-ref <ref>`, `supabase db push`, run the seed. Add the URL/keys to Vercel env.

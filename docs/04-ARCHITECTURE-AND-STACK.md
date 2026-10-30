@@ -75,10 +75,12 @@ Layering inside `apps/web/src/server` (same discipline as a domain-driven backen
 | Demo | **Replay mode**: a CSV trace is fed through the *same* detector (t, ax, ay, az, gx, gy, gz, speed) | this is the stage safety net, always keep it |
 | Silent SMS | Kotlin module → `SmsManager.sendTextMessage` | needs `SEND_SMS` (Play-restricted → **sideload the APK**); dual-SIM: pick the subscription id; iOS cannot do it |
 | Voice call | `Linking.openURL('tel:14')` opens the **dialler** (user presses call) | never auto-dial without the user |
-| ACK back | HTTPS response is the ACK. For the SMS path: delivery report now; incoming "NAJDA ACK" SMS via a `RECEIVE_SMS` receiver is **stretch G2** | |
+| ACK back | HTTPS response is the ACK. For the SMS path: delivery report now; incoming "SLK ACK" SMS via a `RECEIVE_SMS` receiver is **stretch G2** | |
 | Voice prompts | `expo-speech` (check the device has Arabic TTS data; pre-record MP3 fallbacks with `expo-audio`) | |
 
 ### 3.2 Detection state machine (pure TypeScript in `src/detector`, unit-tested with synthetic traces)
+
+> **Built and superseded in detail (2026-10-30): use `packages/detector`, do not re-implement.** The sketch below is the first design. The package differs in four ways, all explained and tested in docs/13: the confirm window is **8 s** (GPS lag), Δv is taken over the **whole evaluation window**, **sensors below ±8 g are refused** (SOS and witness only), and the **multi-axis gate became a reported cue** because an axis-aligned mount puts a frontal crash on one axis. Its states are UNSUPPORTED · IDLE · ARMED · EVALUATING · ALERT.
 
 ```
 IDLE ──(GPS speed > 25 km/h for ≥ 10 s)──▶ ARMED            speed gate (phone drops while walking never arm)
@@ -96,6 +98,7 @@ DISARM after speed < 10 km/h for > 3 min
 ```
 All thresholds are **ASSUMPTIONS to tune** with team-recorded drops/brakes/bumps (sources: WreckWatch 4 g floor + speed gate; Apple 10+30 s and Google 60 s countdowns). Demo mode shortens the countdown to 10 s and **says so on screen**.
 Derived physics: `dv` = max speed in the 3 s before − min speed in the 3 s after (coarse, 1 Hz GPS); `peak_g`; `rollover`; `multi_impact` (≥ 2 candidate peaks in 5 s).
+**Sensor range (added 2026-10-30, see docs/12 §3).** Phone accelerometers saturate (typically ±8–16 g, device-specific). Read the sensor's max range (native module or a recorded drop in Sensor Lab), treat `|a| ≥ 0.95·range` as *saturated*, express peak rules as `min(threshold, 0.95·range)` plus *time at saturation*, send `G = min(peak, range)` and show it as "≥ N g (sensor limit)". Add a **multi-axis gate** (≥ 2 axes with significant force; a single-axis spike with no speed history never alerts). Replay traces for phone sources are clipped to the range; only a high-g *box* may send a larger `G`.
 Manual paths (always available): SOS long-press, and the **witness mode** (5 taps, no sensors, no account).
 
 ### 3.3 Outbox and fallback chain (offline-first)
@@ -255,14 +258,14 @@ create table sms_outbox (id uuid primary key default gen_random_uuid(), to_numbe
 | `PATCH /api/incidents/[id]` | transition / override | **reason required** on override; writes `audit_events` |
 | `GET /api/incidents/[id]/recommendations` | top-3 hospitals + `nearestEd` | `rankHospitals()` + ETA service |
 | `POST /api/incidents/[id]/prealert` | web card + SMS to the hospital | creates `prealerts` + `sms_outbox` |
-| `POST /api/hospitals/[id]/status` | OK/BUSY/SATURATED (web or SMS `NJ STATUS CHU-A SAT`) | decays after 6 h |
+| `POST /api/hospitals/[id]/status` | OK/BUSY/SATURATED (web or SMS `SLK STATUS CHU-A SAT`) | decays after 6 h |
 | `POST /api/demo/reset` · `POST /api/demo/replay` | demo only | `DEMO_MODE` |
 | `GET /api/health` | connectivity probe (HEAD ok) | no DB hit |
 
 **SMS gateway parsing:** isolate everything gateway-specific in `src/server/services/sms/gateway.ts` (`parseInbound(body)`, `sendSms()`), with recorded fixtures. **Before coding it, open docs.sms-gate.app** and confirm the webhook event/field names and the send endpoint; the names in the old plan (`payload.phoneNumber`, `payload.message`, `receivedAt`) were never confirmed. If cleartext HTTP to a LAN address is blocked by the phone app, use a free Cloudflare Tunnel for an HTTPS URL.
 
 **Hospital pre-alert SMS template (GSM-7, no accents):**
-`NAJDA PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M`  (basic GSM-7 only: the earlier `~` is a 2-septet extension char; "risque estime" per the medical-language rules)
+`SELLEKNI PRE-ALERTE K7Q2M risque estime R75 ETA 24min. 1 pers. Tonneau, dv 71km/h, SpO2 89, pas de reponse. Repondre OK K7Q2M`  (basic GSM-7 only: the earlier `~` is a 2-septet extension char; "risque estime" per the medical-language rules)
 
 ---
 

@@ -1,18 +1,21 @@
-# NAJDA (نجدة) — project memory for Claude Code
+# Sellekni (internal codename NAJDA / نجدة) — project memory for Claude Code
+
+> Product name **Sellekni** (team decision 2026-10-30). `NAJDA`, `@najda/*`, `x-najda-key` stay as internal codenames. The wire magic is renamed only with `node scripts/rename-magic.mjs <MAGIC> --write` (see docs/12). Brand strings live in one `src/brand.ts` per app.
 
 Hackathon prototype for SolveX 3.0 · Problem 1 (emergency response to road accidents in Algeria).
 A phone detects a crash (or a witness reports it in 5 taps) and sends a 160-char structured SMS (DZ-MSD) or JSON; the operations room gets a merged, explainable severity estimate and a hospital recommendation; the hospital gets a pre-alert. **Complementary** to 14/1021/1055/17 — never replaces the call, never dispatches automatically. **Humans decide.**
 
 ## Read first
-`docs/03-PRODUCT-SPEC.md` (what) · `docs/04-ARCHITECTURE-AND-STACK.md` (how) · `docs/05-PROTOCOL-SCORING-RANKING.md` (the contract) · `docs/06-DESIGN-AND-UX.md` (look) · `docs/11-CORRECTIONS-AND-RISKS.md` (traps). Plan and gates: `docs/09-PLAN-48H-AND-TEAM.md`.
+`docs/03-PRODUCT-SPEC.md` (what) · `docs/04-ARCHITECTURE-AND-STACK.md` (how) · `docs/05-PROTOCOL-SCORING-RANKING.md` (the contract) · `docs/06-DESIGN-AND-UX.md` (look) · `docs/11-CORRECTIONS-AND-RISKS.md` (traps) · `docs/12-DECISIONS-REBRAND-OBD-IOT.md` (rebrand, OBD/IoT decisions) · `docs/13-PHONE-SENSING-PLAN.md` (the detector and the Realme field guide). For the pitch only: `docs/14` BMC, `docs/15` jury map and corrected Q&A, `docs/16` OBD/box roadmap; diagrams in `docs/diagrams/`. **Time left (2026-10-30): 24 h → follow `docs/17-24H-PLAN.md`** (cut list, hour blocks, gates). Longer plan: `docs/09-PLAN-48H-AND-TEAM.md`.
 
 ## Status
-DONE and tested: `packages/shared` (codec, CRC-8, GSM-7, Plus Codes, NSI scoring, hospital ranking, merge) and `packages/tokens` (design tokens + WCAG tests).
+DONE and tested: `packages/shared` (codec, CRC-8, GSM-7, Plus Codes, NSI scoring, hospital ranking, merge), `packages/tokens` (design tokens + WCAG and logo tests) and `packages/detector` (range-aware phone crash detector, synthetic scenarios, replay traces; **integrate it, never rewrite it**).
 P0 skeletons: `apps/web` (Next 16) and `apps/mobile` (Expo SDK 58 dev build) render a real packet from `@najda/shared`.
 P1 (gate-H10): `supabase/` schema+RLS+seed, `packages/api-contract`, `apps/web/src/server` (ingest, lifecycle, routing, pre-alert, SMS gateway) and `/api/*` routes.
 P2 (gate-design-1): tokens fixes, web + mobile design systems, `/styleguide`.
 P3 (gate-H20): dispatcher dashboard `/` (status strip, queue, MapLibre map, detail drawer, orientation, lifecycle, pre-alert, paste/simulate SMS), `/audit`, minimal hospital view `/hospital/[id]`; e2e `pnpm --filter web test:e2e`.
-TODO: the native side and the remaining phases (see phase prompts P4–P8).
+P4 (in progress, `feat/mobile-core`): mobile shell, onboarding, Drive mode, countdown, alert state machine, outbox, replay; adapter onto `@najda/detector`.
+TODO: the remaining phases (see phase prompts P4–P8 and the cut list in docs/17).
 
 ## Commands
 Quickest: `./najda up` (Docker → Supabase → env + demo logins → web), `./najda open` (signed-in dispatcher + hospital windows),
@@ -22,6 +25,7 @@ pnpm install
 pnpm check            # shared tests + typecheck + tokens contrast + independent Python cross-check — must be green before every merge
 pnpm vectors          # regenerate golden vectors (only after an intentional protocol/scoring change, see below)
 pnpm tokens           # rebuild packages/tokens/dist from tokens.json
+pnpm --filter @najda/detector report   # scenario x sensor-range table (docs/13 §4) · also: `test`, `traces`
 supabase start          # local Postgres+PostGIS, Auth, Realtime (Docker/colima)
 pnpm db:reset           # regenerate seed.sql from data/hospitals.seed.json + supabase db reset
 pnpm env:local          # fill EMPTY keys of the root .env.local (local keys + random secrets); prints names only
@@ -48,7 +52,8 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 9. **SMS packets** are pure basic GSM-7 and ≤ 160 chars (A-Z 0-9 space `. , + - #`).
 10. **Every feature ships with its failure state** and a test or a replay trace. Demo mode is always labelled on screen (REPLAY / DEMO).
 11. **Verify, don't assume:** after UI work run the app, screenshot (360/768/1440 px, light+dark, en+ar), compare to the design, fix. After backend work, `curl` the endpoint. After protocol work, `pnpm check`.
-12. Use Context7 for library docs (Expo SDK 58, Next 16, Supabase, MapLibre, Reanimated). Do not code from memory against fast-moving APIs.
+12. **Phone sensors are the main path.** OBD and the plug-in box are roadmap (docs/16); the only box item in the 48 h is the simulated `BOX` replay. Detector thresholds are assumptions in `PARAMS`; change them only with evidence, logged in `DECISIONS.md`.
+13. Use Context7 for library docs (Expo SDK 58, Next 16, Supabase, MapLibre, Reanimated). Do not code from memory against fast-moving APIs.
 
 ## Conventions
 - Branches `feat/<area>-<thing>`, small commits, message style `feat(web): …` / `fix(shared): …`. Tag gates `gate-H10`, `gate-H20`…
@@ -57,6 +62,8 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 - Facility names in seed data are "(illustrative)" until verified. Synthetic data only.
 
 ## Things that bit us before (don't repeat)
+- **Phone accelerometers saturate at ~±8–16 g (device-specific).** `packages/detector` is range-aware; `G` from a phone is a lower bound; never present a phone-measured "38 g"; Δv comes from GPS only (docs/12 §3, docs/13). Read the real range and sampling rate on the Realme first (docs/13 §6.3, T1 and T3).
+- OBD-II gives speed (PID `0D`), **not** airbag status; hardware/OBD is roadmap, not part of the 48 h build (docs/12 §4–5).
 - `expo-sms` only opens the composer; silent SMS needs our Kotlin module (`apps/mobile/modules/najda-native`). `SEND_SMS` is Play-restricted → sideload APK.
 - `expo-sensors` stops in the background → Drive mode is foreground + keep-awake; replay mode is the stage safety net.
 - Check the SMS gateway's real webhook payload at docs.sms-gate.app before writing the parser.

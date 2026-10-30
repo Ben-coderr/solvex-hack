@@ -84,3 +84,33 @@ test('brand hue is not a triage hue (brand must never be mistaken for a band)', 
     assert.ok(diff >= 60, `brand hue ${brandHue.toFixed(0)} too close to ${b} (${hue(t.color.triage[b]).toFixed(0)})`);
   }
 });
+
+// ---- Sellekni logo rules (decision 2026-10-30: mono logo inside the product) -------------------
+test('mono logo is legible on every surface in both themes (>= 7:1)', () => {
+  for (const m of ['dark', 'light']) {
+    const c = t.color[m];
+    for (const s of ['bg', 'surface', 'raised']) {
+      assert.ok(contrast(c.logoMono, c[s]) >= 7, `${m}.logoMono on ${s}: ${contrast(c.logoMono, c[s]).toFixed(2)}`);
+    }
+  }
+});
+
+test('logo red is confusable with triage R, so it must stay out of the product UI', () => {
+  const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [a, b] = [rgb(t.color.logo.red), rgb(t.color.triage.R)];
+  const dist = Math.hypot(...a.map((v, i) => v - b[i]));
+  assert.ok(dist < 60, `if this fails the logo red moved away from triage R (${dist.toFixed(0)}); revisit docs/12 section 2.3`);
+  // Guard: the build must never expose it as a CSS custom property or Tailwind colour.
+  assert.ok(!JSON.stringify(Object.keys(t.color.dark)).includes('logoRed'));
+  assert.ok(!JSON.stringify(Object.keys(t.color.light)).includes('logoRed'));
+});
+
+test('text on the logo red is LARGE text only (>= 3:1); normal text would fail AA', () => {
+  assert.ok(contrast(t.color.logo.white, t.color.logo.red) >= AA_UI, 'white on logo red');
+  assert.ok(contrast(t.color.logo.ink, t.color.logo.red) >= AA_UI, 'ink on logo red');
+  assert.ok(contrast(t.color.logo.white, t.color.logo.red) < AA, 'if this now passes AA, relax docs/12 finding 3');
+});
+
+test('logo red on the dark surface is usable as a graphic (>= 3:1)', () => {
+  assert.ok(contrast(t.color.logo.red, t.color.dark.bg) >= AA_UI);
+});

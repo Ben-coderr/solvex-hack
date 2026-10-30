@@ -1,10 +1,10 @@
-# 03 — Product Spec: NAJDA (نجدة)
+# 03 — Product Spec: Sellekni (سلّكني) · codename NAJDA
 
-> **One sentence:** NAJDA is a *complementary emergency data layer* for Algerian road crashes: a phone detects the crash (or a witness reports it in 5 taps), sends a tiny structured packet by internet **or plain SMS**, and the operations room instantly gets an explainable severity estimate, a merged picture, and a hospital recommendation, with a pre-alert to the hospital. **We never replace the 14/1021 call and never dispatch anything automatically: humans decide.**
+> **One sentence:** Sellekni is a *complementary emergency data layer* for Algerian road crashes: a phone detects the crash (or a witness reports it in 5 taps), sends a tiny structured packet by internet **or plain SMS**, and the operations room instantly gets an explainable severity estimate, a merged picture, and a hospital recommendation, with a pre-alert to the hospital. **We never replace the 14/1021 call and never dispatch anything automatically: humans decide.**
 
 ## 1. Problem (SolveX 3.0 · Problem 1) and what we do about each step
 
-| Chain step | Today (Algeria) | NAJDA feature |
+| Chain step | Today (Algeria) | Sellekni feature |
 |---|---|---|
 | Detection | Someone must notice and decide to call; solo/night/rural crashes found late | M3 crash detection · M6 witness mode · M7 SOS |
 | Alert | Location described by voice (operators ask for the exact address); calls drop | M5 packet with exact coordinates + Plus Code, internet **or SMS** |
@@ -17,7 +17,7 @@
 
 ## 2. Personas
 
-| Persona | Moment | Needs | NAJDA surface |
+| Persona | Moment | Needs | Sellekni surface |
 |---|---|---|---|
 | **Karim**, solo driver, RN road, night | Crash; may be unconscious | Help sent *for* him; no typing | Mobile auto-detection |
 | **Samia**, witness in a passing car | Sees a crash | Know what to say, report in seconds, without an account | Witness mode or `/w/[id]` |
@@ -36,16 +36,16 @@ Priority: **P0** = must be in the demo · **P1** = if ahead at the H30 gate · *
 |---|---|---|---|
 | M1 | Onboarding + consent + permissions | P0 | Given first launch, when the user finishes onboarding, then they have chosen a language (ar/fr/en), read a 3-screen explainer (detects crashes · shares location · sends SMS), granted location + SMS + notification permissions (each with a rationale), and optionally set the SIM. Denying SMS shows the degraded mode ("HTTPS and the SMS composer only"), not a dead end |
 | M2 | Drive mode | P0 | When Drive mode is on, a persistent notification shows; the screen stays awake; a status ring shows IDLE/ARMED; speed, GPS accuracy, battery and connectivity (data / SMS-only / none) are visible; one tap stops it |
-| M3 | Crash detector + **replay engine** | P0 | The pure detector produces the same decisions live and from CSV traces. Trace library: `rollover_71`, `frontal_45`, `speed_bump`, `hard_brake`, `phone_drop`. Only the first two alert. A replay is visibly labelled **REPLAY** |
+| M3 | Crash detector + **replay engine** | P0 | The pure detector produces the same decisions live and from CSV traces. Reference implementation: `packages/detector` (docs/13); do not re-implement it. Traces: `frontal_45` and `rollover_71` alert; `speed_bump`, `hard_brake`, `phone_drop`, `pothole_80`, `pothole_then_stop`, `door_slam`, `walking_pocket` and `fender_bender_12` must not. A replay is visibly labelled **REPLAY · SYNTHETIC** |
 | M4 | Countdown | P0 | After CONFIRM, a full-screen countdown (30 s; 10 s in demo mode, labelled) with alarm, vibration and AR/FR voice. Two controls only: "I'm OK" (≥72 dp) and "Send help now". No response → alert with flag `N` |
 | M5 | Alert + status | P0 | Packet is built (`@najda/shared`), persisted in the outbox, the dialler opens on 14, and the fallback chain runs. The status screen shows each channel (HTTPS / SMS / retry) and, on ACK, "Received by rescuers" + time. Works with data off |
 | M6 | Witness mode | P0 | 5 taps (vehicles → who is hurt → danger → location confirm → send) with pictograms; no account; GPS auto; produces an `SW` packet. Includes "secure the scene, don't move the victim" |
 | M7 | SOS | P0 | Long-press (1.5 s) anywhere on the home screen sends a manual `SM` alert |
 | M8 | Settings | P0 | Language, SIM, gateway numbers (GW1/GW2), emergency contacts, demo mode, countdown length (demo only), sensor lab |
-| M9 | Sensor lab (record/export CSV) | P1 | Record 60 s of accel/gyro/GPS to CSV on the phone to calibrate thresholds and build replay traces |
+| M9 | Sensor lab (record/export CSV) | P1 | Record 60 s of accel/gyro/GPS to CSV on the phone to calibrate thresholds and build replay traces. Run tests T1 (sensor inventory) and T3 (real sampling rate) on the Realme first: `rangeG` and the 45 Hz floor depend on them (plan T1–T10 in docs/13 §6.3; same CSV format as `packages/detector/traces`) |
 | M10 | Medical profile (blood group, allergies, anticoagulants), on-device, consented | P2 | Never sent by SMS; sent over HTTPS only with explicit consent |
 | M11 | Background sensing service (Kotlin foreground service) | P2 | Detection with the screen off |
-| M12 | Incoming "NAJDA ACK" SMS receiver | P2 | ACK for the SMS-only path |
+| M12 | Incoming "SLK ACK" SMS receiver | P2 | ACK for the SMS-only path |
 
 ### 3.2 Web (Next.js)
 
@@ -56,7 +56,7 @@ Priority: **P0** = must be in the demo · **P1** = if ahead at the H30 gate · *
 | D3 | Orientation panel | P0 | Top-3 hospitals with ETA, route drawn on the map, missing capabilities, status + age, plain-language explanation; `nearestEd` always visible; override of band or hospital **requires a reason** |
 | D4 | Lifecycle bar | P0 | `RECEIVED → ACKNOWLEDGED → DISPATCHED → EN_ROUTE → ON_SCENE → TRANSPORTING → AT_HOSPITAL → CLOSED`, plus `CANCELLED (false alarm)` and `MERGED`. Every transition is a human click with actor + timestamp in the audit log |
 | D5 | Pre-alert + ACK | P0 | One click sends a web card and an SMS to the chosen hospital; the dispatcher sees ✓ when the hospital ACKs; if no ACK in 2 min a warning appears |
-| D6 | Paste SMS / Simulate SMS | P0 | Paste any received `NAJDA1…` text → same ingest path. A parse failure still creates a visible "unparsed report" |
+| D6 | Paste SMS / Simulate SMS | P0 | Paste any received `SLK1…` text → same ingest path. A parse failure still creates a visible "unparsed report" |
 | D7 | Audit log | P0 | Every automated suggestion and every human decision (who, what, before/after, reason, when); filterable by incident |
 | D8 | Hospital ED view | P0 | Incoming patients with ETA countdown, band, mechanism, vitals, reasons; **ACK** button; status toggle OK/BUSY/SATURATED (expires after 6 h) |
 | D9 | Crew page `/crew/[id]` | P1 | GCS, SBP, SpO₂, HR, ETA; submit → re-score; physiology can upgrade to R and notifies the dispatcher and the hospital |
@@ -64,7 +64,7 @@ Priority: **P0** = must be in the demo · **P1** = if ahead at the H30 gate · *
 | D11 | `/phones` + `/demo` | P0 | Virtual driver/witness/crew/hospital phones; scenario buttons; reset; QR to the witness page; a visible stopwatch for measuring |
 | D12 | Hospital registry admin | P1 | Edit capabilities/level/phone, `verified` flag, CSV import |
 | D13 | Metrics export | P1 | CSV of report timestamps per channel for the pitch numbers (median/p90) |
-| D14 | SMS status updates (`NJ STATUS CHU-A SAT`) | P1 | Inbound SMS from a known hospital number updates its status |
+| D14 | SMS status updates (`SLK STATUS CHU-A SAT`) | P1 | Inbound SMS from a known hospital number updates its status |
 
 ## 4. Core user flows
 

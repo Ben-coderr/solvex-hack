@@ -2,7 +2,7 @@
 
 > **Status:** implemented and tested in `packages/shared` (TypeScript, zero runtime dependencies). 67 unit/property/golden tests, 5 golden vector files, and an **independent Python re-implementation** (`scripts/crosscheck.py`) that agrees on 302 packets, 134 invalid messages, 405 scoring cases and the ranking example.
 > Run it: `pnpm check`.
-> **Everything marked ASSUMPTION is a design choice, not a validated fact.** Weights, thresholds, bands and the ranking formula are uncalibrated and need clinical review. NAJDA is decision support: a human always decides.
+> **Everything marked ASSUMPTION is a design choice, not a validated fact.** Weights, thresholds, bands and the ranking formula are uncalibrated and need clinical review. Sellekni is decision support: a human always decides.
 
 ---
 
@@ -14,7 +14,7 @@ DZ-MSD = "Algerian Minimum Set of Data", inspired by the eCall MSD (≤ 140 byte
 
 ```
 message   = body SP "#" CRC
-body      = "NAJDA1" SP id SP assess SP coords *(SP token)
+body      = "SLK1" SP id SP assess SP coords *(SP token)
 id        = 5 * crockford          ; client-generated, idempotency key. 0-9 A-Z minus I L O U
 assess    = band score conf        ; R75H
 band      = "R" / "O" / "Y" / "G" / "U"
@@ -40,7 +40,7 @@ CRC       = 2HEXDIG(upper)         ; CRC-8 over `body` (everything before " #")
 Rules:
 - **Tokens after the header are order-free**; the encoder always emits the *canonical* order shown above, with `K` and `F` letters in canonical order (`C M T B P X` / `N U B H E D X C F`). `decode(encode(p))` is a fixed point.
 - **Pure basic GSM-7**: only `A-Z 0-9 space . , + - #`. No Arabic, no accents, no `{ } [ ] ~ \ ^ |` (extension chars cost 2 septets, and *one* non-GSM char makes the SMS UCS-2 = 70 chars max).
-- **Length budget** (measured): typical auto-detected packet = **93 chars (67 spare)**; witness packet = 74; **absolute worst case = 115 (45 spare)**. Limit = 160.
+- **Length budget** (measured): typical auto-detected packet = **91 chars (69 spare)**; witness packet = 72; **absolute worst case = 113 (47 spare)**. Limit = 160.
 - **Unknown tokens** with an unassigned prefix are ignored with a warning (forward compatibility). Known tokens that are malformed are errors.
 - The callback number is **not** in the packet: the SMS sender ID carries it. Medical profile data **never** goes in an SMS.
 - Tolerant input: the decoder trims, collapses whitespace (incl. NBSP) and upper-cases before checking the CRC (SMS keyboards auto-correct).
@@ -48,10 +48,12 @@ Rules:
 ### 1.2 Canonical examples (golden)
 
 ```
-NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04   (93 chars)
-NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55                       (74 chars)
+SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E   (91 chars)
+SLK1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #30                       (72 chars)
 ```
 Human reading of the first: *Red, score 75, high confidence · 36.47213,2.82871 · 14:32 · auto-detected · 1 vehicle 1 person · car · Δv 71 km/h · 38 g · rollover · no response to countdown · HR 124 · SpO2 89 · Plus Code 8F84FRCH+VF.*
+
+> **Note on `G38`.** It is a *protocol* example (what a high-g sensor could report). A phone reports at most its accelerometer range (typically ±8–16 g), so phone packets carry `G = min(peak, range)` and the UI says "≥ N g (sensor limit)". The NSI term `peak ≥ 20 g → +5` can therefore only come from a high-g source. See docs/12 §3.
 
 ### 1.3 CRC-8
 
@@ -93,12 +95,12 @@ Same semantics, richer. `POST /api/incidents` (idempotent on `incident_id`):
 - The server converts JSON → the same internal `DzmsdPacket`/`AssessmentInput` so there is **one** scoring path for both channels.
 - Idempotency: an SMS and a JSON with the same `incident_id` merge into one incident (they are the *same* report on two channels).
 
-### 2.1 Crew update (NAJDA1U) — stretch feature, JSON first
-The ambulance crew can submit GCS / SBP / SpO₂ / HR / ETA from a web page `/crew/[id]` (capability link, no install). It creates a new **assessment** on the incident and re-runs `assess()`; a physiological criterion can **upgrade** the band to R. `assess()` already accepts `gcs` and `sbp` (point values are ASSUMPTIONS: GCS<13 → 25, SBP<90 → 20, both RED). An SMS form `NAJDA1U <id> T<HHMM> GCS<n> SBP<n> SP<n> HR<n> ETA<n> #CC` can be added later with its own vectors; it is **not** in v1.
+### 2.1 Crew update (SLK1U) — stretch feature, JSON first
+The ambulance crew can submit GCS / SBP / SpO₂ / HR / ETA from a web page `/crew/[id]` (capability link, no install). It creates a new **assessment** on the incident and re-runs `assess()`; a physiological criterion can **upgrade** the band to R. `assess()` already accepts `gcs` and `sbp` (point values are ASSUMPTIONS: GCS<13 → 25, SBP<90 → 20, both RED). An SMS form `SLK1U <id> T<HHMM> GCS<n> SBP<n> SP<n> HR<n> ETA<n> #CC` can be added later with its own vectors; it is **not** in v1.
 
 ---
 
-## 3. NSI — NAJDA Severity Index
+## 3. NSI — NAJDA Severity Index (internal name; the UI says “estimated severity”)
 
 ```
 raw   = min(50, physics) + everything else
@@ -227,5 +229,5 @@ If your backend dev prefers Python/FastAPI: copy `scripts/crosscheck.py` (strict
 ## 7. Security notes (what to say and what to build)
 
 - **CRC ≠ authentication.** A forged SMS with a valid CRC is trivial. Mitigations that fit the hackathon: the gateway number is private to the operations room; webhook secret/HMAC; per-sender rate limit (≤ 3 auto alerts/hour/sender); unconfirmed-auto badge until call-back or a witness merge; every incident needs a human click to dispatch.
-- **Production roadmap:** per-device key provisioned at install + a short truncated HMAC tag in v2 (the 45-char worst-case headroom allows ~8–10 chars of tag); operator short code; replay protection with `T` + id.
+- **Production roadmap:** per-device key provisioned at install + a short truncated HMAC tag in v2 (the 47-char worst-case headroom allows ~8–10 chars of tag); operator short code; replay protection with `T` + id.
 - **Privacy:** no names, no national ID. The medical profile is a separate opt-in and **never** travels by SMS. Law 18-07 (as amended by Law 25-11 of 2025) treats health data as sensitive: see `11-CORRECTIONS-AND-RISKS.md`.

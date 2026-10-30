@@ -3,8 +3,10 @@
 > The jury remembers four things: **a name, one number you measured, one moment, and whether you were honest.** Build the pitch around those.
 > Judging criteria are an ASSUMPTION (innovation, feasibility, impact, demo, pitch, sustainability): get the real weights from the organisers.
 
+> **Updated 2026-10-30:** the 5-minute structure mapped to the jury criteria is `docs/15` §3, and the corrected Q&A bank is `docs/15` §4. Where they differ from the older timeline and Q&A below, `docs/15` wins (it removes the old unsourced numbers). The BMC slide is `docs/14`; the roadmap slide is `docs/16`; the diagrams are in `docs/diagrams/` (the 90-second flow is `02-hero-flow-sequence.svg`, the pitch picture is `01-system-architecture.svg`).
+
 ## 1. The five moments that make it memorable
-1. **The packet on the projector.** 93 characters, readable by anyone: `NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA …`. "This is everything that travels. No app needed to read it."
+1. **The packet on the projector.** 91 characters, readable by anyone: `SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA …`. "This is everything that travels. No app needed to read it."
 2. **Data OFF on stage, and it still works** (SMS path).
 3. **The false-alarm drop test:** throw the phone on a cushion; nothing happens.
 4. **The merge:** a second phone reports the same crash; the confidence pill flips **M → H**.
@@ -16,7 +18,7 @@
 |---|---|---|
 | 0:00–0:30 | Black screen, crash sound, silence. "14:32, RN road, nobody sees it." | A driver alone at night. His phone knows. Today it does nothing. |
 | 0:30–1:10 | **The first minutes are lost to information** | About 10 people die on Algerian roads every day (DNSR 2025: 3,838 deaths). WHO estimates the true toll is higher (8,106 estimated vs 3,322 reported, 2021). The location is described by voice; severity is unknown until arrival; the hospital learns when the ambulance arrives. |
-| 1:10–1:40 | **NAJDA: a data layer, not a replacement** | Phone → 160-character message → operations room → hospital. We never replace 14/1021; the app opens the dialler. **Humans decide everything.** |
+| 1:10–1:40 | **Sellekni: a data layer, not a replacement** | Phone → 160-character message → operations room → hospital. We never replace 14/1021; the app opens the dialler. **Humans decide everything.** |
 | 1:40–3:20 | **LIVE DEMO** (§3) | Data off. Impact. Packet. Pin. Reasons. Merge. Hospital. |
 | 3:20–3:55 | **What we measured** (slide of *our* numbers) | Alert-to-dashboard: X s (internet), Y s (SMS), n = 10 each. 0 false alerts in N staged events. Witness report in Z s median (5 first-time users). 100% round-trip on 5,000 random packets; independent Python implementation agrees. |
 | 3:55–4:25 | **Validated vs assumed** (the honesty slide) | Inputs come from the 2021 ACS/NHTSA field-triage guideline and crash-physics research. Weights are uncalibrated. Hospital capability data is a curated table. Calibration with SAMU doctors is the pilot's first task. |
@@ -32,7 +34,7 @@
 | # | Presenter | Audience sees | If it fails |
 |---|---|---|---|
 | 1 | "This phone is in a car on the RN at 71 km/h." Start **replay `rollover_71`** (REPLAY banner). Turn **mobile data OFF** and say so. | live speed + g-graph; data icon gone; `SMS only` banner | continue; the banner is the point |
-| 2 | (trace hits impact) | graph spikes to 38 g, speed → 0; alarm + voice *Êtes-vous blessé ? / هل أنت بخير؟*; countdown (10 s in demo mode: say so) | skip to 4 with Simulate SMS |
+| 2 | (trace hits impact) | graph spikes to the phone's sensor ceiling (say so: phones saturate around ±8–16 g), speed → 0; alarm + voice *Êtes-vous blessé ? / هل أنت بخير؟*; countdown (10 s in demo mode: say so) | skip to 4 with Simulate SMS |
 | 3 | Don't touch the phone | "No response, sending help." Dialler opens on **14** (cancel on stage: "the real call still happens") | |
 | 4 | Point at the gateway phone | the SMS arrives: zoom on the text, **"160 characters, readable without our software"** | step 5 with **Simulate SMS** |
 | 5 | Switch to the dashboard | pin ▲ **R 75 · High**, reasons: speed drop ~71 km/h · SpO₂ 89% · rollover; age timer; `SMS` channel; AUTO·UNCONFIRMED badge | refresh once; else video |
@@ -75,7 +77,7 @@ Source IDs refer to the research files you supplied (`08-sources.md`). Re-verify
 
 1. **Is the severity score medically valid?** Not clinically validated, and we say so. It is a transparent points score whose *inputs* come from the 2021 ACS/NHTSA field-triage guideline and crash-physics research; physiology can force "critical", mechanism alone is capped at "serious". Weights are editable and uncalibrated. Step one of a pilot is calibration with SAMU doctors on real cases. A human always decides.
 2. **False alarms?** Five layers: a speed gate (no detection unless driving), multi-signal rule (impact + speed drop + stop), a countdown with "I'm OK", a dispatcher-visible "auto, unconfirmed" badge until call-back or a witness merge, and per-sender rate limits. We measured N staged events (show numbers) and ran a drop test live.
-3. **Who gets the SMS? Do you call 14?** The voice call to 14/1021 still happens: the app opens the dialler. The SMS goes to a NAJDA gateway number in the operations room (a phone today; an operator short code at scale). We add data next to the existing channel.
+3. **Who gets the SMS? Do you call 14?** The voice call to 14/1021 still happens: the app opens the dialler. The SMS goes to a Sellekni gateway number in the operations room (a phone today; an operator short code at scale). We add data next to the existing channel.
 4. **No network at all?** The alert is queued and retried; SMS needs far less signal than data. In true dead zones nothing can leave the phone, which is why witnesses and passing vehicles matter; IoT/LoRa relays are on the roadmap.
 5. **Hospital capacity data does not exist in Algeria.** Right, so we don't pretend: a curated capability table (neurosurgery, CT, ICU, pediatrics), an optional status a charge nurse can set in seconds, expiring after 6 h, and "unknown" shown as unknown. Our own worked example shows that the *closest* hospital isn't always the *best*, and that the choice involves a policy gate a doctor must approve.
 6. **Why would people install another app?** Witnesses need no account; institutional push is the real lever (Protection civile/DGSN campaigns, insurers, fleets, driving schools); and the protocol matters more than our app: other apps or devices can emit the same 160 characters.
@@ -85,8 +87,8 @@ Source IDs refer to the research files you supplied (`08-sources.md`). Re-verify
 10. **How does it scale to 69 wilayas?** Stateless web tier, PostGIS routing by wilaya, one national short code, OSRM for the whole country on one server. The bottleneck is adoption and agreements, not compute. Start with one wilaya on a high-traffic national road.
 11. **Business model?** Public-safety infrastructure: free for citizens and operations rooms in a pilot. Potential revenue: fleet/telematics licences, insurer partnerships, anonymised black-spot analytics for road-safety bodies. **We have not validated prices and don't quote any.**
 12. **Why not Google/Apple?** At the time of our research Pixel crash detection and Android ELS were not available in Algeria, iPhones are a minority, and those systems send *voice + location*, not a structured, merged, triaged picture with hospital orientation. We complement them.
-13. **Why rules and not AI?** No Algerian training data exists; rules are explainable and auditable. NAJDA creates the dataset a future model would need (with consent), and the deployment path (calibration, then maybe a model) is explicit.
+13. **Why rules and not AI?** No Algerian training data exists; rules are explainable and auditable. Sellekni creates the dataset a future model would need (with consent), and the deployment path (calibration, then maybe a model) is explicit.
 14. **What's real and what's simulated?** Real: the codec, scoring, ranking, merge (open tests), the dashboard, the HTTPS and SMS paths on real phones, the audit log. Simulated: sensor traces (replay), hospital capability data (curated/illustrative), vitals from a wearable, the operator short code (gateway phone). Say it before they ask.
 
 ## 7. Slide list (design in Figma; dark theme; 16:9; Bricolage numerals)
-1 Cold open · 2 Problem (3 sourced numbers) · 3 Chain of lost minutes (6-step diagram) · 4 NAJDA in one picture (phone → packet → ops room → hospital) · 5 The packet (full-bleed `PacketLine`) · 6 Demo divider · 7 What we measured · 8 Validated vs assumed · 9 Built for Algeria (SMS, ar/fr, law, no hospital IT) · 10 Pilot roadmap & model · 11 Team & thanks. Max 20 words per slide. Appendix: architecture, scoring table, ranking worked example, sources.
+1 Cold open · 2 Problem (3 sourced numbers) · 3 Chain of lost minutes (6-step diagram) · 4 Sellekni in one picture (phone → packet → ops room → hospital) · 5 The packet (full-bleed `PacketLine`) · 6 Demo divider · 7 What we measured · 8 Validated vs assumed · 9 Built for Algeria (SMS, ar/fr, law, no hospital IT) · 10 Pilot roadmap & model · 11 Team & thanks. Max 20 words per slide. Appendix: architecture, scoring table, ranking worked example, sources.
