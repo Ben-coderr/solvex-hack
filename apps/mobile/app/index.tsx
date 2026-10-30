@@ -28,7 +28,7 @@ export default function Home() {
 
   if (!onboarded) return <Redirect href="/onboarding" />;
 
-  const armed = drive.active && det.state !== 'IDLE';
+  const armed = drive.active && (det.state === 'ARMED' || det.state === 'EVALUATING' || det.state === 'ALERT');
   const Chevron = ChevronRight;
 
   const sendSos = async () => {

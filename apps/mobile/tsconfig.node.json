@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true
   },
-  "include": ["test/**/*.ts", "scripts/**/*.ts", "src/detector/**/*.ts", "src/replay/**/*.ts", "src/alert/**/*.ts"]
+  "include": ["test/**/*.ts", "scripts/**/*.ts", "src/detector/**/*.ts", "src/replay/**/*.ts", "src/alert/**/*.ts", "src/brand.ts", "src/sensorlab/**/*.ts"]
 }

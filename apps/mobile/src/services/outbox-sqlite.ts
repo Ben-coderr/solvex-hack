@@ -1,5 +1,5 @@
 import { openDatabaseAsync, type SQLiteDatabase } from 'expo-sqlite';
-import type { OutboxItem, OutboxStore } from '../alert/outbox';
+import { normalizeItem, type OutboxItem, type OutboxStore } from '../alert/outbox';
 
 /** Persistent outbox: one row per alert, written BEFORE any channel runs; survives app kill and reboot. */
 let db: Promise<SQLiteDatabase> | null = null;
@@ -26,11 +26,11 @@ export const sqliteOutbox: OutboxStore = {
   async get(id) {
     const d = await open();
     const row = await d.getFirstAsync<{ item: string }>('SELECT item FROM outbox WHERE id = ?', id);
-    return row ? (JSON.parse(row.item) as OutboxItem) : null;
+    return row ? normalizeItem(JSON.parse(row.item) as OutboxItem) : null;
   },
   async list() {
     const d = await open();
     const rows = await d.getAllAsync<{ item: string }>('SELECT item FROM outbox ORDER BY created_at DESC LIMIT 50');
-    return rows.map((r) => JSON.parse(r.item) as OutboxItem);
+    return rows.map((r) => normalizeItem(JSON.parse(r.item) as OutboxItem));
   },
 };

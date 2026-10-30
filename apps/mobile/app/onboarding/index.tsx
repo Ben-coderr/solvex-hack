@@ -5,6 +5,7 @@ import { Btn, Screen, Txt } from '@/src/components/kit';
 import { applyLocale, type Locale } from '@/src/i18n';
 import { useSettings } from '@/src/state/settings';
 import { LocaleSwitch, T } from '@/src/ui';
+import { BRAND } from '@/src/brand';
 
 /** M1 step 1: language. Choosing Arabic flips the native layout direction (one restart, said on screen). */
 export default function Language() {
@@ -17,7 +18,7 @@ export default function Language() {
   return (
     <Screen footer={<Btn testID="onb-continue" label={t('common.continue')} onPress={() => { set({ locale: i18n.language as Locale }); router.push('/onboarding/explain'); }} />}>
       <View style={{ flex: 1, justifyContent: 'center', gap: T.space[5] }}>
-        <Txt v="display" style={{ fontSize: T.fontSize['3xl'] }}>نجدة · NAJDA</Txt>
+        <Txt v="display" style={{ fontSize: T.fontSize['3xl'] }}>{`${BRAND.nameAr} · ${BRAND.name}`}</Txt>
         <Txt v="h1" accessibilityRole="header">{t('onboarding.langTitle')}</Txt>
         <LocaleSwitch value={i18n.language as Locale} onChange={(l) => void pick(l)} />
         <Txt tone="muted">{t('onboarding.langBody')}</Txt>

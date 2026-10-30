@@ -2,35 +2,51 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { IncidentJson, type IngestAck } from '@najda/api-contract';
 import { decodeDzmsd, isGsm7Basic, SMS_SINGLE_MAX } from '@najda/shared';
-import { runTrace, type DetectorEvent } from '../src/detector/detector';
-import { makeTrace } from '../src/detector/synth';
+import { parseCsv, replay, toPacketHints } from '@najda/detector';
+import { BUNDLED_TRACES } from '../src/replay/bundled-traces';
 import { postIncident, probeHealth, type Fetch } from '../src/alert/https';
 import { attemptHttps, backoffMs, GIVE_UP_MS, memoryStore, newItem } from '../src/alert/outbox';
 import { buildAlert, isoAlgiers } from '../src/alert/packet';
 
 const NOW = new Date('2026-10-30T13:32:07Z'); // 14:32 in Algiers
 const FIX = { lat: 36.472131, lon: 2.828714, accM: 8, at: NOW.getTime() - 4_000 };
-const rolloverCrash = () => {
-  const e = runTrace(makeTrace('rollover_71')).find((x) => x.type === 'confirm') as Extract<DetectorEvent, { type: 'confirm' }>;
-  return e.crash;
+/** the detector's alert on a bundled trace -> packet hints, exactly as the app does it */
+const hintsOf = (name: keyof typeof BUNDLED_TRACES) => {
+  const tr = BUNDLED_TRACES[name];
+  const d = replay({ ...parseCsv(tr.csv), rangeG: tr.rangeG }).decisions.find((x) => x.kind === 'alert')!;
+  return toPacketHints(d, tr.rangeG);
 };
 
-test('auto alert from rollover_71 with no response: valid GSM-7 packet ≤ 160, N + roll, JSON passes the contract', () => {
-  const a = buildAlert({ id: 'K7Q2M', source: 'A', now: NOW, fix: FIX, crash: rolloverCrash(), noResponse: true, battery: 64, lang: 'ar' });
+test('auto alert from rollover_71_r16 with no response: valid GSM-7 packet ≤ 160, N + roll, JSON passes the contract', () => {
+  const a = buildAlert({ id: 'K7Q2M', source: 'A', now: NOW, fix: FIX, hints: hintsOf('rollover_71_r16'), noResponse: true, battery: 64, lang: 'ar' });
   assert.ok(a.wire.length <= SMS_SINGLE_MAX && isGsm7Basic(a.wire), a.wire);
   const back = decodeDzmsd(a.wire);
   assert.ok(back.ok);
   assert.equal(back.packet.time, '1432');
   assert.equal(back.packet.roll, true);
   assert.deepEqual(back.packet.flags, ['N']);
-  assert.equal(back.packet.dv, 71);
+  assert.equal(back.packet.dv, hintsOf('rollover_71_r16').D, 'Δv from GPS, as decided');
+  assert.ok(back.packet.g! <= 16, 'G is capped at the sensor range: a lower bound, never "38 g"');
   assert.equal(back.packet.lat, 36.47213);
   assert.ok(IncidentJson.safeParse(a.json).success, JSON.stringify(IncidentJson.safeParse(a.json).error));
   assert.equal(a.json.crash?.no_response, true);
   assert.equal(a.json.created_at, '2026-10-30T14:32:07+01:00');
   assert.deepEqual(a.json.hint, { band: a.packet.band, score: a.packet.score, conf: a.packet.conf });
   assert.equal(a.locationAgeMin, 0);
-  assert.equal(buildAlert({ id: 'K7Q2M', source: 'A', now: NOW, fix: FIX, replay: true, appVersion: '1.0.0' }).json.device?.app, 'najda-mobile/1.0.0+replay');
+  assert.equal(buildAlert({ id: 'K7Q2M', source: 'A', now: NOW, fix: FIX, replay: true, appVersion: '1.0.0' }).json.device?.app, 'sellekni-mobile/1.0.0+replay');
+});
+
+test('frontal_45: the phone (±16 g) reports G at its sensor limit; the simulated BOX (±200 g) the full peak; both fit one SMS', () => {
+  const phone = hintsOf('frontal_45_r16');
+  assert.equal(phone.sensorLimited, true);
+  assert.ok(phone.G <= 16);
+  const box = hintsOf('frontal_45_r200');
+  assert.ok(box.G > phone.G, `BOX ${box.G} g vs phone ${phone.G} g`);
+  for (const hints of [phone, box]) {
+    const a = buildAlert({ id: 'K7Q2M', source: 'A', now: NOW, fix: FIX, hints });
+    assert.ok(a.wire.length <= SMS_SINGLE_MAX && decodeDzmsd(a.wire).ok, a.wire);
+    assert.equal(a.packet.dv, 45);
+  }
 });
 
 test('manual SOS (SM): no crash physics, no flags, still a valid packet', () => {

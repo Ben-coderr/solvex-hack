@@ -1,9 +1,12 @@
 /**
- * Replay engine: feeds a recorded trace through the SAME detector the live sensors use, at the recorded timing
- * (rate 1) or faster for development (rate 4). Pure TypeScript with an injected clock, so it is unit-tested
- * without timers. While a replay runs the UI shows REPLAY on every screen (the app store's `replay` field).
+ * Replay engine (M3): feeds a trace (`parseCsv` from @najda/detector) through the SAME detector host the live
+ * sensors use, at the recorded timing (rate 1) or faster for development (rate 4). Samples and GPS fixes are merged
+ * by time exactly as the package's `replay()` does (a fix is pushed before a sample with the same or later t), so a
+ * paced replay yields the package's decisions. Pure TypeScript with an injected clock: unit-tested without timers.
+ * While a replay runs the UI shows REPLAY · SYNTHETIC on every screen (the session's `replay` field).
  */
-import type { Detector, DetectorEvent, DetectorSnapshot, Sample } from '../detector/detector';
+import type { Decision, GpsFix, Sample } from '@najda/detector';
+import type { DetectorHost } from '../detector/adapter';
 
 export interface Clock {
   now(): number;
@@ -20,15 +23,14 @@ export const systemClock: Clock = {
 export type ReplayRate = 1 | 4;
 
 export interface ReplayOptions {
-  samples: readonly Sample[];
-  detector: Detector;
+  trace: { samples: readonly Sample[]; gps: readonly GpsFix[] };
+  host: DetectorHost;
   rate?: ReplayRate;
   clock?: Clock;
   /** UI refresh period (ms of wall-clock time) */
   tickMs?: number;
-  /** last sample of each tick + the detector snapshot after it (throttled for the UI) */
-  onTick?: (s: Sample, snap: DetectorSnapshot, progress: number) => void;
-  onEvent?: (e: DetectorEvent, s: Sample) => void;
+  onTick?: (progress: number) => void;
+  onDecision?: (d: Decision) => void;
   onEnd?: () => void;
 }
 
@@ -39,37 +41,54 @@ export interface ReplayHandle {
   progress(): number;
 }
 
+type Step = { t: number; sample: Sample } | { t: number; gps: GpsFix };
+
+/** One time-ordered stream; on equal t the GPS fix goes first (same order as the package's replay()). */
+export function mergeTrace(trace: ReplayOptions['trace']): Step[] {
+  const out: Step[] = [];
+  let g = 0;
+  for (const s of trace.samples) {
+    while (g < trace.gps.length && trace.gps[g]!.t <= s.t) { const f = trace.gps[g++]!; out.push({ t: f.t, gps: f }); }
+    out.push({ t: s.t, sample: s });
+  }
+  while (g < trace.gps.length) { const f = trace.gps[g++]!; out.push({ t: f.t, gps: f }); }
+  return out;
+}
+
 export function startReplay(o: ReplayOptions): ReplayHandle {
   const clock = o.clock ?? systemClock;
   const rate = o.rate ?? 1;
   const tick = o.tickMs ?? 50;
-  const first = o.samples[0]?.t ?? 0;
-  const span = Math.max(1, (o.samples.at(-1)?.t ?? 0) - first);
+  const steps = mergeTrace(o.trace);
+  const first = steps[0]?.t ?? 0;
+  const span = Math.max(1, (steps.at(-1)?.t ?? 0) - first);
   const started = clock.now();
   let i = 0;
-  let running = o.samples.length > 0;
+  let running = steps.length > 0;
   let handle: unknown = null;
+  const progress = () => (steps.length ? (steps[Math.max(0, i - 1)]!.t - first) / span : 1);
 
   const step = () => {
     if (!running) return;
     const traceNow = first + (clock.now() - started) * rate;
-    let last: Sample | null = null;
-    while (i < o.samples.length && o.samples[i]!.t <= traceNow) {
-      const s = o.samples[i++]!;
-      for (const e of o.detector.push(s)) o.onEvent?.(e, s);
-      last = s;
-      if (!running) return; // an event handler stopped the replay (e.g. the countdown took over)
+    while (i < steps.length && steps[i]!.t <= traceNow) {
+      const st = steps[i++]!;
+      const decisions = 'sample' in st ? o.host.pushSample(st.sample) : o.host.pushGps(st.gps);
+      for (const d of decisions) {
+        o.onDecision?.(d);
+        if (!running) return; // the handler stopped the replay (the countdown took over)
+      }
     }
-    if (last) o.onTick?.(last, o.detector.snapshot(), (last.t - first) / span);
-    if (i >= o.samples.length) {
+    o.onTick?.(progress());
+    if (i >= steps.length) {
       running = false;
       o.onEnd?.();
       return;
     }
     handle = clock.setTimeout(step, tick);
   };
-  handle = clock.setTimeout(step, 0);
-  if (!running) o.onEnd?.();
+  if (running) handle = clock.setTimeout(step, 0);
+  else o.onEnd?.();
 
   return {
     stop() {
@@ -77,6 +96,6 @@ export function startReplay(o: ReplayOptions): ReplayHandle {
       if (handle !== null) clock.clearTimeout(handle);
     },
     isRunning: () => running,
-    progress: () => (o.samples.length ? ((o.samples[Math.max(0, i - 1)]!.t - first) / span) : 1),
+    progress,
   };
 }

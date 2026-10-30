@@ -4,16 +4,19 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import { Btn, Screen, Segmented, Txt } from '@/src/components/kit';
-import { TRACE_EXPECTS, TRACE_NAMES, type TraceName } from '@/src/detector/synth';
+import { BUNDLED_TRACES, TRACE_NAMES, type TraceName } from '@/src/replay/bundled-traces';
 import type { ReplayRate } from '@/src/replay/engine';
 import { startDrive } from '@/src/services/drive';
 import { FONT, T, useTheme } from '@/src/ui';
 
-/** Replay picker (demo): a trace through the same detector as live; REPLAY is shown on every screen meanwhile. */
+/**
+ * Replay picker (demo): a SYNTHETIC trace from packages/detector through the same detector as live; every screen
+ * shows REPLAY · SYNTHETIC meanwhile (and BOX (simulated) for the ±200 g roadmap box).
+ */
 export default function Replay() {
   const { t } = useTranslation();
   const { c } = useTheme();
-  const [name, setName] = useState<TraceName>('rollover_71');
+  const [name, setName] = useState<TraceName>('frontal_45_r16');
   const [rate, setRate] = useState<ReplayRate>(1);
 
   const start = async () => {
@@ -35,11 +38,15 @@ export default function Replay() {
       <View accessibilityRole="radiogroup" style={{ gap: T.space[2] }}>
         {TRACE_NAMES.map((n) => {
           const on = n === name;
+          const tr = BUNDLED_TRACES[n];
           return (
             <Pressable key={n} testID={`trace-${n}`} accessibilityRole="radio" accessibilityState={{ checked: on }} onPress={() => setName(n)}
               style={{ minHeight: T.size.touchMin, padding: T.space[3], borderRadius: T.radius.md, borderWidth: on ? 2 : 1, borderColor: on ? c.brandFill : c.line, backgroundColor: c.surface, gap: T.space[1] }}>
               <Txt v="label" ltr style={{ fontFamily: FONT.monoMedium }}>{n}</Txt>
-              <Txt v="small" tone="muted">{TRACE_EXPECTS[n] === 'alert' ? t('replay.expectAlert') : t('replay.expectNone')}</Txt>
+              <Txt v="small" tone="muted">
+                {`${tr.box ? t('replay.box', { g: tr.rangeG }) : t('replay.phone', { g: tr.rangeG })} · ${tr.expect === 'alert' ? t('replay.expectAlert') : t('replay.expectNone')}`}
+              </Txt>
+              <Txt v="small" tone="muted" ltr>{tr.note}</Txt>
             </Pressable>
           );
         })}

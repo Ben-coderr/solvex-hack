@@ -5,9 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { hhmm, httpsBadge } from '@/src/components/AlertSummary';
 import { Btn, Notice, Screen, Section, Txt } from '@/src/components/kit';
-import { EMERGENCY, openDialler } from '@/src/services/alerts';
+import { EMERGENCY, openDialler, openSmsComposer, type SmsOpen } from '@/src/services/alerts';
 import { stopDrive } from '@/src/services/drive';
 import { useSession } from '@/src/state/session';
+import { useSettings } from '@/src/state/settings';
 import { ChannelBadge, EmptyState, GoldenRing, PacketLine, T, useTheme } from '@/src/ui';
 
 /**
@@ -21,6 +22,9 @@ export default function AlertStatus() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const item = useSession((s) => (id ? s.alerts[id] : undefined));
   const replaying = useSession((s) => s.replay !== null);
+  const link = useSession((s) => s.link);
+  const gateway = useSettings((s) => s.gw1 || s.gw2);
+  const [smsResult, setSmsResult] = useState<SmsOpen | null>(null);
   const [now, setNow] = useState(Date.now());
   useEffect(() => {
     const i = setInterval(() => setNow(Date.now()), 1_000);
@@ -80,9 +84,21 @@ export default function AlertStatus() {
           <ChannelBadge channel="https" status={httpsBadge(item)} />
           <Txt v="small" tone="muted">{httpsText}</Txt>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[2], opacity: 0.7 }} accessibilityState={{ disabled: true }}>
-          <MessageSquareText size={18} color={c.muted} />
-          <Txt v="small" tone="muted" style={{ flex: 1 }}>{`${t('alert.sms')} · ${t('alert.smsLater')}`}</Txt>
+        <View style={{ gap: T.space[2] }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[2] }}>
+            <MessageSquareText size={18} color={item.sms.composerOpenedAt ? c.statusOk : c.muted} />
+            <Txt style={{ flex: 1 }}>
+              {item.sms.composerOpenedAt
+                ? t('alert.smsOpened', { time: hhmm(item.sms.composerOpenedAt), to: item.sms.to ?? '' })
+                : `${t('alert.sms')} · ${gateway ? t('alert.smsReady') : t('alert.smsNoGateway')}`}
+            </Txt>
+          </View>
+          {!item.ackAt && link !== 'online' && !item.sms.composerOpenedAt && gateway ? <Notice text={t('alert.smsAdvice')} tone="statusInfo" /> : null}
+          {smsResult === 'unavailable' && <Notice text={t('alert.smsUnavailable')} tone="statusWarn" />}
+          <Btn testID="alert-sms" kind="secondary" icon={MessageSquareText} disabled={!gateway}
+            label={item.sms.composerOpenedAt ? t('alert.smsAgain') : t('alert.smsSend')}
+            hint={gateway ? undefined : t('alert.smsNoGateway')}
+            onPress={() => void openSmsComposer(item.id).then(setSmsResult)} />
         </View>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: T.space[2] }}>
           {[EMERGENCY.civil, EMERGENCY.civilAlt, EMERGENCY.gendarmerie].map((n, i) => (

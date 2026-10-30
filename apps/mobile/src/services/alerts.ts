@@ -1,11 +1,12 @@
 import { generateIncidentId, type Source } from '@najda/shared';
+import type { PacketHints } from '@najda/detector';
 import Constants from 'expo-constants';
 import { getRandomBytes } from 'expo-crypto';
+import * as SMS from 'expo-sms';
 import { Linking } from 'react-native';
 import { postIncident, probeHealth } from '../alert/https';
 import { attemptHttps, isDue, isOpen, newItem, type OutboxItem } from '../alert/outbox';
 import { buildAlert } from '../alert/packet';
-import type { Crash } from '../detector/detector';
 import { i18n, type Locale } from '../i18n';
 import { useSession } from '../state/session';
 import { useSettings } from '../state/settings';
@@ -14,8 +15,9 @@ import { replayFix } from './drive';
 import { sqliteOutbox } from './outbox-sqlite';
 
 /**
- * Alert pipeline (docs/04 §3.3, HTTPS part; P5 adds SMS → composer → GW2 → contacts on the same item):
- *   build packet → persist in the outbox → open the dialler on 14 (never auto-dial) → deliver until ACK or 30 min.
+ * Alert pipeline (docs/04 §3.3, cut to docs/17 §2):
+ *   build packet → persist in the outbox → open the dialler on 14 (never auto-dial) → HTTPS until ACK or 30 min;
+ *   SMS = the system composer pre-filled with the packet to GW1, one tap from the status screen (the person sends).
  */
 export const EMERGENCY = { civil: '14', civilAlt: '1021', gendarmerie: '1055', police: '17' } as const;
 
@@ -30,7 +32,7 @@ export async function openDialler(number: string = EMERGENCY.civil): Promise<boo
   }
 }
 
-export async function raiseAlert(o: { source: Source; crash?: Crash; noResponse?: boolean }): Promise<string> {
+export async function raiseAlert(o: { source: Source; hints?: PacketHints; noResponse?: boolean }): Promise<string> {
   const s = useSession.getState();
   const now = new Date();
   const id = generateIncidentId((n) => getRandomBytes(n));
@@ -39,7 +41,7 @@ export async function raiseAlert(o: { source: Source; crash?: Crash; noResponse?
     id, source: o.source, now,
     fix: inReplay ? replayFix() : s.fix,
     replay: inReplay,
-    ...(o.crash && { crash: o.crash }),
+    ...(o.hints && { hints: o.hints }),
     ...(o.noResponse && { noResponse: true }),
     ...(s.battery !== null && { battery: Math.round(s.battery * 100) }),
     lang: i18n.language as Locale,
@@ -57,6 +59,32 @@ export async function raiseAlert(o: { source: Source; crash?: Crash; noResponse?
   return id;
 }
 
+export type SmsOpen = 'opened' | 'no_gateway' | 'unavailable';
+
+/**
+ * Opens the system SMS composer with the packet pre-filled to GW1 (GW2 if GW1 is empty). The person presses Send:
+ * Android never tells us whether it went, so the status screen says "composer opened", not "sent".
+ */
+export async function openSmsComposer(id: string): Promise<SmsOpen> {
+  const item = useSession.getState().alerts[id];
+  const { gw1, gw2 } = useSettings.getState();
+  const to = gw1 || gw2;
+  if (!item) return 'unavailable';
+  if (!to) return 'no_gateway';
+  if (!(await SMS.isAvailableAsync().catch(() => false))) return 'unavailable';
+  try {
+    await SMS.sendSMSAsync([to], item.wire);
+  } catch {
+    return 'unavailable';
+  }
+  // re-read: HTTPS delivery may have moved on while the composer was open
+  const latest = useSession.getState().alerts[id] ?? item;
+  const next = { ...latest, sms: { composerOpenedAt: Date.now(), to } };
+  await sqliteOutbox.put(next);
+  publish(next);
+  return 'opened';
+}
+
 let running = false;
 /** Run every due delivery attempt once. Safe to call often (serialised). */
 export async function deliverDue(force = false): Promise<void> {
@@ -67,11 +95,13 @@ export async function deliverDue(force = false): Promise<void> {
     for (const it of Object.values(useSession.getState().alerts)) {
       if (!(force ? isOpen(it) : isDue(it, Date.now()))) continue;
       publish(it); // "sending…" is derived from state + nextAt; keep UI fresh
-      const next = await attemptHttps(it, {
+      const done = await attemptHttps(it, {
         now: Date.now,
         probe: () => probeHealth(fetch, serverUrl),
         post: (json) => postIncident(fetch, serverUrl, ingestKey, json),
       });
+      // keep what other channels recorded meanwhile (the SMS composer may have been opened during the attempt)
+      const next = { ...done, sms: useSession.getState().alerts[it.id]?.sms ?? done.sms };
       await sqliteOutbox.put(next);
       publish(next);
     }

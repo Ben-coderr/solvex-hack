@@ -1,19 +1,19 @@
 import { ringDash } from '@najda/ui-core';
 import { View } from 'react-native';
 import Svg, { Circle, G } from 'react-native-svg';
-import type { DetectorState } from '../detector/detector';
+import type { DetectorState } from '@najda/detector';
 import { T, useTheme } from '../ui';
 import { Txt } from './kit';
 
 /**
- * Drive status ring: IDLE = thin outline that fills as the speed gate is held (10 s > 25 km/h), ARMED = solid brand
- * ring. Brand colour only (a triage hue here would read as a severity). Static: the countdown ring is the only
- * continuous animation in the app.
+ * Drive status ring: IDLE = thin outline that fills as the speed gate is held (10 s > 25 km/h), ARMED / EVALUATING /
+ * ALERT = solid brand ring, UNSUPPORTED = thin empty ring (no detection). Brand colour only (a triage hue here would
+ * read as a severity). Static: the countdown ring is the only continuous animation in the app.
  */
 export function DriveRing({ state, armProgress, label, hint, size = 200 }: { state: DetectorState; armProgress: number; label: string; hint: string; size?: number }) {
   const { c } = useTheme();
-  const armed = state !== 'IDLE';
-  const { circumference, offset } = ringDash(44, armed ? 1 : armProgress);
+  const armed = state !== 'IDLE' && state !== 'UNSUPPORTED';
+  const { circumference, offset } = ringDash(44, armed ? 1 : state === 'UNSUPPORTED' ? 0 : armProgress);
   return (
     <View accessible accessibilityRole="text" accessibilityLabel={`${label}. ${hint}`} style={{ alignItems: 'center', gap: T.space[3] }}>
       <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>

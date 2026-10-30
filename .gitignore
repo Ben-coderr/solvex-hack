@@ -4,6 +4,8 @@ node_modules
 dist
 !packages/tokens/dist
 android/
+# local Expo modules ship their Kotlin source (only the generated app project is ignored)
+!apps/mobile/modules/*/android/
 ios/
 *.apk
 *.aab

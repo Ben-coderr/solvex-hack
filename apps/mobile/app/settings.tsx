@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
-import { PlayCircle, Volume2 } from 'lucide-react-native';
+import { FlaskConical, PlayCircle, Volume2 } from 'lucide-react-native';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Switch, View } from 'react-native';
@@ -88,7 +88,10 @@ export default function SettingsScreen() {
       </Section>
 
       <Section title={t('settings.sensorLab')}>
-        <Txt v="small" tone="muted">{t('settings.sensorLabLater')}</Txt>
+        <Txt v="small" tone={s.rangeG === null ? 'statusWarn' : 'muted'}>
+          {s.rangeG === null ? t('settings.rangeUnknown') : t('settings.rangeKnown', { g: s.rangeG })}
+        </Txt>
+        <Btn testID="open-sensor-lab" kind="secondary" icon={FlaskConical} label={t('settings.sensorLabOpen')} onPress={() => router.push('/sensor-lab')} />
       </Section>
 
       <Txt v="small" tone="muted" ltr>{t('settings.version', { v: Constants.expoConfig?.version ?? '0' })}</Txt>

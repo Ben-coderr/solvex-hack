@@ -48,15 +48,15 @@ export function ConfidencePill({ conf, mode }: { conf: Confidence; mode?: 'light
   );
 }
 
-export type ConnectivityMode = 'online' | 'sms_only' | 'offline' | 'replay' | 'demo';
-const MODE: Record<ConnectivityMode, LucideIcon> = { online: Wifi, sms_only: MessageSquareText, offline: CloudOff, replay: Play, demo: FlaskConical };
+export type ConnectivityMode = 'online' | 'sms_only' | 'offline' | 'replay' | 'replay_box' | 'demo';
+const MODE: Record<ConnectivityMode, LucideIcon> = { online: Wifi, sms_only: MessageSquareText, offline: CloudOff, replay: Play, replay_box: Play, demo: FlaskConical };
 
 /** Persistent strip on every screen: connectivity, and REPLAY / DEMO impossible to miss. */
 export function StatusBanner({ mode: m, theme }: { mode: ConnectivityMode; theme?: 'light' | 'dark' }) {
   const { c } = useTheme(theme);
   const txt = useUiText();
   const Icon = MODE[m];
-  const strong = m === 'replay' || m === 'demo';
+  const strong = m === 'replay' || m === 'replay_box' || m === 'demo';
   const fg = strong ? c.onBrand : m === 'sms_only' ? c.statusInfo : m === 'offline' ? c.statusWarn : c.muted;
   return (
     <View accessibilityRole="summary" style={{ flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 40, paddingHorizontal: 16, paddingVertical: 8,

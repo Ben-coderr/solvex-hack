@@ -1,4 +1,3 @@
-import '@/src/services/location-task'; // TaskManager.defineTask must run at module scope
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';

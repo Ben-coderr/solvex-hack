@@ -1,7 +1,8 @@
 /**
  * Outbox: every alert is persisted BEFORE anything is sent and survives a kill/reboot (SQLite store in the app,
  * memory store in tests). `attemptHttps` is one step of the delivery loop; the app's scheduler calls it when an
- * item is due and immediately on a connectivity change. P5 adds the SMS / composer / GW2 rows to the same item.
+ * item is due and immediately on a connectivity change. SMS goes through the system composer (docs/17 §2): the app
+ * pre-fills the packet and records when it opened it; the person presses Send. P5 may add the silent native path.
  */
 import type { IncidentJson, IngestAck } from '@najda/api-contract';
 import type { PostResult } from './https';
@@ -17,6 +18,8 @@ export interface OutboxItem {
   locationAgeMin: number | null;
   diallerOpenedAt: number | null;
   https: { state: HttpsState; attempts: number; nextAt: number | null; lastError: string | null };
+  /** Android never reports whether a composer SMS was actually sent: only that we opened it, and to whom */
+  sms: { composerOpenedAt: number | null; to: string | null };
   ack: IngestAck | null;
   ackAt: number | null;
 }
@@ -39,9 +42,13 @@ export function newItem(id: string, wire: string, json: IncidentJson, now: numbe
   return {
     id, wire, json, createdAt: now, locationAgeMin, diallerOpenedAt: null,
     https: { state: 'pending', attempts: 0, nextAt: now, lastError: null },
+    sms: { composerOpenedAt: null, to: null },
     ack: null, ackAt: null,
   };
 }
+
+/** Items persisted by an older build lack newer fields: fill them so the UI never reads undefined. */
+export const normalizeItem = (i: OutboxItem): OutboxItem => ({ ...i, sms: i.sms ?? { composerOpenedAt: null, to: null } });
 
 export const isOpen = (i: OutboxItem) => i.https.state === 'pending' || i.https.state === 'retrying';
 export const isDue = (i: OutboxItem, now: number) => isOpen(i) && (i.https.nextAt ?? 0) <= now;

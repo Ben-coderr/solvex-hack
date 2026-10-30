@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "NAJDA",
-    "slug": "najda",
+    "name": "Sellekni",
+    "slug": "sellekni",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "najda",
+    "scheme": "sellekni",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true
@@ -18,19 +18,18 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "dz.najda.app",
+      "package": "com.sellekni.app",
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION",
-        "FOREGROUND_SERVICE",
-        "FOREGROUND_SERVICE_LOCATION",
-        "POST_NOTIFICATIONS",
         "VIBRATE",
         "WAKE_LOCK"
       ],
       "blockedPermissions": [
         "android.permission.ACCESS_BACKGROUND_LOCATION",
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION"
       ]
     },
     "web": {
@@ -56,9 +55,9 @@
       [
         "expo-location",
         {
-          "isAndroidForegroundServiceEnabled": true,
+          "isAndroidForegroundServiceEnabled": false,
           "isAndroidBackgroundLocationEnabled": false,
-          "locationWhenInUsePermission": "NAJDA uses your location to send where a crash happened and to measure speed."
+          "locationWhenInUsePermission": "Sellekni uses your location to send where a crash happened and to measure speed."
         }
       ],
       [

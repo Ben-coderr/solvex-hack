@@ -2,6 +2,8 @@
  * Alert → DZ-MSD packet (the SMS form) + IncidentJson (the HTTPS form), built from ONE DzmsdPacket so both
  * channels carry the same id and content. Pure: encoding and the hint come from @najda/shared, never copied.
  * The band/score/conf are the phone's HINT; the server recomputes with assess() and is authoritative.
+ * A phone's G is a LOWER BOUND (the accelerometer saturates at its range, docs/13 §2.1); the v1 contract has no
+ * "sensor limited" field (docs/13 §3.3), so the richer cues stay on the phone (countdown reasons).
  */
 import {
   FLAG_LETTER, KIND_LETTER, SOURCE_LETTER,
@@ -11,7 +13,8 @@ import {
   assess, encodeDzmsd, encodePlusCode, formatHHMM, inputFromPacket,
   type DzmsdPacket, type Flag, type Kind, type Source,
 } from '@najda/shared';
-import type { Crash } from '../detector/detector';
+import type { PacketHints } from '@najda/detector';
+import { BRAND } from '../brand';
 
 export interface Fix {
   lat: number;
@@ -28,7 +31,8 @@ export interface AlertInput {
   now: Date;
   /** best fix: current, else last known; null = never had one (the alert still goes out) */
   fix: Fix | null;
-  crash?: Crash;
+  /** from the detector decision: `toPacketHints(decision, rangeG)` (G is capped at the sensor range, D comes from GPS) */
+  hints?: PacketHints;
   /** the countdown expired with no answer (flag N) */
   noResponse?: boolean;
   kinds?: Kind[];
@@ -66,18 +70,18 @@ export function buildAlert(a: AlertInput): BuiltAlert {
   const lon = a.fix ? round5(a.fix.lon) : 0;
   const flags: Flag[] = a.noResponse ? ['N'] : [];
   const kinds: Kind[] = a.kinds?.length ? a.kinds : ['C'];
-  const c = a.crash;
+  const h = a.hints;
 
   const base: DzmsdPacket = {
     id: a.id, band: 'U', score: 0, conf: 'L',
     lat, lon, time: formatHHMM(a.now), src: a.source,
     veh: 1, pers: 1, kinds,
-    ...(c && { dv: clampInt(c.dvKmh, 999), g: clampInt(c.peakG, 999) }),
-    ...(c?.rollover && { roll: true }),
+    ...(h && { dv: clampInt(h.D, 999), g: clampInt(h.G, 999) }),
+    ...(h?.RO && { roll: true }),
     ...(flags.length > 0 && { flags }),
     ...(a.fix && { plus: encodePlusCode(lat, lon) }),
   };
-  const hint = assess(inputFromPacket(base, { ...(c?.multiImpact && { multiImpact: true }), ...(a.noResponse && { noResponse: true }) }));
+  const hint = assess(inputFromPacket(base, { ...(a.noResponse && { noResponse: true }) }));
   const packet: DzmsdPacket = { ...base, band: hint.band, score: hint.score, conf: hint.conf };
 
   const json: IncidentJson = {
@@ -90,17 +94,17 @@ export function buildAlert(a: AlertInput): BuiltAlert {
       ...(a.fix?.accM !== undefined && { acc_m: Math.round(a.fix.accM) }),
       ...(packet.plus && { plus_code: packet.plus }),
     },
-    ...(c || a.noResponse
+    ...(h || a.noResponse
       ? {
           crash: {
-            ...(c && { dv_kmh: packet.dv!, peak_g: packet.g!, rollover: c.rollover, multi_impact: c.multiImpact }),
+            ...(h && { dv_kmh: packet.dv!, peak_g: packet.g!, rollover: h.RO }),
             ...(a.noResponse && { no_response: true }),
           },
         }
       : {}),
     scene: { vehicles: packet.veh, persons: packet.pers, kinds: kinds.map((k) => KIND_WORD[k]), flags: flags.map((f) => FLAG_WORD[f]) },
     ...(a.lang && { contact: { lang: a.lang } }),
-    device: { app: `najda-mobile/${a.appVersion ?? '0'}${a.replay ? '+replay' : ''}`, ...(a.battery !== undefined && { battery: clampInt(a.battery, 100) }) },
+    device: { app: `${BRAND.appId}/${a.appVersion ?? '0'}${a.replay ? '+replay' : ''}`, ...(a.battery !== undefined && { battery: clampInt(a.battery, 100) }) },
     hint: { band: packet.band, score: packet.score, conf: packet.conf },
   };
 

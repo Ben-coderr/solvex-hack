@@ -81,7 +81,7 @@ export default function MobileStyleguide() {
         {(m) => <ReasonList conf="H" values={{ dv: 71 }} reasons={[{ code: 'dv', points: 30 }, { code: 'spo2_low', points: 20 }, { code: 'rollover', points: 15 }]} mode={m} />}
       </Section>
       <Section title="StatusBanner">
-        {(m) => (['online', 'sms_only', 'offline', 'replay', 'demo'] as const).map((s) => <StatusBanner key={s} mode={s} theme={m} />)}
+        {(m) => (['online', 'sms_only', 'offline', 'replay', 'replay_box', 'demo'] as const).map((s) => <StatusBanner key={s} mode={s} theme={m} />)}
       </Section>
       <Section title="WitnessStepper · LocaleSwitch">
         {(m) => <><WitnessStepper current={2} mode={m} /><LocaleSwitch value="ar" onChange={() => {}} mode={m} /></>}

@@ -25,7 +25,7 @@ export const EN = {
   channelStatus: { sent: 'sent', retrying: 'retrying', acked: 'received', failed: 'failed' },
   status: {
     online: 'Online', sms_only: 'SMS only — alerts still go out', offline: 'Offline — saved, will retry',
-    replay: 'REPLAY — recorded trip', demo: 'DEMO — synthetic data',
+    replay: 'REPLAY · SYNTHETIC', replay_box: 'REPLAY · SYNTHETIC · BOX (simulated)', demo: 'DEMO — synthetic data',
   },
   witnessSteps: ['Vehicles', 'Who is hurt', 'Danger', 'Location', 'Send'],
   witnessProgress: (c: number, t: number) => `Step ${c} of ${t}`,

@@ -71,5 +71,7 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 - postgres.js v4 renders `${sql(obj, keys)}` from the keyword before it: keep it directly after `set`/`insert`, never inside a nested fragment.
 - Next's env loader caches its first load and skips `.env.local` when NODE_ENV=test.
 - Supabase Realtime in the browser: set the session token (`realtime.setAuth`) BEFORE subscribing, or RLS sees anon and no event ever arrives (the channel still says SUBSCRIBED).
+- `rename-magic.mjs` cannot see packets built from a literal CRC (`.replace('#04', …)`) or elided with `…`, and it shifts lengths again in docs already converted: derive bad CRCs from the wire (`corruptCrc`), review `git diff docs/`.
+- The root `.gitignore` ignores every `android/`; local Expo modules are re-included (`!apps/mobile/modules/*/android/`). Check autolinking with the project's own binary, not a bare `npx expo-modules-autolinking` (it can resolve another version and miss `modules/`).
 - MapLibre v6 + Turbopack: the worker must be served from /public (`scripts/copy-map-worker.mjs`).
 - Supabase Free pauses after 7 idle days. Vercel Hobby is non-commercial. Render free sleeps after 15 min.

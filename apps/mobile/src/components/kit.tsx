@@ -113,7 +113,7 @@ export function Notice({ text, tone = 'statusWarn', icon: Icon }: { text: string
 /** Labelled text input; the error line replaces the hint. Values like URLs and numbers are LTR. */
 export function Field({ label, value, onChangeText, hint, error, ltr, secure, keyboardType, testID }: {
   label: string; value: string; onChangeText: (v: string) => void; hint?: string; error?: string | null; ltr?: boolean; secure?: boolean;
-  keyboardType?: 'default' | 'phone-pad' | 'url'; testID?: string;
+  keyboardType?: 'default' | 'phone-pad' | 'url' | 'decimal-pad'; testID?: string;
 }) {
   const { c } = useTheme();
   return (
