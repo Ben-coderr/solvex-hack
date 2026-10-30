@@ -1,9 +1,29 @@
 {
   "mcpServers": {
-    "figma": { "type": "http", "url": "https://mcp.figma.com/mcp" },
-    "context7": { "type": "http", "url": "https://mcp.context7.com/mcp" },
-    "playwright": { "command": "npx", "args": ["@playwright/mcp@latest"] },
-    "shadcn": { "command": "npx", "args": ["shadcn@latest", "mcp"] },
-    "supabase": { "type": "http", "url": "https://mcp.supabase.com/mcp?project_ref=REPLACE_WITH_PROJECT_REF&read_only=true&features=database,docs" }
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching&read_only=true"
+    }
   }
 }

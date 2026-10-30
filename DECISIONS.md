@@ -45,6 +45,7 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [H5] env — one repo-root `.env.local`: `next.config.ts` loads it with `loadEnvConfig(…, forceReload=true)` (a plain second call is a silent no-op: @next/env caches). `pnpm env:local` fills empty keys only and prints key names only.
 - [H6] dev — port 3000 is used by another local Node process on this laptop; the P1 runs used `next dev -p 3001` (`BASE_URL=http://localhost:3001 scripts/curl-demo.sh`).
 - [H6] tests — `pnpm --filter web test:db` runs ingest through real Postgres/PostGIS (truncates local incident tables); not part of `pnpm check` so CI needs no database.
+- [H10] tooling — Supabase MCP (project scope): features docs, account, database, debugging, development, functions, branching, with `read_only=true` kept (docs/07 §1.1). No project ref yet: pin `project_ref=` once the Free backup project exists.
 
 ## Open items
 - [H0] tokens — `status.*` colours exist in `tokens.json` but are not emitted to `tokens.css`; shadcn `--color-destructive` temporarily maps to text colour. D adds status vars in P2 (never borrow triage R).
