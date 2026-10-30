@@ -47,6 +47,23 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [H6] tests — `pnpm --filter web test:db` runs ingest through real Postgres/PostGIS (truncates local incident tables); not part of `pnpm check` so CI needs no database.
 - [H10] tooling — Supabase MCP (project scope): features docs, account, database, debugging, development, functions, branching, with `read_only=true` kept (docs/07 §1.1). No project ref yet: pin `project_ref=` once the Free backup project exists.
 
+## P2 — Design system (Path C: code-first; Figma = later deliverable)
+- [H11] figma — Path C chosen by the user: no Full seat confirmed. Figma file "NAJDA — Design System" to be captured from the built UI later; component names in code = future Figma names.
+- [H11] tokens — `status.ok/warn/danger` were byte-identical to triage G/Y/R (#30A46C/#FFC53D/#E5484D). Replaced by per-mode status colours on non-triage hues (dark #4CCCE6/#B79CFF/#F27AC2/#9DB8FF, light #0B6E85/#6A4BC4/#A3236F/#1740B0), text/icon only; new contrast test: AA on every surface and ≥ 30° hue from every band. Type scale (12…61 px) and motion (120/200/360 ms) now emitted to tokens.css.
+- [H11] tokens — GoldenRing is drawn in brand blue, not gold: gold sits next to triage Y.
+- [H11] web — removed the Geist font that `shadcn init` (P0) added to layout.tsx silently ("no Inter/system look" rule).
+- [H11] web — `dark:` variant excludes subtrees under `[data-theme="light"]`: needed for nested light panels when the OS is dark.
+- [H11] ui-core — new `packages/ui-core` (pure TS) for display logic shared by web + mobile: packet → typed chips (validity from `decodeDzmsd`, never re-implemented), triage geometry, ring maths, age formatting.
+- [H11] i18n — next-intl without URL routing: locale in the `NEXT_LOCALE` cookie, default `fr`, `<html lang dir>` from it. Catalogues `apps/web/messages/{ar,fr,en}.json` (136 keys, parity checked). **Arabic copy needs a native-speaker review.**
+- [H11] web — shadcn Button sizes raised to ≥ 48 px (default 48, lg 56, icon 48); `sm` 40 px kept for dense mouse-driven desktop rows only.
+- [H12] web — PacketChips stay 32 px tall: secondary copy targets next to a 48 px "copy packet" button (audited separately by design-qa).
+- [H12] web — SosButton: brand fill (never triage red), hold 1.5 s with pointer and keyboard; accessible name = its visible words.
+- [H12] qa — Playwright MCP not approved in-session: `apps/web/scripts/design-qa.mts` uses the Playwright library + axe-core with the installed Chrome (no browser download). Result 0 defects; see docs/pitch/design/README.md.
+- [H12] mobile — React Native components for what the phone uses (TriageMarker, Packet*, rings, SosButton, ChannelBadge, ConfidencePill, ReasonList, StatusBanner, LocaleSwitch, WitnessStepper, states). IncidentRow / HospitalCard / LifecycleBar / PreAlertCard are web-only (dispatcher and hospital screens are web per docs/03). Strings via a `UiText` context (English defaults) that P4 binds to i18next.
+- [H12] mobile — SVG rings rotate inside the SVG (`<G transform="rotate(-90 50 50)">`): a style transform's origin differs across renderers.
+- [H12] mobile — NOT visually verified: no Android device attached, and the react-native-web preview (Expo server output) did not apply RN styles/fonts reliably (time-boxed at 15 min). Evidence = typecheck + Android export (29 TTF assets bundled). On-device check of `app/styleguide` is a P4 task.
+- [H12] repo — docs/pitch/design holds ~22 MB of QA screenshots; trim to the pitch-worthy ones before sharing the repo.
+
 ## Open items
-- [H0] tokens — `status.*` colours exist in `tokens.json` but are not emitted to `tokens.css`; shadcn `--color-destructive` temporarily maps to text colour. D adds status vars in P2 (never borrow triage R).
+- ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).
 - [H0] tooling — Supabase CLI not installed: `brew install supabase/tap/supabase` failed because github.com was unreachable from this machine/session at H0. Needed for P1.
