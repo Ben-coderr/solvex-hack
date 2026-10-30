@@ -33,7 +33,23 @@ export const en = {
     sosHint: 'Hold the button 1.5 s to send an alert now', lastAlert: 'Last alert', noAlert: 'No alert sent from this phone.',
     replay: 'Replay a trip (demo)', settings: 'Settings',
   },
+  ready: {
+    title: 'Before you drive', titleOk: 'Ready', location: 'Location', locationOk: 'Allowed: the alert carries your position',
+    locationNo: 'Not allowed: Drive mode cannot arm (SOS still works)',
+    detection: 'Crash detection', detectionOk: 'Sensor ±{{g}} g: detection on', detectionUnknown: 'Sensor range unknown: set it in the Sensor lab',
+    detectionLow: 'Sensor stops at ±{{g}} g: detection off, SOS works',
+    sms: 'SMS without internet', smsOk: 'Sent by the app itself', smsSim: 'Sent by the app on SIM {{slot}} · {{carrier}}',
+    smsComposer: 'Your SMS app opens, you press Send', smsNoGateway: 'No gateway number yet',
+    server: 'Operations server', serverOk: 'Reachable', serverNo: 'Not reachable: alerts wait or go by SMS', serverChecking: 'Checking…',
+  },
   drive: {
+    live: {
+      title: 'Live sensors', acc: 'Accelerometer', gyro: 'Gyroscope', gps: 'GPS', baro: 'Barometer', peak: 'peak',
+      st_live: 'live', st_waiting: 'waiting', st_missing: 'none', st_off: 'off',
+      src_gps: 'speed from GPS', src_computed: 'speed computed from positions', baroNote: 'shown only, not used for detection',
+      hint: 'Shake the phone: the peak rises, which proves the sensor works. It never sends an alert: detection needs driving above 25 km/h, then a sharp speed drop and a stop.',
+      reset: 'Reset the peak',
+    },
     title: 'Drive mode', stop: 'Stop Drive mode', speed: 'Speed', gpsAcc: 'GPS accuracy', battery: 'Battery', link: 'Connection',
     kmh: 'km/h', m: 'm', noFix: 'No GPS fix yet', state: { IDLE: 'Not armed', ARMED: 'Armed', EVALUATING: 'Checking an event…', ALERT: 'Alert', UNSUPPORTED: 'Detection off', NO_RANGE: 'Sensor not set' },
     idleHint: 'Arms after 10 s above 25 km/h', armedHint: 'Keep the phone in its holder',

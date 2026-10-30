@@ -1,11 +1,13 @@
 import * as Haptics from 'expo-haptics';
 import { Redirect, router } from 'expo-router';
-import { ChevronRight, Phone, PlayCircle, Settings as SettingsIcon } from 'lucide-react-native';
+import { ChevronRight, FlaskConical, Phone, PlayCircle, Settings as SettingsIcon } from 'lucide-react-native';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { I18nManager, Pressable, View } from 'react-native';
+import { BrandLockup } from '@/src/components/Brand';
 import { DriveRing } from '@/src/components/DriveRing';
-import { Btn, Notice, Screen, Section, Txt } from '@/src/components/kit';
+import { Readiness } from '@/src/components/Readiness';
+import { Btn, Screen, Section, Txt } from '@/src/components/kit';
 import { AlertSummary } from '@/src/components/AlertSummary';
 import { EMERGENCY, openDialler, raiseAlert } from '@/src/services/alerts';
 import { startDrive } from '@/src/services/drive';
@@ -21,7 +23,6 @@ export default function Home() {
   const demo = useSettings((s) => s.demoMode);
   const drive = useSession((s) => s.drive);
   const det = useSession((s) => s.detector);
-  const locDenied = useSession((s) => s.perms.location === 'denied');
   const alerts = useSession((s) => s.alerts);
   const last = useMemo(() => Object.values(alerts).sort((a, b) => b.createdAt - a.createdAt)[0] ?? null, [alerts]);
   const [sos, setSos] = useState<SosState>('idle');
@@ -43,7 +44,7 @@ export default function Home() {
   return (
     <Screen>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Txt v="h1" accessibilityRole="header">{t('home.title')}</Txt>
+        <BrandLockup />
         <Pressable testID="open-settings" accessibilityRole="button" accessibilityLabel={t('home.settings')} onPress={() => router.push('/settings')}
           style={{ width: T.size.touchMin, height: T.size.touchMin, alignItems: 'center', justifyContent: 'center' }}>
           <SettingsIcon size={24} color={c.text} />
@@ -53,7 +54,6 @@ export default function Home() {
       <DriveRing state={drive.active ? det.state : 'IDLE'} armProgress={drive.active ? det.armProgress : 0}
         label={armed ? t('home.ringArmed') : t('home.ringIdle')} hint={armed ? t('home.ringArmedHint') : t('home.ringIdleHint')} />
 
-      {locDenied && <Notice text={t('drive.locDenied')} />}
       <Btn testID="drive-start" big label={drive.active ? t('home.driveOpen') : t('home.driveStart')}
         onPress={() => { if (!drive.active) void startDrive(); router.push('/drive'); }} />
 
@@ -61,6 +61,8 @@ export default function Home() {
         <SosButton state={sos} onConfirm={() => void sendSos()} />
         <Txt v="small" tone="muted" style={{ textAlign: 'center' }}>{t('home.sosHint')}</Txt>
       </View>
+
+      <Readiness />
 
       <Section title={t('home.lastAlert')}>
         {last ? (
@@ -76,7 +78,10 @@ export default function Home() {
 
       <View style={{ gap: T.space[3] }}>
         <Btn kind="secondary" icon={Phone} label={t('numbers.call', { n: EMERGENCY.civil })} onPress={() => void openDialler(EMERGENCY.civil)} />
-        {demo && <Btn testID="open-replay" kind="quiet" icon={PlayCircle} label={t('home.replay')} onPress={() => router.push('/replay')} />}
+        <View style={{ flexDirection: 'row', gap: T.space[2] }}>
+          <View style={{ flex: 1 }}><Btn kind="quiet" icon={FlaskConical} label={t('settings.sensorLab')} onPress={() => router.push('/sensor-lab')} /></View>
+          {demo && <View style={{ flex: 1 }}><Btn testID="open-replay" kind="quiet" icon={PlayCircle} label={t('home.replay')} onPress={() => router.push('/replay')} /></View>}
+        </View>
       </View>
     </Screen>
   );

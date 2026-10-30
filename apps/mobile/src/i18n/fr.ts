@@ -32,7 +32,23 @@ export const fr: Messages = {
     sosHint: 'Maintenez le bouton 1,5 s pour envoyer une alerte', lastAlert: 'Dernière alerte', noAlert: 'Aucune alerte envoyée depuis ce téléphone.',
     replay: 'Rejouer un trajet (démo)', settings: 'Réglages',
   },
+  ready: {
+    title: 'Avant de rouler', titleOk: 'Prêt', location: 'Position', locationOk: "Autorisée : l'alerte porte votre position",
+    locationNo: 'Refusée : le mode conduite ne peut pas s’armer (SOS fonctionne)',
+    detection: "Détection d'accident", detectionOk: 'Capteur ±{{g}} g : détection active', detectionUnknown: 'Plage du capteur inconnue : réglez-la dans le labo capteurs',
+    detectionLow: "Capteur limité à ±{{g}} g : détection coupée, SOS fonctionne",
+    sms: 'SMS sans internet', smsOk: "Envoyé par l'app elle-même", smsSim: "Envoyé par l'app sur la SIM {{slot}} · {{carrier}}",
+    smsComposer: 'Votre app SMS s’ouvre, vous appuyez sur Envoyer', smsNoGateway: 'Pas encore de numéro de passerelle',
+    server: 'Serveur opérationnel', serverOk: 'Joignable', serverNo: 'Injoignable : les alertes attendent ou partent par SMS', serverChecking: 'Vérification…',
+  },
   drive: {
+    live: {
+      title: 'Capteurs en direct', acc: 'Accéléromètre', gyro: 'Gyroscope', gps: 'GPS', baro: 'Baromètre', peak: 'pic',
+      st_live: 'actif', st_waiting: 'en attente', st_missing: 'absent', st_off: 'arrêté',
+      src_gps: 'vitesse GPS', src_computed: 'vitesse calculée des positions', baroNote: 'affiché seulement, non utilisé pour la détection',
+      hint: "Secouez le téléphone : le pic monte, preuve que le capteur fonctionne. Cela n'envoie jamais d'alerte : la détection exige de rouler au-dessus de 25 km/h, puis une forte baisse de vitesse et un arrêt.",
+      reset: 'Remettre le pic à zéro',
+    },
     title: 'Mode Conduite', stop: 'Arrêter le mode Conduite', speed: 'Vitesse', gpsAcc: 'Précision GPS', battery: 'Batterie', link: 'Connexion',
     kmh: 'km/h', m: 'm', noFix: 'Pas encore de position GPS', state: { IDLE: 'Non armé', ARMED: 'Armé', EVALUATING: 'Analyse d’un choc…', ALERT: 'Alerte', UNSUPPORTED: 'Détection coupée', NO_RANGE: 'Capteur non réglé' },
     idleHint: "S'arme après 10 s au-dessus de 25 km/h", armedHint: 'Laissez le téléphone sur son support',

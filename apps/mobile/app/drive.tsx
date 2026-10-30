@@ -1,10 +1,11 @@
 import { router } from 'expo-router';
-import { Activity, Battery, Crosshair, FlaskConical, Gauge, Signal, Square } from 'lucide-react-native';
+import { Battery, FlaskConical, Signal, Square } from 'lucide-react-native';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { DriveRing } from '@/src/components/DriveRing';
 import { Btn, Notice, Row, Screen, Section, Txt } from '@/src/components/kit';
+import { LiveSensors } from '@/src/components/LiveSensors';
 import { startDrive, stopDrive } from '@/src/services/drive';
 import { useSession } from '@/src/state/session';
 import { T } from '@/src/ui';
@@ -22,6 +23,7 @@ export default function Drive() {
   const link = useSession((s) => s.link);
   const replay = useSession((s) => s.replay);
   const rejection = useSession((s) => s.lastRejection);
+  const tel = useSession((s) => s.telemetry);
 
   // deep link / reload straight onto this screen: start live Drive mode
   useEffect(() => {
@@ -70,15 +72,13 @@ export default function Drive() {
           <Txt v="display">{speed === null ? '—' : String(Math.round(speed))}</Txt>
           <Txt v="title" tone="muted">{t('drive.kmh')}</Txt>
         </View>
-        <Row icon={Gauge} label={t('drive.speed')} value={speed === null ? t('drive.noFix') : `${Math.round(speed)} ${t('drive.kmh')}`} />
-        <Row icon={Crosshair} label={t('drive.gpsAcc')} value={fix?.accM !== undefined && fix ? `± ${Math.round(fix.accM)} ${t('drive.m')}` : t('drive.noFix')} />
-        <Row icon={Activity} label={t('drive.sensor')}
-          value={det.rangeG > 0 ? `±${det.rangeG} g · ${det.rateHz === null ? '…' : `${det.rateHz} Hz`}` : '—'}
-          tone={det.rateOk ? 'text' : 'statusWarn'} />
+        {speed === null && <Txt v="small" tone="muted" style={{ textAlign: 'center' }}>{t('drive.noFix')}</Txt>}
         <Row icon={Battery} label={t('drive.battery')} value={battery === null || battery < 0 ? '—' : `${Math.round(battery * 100)} %`} />
         <Row icon={Signal} label={t('drive.link')} value={link === 'unknown' ? '…' : t(`drive.link_${link}`)}
           tone={link === 'online' ? 'statusOk' : link === 'sms_only' ? 'statusInfo' : 'statusWarn'} />
       </Section>
+
+      {drive.live && <LiveSensors tel={tel} rangeG={det.rangeG} rateHz={det.rateHz} speedKmh={speed} accM={fix?.accM ?? null} />}
     </Screen>
   );
 }

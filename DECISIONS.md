@@ -2,7 +2,7 @@
 
 One line per decision: `[hour] area — decision — why`. Newest at the bottom. Anything that changes a doc in `docs/` is also fixed there.
 
-## Standing decisions (from CLAUDE.md)
+## Standing decisions (from DEVELOPMENT.md)
 - [H0] product — complementary to 14/1021/1055/17: never replaces the call, never dispatches automatically; humans decide.
 - [H0] stack — TypeScript strict everywhere; protocol/scoring/ranking live only in `packages/shared` and are imported, never copied.
 - [H0] protocol — wire format, CRC, NSI weights and ranking change only through the `najda-protocol` procedure (docs/05 → crosscheck.py → `pnpm vectors` → review diff → `pnpm check`).
@@ -99,7 +99,7 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [H15] ownership — app-level components live in `apps/mobile/src/components` (A); `src/ui` (D) untouched. Candidates to promote to the DS: `Btn`, `Field`, `Segmented`, `DriveRing`, `Notice`.
 
 ## Sellekni pack merge + P4 rework (docs/17, the 24-hour plan; clock H0 = Fri 18:00)
-- [24h-H1] merge — branch `feat/sellekni-merge` off `feat/mobile-core`. Theirs-only files copied (docs 03/05/06/08–11, new docs 12–17 + diagrams, `packages/detector`, `scripts/rename-magic.mjs`); hand-merged CLAUDE.md (kept our Status/commands/lessons, added rebrand, detector, rule 12), docs/04 (kept our GSM-7-safe pre-alert wording, `SELLEKNI` prefix) and tokens (kept our per-mode status colours, added `logo` + `logoMono` + the logo tests).
+- [24h-H1] merge — branch `feat/sellekni-merge` off `feat/mobile-core`. Theirs-only files copied (docs 03/05/06/08–11, new docs 12–17 + diagrams, `packages/detector`, `scripts/rename-magic.mjs`); hand-merged DEVELOPMENT.md (kept our Status/commands/lessons, added rebrand, detector, rule 12), docs/04 (kept our GSM-7-safe pre-alert wording, `SELLEKNI` prefix) and tokens (kept our per-mode status colours, added `logo` + `logoMono` + the logo tests).
 - [24h-H1] wire magic — `NAJDA1 → SLK1` with `rename-magic.mjs` (pack folder excluded from its walk). `packages/shared` is now byte-identical to the pack's; vectors regenerated, Python cross-check agrees. The script re-shifted lengths in docs already converted in the pack (113 → 111) and computed a CRC over an elided `…` packet in docs/06-addendum: both restored by hand from the pack / real CRC `#0E`.
 - [24h-H1] magic-proofing — `ui-core` reads `MAGIC` from @najda/shared (was a `NAJDA\d` regex); bad-CRC fixtures change the last CRC digit (`corruptCrc`) instead of replacing a literal `#04` that silently stopped matching after the rename.
 - [24h-H1] brand — one `src/brand.ts` per app (Sellekni / سلّكني, `SELLEKNI` SMS prefix, `SLK` verb, `sellekni-mobile` JSON app id); no brand literal in components or locale files. Android package **`com.sellekni.app`**, scheme `sellekni`, app name Sellekni — decided now, before the first APK for the phones (docs/12 §2.1 #3). Arabic spelling still needs the native-speaker check.
@@ -124,6 +124,13 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [24h-H2] dual-SIM — asked once in onboarding/Settings, remembered as subscription id + "SIM n · carrier".
 - [24h-H2] DEVICE RESULT (Realme, 20:21) — `getSimInfo` returned SIM 1 Ooredoo (default SMS) + SIM 2 Djezzy; SEND_SMS granted; replay rollover_71_r16 with Wi-Fi + data off → banner "SMS only", HTTPS retrying, GW1 then GW2 sent through the native module, both answered `failed 124` (RIL generic error) by the radio: **both SIMs have no credit** (confirmed by the owner). So the native path works up to the radio, but no SMS has been DELIVERED yet. Wi-Fi back → the same alert D5HG9 reached the server over HTTPS (RECEIVED, band O) and the SMS retries stopped. Not a reason to fall back to the composer: G4 is blocked on SIM credit, not on code.
 - [24h-H2] webhook fixture — `SMSGATE_CAPTURE_DIR` (dev only, gitignored `data/captures/`) records every signed gateway webhook (body + gateway headers) so the real payload becomes a fixture in one step; anonymise the sender before copying it to `apps/web/src/server/services/sms/fixtures/`.
+
+## Sensors + brand pass (24h-H3)
+- [24h-H3] speed fallback — the detector got NO speed when Android's `coords.speed` is null/-1 (common indoors, at low speed, on some chipsets), so Drive mode never armed. `src/detector/speed.ts`: Doppler speed when present, else distance ÷ time from the NEWEST fix ≥ 3 s back (≤ 10 s, both ≤ 25 m accuracy), displacement under min(8 m, worse accuracy) = 0 km/h (parked jitter), median of 3, cap 250 km/h. 7 tests (72 km/h, 25 km/h visible, parked jitter = 0, bad fixes ignored, a hard stop shows within ~4 s). No detector threshold changed (rule 12). Computed speed is coarser: the screen says "speed computed from positions".
+- [24h-H3] live sensor panel — Drive mode (live) shows accelerometer |a| and peak (≥ range at the limit), gyroscope °/s, GPS speed + its source + accuracy, barometer hPa (display only: the detector has no pressure input), each with live / waiting / none. Sensors now run even when detection is off (unknown/low range) so the panel still proves them. "Shake the phone: the peak rises; it never alerts."
+- [24h-H3] sampling — `HIGH_SAMPLING_RATE_SENSORS` (normal permission, no prompt) so Android 12+ may honour the 100 Hz request (the Realme delivered 50 Hz without it).
+- [24h-H3] brand — the designer's logo (assets/brand/logo-source.png) through `scripts/make-brand.py`: red cross removed from the ambulance (emblem rule, docs/12 §2.3), red logo only on launcher icon / adaptive icon / splash, single-colour masks tinted `logoMono` inside the app (home header, onboarding). Splash is dark in both modes (the white wordmark disappears on the light background). A cleaned vector from the designer should replace the raster pipeline.
+- [24h-H3] home — brand header; "Ready / Before you drive" card (location, crash detection range, SMS without internet + SIM, server) where each missing piece opens the screen that fixes it; Sensor lab one tap from home.
 
 ## Open items
 - ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).

@@ -3,12 +3,13 @@ import * as Battery from 'expo-battery';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import * as Location from 'expo-location';
 import { router } from 'expo-router';
-import { Accelerometer, Gyroscope } from 'expo-sensors';
+import { Accelerometer, Barometer, Gyroscope } from 'expo-sensors';
 import { LOW_BATTERY_SENSOR_INTERVAL_MS, SENSOR_INTERVAL_MS } from '../config';
-import { createDetectorHost, createSensorClock, IDLE_SNAPSHOT, toGpsFix, toSample, type DetectorHost } from '../detector/adapter';
+import { createDetectorHost, createSensorClock, IDLE_SNAPSHOT, RAD_TO_DEG, toSample, type DetectorHost } from '../detector/adapter';
+import { createSpeedEstimator } from '../detector/speed';
 import { BUNDLED_TRACES, type TraceName } from '../replay/bundled-traces';
 import { startReplay, type ReplayHandle, type ReplayRate } from '../replay/engine';
-import { useSession } from '../state/session';
+import { NO_TELEMETRY, useSession, type SensorLive, type Telemetry } from '../state/session';
 import { useSettings } from '../state/settings';
 import { readAccelerometerRangeG } from './sensor-info';
 
@@ -25,14 +26,43 @@ let host: DetectorHost | null = null;
 let replay: ReplayHandle | null = null;
 let cleanups: (() => void)[] = [];
 let lastUi = 0;
+const speed = createSpeedEstimator();
+
+/** live readings, published with the detector snapshot at most every UI_MS */
+const LIVE_MS = 2_000;
+const tel = {
+  has: { accelerometer: false, gyroscope: false, gps: false, barometer: false },
+  at: { accelerometer: 0, gyroscope: 0, gps: 0, barometer: 0 },
+  accG: null as number | null, peakG: null as number | null, gyroDps: null as number | null, hpa: null as number | null,
+  speedSource: null as Telemetry['speedSource'],
+};
+function resetTelemetry() {
+  tel.has = { accelerometer: false, gyroscope: false, gps: false, barometer: false };
+  tel.at = { accelerometer: 0, gyroscope: 0, gps: 0, barometer: 0 };
+  tel.accG = tel.peakG = tel.gyroDps = tel.hpa = null;
+  tel.speedSource = null;
+}
+function telemetry(now: number): Telemetry {
+  const st = (k: keyof typeof tel.has): SensorLive => (!tel.has[k] ? 'missing' : now - tel.at[k] <= LIVE_MS ? 'live' : 'waiting');
+  return {
+    sensors: { accelerometer: st('accelerometer'), gyroscope: st('gyroscope'), gps: st('gps'), barometer: st('barometer') },
+    accG: tel.accG, peakG: tel.peakG, gyroDps: tel.gyroDps, hpa: tel.hpa, speedSource: tel.speedSource,
+  };
+}
+/** the "peak g" gauge starts again (e.g. after shaking the phone to check the sensor) */
+export function resetPeak() {
+  tel.peakG = tel.accG;
+  pushUi(true);
+}
 
 const session = () => useSession.getState();
 
 function pushUi(force = false) {
   const now = Date.now();
-  if (!host || (!force && now - lastUi < UI_MS)) return;
+  if (!force && now - lastUi < UI_MS) return;
   lastUi = now;
-  session().set({ detector: host.snapshot() });
+  const live = session().drive.live;
+  session().set({ ...(host && { detector: host.snapshot() }), ...(live && { telemetry: telemetry(now) }) });
 }
 
 function handle(decisions: readonly Decision[]) {
@@ -64,19 +94,18 @@ export function resolveRangeG(): number | null {
 }
 
 function onLocation(loc: Location.LocationObject, feedDetector: boolean) {
-  const sp = loc.coords.speed;
+  const { latitude: lat, longitude: lon, accuracy, speed: sp } = loc.coords;
+  // Doppler speed when Android gives it, else computed from the fixes (src/detector/speed.ts)
+  const v = feedDetector ? speed.update({ lat, lon, accM: accuracy, at: loc.timestamp, speedMps: sp }) : null;
   session().set({
-    fix: {
-      lat: loc.coords.latitude, lon: loc.coords.longitude,
-      ...(loc.coords.accuracy !== null && { accM: loc.coords.accuracy }),
-      at: loc.timestamp,
-      speedKmh: sp !== null && sp >= 0 ? sp * 3.6 : null,
-    },
+    fix: { lat, lon, ...(accuracy !== null && { accM: accuracy }), at: loc.timestamp, speedKmh: v?.kmh ?? (sp !== null && sp >= 0 ? sp * 3.6 : null) },
   });
-  if (!feedDetector || !host) return;
+  if (!feedDetector) return;
+  tel.has.gps = true;
+  tel.at.gps = Date.now();
+  tel.speedSource = v?.source ?? null;
   // the detector wants the ARRIVAL time on the phone (GPS latency stays inside it), on the samples' time base
-  const fix = toGpsFix(sp, Date.now());
-  if (fix) handle(host.pushGps(fix));
+  if (v && host) handle(host.pushGps({ t: Date.now(), speedKmh: v.kmh }));
   pushUi();
 }
 
@@ -99,16 +128,35 @@ function setSensorInterval(ms: number) {
 }
 
 async function startSensors(): Promise<boolean> {
-  const [acc, gyr] = await Promise.all([Accelerometer.isAvailableAsync(), Gyroscope.isAvailableAsync()]);
+  const [acc, gyr, baro] = await Promise.all([
+    Accelerometer.isAvailableAsync(), Gyroscope.isAvailableAsync(), Barometer.isAvailableAsync().catch(() => false),
+  ]);
+  tel.has.accelerometer = acc;
+  tel.has.gyroscope = gyr;
+  tel.has.barometer = baro;
+  if (baro) {
+    // display only (the detector has no pressure input): shows the sensor is alive
+    Barometer.setUpdateInterval(500);
+    const b = Barometer.addListener((m) => { tel.hpa = m.pressure; tel.at.barometer = Date.now(); });
+    cleanups.push(() => b.remove());
+  }
   if (!acc) return false;
   const clock = createSensorClock();
   let gyro = { x: 0, y: 0, z: 0 }; // no gyroscope: rule (c) rollover cannot fire, (a) and (b) still can
   setSensorInterval(SENSOR_INTERVAL_MS);
   if (gyr) {
-    const g = Gyroscope.addListener((m) => { gyro = m; });
+    const g = Gyroscope.addListener((m) => {
+      gyro = m;
+      tel.gyroDps = Math.hypot(m.x, m.y, m.z) * RAD_TO_DEG;
+      tel.at.gyroscope = Date.now();
+    });
     cleanups.push(() => g.remove());
   }
   const a = Accelerometer.addListener((m) => {
+    const g = Math.hypot(m.x, m.y, m.z);
+    tel.accG = g;
+    tel.peakG = Math.max(tel.peakG ?? 0, g);
+    tel.at.accelerometer = Date.now();
     if (!host) return;
     handle(host.pushSample(toSample(clock.toMs(m.timestamp, Date.now()), m, gyro)));
     pushUi();
@@ -169,17 +217,19 @@ export async function startDrive(opts: { replay?: { name: TraceName; rate: Repla
 
   const rangeG = resolveRangeG();
   host = rangeG === null ? null : createDetectorHost(rangeG);
-  session().set({ drive: { active: true, live: true, error: rangeG === null ? 'no_range' : null }, replay: null });
-  // location runs even without a detector: SOS needs the position
-  const [located, sensors] = await Promise.all([
-    startLocation(),
-    host?.detector.supported ? startSensors() : Promise.resolve(true),
-    startBattery(),
-  ]);
+  resetTelemetry();
+  speed.reset();
+  session().set({ drive: { active: true, live: true, error: rangeG === null ? 'no_range' : null }, replay: null, telemetry: NO_TELEMETRY });
+  // location runs even without a detector (SOS needs the position); sensors run even when detection is off, so the
+  // live panel can show they work (an UNSUPPORTED host simply ignores the samples)
+  const [located, sensors] = await Promise.all([startLocation(), startSensors(), startBattery()]);
   const error = rangeG === null ? 'no_range' : !located ? 'location_denied' : !sensors ? 'no_sensors' : null;
   session().set({ drive: { active: true, live: true, error } });
-  if (host) pushUi(true);
-  else session().set({ detector: IDLE_SNAPSHOT });
+  if (!host) session().set({ detector: IDLE_SNAPSHOT });
+  pushUi(true);
+  // a sensor that stops reporting must show as "waiting" even when nothing else refreshes the screen
+  const tick = setInterval(() => pushUi(true), 1_000);
+  cleanups.push(() => clearInterval(tick));
 }
 
 export async function stopDrive() {
@@ -187,7 +237,7 @@ export async function stopDrive() {
   replay = null;
   cleanups.splice(0).reverse().forEach((c) => c());
   host = null;
-  session().set({ drive: { active: false, live: false, error: null }, replay: null, detector: IDLE_SNAPSHOT, lastRejection: null });
+  session().set({ drive: { active: false, live: false, error: null }, replay: null, detector: IDLE_SNAPSHOT, telemetry: NO_TELEMETRY, lastRejection: null });
 }
 
 /** The countdown ended (I'm OK, or an alert was sent): the detector resumes watching. */
