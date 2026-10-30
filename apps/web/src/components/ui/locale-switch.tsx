@@ -2,7 +2,7 @@
 import { Languages } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { LOCALE_COOKIE, LOCALES, type Locale } from '@/i18n/config';
+import { LOCALES, rememberLocale, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/utils';
 
 /** ar / fr / en. Each option is labelled in its own language; switching re-renders with the mirrored layout. */
@@ -13,7 +13,7 @@ export function LocaleSwitch({ value, onChange, className }: { value?: Locale; o
   const router = useRouter();
   const choose = (l: Locale) => {
     if (onChange) return onChange(l);
-    document.cookie = `${LOCALE_COOKIE}=${l}; path=/; max-age=31536000; samesite=lax`;
+    rememberLocale(l);
     router.refresh();
   };
   return (

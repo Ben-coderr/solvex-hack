@@ -84,4 +84,4 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).
 - [H0] tooling — Supabase CLI not installed: `brew install supabase/tap/supabase` failed because github.com was unreachable from this machine/session at H0. Needed for P1.
 - [H14] G2 — the "stranger completes the hero flow in < 90 s without help" test has NOT been run with a person yet (automated run: ~11 s).
-- [H14] lint — `components/ui/locale-switch.tsx` (P2) trips react-hooks/immutability on `document.cookie`.
+- ~~[H14] lint — `components/ui/locale-switch.tsx` (P2) trips react-hooks/immutability on `document.cookie`~~ → fixed before P4: cookie write moved to `rememberLocale()` in `i18n/config.ts`; `pnpm --filter web lint` = 0 errors.
