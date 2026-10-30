@@ -17,6 +17,8 @@ ${Object.entries(t.color.onTriage).map(([k, v]) => `  --color-on-triage-${k.toLo
   --font-mono: "${t.font.mono}", ui-monospace, monospace;
   --font-display: "${t.font.display}", "${t.font.ui}", sans-serif;
 ${Object.entries(t.radius).map(([k, v]) => `  --radius-${k}: ${v}px;`).join('\n')}
+${Object.entries(t.fontSize).map(([k, v]) => `  --text-${k}: ${v / 16}rem;`).join('\n')}
+${Object.entries(t.motion).map(([k, v]) => `  --duration-${k}: ${v}ms;`).join('\n')}
 }
 :root, [data-theme="light"] {
 ${mode('light')}

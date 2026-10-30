@@ -3,13 +3,14 @@
 @import "shadcn/tailwind.css";
 @import "@najda/tokens/dist/tokens.css";
 
-/* Dark follows the token theme switch: explicit [data-theme="dark"], else the OS preference unless forced light. */
+/* Dark follows the token theme switch: explicit [data-theme="dark"], else the OS preference unless forced light
+   (on the root OR on any ancestor: /styleguide nests light and dark panels on one page). */
 @custom-variant dark {
   &:where([data-theme="dark"], [data-theme="dark"] *) {
     @slot;
   }
   @media (prefers-color-scheme: dark) {
-    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+    &:where(:root:not([data-theme="light"]) *):not(:where([data-theme="light"], [data-theme="light"] *)) {
       @slot;
     }
   }
@@ -30,6 +31,14 @@
   --color-text: var(--najda-text);
   --color-muted: var(--najda-raised);
   --color-brand-text: var(--najda-brand-text);
+  --color-brand-fill: var(--najda-brand-fill);
+  --color-on-brand: var(--najda-on-brand);
+  --color-triage-outline: var(--najda-triage-outline);
+  /* Generic UI states: text/icon only, never fills, never triage hues (tokens test enforces both). */
+  --color-status-ok: var(--najda-status-ok);
+  --color-status-warn: var(--najda-status-warn);
+  --color-status-danger: var(--najda-status-danger);
+  --color-status-info: var(--najda-status-info);
 
   /* shadcn/ui semantic slots, mapped onto NAJDA tokens (no raw colours here). */
   --color-background: var(--najda-bg);
@@ -45,8 +54,7 @@
   --color-muted-foreground: var(--najda-muted);
   --color-accent: var(--najda-raised);
   --color-accent-foreground: var(--najda-text);
-  /* TODO(P2): status.danger is in tokens.json but not emitted to tokens.css; never borrow triage R here. */
-  --color-destructive: var(--najda-text);
+  --color-destructive: var(--najda-status-danger);
   --color-border: var(--najda-line);
   --color-input: var(--najda-line);
   --color-ring: var(--najda-brand-fill);
@@ -67,5 +75,49 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+    line-height: 1.5;
   }
+  /* docs/06 §3: Arabic needs +8% line height and never letter-spacing. */
+  :lang(ar) {
+    line-height: 1.62;
+    letter-spacing: 0 !important;
+  }
+  /* Focus ring: brand, >= 3:1, on every interactive element (docs/06 §7). */
+  :focus-visible {
+    outline: 3px solid var(--najda-brand-fill);
+    outline-offset: 2px;
+  }
+  /* Packet text is always LTR, isolated from the surrounding (possibly Arabic) paragraph. */
+  .packet-ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+}
+
+/* ───────────── motion language (docs/06 §3): 120 / 200 / 360 ms, ease-out ─────────────
+   Only two signature motions: a marker pulse on arrival and the ring drain. Both vanish under reduced motion. */
+@keyframes najda-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.najda-pulse {
+  animation: najda-pulse 1.6s ease-out 3;
+  transform-origin: center;
+}
+.najda-ring-drain {
+  transition: stroke-dashoffset 1s linear;
+}
+@keyframes najda-shimmer {
+  0% { opacity: 0.55; }
+  50% { opacity: 1; }
+  100% { opacity: 0.55; }
+}
+.najda-skeleton {
+  animation: najda-shimmer 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .najda-pulse, .najda-skeleton { animation: none; }
+  .najda-pulse { opacity: 0; }
+  .najda-ring-drain { transition: none; }
+  *, *::before, *::after { transition-duration: 0ms !important; scroll-behavior: auto !important; }
 }

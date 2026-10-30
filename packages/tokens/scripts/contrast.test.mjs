@@ -50,6 +50,26 @@ test('borders are visible but quiet (>= 1.3:1 against bg)', () => {
   for (const m of ['dark', 'light']) assert.ok(contrast(t.color[m].line, t.color[m].bg) >= 1.3);
 });
 
+test('status colours: AA text on every surface, and never a triage hue (>= 30 deg away)', () => {
+  const hue = (hex) => {
+    const n = parseInt(hex.slice(1), 16); const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((x) => x / 255);
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+    if (d === 0) return 0;
+    const h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return (h * 60 + 360) % 360;
+  };
+  for (const m of ['dark', 'light']) {
+    const c = t.color[m];
+    for (const k of ['statusOk', 'statusWarn', 'statusDanger', 'statusInfo']) {
+      for (const s of ['bg', 'surface', 'raised']) assert.ok(contrast(c[k], c[s]) >= AA, `${m}.${k} on ${s}: ${contrast(c[k], c[s]).toFixed(2)}`);
+      for (const b of ['R', 'O', 'Y', 'G']) {
+        const d = Math.abs(hue(c[k]) - hue(t.color.triage[b]));
+        assert.ok(Math.min(d, 360 - d) >= 30, `${m}.${k} hue too close to triage ${b}`);
+      }
+    }
+  }
+});
+
 test('brand hue is not a triage hue (brand must never be mistaken for a band)', () => {
   const hue = (hex) => {
     const n = parseInt(hex.slice(1), 16); const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((x) => x / 255);

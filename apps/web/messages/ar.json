@@ -1,0 +1,180 @@
+{
+  "band": {
+    "R": "حرج",
+    "O": "خطير",
+    "Y": "متوسط",
+    "G": "طفيف",
+    "U": "غير معروف",
+    "label": "المستوى {band}: {name} (تقديري)"
+  },
+  "confidence": {
+    "H": "ثقة عالية",
+    "M": "ثقة متوسطة",
+    "L": "ثقة منخفضة",
+    "short": {
+      "H": "ثقة H",
+      "M": "ثقة M",
+      "L": "ثقة L"
+    }
+  },
+  "disclaimer": "خطر تقديري وليس تشخيصًا. أكِّد بمعاودة الاتصال.",
+  "reasons": {
+    "title": "لماذا هذا التقدير",
+    "none": "لم يُبلَّغ عن أي عامل خطر بعد.",
+    "points": "+{points}",
+    "dv": "انخفاض السرعة {value} كم/سا",
+    "peak_g": "صدمة قوية",
+    "rollover": "انقلاب",
+    "multi_impact": "عدة صدمات",
+    "no_response": "لا استجابة للعد التنازلي",
+    "unresponsive": "لا يستجيب",
+    "breathing": "صعوبة في التنفس",
+    "bleeding": "نزيف حاد",
+    "ejected": "شخص مقذوف",
+    "death_in_vehicle": "وفاة داخل المركبة",
+    "trapped": "عالق",
+    "child": "طفل معني",
+    "vulnerable_user": "راجل أو سائق دراجة نارية",
+    "spo2_low": "أكسجين منخفض",
+    "hr_abnormal": "نبض غير طبيعي",
+    "gcs_low": "درجة وعي منخفضة",
+    "sbp_low": "ضغط دم منخفض",
+    "age_65": "65 سنة فأكثر",
+    "pregnant": "حمل",
+    "anticoagulant": "يتناول مميّعات الدم"
+  },
+  "packet": {
+    "counter": "{length}/{max}",
+    "gsm7": "GSM-7",
+    "notGsm7": "ليس GSM-7",
+    "tooLong": "طويل جدًا",
+    "copy": "نسخ الرسالة",
+    "copied": "نُسخت",
+    "copyToken": "نسخ {token}",
+    "invalid": "تعذّرت القراءة: {code}",
+    "crcInvalid": "رمز التحقق غير مطابق: معروضة كما وصلت"
+  },
+  "golden": {
+    "label": "{minutes} دقيقة منذ الحادث",
+    "paused": "المؤقت متوقف",
+    "min": "د"
+  },
+  "countdown": {
+    "label": "{seconds} ثانية قبل إرسال التنبيه",
+    "unit": "ث",
+    "urgent": "جارٍ الإرسال"
+  },
+  "sos": {
+    "idle": "اضغط مطولًا للاستغاثة",
+    "pressed": "واصل الضغط…",
+    "sending": "جارٍ الإرسال…",
+    "sent": "أُرسل التنبيه",
+    "hint": "اضغط 1.5 ث"
+  },
+  "channel": {
+    "https": "إنترنت",
+    "sms": "رسالة قصيرة",
+    "paste": "رسالة ملصقة",
+    "witness": "صفحة الشاهد",
+    "sim": "محاكاة",
+    "sent": "أُرسلت",
+    "retrying": "إعادة المحاولة",
+    "acked": "استُلمت",
+    "failed": "فشل"
+  },
+  "incident": {
+    "unconfirmed": "تلقائي · غير مؤكد",
+    "merged": "×{count} بلاغات",
+    "ago": "منذ {value}",
+    "age": {
+      "clock": "{value}",
+      "min": "{value} د",
+      "h": "{value} سا"
+    }
+  },
+  "hospital": {
+    "rank": "رقم {rank}",
+    "eta": "الوصول",
+    "min": "د",
+    "estimated": "تقديري",
+    "score": "الملاءمة {score}",
+    "nearestEd": "أقرب مصلحة استعجالات",
+    "statusAge": "{status} · منذ {hours} سا",
+    "statusUnknown": "الحالة غير معروفة",
+    "status": {
+      "OK": "متاح",
+      "BUSY": "مشغول",
+      "SATURATED": "مكتظ",
+      "UNKNOWN": "غير معروف"
+    },
+    "has": "يتوفر على {cap}",
+    "missing": "ينقصه {cap}",
+    "prealert": "إنذار مسبق",
+    "choose": "اختيار…",
+    "illustrative": "توضيحي",
+    "gateNote": "في المرتبة الأولى بقاعدة القدرات: المستوى R يتطلب مركزًا من المستوى A في أقل من 60 د (قاعدة سريرية وليست النتيجة الخام).",
+    "missingNote": "ينقصه {caps}: خطر نقل ثانوي."
+  },
+  "capability": {
+    "ed24": "استعجالات 24/24",
+    "trauma_surgery": "جراحة الإصابات",
+    "ct": "سكانير",
+    "icu": "إنعاش",
+    "neurosurgery": "جراحة الأعصاب",
+    "pediatrics": "طب الأطفال",
+    "burns": "الحروق",
+    "general_surgery": "جراحة عامة"
+  },
+  "lifecycle": {
+    "RECEIVED": "مُستلم",
+    "ACKNOWLEDGED": "قيد المعالجة",
+    "DISPATCHED": "أُرسلت وحدة",
+    "EN_ROUTE": "في الطريق",
+    "ON_SCENE": "في المكان",
+    "TRANSPORTING": "نقل",
+    "AT_HOSPITAL": "في المستشفى",
+    "CLOSED": "مغلق",
+    "by": "{actor} · {time}",
+    "blocked": "غير متاح بعد"
+  },
+  "prealert": {
+    "incoming": "وصول مرتقب",
+    "acked": "تم الاستلام {time}",
+    "overdue": "لا تأكيد منذ {minutes} د",
+    "eta": "يصل خلال",
+    "ack": "تأكيد الاستلام",
+    "mechanism": "آلية الحادث",
+    "persons": "{count, plural, one {شخص واحد} two {شخصان} few {# أشخاص} many {# شخصًا} other {# شخص}}"
+  },
+  "witness": {
+    "steps": {
+      "vehicles": "المركبات",
+      "hurt": "من المصاب",
+      "danger": "الخطر",
+      "location": "المكان",
+      "send": "إرسال"
+    },
+    "progress": "الخطوة {current} من {total}"
+  },
+  "status": {
+    "online": "متصل",
+    "sms_only": "رسائل قصيرة فقط — التنبيهات تُرسل رغم ذلك",
+    "offline": "غير متصل — محفوظ، ستُعاد المحاولة",
+    "replay": "إعادة تشغيل — رحلة مسجلة",
+    "demo": "عرض تجريبي — بيانات وهمية"
+  },
+  "locale": {
+    "label": "اللغة",
+    "ar": "العربية",
+    "fr": "Français",
+    "en": "English"
+  },
+  "state": {
+    "loading": "جارٍ التحميل",
+    "emptyTitle": "لا توجد حوادث مفتوحة",
+    "emptyBody": "تظهر التنبيهات الجديدة هنا خلال ثوانٍ.",
+    "errorTitle": "تعذّر التحميل",
+    "errorBody": "بياناتك محفوظة. تحقق من الاتصال وأعد المحاولة.",
+    "retry": "إعادة المحاولة"
+  }
+}

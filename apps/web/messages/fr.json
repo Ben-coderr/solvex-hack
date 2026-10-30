@@ -1,0 +1,180 @@
+{
+  "band": {
+    "R": "Critique",
+    "O": "Grave",
+    "Y": "Modéré",
+    "G": "Léger",
+    "U": "Inconnu",
+    "label": "Niveau {band} : {name} (estimé)"
+  },
+  "confidence": {
+    "H": "Confiance élevée",
+    "M": "Confiance moyenne",
+    "L": "Confiance faible",
+    "short": {
+      "H": "conf. H",
+      "M": "conf. M",
+      "L": "conf. L"
+    }
+  },
+  "disclaimer": "Risque estimé, pas un diagnostic. Confirmer par rappel.",
+  "reasons": {
+    "title": "Pourquoi cette estimation",
+    "none": "Aucun facteur de risque signalé.",
+    "points": "+{points}",
+    "dv": "Chute de vitesse {value} km/h",
+    "peak_g": "Choc violent",
+    "rollover": "Tonneau",
+    "multi_impact": "Plusieurs chocs",
+    "no_response": "Pas de réponse au compte à rebours",
+    "unresponsive": "Ne répond pas",
+    "breathing": "Difficulté à respirer",
+    "bleeding": "Saignement important",
+    "ejected": "Personne éjectée",
+    "death_in_vehicle": "Décès dans le véhicule",
+    "trapped": "Incarcéré",
+    "child": "Enfant impliqué",
+    "vulnerable_user": "Piéton ou motard",
+    "spo2_low": "Oxygène bas",
+    "hr_abnormal": "Pouls anormal",
+    "gcs_low": "Score de conscience bas",
+    "sbp_low": "Tension basse",
+    "age_65": "65 ans ou plus",
+    "pregnant": "Grossesse",
+    "anticoagulant": "Sous anticoagulants"
+  },
+  "packet": {
+    "counter": "{length}/{max}",
+    "gsm7": "GSM-7",
+    "notGsm7": "Pas GSM-7",
+    "tooLong": "Trop long",
+    "copy": "Copier le paquet",
+    "copied": "Copié",
+    "copyToken": "Copier {token}",
+    "invalid": "Illisible : {code}",
+    "crcInvalid": "Somme de contrôle incorrecte : affiché tel que reçu"
+  },
+  "golden": {
+    "label": "{minutes} min depuis l'impact",
+    "paused": "Chrono en pause",
+    "min": "min"
+  },
+  "countdown": {
+    "label": "{seconds} secondes avant l'envoi de l'alerte",
+    "unit": "s",
+    "urgent": "Envoi"
+  },
+  "sos": {
+    "idle": "Maintenir pour SOS",
+    "pressed": "Continuez…",
+    "sending": "Envoi…",
+    "sent": "Alerte envoyée",
+    "hint": "Maintenir 1,5 s"
+  },
+  "channel": {
+    "https": "Internet",
+    "sms": "SMS",
+    "paste": "SMS collé",
+    "witness": "Page témoin",
+    "sim": "Simulé",
+    "sent": "envoyé",
+    "retrying": "nouvel essai",
+    "acked": "reçu",
+    "failed": "échec"
+  },
+  "incident": {
+    "unconfirmed": "Auto · non confirmé",
+    "merged": "×{count} signalements",
+    "ago": "il y a {value}",
+    "age": {
+      "clock": "{value}",
+      "min": "{value} min",
+      "h": "{value} h"
+    }
+  },
+  "hospital": {
+    "rank": "n°{rank}",
+    "eta": "Arrivée",
+    "min": "min",
+    "estimated": "estimé",
+    "score": "Adéquation {score}",
+    "nearestEd": "Urgences la plus proche",
+    "statusAge": "{status} · il y a {hours} h",
+    "statusUnknown": "Statut inconnu",
+    "status": {
+      "OK": "Disponible",
+      "BUSY": "Chargé",
+      "SATURATED": "Saturé",
+      "UNKNOWN": "Inconnu"
+    },
+    "has": "dispose de {cap}",
+    "missing": "manque {cap}",
+    "prealert": "Pré-alerter",
+    "choose": "Choisir…",
+    "illustrative": "illustratif",
+    "gateNote": "Classé premier par la règle de capacités : un niveau R exige un centre de niveau A à moins de 60 min (règle clinique, pas le score brut).",
+    "missingNote": "Manque {caps} : risque de transfert secondaire."
+  },
+  "capability": {
+    "ed24": "Urgences 24h/24",
+    "trauma_surgery": "Traumatologie",
+    "ct": "Scanner",
+    "icu": "Réanimation",
+    "neurosurgery": "Neurochirurgie",
+    "pediatrics": "Pédiatrie",
+    "burns": "Brûlés",
+    "general_surgery": "Chirurgie"
+  },
+  "lifecycle": {
+    "RECEIVED": "Reçu",
+    "ACKNOWLEDGED": "Pris en compte",
+    "DISPATCHED": "Engagé",
+    "EN_ROUTE": "En route",
+    "ON_SCENE": "Sur place",
+    "TRANSPORTING": "Transport",
+    "AT_HOSPITAL": "À l'hôpital",
+    "CLOSED": "Clôturé",
+    "by": "{actor} · {time}",
+    "blocked": "Pas encore disponible"
+  },
+  "prealert": {
+    "incoming": "Arrivée prévue",
+    "acked": "Pris en compte {time}",
+    "overdue": "Pas de réponse depuis {minutes} min",
+    "eta": "Arrivée dans",
+    "ack": "Prendre en compte",
+    "mechanism": "Mécanisme",
+    "persons": "{count, plural, one {# personne} other {# personnes}}"
+  },
+  "witness": {
+    "steps": {
+      "vehicles": "Véhicules",
+      "hurt": "Qui est blessé",
+      "danger": "Danger",
+      "location": "Lieu",
+      "send": "Envoyer"
+    },
+    "progress": "Étape {current} sur {total}"
+  },
+  "status": {
+    "online": "En ligne",
+    "sms_only": "SMS seulement — les alertes partent quand même",
+    "offline": "Hors ligne — enregistré, nouvel essai",
+    "replay": "REPLAY — trajet enregistré",
+    "demo": "DÉMO — données fictives"
+  },
+  "locale": {
+    "label": "Langue",
+    "ar": "العربية",
+    "fr": "Français",
+    "en": "English"
+  },
+  "state": {
+    "loading": "Chargement",
+    "emptyTitle": "Aucun incident ouvert",
+    "emptyBody": "Les nouvelles alertes s'affichent ici en quelques secondes.",
+    "errorTitle": "Chargement impossible",
+    "errorBody": "Vos données sont en sécurité. Vérifiez la connexion et réessayez.",
+    "retry": "Réessayer"
+  }
+}

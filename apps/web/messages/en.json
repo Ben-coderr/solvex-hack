@@ -1,0 +1,180 @@
+{
+  "band": {
+    "R": "Critical",
+    "O": "Serious",
+    "Y": "Moderate",
+    "G": "Minor",
+    "U": "Unknown",
+    "label": "Band {band}: {name} (estimated)"
+  },
+  "confidence": {
+    "H": "High confidence",
+    "M": "Medium confidence",
+    "L": "Low confidence",
+    "short": {
+      "H": "conf. H",
+      "M": "conf. M",
+      "L": "conf. L"
+    }
+  },
+  "disclaimer": "Estimated risk, not a diagnosis. Confirm by call-back.",
+  "reasons": {
+    "title": "Why this estimate",
+    "none": "No risk factor reported yet.",
+    "points": "+{points}",
+    "dv": "Speed drop {value} km/h",
+    "peak_g": "Strong impact",
+    "rollover": "Rollover",
+    "multi_impact": "Several impacts",
+    "no_response": "No response to the countdown",
+    "unresponsive": "Not responding",
+    "breathing": "Breathing difficulty",
+    "bleeding": "Heavy bleeding",
+    "ejected": "Person ejected",
+    "death_in_vehicle": "Death in the vehicle",
+    "trapped": "Trapped",
+    "child": "Child involved",
+    "vulnerable_user": "Pedestrian or motorcyclist",
+    "spo2_low": "Low oxygen",
+    "hr_abnormal": "Abnormal heart rate",
+    "gcs_low": "Low consciousness score",
+    "sbp_low": "Low blood pressure",
+    "age_65": "Age 65 or over",
+    "pregnant": "Pregnancy",
+    "anticoagulant": "On blood thinners"
+  },
+  "packet": {
+    "counter": "{length}/{max}",
+    "gsm7": "GSM-7",
+    "notGsm7": "Not GSM-7",
+    "tooLong": "Too long",
+    "copy": "Copy packet",
+    "copied": "Copied",
+    "copyToken": "Copy {token}",
+    "invalid": "Could not be read: {code}",
+    "crcInvalid": "Checksum does not match: shown as received"
+  },
+  "golden": {
+    "label": "{minutes} min since impact",
+    "paused": "Timer paused",
+    "min": "min"
+  },
+  "countdown": {
+    "label": "{seconds} seconds before the alert is sent",
+    "unit": "s",
+    "urgent": "Sending"
+  },
+  "sos": {
+    "idle": "Hold for SOS",
+    "pressed": "Keep holding…",
+    "sending": "Sending…",
+    "sent": "Alert sent",
+    "hint": "Hold 1.5 s"
+  },
+  "channel": {
+    "https": "Internet",
+    "sms": "SMS",
+    "paste": "Pasted SMS",
+    "witness": "Witness page",
+    "sim": "Simulated",
+    "sent": "sent",
+    "retrying": "retrying",
+    "acked": "received",
+    "failed": "failed"
+  },
+  "incident": {
+    "unconfirmed": "Auto · unconfirmed",
+    "merged": "×{count} reports",
+    "ago": "{value} ago",
+    "age": {
+      "clock": "{value}",
+      "min": "{value} min",
+      "h": "{value} h"
+    }
+  },
+  "hospital": {
+    "rank": "#{rank}",
+    "eta": "ETA",
+    "min": "min",
+    "estimated": "estimated",
+    "score": "Match {score}",
+    "nearestEd": "Nearest ED",
+    "statusAge": "{status} · {hours} h ago",
+    "statusUnknown": "Status unknown",
+    "status": {
+      "OK": "Available",
+      "BUSY": "Busy",
+      "SATURATED": "Saturated",
+      "UNKNOWN": "Unknown"
+    },
+    "has": "has {cap}",
+    "missing": "missing {cap}",
+    "prealert": "Pre-alert",
+    "choose": "Choose…",
+    "illustrative": "illustrative",
+    "gateNote": "Ranked first by the capability rule: band R needs a level-A centre within 60 min (a clinical policy, not the raw score).",
+    "missingNote": "Missing {caps}: risk of a secondary transfer."
+  },
+  "capability": {
+    "ed24": "ED 24/7",
+    "trauma_surgery": "Trauma surgery",
+    "ct": "CT",
+    "icu": "ICU",
+    "neurosurgery": "Neurosurgery",
+    "pediatrics": "Paediatrics",
+    "burns": "Burns",
+    "general_surgery": "Surgery"
+  },
+  "lifecycle": {
+    "RECEIVED": "Received",
+    "ACKNOWLEDGED": "Acknowledged",
+    "DISPATCHED": "Dispatched",
+    "EN_ROUTE": "En route",
+    "ON_SCENE": "On scene",
+    "TRANSPORTING": "Transporting",
+    "AT_HOSPITAL": "At hospital",
+    "CLOSED": "Closed",
+    "by": "{actor} · {time}",
+    "blocked": "Not available yet"
+  },
+  "prealert": {
+    "incoming": "Incoming",
+    "acked": "Acknowledged {time}",
+    "overdue": "No acknowledgement for {minutes} min",
+    "eta": "Arrives in",
+    "ack": "Acknowledge",
+    "mechanism": "Mechanism",
+    "persons": "{count, plural, one {# person} other {# people}}"
+  },
+  "witness": {
+    "steps": {
+      "vehicles": "Vehicles",
+      "hurt": "Who is hurt",
+      "danger": "Danger",
+      "location": "Location",
+      "send": "Send"
+    },
+    "progress": "Step {current} of {total}"
+  },
+  "status": {
+    "online": "Online",
+    "sms_only": "SMS only — alerts still go out",
+    "offline": "Offline — saved, will retry",
+    "replay": "REPLAY — recorded trip",
+    "demo": "DEMO — synthetic data"
+  },
+  "locale": {
+    "label": "Language",
+    "ar": "العربية",
+    "fr": "Français",
+    "en": "English"
+  },
+  "state": {
+    "loading": "Loading",
+    "emptyTitle": "No open incidents",
+    "emptyBody": "New alerts appear here within seconds.",
+    "errorTitle": "Could not load",
+    "errorBody": "Your data is safe. Check the connection and try again.",
+    "retry": "Try again"
+  }
+}

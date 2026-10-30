@@ -22,6 +22,18 @@
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-pill: 999px;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.9375rem;
+  --text-3xl: 2.4375rem;
+  --text-4xl: 3.0625rem;
+  --text-5xl: 3.8125rem;
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 360ms;
 }
 :root, [data-theme="light"] {
   --najda-bg: #F6F4EF;
@@ -34,6 +46,10 @@
   --najda-on-brand: #FFFFFF;
   --najda-brand-fill: #2B62F0;
   --najda-triage-outline: #14181C;
+  --najda-status-ok: #0B6E85;
+  --najda-status-warn: #6A4BC4;
+  --najda-status-danger: #A3236F;
+  --najda-status-info: #1740B0;
 }
 [data-theme="dark"] {
   --najda-bg: #0E1114;
@@ -46,6 +62,10 @@
   --najda-on-brand: #FFFFFF;
   --najda-brand-fill: #2B62F0;
   --najda-triage-outline: transparent;
+  --najda-status-ok: #4CCCE6;
+  --najda-status-warn: #B79CFF;
+  --najda-status-danger: #F27AC2;
+  --najda-status-info: #9DB8FF;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -59,5 +79,9 @@
     --najda-on-brand: #FFFFFF;
     --najda-brand-fill: #2B62F0;
     --najda-triage-outline: transparent;
+    --najda-status-ok: #4CCCE6;
+    --najda-status-warn: #B79CFF;
+    --najda-status-danger: #F27AC2;
+    --najda-status-info: #9DB8FF;
   }
 }
