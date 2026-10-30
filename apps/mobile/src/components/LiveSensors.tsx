@@ -19,6 +19,9 @@ function Tile({ icon: Icon, name, live, value, sub }: { icon: LucideIcon; name: 
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[1] }}>
         <Icon size={16} color={c.muted} />
         <Txt v="small" tone="muted" style={{ flex: 1 }} numberOfLines={1}>{name}</Txt>
+      </View>
+      {/* own row: sharing one with the name truncated every name on a phone (and all of them in Arabic) */}
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[1] }}>
         <SI size={14} color={c[tone]} />
         <Txt v="small" tone={tone}>{t(`drive.live.st_${live}`)}</Txt>
       </View>

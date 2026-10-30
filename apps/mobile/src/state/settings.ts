@@ -53,7 +53,13 @@ export const useSettings = create<Settings>()(
     }),
     {
       name: 'najda.settings.v1',
-      storage: createJSONStorage(() => Storage),
+      // synchronous: a change is on disk before the next line runs. The language switch reloads the app right after
+      // `set` (RTL needs a restart); with the async API that reload beat the write and the language never stuck.
+      storage: createJSONStorage(() => ({
+        getItem: (k) => Storage.getItemSync(k),
+        setItem: (k, v) => Storage.setItemSync(k, v),
+        removeItem: (k) => void Storage.removeItemSync(k),
+      })),
       // a value saved EMPTY (first launch before the demo build had one) must not hide the build's default forever
       merge: (saved, current) => {
         const s = (saved ?? {}) as Partial<Settings>;
