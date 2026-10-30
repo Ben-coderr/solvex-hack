@@ -1,57 +1,76 @@
+import '@/src/services/location-task'; // TaskManager.defineTask must run at module scope
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
+import { I18nManager } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
-import { FONT_FILES } from '@/src/ui';
+import { applyLocale, deviceLocale, initI18n, useUiStrings } from '@/src/i18n';
+import { startOutbox } from '@/src/services/alerts';
+import { startConnectivity } from '@/src/services/connectivity';
+import { useSettings } from '@/src/state/settings';
+import { FONT_FILES, UiTextProvider, useTheme } from '@/src/ui';
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  anchor: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  // NAJDA type: IBM Plex Sans Arabic (UI), IBM Plex Mono (packets), Bricolage Grotesque (numerals).
-  const [loaded, error] = useFonts(FONT_FILES);
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
+/** Settings live in SQLite: wait for them before choosing the language and the first screen. */
+function useHydrated() {
+  const [done, setDone] = useState(useSettings.persist.hasHydrated());
+  useEffect(() => useSettings.persist.onFinishHydration(() => setDone(true)), []);
+  return done;
 }
 
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
+  const [fonts, fontError] = useFonts(FONT_FILES);
+  const hydrated = useHydrated();
+  const [i18nReady, setI18nReady] = useState(false);
 
+  useEffect(() => {
+    if (fontError) throw fontError;
+  }, [fontError]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const locale = useSettings.getState().locale ?? deviceLocale();
+    void initI18n(locale).then(async () => {
+      // the stored language and the native direction disagree (first Arabic launch): fix it, which may reload
+      if (useSettings.getState().locale && I18nManager.isRTL !== (locale === 'ar')) await applyLocale(locale);
+      setI18nReady(true);
+    });
+    const stopLink = startConnectivity();
+    void startOutbox();
+    return stopLink;
+  }, [hydrated]);
+
+  const ready = fonts && hydrated && i18nReady;
+  useEffect(() => {
+    if (ready) void SplashScreen.hideAsync();
+  }, [ready]);
+
+  if (!ready) return null;
+  return <RootNav />;
+}
+
+function RootNav() {
+  const { mode, c } = useTheme();
+  const ui = useUiStrings();
+  const base = mode === 'dark' ? DarkTheme : DefaultTheme;
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="styleguide" options={{ title: 'Styleguide' }} />
-      </Stack>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <UiTextProvider value={ui}>
+        <ThemeProvider value={{ ...base, colors: { ...base.colors, background: c.bg, card: c.surface, text: c.text, border: c.line, primary: c.brandFill } }}>
+          <StatusBar style={mode === 'dark' ? 'light' : 'dark'} />
+          <Stack screenOptions={{ headerShown: false, animation: 'fade', animationDuration: 200, contentStyle: { backgroundColor: c.bg } }}>
+            <Stack.Screen name="countdown" options={{ gestureEnabled: false, animation: 'none' }} />
+            <Stack.Screen name="styleguide" options={{ headerShown: true, title: 'Styleguide' }} />
+          </Stack>
+        </ThemeProvider>
+      </UiTextProvider>
+    </SafeAreaProvider>
   );
 }

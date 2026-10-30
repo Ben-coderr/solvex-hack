@@ -35,6 +35,8 @@ export interface AlertInput {
   battery?: number;
   lang?: 'ar' | 'fr' | 'en';
   appVersion?: string;
+  /** built from a replayed trace: marked in device.app so the server-side raw JSON shows it */
+  replay?: boolean;
 }
 
 export interface BuiltAlert {
@@ -98,7 +100,7 @@ export function buildAlert(a: AlertInput): BuiltAlert {
       : {}),
     scene: { vehicles: packet.veh, persons: packet.pers, kinds: kinds.map((k) => KIND_WORD[k]), flags: flags.map((f) => FLAG_WORD[f]) },
     ...(a.lang && { contact: { lang: a.lang } }),
-    device: { app: `najda-mobile/${a.appVersion ?? '0'}`, ...(a.battery !== undefined && { battery: clampInt(a.battery, 100) }) },
+    device: { app: `najda-mobile/${a.appVersion ?? '0'}${a.replay ? '+replay' : ''}`, ...(a.battery !== undefined && { battery: clampInt(a.battery, 100) }) },
     hint: { band: packet.band, score: packet.score, conf: packet.conf },
   };
 

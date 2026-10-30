@@ -39,3 +39,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Continuous Native Generation: android/ and ios/ come from app.json (npx expo prebuild)
+/android
+/ios

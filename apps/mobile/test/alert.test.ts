@@ -30,6 +30,7 @@ test('auto alert from rollover_71 with no response: valid GSM-7 packet ≤ 160, 
   assert.equal(a.json.created_at, '2026-10-30T14:32:07+01:00');
   assert.deepEqual(a.json.hint, { band: a.packet.band, score: a.packet.score, conf: a.packet.conf });
   assert.equal(a.locationAgeMin, 0);
+  assert.equal(buildAlert({ id: 'K7Q2M', source: 'A', now: NOW, fix: FIX, replay: true, appVersion: '1.0.0' }).json.device?.app, 'najda-mobile/1.0.0+replay');
 });
 
 test('manual SOS (SM): no crash physics, no flags, still a valid packet', () => {
