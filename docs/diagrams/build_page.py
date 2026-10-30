@@ -11,7 +11,7 @@ for k in ('01', '02', '03', '04', '05', '06', '07'):
     assert k in svg, f'missing inline diagram {k}'
 
 PAGE = r'''<title>Sellekni Blueprint</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">

@@ -1,4 +1,4 @@
-# Sellekni (internal codename NAJDA / نجدة) — project memory for Claude Code
+# Sellekni (internal codename NAJDA / نجدة) — Development & Architecture Guide
 
 > Product name **Sellekni** (team decision 2026-10-30). `NAJDA`, `@najda/*`, `x-najda-key` stay as internal codenames. The wire magic is renamed only with `node scripts/rename-magic.mjs <MAGIC> --write` (see docs/12). Brand strings live in one `src/brand.ts` per app.
 
@@ -42,18 +42,18 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 
 ## Hard rules
 1. **TypeScript strict everywhere.** One language end to end; logic lives in `packages/shared` and is imported, never copied.
-2. **Do not change the wire format, CRC, scoring weights or ranking without the `najda-protocol` skill's procedure:** update `docs/05` → update `scripts/crosscheck.py` → `pnpm vectors` → review the vector diff → `pnpm check`. Never edit a vector by hand to make a test pass.
+2. **Do not change the wire format, CRC, scoring weights or ranking without the protocol guard procedure:** update `docs/05` → update `scripts/crosscheck.py` → `pnpm vectors` → review the vector diff → `pnpm check`. Never edit a vector by hand to make a test pass.
 3. **Server is authoritative:** recompute band/score with `assess()`; the phone's band is a hint.
 4. **Never drop a message.** A packet that fails to parse is stored as an unparsed report and shown raw.
 5. **Secrets:** the Supabase service-role key and all `.env` values stay server-side. Never in the mobile app, never in `NEXT_PUBLIC_*`, never committed.
 6. **Layering (web server code):** `domain` (pure, from `@najda/shared`) → `services` (I/O) → route handlers (thin: zod validate → service → JSON).
-7. **UI:** follow the `najda-design` skill. Tokens only, no raw hex; triage colours are reserved; shape + letter + colour; RTL via logical properties; all states (loading/empty/error/offline/SMS-only).
-8. **Copy and claims:** follow the `najda-medical-language` skill. Decision support, "estimated risk", disclaimer everywhere, no unsourced statistics, "rules" not "AI".
+7. **UI:** follow the design constitution (`docs/guidelines/design-constitution.md`). Tokens only, no raw hex; triage colours are reserved; shape + letter + colour; RTL via logical properties; all states (loading/empty/error/offline/SMS-only).
+8. **Copy and claims:** follow the medical language guidelines (`docs/guidelines/medical-language.md`). Decision support, "estimated risk", disclaimer everywhere, no unsourced statistics, "rules" not "AI".
 9. **SMS packets** are pure basic GSM-7 and ≤ 160 chars (A-Z 0-9 space `. , + - #`).
 10. **Every feature ships with its failure state** and a test or a replay trace. Demo mode is always labelled on screen (REPLAY / DEMO).
 11. **Verify, don't assume:** after UI work run the app, screenshot (360/768/1440 px, light+dark, en+ar), compare to the design, fix. After backend work, `curl` the endpoint. After protocol work, `pnpm check`.
 12. **Phone sensors are the main path.** OBD and the plug-in box are roadmap (docs/16); the only box item in the 48 h is the simulated `BOX` replay. Detector thresholds are assumptions in `PARAMS`; change them only with evidence, logged in `DECISIONS.md`.
-13. Use Context7 for library docs (Expo SDK 58, Next 16, Supabase, MapLibre, Reanimated). Do not code from memory against fast-moving APIs.
+13. Use Context7 or official documentation for library docs (Expo SDK 58, Next 16, Supabase, MapLibre, Reanimated). Do not code from memory against fast-moving APIs.
 
 ## Conventions
 - Branches `feat/<area>-<thing>`, small commits, message style `feat(web): …` / `fix(shared): …`. Tag gates `gate-H10`, `gate-H20`…

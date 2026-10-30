@@ -1,9 +1,4 @@
----
-name: najda-design
-description: NAJDA design constitution. Use whenever you create or change ANY UI (Expo screens, Next.js pages, components, Figma frames). Enforces tokens, triage-colour rules, Arabic RTL, accessibility, and the signature components so the product looks unique and never generic.
----
-
-# NAJDA design constitution
+# Sellekni Design Constitution
 
 Read `docs/06-DESIGN-AND-UX.md` for the full system. These rules are non-negotiable.
 

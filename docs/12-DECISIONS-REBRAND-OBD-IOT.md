@@ -88,7 +88,7 @@ What it does: rewrites the magic in `dzmsd.ts`, `crosscheck.py`, `generate-vecto
 | Detector gates | Vendor practice adds a **multi-axis gate** (≥2 axes with significant force) and a **post-event gate** (still at highway speed after the spike → reject) | We already confirm by "stopped within 5 s" (post-event). **Add the multi-axis gate** — *superseded: docs/13 §4.1 demoted it to a reported cue; the built gates are speed history, high-g duration, speed collapse and the stop* |
 | Sampling | A 30 ms duration gate needs ≥ ~100 Hz | Sensor Lab (M9) must print the **actual** rate and range of each demo phone |
 
-**P4 actions (Claude Code):** read the accelerometer's max range (Kotlin module `getAccelerometerRange()` — one more reason the native module exists — or calibrate with a recorded drop in Sensor Lab); mark samples `|a| ≥ 0.95·range` as saturated; `G = min(peak, range)` in the packet and tell the user "≥ 16 g (sensor limit)" in reasons; regenerate the five traces clipped; add the multi-axis gate and a test (single-axis spike with no speed history must not alert); keep determinism. *Superseded: all of this is built in `packages/detector` (docs/13 §3, §4.1); integrate it, do not rewrite it.*
+**P4 actions:** read the accelerometer's max range (Kotlin module `getAccelerometerRange()` — one more reason the native module exists — or calibrate with a recorded drop in Sensor Lab); mark samples `|a| ≥ 0.95·range` as saturated; `G = min(peak, range)` in the packet and tell the user "≥ 16 g (sensor limit)" in reasons; regenerate the five traces clipped; add the multi-axis gate and a test (single-axis spike with no speed history must not alert); keep determinism. *Superseded: all of this is built in `packages/detector` (docs/13 §3, §4.1); integrate it, do not rewrite it.*
 
 **Why this matters beyond P4:** it is the strongest *technical* argument for a hardware sensor (§5): a purpose-built ±200 g IMU can see the real crash pulse; a phone cannot.
 
@@ -170,7 +170,7 @@ Say: "phones are our sensor today and they saturate at about ±16 g; a plug-in b
 
 ## 7. Review protocol for the two repos (run as soon as access exists)
 
-**How to give access (any one):** (1) in claude.ai **Settings → Connectors**, link GitHub, then ask again; (2) on GitHub use **Code → Download ZIP** for each repo and attach the two ZIPs; (3) paste the README and the file tree of each, then the docs one by one.
+**How to review external repositories (any one):** (1) clone the repos into local workspaces; (2) on GitHub use **Code → Download ZIP** for each repo and extract; (3) review the README and the file tree of each, then inspect the technical docs.
 
 **`3imss/obd-connected-pack` — questions to answer**
 1. What is in it: firmware, an Android/RN reader, PID tables, a protocol, docs?

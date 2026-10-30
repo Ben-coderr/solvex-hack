@@ -103,7 +103,7 @@ for (const file of walk(ROOT)) {
   let out = masked;
   let n = 0;
   if (masked.includes(OLD)) ({ out, n } = rewrite(masked));
-  if (/^(docs\/|packages\/shared\/test\/|\.claude\/|CLAUDE\.md)/.test(rel)) out = fixLengths(out);
+  if (/^(docs\/|packages\/shared\/test\/|DEVELOPMENT\.md)/.test(rel)) out = fixLengths(out);
   for (const [i, l] of kept) out = out.replace(`\u0000KEEP${i}\u0000`, () => l);
   if (out !== text) {
     changed.push({ rel, n });

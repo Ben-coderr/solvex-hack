@@ -1,5 +1,5 @@
-// Claude Code PostToolUse hook: when a file in packages/shared or packages/tokens changes, run its tests.
-// Exit code 2 sends stderr back to Claude so it fixes the break immediately.
+// PostToolUse hook: when a file in packages/shared or packages/tokens changes, run its tests.
+// Exit code 2 sends stderr back to the runner so it fixes the break immediately.
 import { spawnSync } from 'node:child_process';
 
 let raw = '';

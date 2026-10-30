@@ -1,7 +1,7 @@
 # NAJDA (نجدة) — run it and test it locally
 
 Prototype for SolveX 3.0 · Problem 1. **Synthetic data only.** Decision support, not a dispatch system.
-Project rules and architecture: `CLAUDE.md` and `docs/`.
+Project rules and architecture: `DEVELOPMENT.md` and `docs/`.
 
 ## 1. Start everything (one command)
 

@@ -21,3 +21,14 @@ data/captures/
 
 # ./najda runtime (pids, logs, port)
 /.najda/
+
+# Build outputs
+**/build/
+.cxx/
+*.dex
+
+# Tooling and caches
+.playwright-mcp/
+.claude/
+CLAUDE*.md
+najda-pack-last/

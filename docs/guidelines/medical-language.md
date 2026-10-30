@@ -1,11 +1,6 @@
----
-name: najda-medical-language
-description: Wording and claims rules for all user-facing text, docs, slides and pitch material. Use when writing UI copy, notifications, SMS templates, README, pitch or any statistic.
----
+# Medical Language and Claims Guidelines
 
-# Medical language and claims
-
-- NAJDA is decision support. Wording: "estimated risk", "suggested", "recommended for review". Never: "diagnosis", "the patient has", "AI decided", "guaranteed", "saves lives" (as a fact).
+- Sellekni is decision support. Wording: "estimated risk", "suggested", "recommended for review". Never: "diagnosis", "the patient has", "AI decided", "guaranteed", "saves lives" (as a fact).
 - Every severity display shows: band + score + confidence + top-3 reasons + the fixed line "Estimated risk, not a diagnosis. Confirm by call-back." Each is localised in ar/fr/en.
 - Humans decide. Every state change, override and pre-alert is a human click, with the actor and a reason logged.
 - Never claim a statistic we did not source. Allowed: only the figures in `docs/10-PITCH-DEMO-QA.md` section 4 "Safe claims" (the unsourced numbers listed there are banned). Anything else is labelled ASSUMPTION or HYPOTHESIS. Never state "minutes saved in Algeria" as a fact: say "the pilot will measure it".

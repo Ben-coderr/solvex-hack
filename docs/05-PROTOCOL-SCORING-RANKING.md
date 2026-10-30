@@ -218,7 +218,7 @@ Raw score alone would rank EPH-B first. **CHU-A is first only because of the C �
 | Table | every NSI weight/boundary pinned individually | `test/scoring.test.ts` |
 | Golden | committed vectors reproduced exactly by TS | `test/vectors.test.ts` |
 | Independent oracle | Python re-implementation agrees on all vectors | `scripts/crosscheck.py` |
-| Hook | any edit in `packages/shared` re-runs the tests in Claude Code | `scripts/hooks/after-edit.mjs` |
+| Hook | any edit in `packages/shared` re-runs the tests automatically | `scripts/hooks/after-edit.mjs` |
 
 Changing the protocol on purpose = update this doc → update `crosscheck.py` → `pnpm vectors` → review the vector diff → commit. A regression check we ran: changing rollover from 15 to 16 points is caught by 2 tests.
 

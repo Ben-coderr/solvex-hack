@@ -1,7 +1,7 @@
 # 06 — Design & UX System (and the Figma workflow)
 
 > Goal: a product that looks **designed for this exact job**, not generated. Judges see a deck and a demo for five minutes: the design has to be legible from 5 m on a projector and unforgettable in a single frame.
-> Single source of truth for values: `packages/tokens/tokens.json` (WCAG-tested). Rules for Claude Code: `.claude/skills/najda-design/SKILL.md`.
+> Single source of truth for values: `packages/tokens/tokens.json` (WCAG-tested). Design constitution: `docs/guidelines/design-constitution.md`.
 
 ---
 
@@ -115,19 +115,19 @@ Contrast tests pass · targets ≥ 48 dp · focus rings (brand, 3:1) on web · e
 
 You asked for Figma to be central. Facts (verified 2026-10-30): the Figma MCP server is available on Starter and paid plans; **writing to the canvas needs the *remote* server and a Full seat** and is free during the beta, "eventually usage-based". The official help page gives no call limits: check *Plans, access, and permissions* in Figma's help centre before depending on it. Tools listed in Figma's docs when this pack was written (names can change; trust `/mcp` in your session): `get_design_context`, `get_screenshot`, `get_metadata`, `get_variable_defs`, `create_design_system_rules`, Code Connect tools, and (remote only) `use_figma` (beta), `generate_figma_design`, `create_new_file`, `generate_image`.
 
-Install (one of): `claude plugin install figma@claude-plugins-official` then `/plugin` → figma → authenticate · or `claude mcp add --transport http figma https://mcp.figma.com/mcp` then `/mcp` → figma → Authenticate. Skills: `figma-implement-design`, `figma-use`.
+Install: configure the Figma MCP server in `.mcp.json` or connect via HTTP.
 
 | Path | When | Flow |
 |---|---|---|
-| **A — Claude builds in Figma** (best) | Someone on the team has a Full seat | Claude Code + `use_figma` creates the file: variables from `tokens.json`, styles, components, the 21 screens; the designer then refines by hand; code is generated from frames with `get_design_context` |
-| **B — Designer builds, Claude implements** | Full seat but you want human craft | Designer follows §4–§5 + this doc; Claude Code reads frames (`get_design_context` + `get_screenshot`), implements with Code Connect mappings |
-| **C — Token-first, Figma as the visual deliverable** | No Full seat / unknown call limits | Build the UI in code from tokens (the `najda-design` skill + `frontend-design` skill), keep screenshots; recreate/capture into Figma later (`generate_figma_design` if you get access, or manual) for the jury deck. **Never block the build on Figma.** |
+| **A — Automated generation in Figma** (best) | Someone on the team has a Full seat | MCP tooling + `use_figma` creates the file: variables from `tokens.json`, styles, components, the 21 screens; the designer then refines by hand; code is generated from frames with `get_design_context` |
+| **B — Designer builds, developer implements** | Full seat but you want human craft | Designer follows §4–§5 + this doc; team reads frames (`get_design_context` + `get_screenshot`), implements with Code Connect mappings |
+| **C — Token-first, Figma as the visual deliverable** | No Full seat / unknown call limits | Build the UI in code from tokens (the `docs/guidelines/design-constitution.md` guidelines), keep screenshots; recreate/capture into Figma later (`generate_figma_design` if you get access, or manual) for the jury deck. **Never block the build on Figma.** |
 
 **Figma file structure:** pages `00 Cover` · `01 Foundations` (colour/type/space/radius variables, grid, icon set) · `02 Components` · `03 Mobile` · `04 Web` · `05 Flows` (hero flow storyboard) · `06 Pitch assets`.
 **Variables:** collections `Primitives` (raw values) → `Semantic` (bg, surface, text, brand, triage.*) with modes **Dark/Light**; a `Locale` mode only if layouts differ. Component names = code names (`TriageMarker`, `PacketChip` …) so Code Connect maps 1:1. Use auto-layout everywhere; build RTL variants for the 6 most important screens.
 **Prototyping:** link the hero flow (Countdown → Alert status → ACK) and the dispatcher flow (pin → detail → orientation → pre-alert) so the judges can click through if the live demo fails.
 
-### 8.1 Prompts to paste into Claude Code
+### 8.1 Prompts to use with MCP design tooling
 
 **(1) Build the design system in Figma** *(Path A)*
 > Use the Figma MCP. Create a new Figma file "Sellekni — Design System". Read `packages/tokens/tokens.json` and docs/06 §3–§4. Create variable collections Primitives and Semantic with Dark/Light modes exactly matching the tokens (names: `bg, surface, raised, line, text, muted, brand/*, triage/R…U, onTriage/*`). Create text styles from the scale in §3. Build the components in §4 with variants and states, using auto-layout, named exactly as listed. Put TriageMarker on its own frame in all bands × sizes × themes (light themes include the 2 px outline). After each group, take a screenshot, check contrast and RTL, and fix. Don't use any colour that isn't a variable.
