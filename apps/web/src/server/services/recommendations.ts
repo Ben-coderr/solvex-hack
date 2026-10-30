@@ -1,6 +1,6 @@
 import 'server-only';
 import {
-  rankHospitals, rankingCandidates,
+  rankHospitals, rankingCandidates, requiredCapabilities,
   type Capability, type Flag, type HospitalLevel, type HospitalRecord, type LoadStatus, type Recommendation, type StatusRecord,
 } from '../domain';
 import { sql as getSql } from '../db';
@@ -78,7 +78,7 @@ export async function recommend(incidentId: string, now = new Date()): Promise<R
   const incident = await getIncidentRow(incidentId);
   if (!incident) return null;
   const [all, statuses, flags] = await Promise.all([loadHospitals(), loadStatuses(), latestFlags(incidentId)]);
-  const hospitals = rankingCandidates(all, incident);
+  const hospitals = rankingCandidates(all, incident, requiredCapabilities(incident.band, flags));
   const e = env();
   const { etas, notes } = await getEtas(
     incident, hospitals,

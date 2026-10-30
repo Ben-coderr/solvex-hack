@@ -7,9 +7,10 @@ import type { StyleSpecification } from 'maplibre-gl';
 import { useTranslations } from 'next-intl';
 import { Protocol } from 'pmtiles';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import MapGL, { Layer, Marker, Source, type MapRef } from 'react-map-gl/maplibre';
+import MapGL, { Layer, Marker, Popup, Source, type MapRef } from 'react-map-gl/maplibre';
+import { HospitalMarker } from '@/components/ui/hospital-marker';
 import { TriageMarker } from '@/components/ui/triage-marker';
-import { useHealth, useHospitals, type QueueItem } from '@/lib/dispatch';
+import { useHealth, useHospitals, type HospitalPoint, type QueueItem } from '@/lib/dispatch';
 import { cn } from '@/lib/utils';
 import type { TilesMode } from './status-strip';
 
@@ -60,13 +61,9 @@ function useTheme(): 'dark' | 'light' {
 /** MapLibre paints need concrete colours: read the token CSS variables (recomputed when the theme flips). */
 function useTokenColors(theme: 'dark' | 'light') {
   return useMemo(() => {
-    if (typeof window === 'undefined') return { route: 'currentColor', casing: 'transparent', facility: 'currentColor' };
+    if (typeof window === 'undefined') return { route: 'currentColor', casing: 'transparent' };
     const css = getComputedStyle(document.documentElement);
-    return {
-      route: css.getPropertyValue('--sellekni-brand-text').trim(),
-      casing: css.getPropertyValue('--sellekni-bg').trim(),
-      facility: css.getPropertyValue('--sellekni-muted').trim(),
-    };
+    return { route: css.getPropertyValue('--sellekni-brand-text').trim(), casing: css.getPropertyValue('--sellekni-bg').trim() };
   }, [theme]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
@@ -127,19 +124,9 @@ export function IncidentMap({ incidents, selectedId, newIds, route, onSelect, on
     }
   }, [selected?.id, selected?.lat, selected?.lon, route?.hospitalId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Every hospital of the active set as a quiet dot (Level A larger): context for the dispatcher, not a choice.
+  // Every hospital of the active set, always on the map (H plaque, Level A larger). Tap one for its name and services.
   const hospitals = useHospitals();
-  const facilities = useMemo(
-    () => ({
-      type: 'FeatureCollection' as const,
-      features: (hospitals.data?.hospitals ?? []).map((h) => ({
-        type: 'Feature' as const,
-        properties: { id: h.id, name: h.name, a: h.level === 'A' ? 1 : 0 },
-        geometry: { type: 'Point' as const, coordinates: [h.lon, h.lat] },
-      })),
-    }),
-    [hospitals.data],
-  );
+  const [openHospital, setOpenHospital] = useState<HospitalPoint | null>(null);
 
   const line = useMemo(
     () =>
@@ -165,19 +152,39 @@ export function IncidentMap({ incidents, selectedId, newIds, route, onSelect, on
             if (tiles === 'online' && /style|fetch|Failed/i.test(String(e.error?.message))) setFailed(true);
           }}
         >
-          <Source id="facilities" type="geojson" data={facilities}>
-            <Layer
-              id="facilities-dot"
-              type="circle"
-              paint={{
-                'circle-color': colors.facility,
-                'circle-opacity': 0.55,
-                'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, ['case', ['==', ['get', 'a'], 1], 3, 1.5], 11, ['case', ['==', ['get', 'a'], 1], 6, 4]],
-                'circle-stroke-color': colors.casing,
-                'circle-stroke-width': 1,
-              }}
-            />
-          </Source>
+          {hospitals.data?.hospitals.map((h) => (
+            <Marker key={h.id} longitude={h.lon} latitude={h.lat} anchor="center" style={{ zIndex: 0 }}>
+              <button
+                type="button"
+                data-testid={`map-hospital-${h.id}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenHospital(h);
+                }}
+                aria-label={t('hospital.marker', { name: h.name, level: h.level })}
+                className="block rounded-md p-0.5"
+              >
+                <HospitalMarker level={h.level} chosen={route?.hospitalId === h.id} />
+              </button>
+            </Marker>
+          ))}
+          {openHospital && (
+            <Popup
+              longitude={openHospital.lon}
+              latitude={openHospital.lat}
+              anchor="bottom"
+              offset={14}
+              onClose={() => setOpenHospital(null)}
+              closeOnClick={false}
+              maxWidth="260px"
+            >
+              <div className="text-sm" data-testid="hospital-popup">
+                <p className="font-semibold">{openHospital.name}</p>
+                <p>{t('hospital.level', { level: openHospital.level })}</p>
+                <p className="mt-1">{openHospital.capabilities.map((c) => t(`capability.${c}`)).join(' · ')}</p>
+              </div>
+            </Popup>
+          )}
           {line && (
             <Source id="route" type="geojson" data={line}>
               <Layer id="route-casing" type="line" paint={{ 'line-color': colors.casing, 'line-width': 8, 'line-opacity': 0.8 }} />
@@ -189,7 +196,7 @@ export function IncidentMap({ incidents, selectedId, newIds, route, onSelect, on
             </Source>
           )}
           {route && selected && (
-            <Marker longitude={route.to.lon} latitude={route.to.lat} anchor="bottom">
+            <Marker longitude={route.to.lon} latitude={route.to.lat} anchor="bottom" offset={[0, -14]} style={{ zIndex: 1 }}>
               <span className="inline-flex items-center gap-1 rounded-md border border-line bg-surface px-2 py-1 text-sm text-text shadow">
                 <Building2 aria-hidden className="size-4 text-brand-text" />
                 {route.name}

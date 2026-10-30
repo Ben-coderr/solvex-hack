@@ -113,7 +113,9 @@
     "choose": "Choisir…",
     "illustrative": "illustratif",
     "gateNote": "Classé premier par la règle de capacités : un niveau R exige un centre de niveau A à moins de 60 min (règle clinique, pas le score brut).",
-    "missingNote": "Manque {caps} : risque de transfert secondaire."
+    "missingNote": "Manque {caps} : risque de transfert secondaire.",
+    "marker": "Hôpital {name}, niveau {level}",
+    "level": "Niveau {level}"
   },
   "capability": {
     "ed24": "Urgences 24h/24",

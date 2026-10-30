@@ -72,6 +72,8 @@ test('hero flow: SMS → pin → orientation → pre-alert → hospital ACK → 
   const hospitalId = (await top.getAttribute('data-testid'))!.replace('hospital-', '');
   expect(hospitalId).toBe('CHU-A'); // docs/05 §5.1 worked example: closest (EPH-B) is not best
   await expect(d.getByTestId('orientation').getByText('Nearest ED').first()).toBeVisible();
+  // every hospital of the active set is on the map as an H marker (12 synthetic ones in the demo set)
+  await expect(d.getByTestId('map').locator('[data-testid^="map-hospital-"]')).toHaveCount(12);
   await top.hover(); // route on the map
   await d.locator('[data-testid="lifecycle"] [data-step="DISPATCHED"]').click();
   await expect(d.locator('[data-testid="lifecycle"] [data-step="DISPATCHED"]')).toHaveAttribute('aria-current', 'step');

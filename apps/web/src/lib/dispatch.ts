@@ -73,7 +73,10 @@ export const useRecommendations = (id: string | null, band?: Band) =>
 export const useSystemStatus = () =>
   useQuery({ queryKey: ['status'], queryFn: () => api<SystemStatus>('/api/status'), refetchInterval: 10_000 });
 
-export interface HospitalPoint { id: string; name: string; level: 'A' | 'B' | 'C'; lat: number; lon: number }
+export interface HospitalPoint {
+  id: string; name: string; level: 'A' | 'B' | 'C'; lat: number; lon: number;
+  capabilities: Array<'ed24' | 'trauma_surgery' | 'ct' | 'icu' | 'neurosurgery' | 'pediatrics' | 'burns' | 'general_surgery'>;
+}
 export const useHospitals = () =>
   useQuery({ queryKey: ['hospitals'], queryFn: () => api<{ set: 'demo' | 'national'; hospitals: HospitalPoint[] }>('/api/hospitals'), staleTime: Infinity });
 

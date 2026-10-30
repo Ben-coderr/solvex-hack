@@ -8,6 +8,6 @@ import { loadHospitals } from '@/server/services/recommendations';
 export async function GET(req: NextRequest) {
   const auth = await requireRole(req, ['dispatcher', 'admin']);
   if (!auth.ok) return auth.res;
-  const hospitals = (await loadHospitals()).map(({ id, name, level, lat, lon }) => ({ id, name, level, lat, lon }));
+  const hospitals = (await loadHospitals()).map(({ id, name, level, lat, lon, capabilities }) => ({ id, name, level, lat, lon, capabilities }));
   return json({ set: env().HOSPITAL_SET, hospitals });
 }

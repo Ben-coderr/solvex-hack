@@ -113,7 +113,9 @@
     "choose": "Choose…",
     "illustrative": "illustrative",
     "gateNote": "Ranked first by the capability rule: band R needs a level-A centre within 60 min (a clinical policy, not the raw score).",
-    "missingNote": "Missing {caps}: risk of a secondary transfer."
+    "missingNote": "Missing {caps}: risk of a secondary transfer.",
+    "marker": "Hospital {name}, level {level}",
+    "level": "Level {level}"
   },
   "capability": {
     "ed24": "ED 24/7",
