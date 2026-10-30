@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "dependencies": {
+    "@najda/api-contract": "workspace:^",
     "@najda/shared": "workspace:^",
     "@najda/tokens": "workspace:^",
     "expo": "~58.0.21",

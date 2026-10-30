@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@najda/api-contract": "workspace:^",
     "@najda/shared": "workspace:^",
     "@najda/tokens": "workspace:^",
     "@supabase/ssr": "^0.12.7",
