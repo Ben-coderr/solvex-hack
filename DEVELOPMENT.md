@@ -77,5 +77,6 @@ npx expo run:android  # development build (NOT Expo Go: custom native code)
 - `rename-magic.mjs` cannot see packets built from a literal CRC (`.replace('#04', …)`) or elided with `…`, and it shifts lengths again in docs already converted: derive bad CRCs from the wire (`corruptCrc`), review `git diff docs/`.
 - The root `.gitignore` ignores every `android/`; local Expo modules are re-included (`!apps/mobile/modules/*/android/`). Check autolinking with the project's own binary, not a bare `npx expo-modules-autolinking` (it can resolve another version and miss `modules/`).
 - MapLibre v6 + Turbopack: the worker must be served from /public (`scripts/copy-map-worker.mjs`).
+- After renaming CSS variables or a workspace package, **delete `apps/web/.next`** before `next build`: Turbopack's build cache reused a stylesheet from before the najda → sellekni rename (it read `--najda-*`, the tokens now define `--sellekni-*`) and the site rendered with no colours. The e2e tests did not catch it (they check behaviour, not colour).
 - A fresh `supabase start` can fail on the `vector` log container (unhealthy under colima): we do not use analytics, so `./sellekni up` starts with `-x vector,logflare`.
 - Supabase Free pauses after 7 idle days. Vercel Hobby is non-commercial. Render free sleeps after 15 min.

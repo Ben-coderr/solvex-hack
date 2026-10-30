@@ -156,6 +156,8 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [24h-H5] `./sellekni open` — adds a stage window (dispatcher session) with `/demo` and `/phones` when DEMO_MODE is on; `--no-stage` for the old two windows.
 - [24h-H5] cookies/ids — theme cookie `sellekni-theme` (one-time loss of the light/dark choice), advisory lock `sellekni.ingest`, Realtime probe channel `sellekni-probe`, JSON app id `sellekni/0.1`. Verified: pnpm check, 44 web + 40 mobile unit tests, detector/api-contract/ui-core tests, typechecks, lint 0 errors, e2e 6/6 on the new database (Realtime included).
 
+- [24h-H5] colours lost after the rename (reported 23:25) — the :3000 build (`./sellekni up --prod` into the existing `apps/web/.next`) reused Turbopack's cached CSS: it still READ `--najda-*` while the tokens DEFINE `--sellekni-*`, so every colour was empty (white page). Source was clean; the separate `.next-e2e` build was fine. Fixed by deleting `apps/web/.next` and rebuilding; verified background dark rgb(14,17,20) / light rgb(246,244,239) and screenshots.
+
 ## Open items
 - ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).
 - [H0] tooling — Supabase CLI not installed: `brew install supabase/tap/supabase` failed because github.com was unreachable from this machine/session at H0. Needed for P1.
