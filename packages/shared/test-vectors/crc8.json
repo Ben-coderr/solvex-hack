@@ -1,0 +1,29 @@
+{
+  "description": "CRC-8 poly 0x07 init 0x00 refin/refout false xorout 0 (CRC-8/SMBUS). check(\"123456789\") = F4",
+  "cases": [
+    {
+      "input": "",
+      "crc": "00"
+    },
+    {
+      "input": "123456789",
+      "crc": "F4"
+    },
+    {
+      "input": "NAJDA1",
+      "crc": "96"
+    },
+    {
+      "input": "A",
+      "crc": "C0"
+    },
+    {
+      "input": "#",
+      "crc": "E9"
+    },
+    {
+      "input": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF",
+      "crc": "04"
+    }
+  ]
+}

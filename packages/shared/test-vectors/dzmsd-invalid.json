@@ -1,0 +1,541 @@
+{
+  "description": "Every wire must be rejected. Codes: see DecodeErrorCode in src/dzmsd.ts. Mutated cases = 1 random substituted char in the canonical packet #1.",
+  "cases": [
+    {
+      "wire": "",
+      "code": "empty"
+    },
+    {
+      "wire": "HELLO",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC",
+      "code": "missing_checksum"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC #ZZ",
+      "code": "bad_checksum_format"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC #00",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2I R75H 36.47213,2.82871 T1432 SA V1 P1 KC #A3",
+      "code": "bad_id"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M Z75H 36.47213,2.82871 T1432 SA V1 P1 KC #87",
+      "code": "bad_assessment"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.4721,2.82871 T1432 SA V1 P1 KC #3E",
+      "code": "bad_coordinates"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 96.47213,2.82871 T1432 SA V1 P1 KC #20",
+      "code": "out_of_range"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T2561 SA V1 P1 KC #56",
+      "code": "out_of_range"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 SA V1 P1 KC #EE",
+      "code": "missing_field"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 D72 #FB",
+      "code": "duplicate_token"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC FNN #EF",
+      "code": "bad_token"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC SP101 #B2",
+      "code": "out_of_range"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36E47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84SRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 KDQ2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 KWQ2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1XP1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 NO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82874 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8FY4FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA3 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SN89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,6.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,E.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+WF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7B2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T3432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCT+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR12C SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2MBR75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 KVQ2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 C1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 3C.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SPS9 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75HT36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 H1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 PK KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 N1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF N04",
+      "code": "missing_checksum"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H C6.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KS D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "N7JDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR1Y4 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJJA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA B1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJQA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.T7213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #01",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8C84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 GD8 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+QF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SX89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38YRO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V17P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H K6.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47D13,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC 871 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 S38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP85 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1ZK7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.472P3,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F14FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA9 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FR8H+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 PF KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP87 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47219,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F34FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #08",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC K71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCHAVF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP8P 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T14D2 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR12F SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "QAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P12KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 4O FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SADV1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D717G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC DS1 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.07213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F04FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "8AJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84TRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38SRO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2382871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1VK7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75HT36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 T7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T143S SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M 675H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NQJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 3S.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213M2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V2 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M E75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA0V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR1X4 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC Z71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC DQ1 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432MSA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1532 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 1F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1FK7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1FP1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8484FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H736.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1TP1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T143Z SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FR3H+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJPA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 2O FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.8Q871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KW D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47513,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.43213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 PW KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDT1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC DH1 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FNPHR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7QMM R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NABDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA18K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "bad_magic"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71WG38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V5 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF 204",
+      "code": "missing_checksum"
+    },
+    {
+      "wire": "NAJDA1 K7Q2Q R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1WP1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRC6+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213W2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC DX1 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    },
+    {
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.8287E T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04",
+      "code": "checksum_mismatch"
+    }
+  ]
+}

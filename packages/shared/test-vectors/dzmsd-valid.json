@@ -1,0 +1,7947 @@
+{
+  "description": "Each case: packet (structured) <-> wire (SMS text). Canonical form: kinds/flags in fixed order, 5-decimal coords.",
+  "cases": [
+    {
+      "name": "spec-example-1",
+      "packet": {
+        "id": "K7Q2M",
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "lat": 36.47213,
+        "lon": 2.82871,
+        "time": "1432",
+        "src": "A",
+        "veh": 1,
+        "pers": 1,
+        "kinds": [
+          "C"
+        ],
+        "dv": 71,
+        "g": 38,
+        "roll": true,
+        "flags": [
+          "N"
+        ],
+        "hr": 124,
+        "spo2": 89,
+        "plus": "8F84FRCH+VF"
+      },
+      "wire": "NAJDA1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #04"
+    },
+    {
+      "name": "spec-example-2",
+      "packet": {
+        "id": "P3N8D",
+        "band": "Y",
+        "score": 44,
+        "conf": "M",
+        "lat": 35.69112,
+        "lon": -0.63305,
+        "time": "0915",
+        "src": "W",
+        "veh": 1,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "flags": [
+          "X",
+          "C"
+        ],
+        "plus": "8C7XM9R8+CQ"
+      },
+      "wire": "NAJDA1 P3N8D Y44M 35.69112,-0.63305 T0915 SW V1 P2 KCP FXC 8C7XM9R8+CQ #55"
+    },
+    {
+      "name": "random-1",
+      "packet": {
+        "id": "BGDGQ",
+        "band": "G",
+        "score": 18,
+        "conf": "H",
+        "lat": 34.99611,
+        "lon": 6.29594,
+        "time": "0032",
+        "src": "W",
+        "veh": 6,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "T",
+          "B"
+        ],
+        "g": 74,
+        "flags": [
+          "B",
+          "H",
+          "C",
+          "F"
+        ],
+        "hr": 39,
+        "spo2": 70,
+        "plus": "8F68X7WW+C9"
+      },
+      "wire": "NAJDA1 BGDGQ G18H 34.99611,6.29594 T0032 SW V6 P8 KMTB G74 FBHCF HR39 SP70 8F68X7WW+C9 #6A"
+    },
+    {
+      "name": "random-2",
+      "packet": {
+        "id": "H9QXR",
+        "band": "O",
+        "score": 22,
+        "conf": "M",
+        "lat": 37.17626,
+        "lon": -3.57757,
+        "time": "0618",
+        "src": "A",
+        "veh": 4,
+        "pers": 6,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "dv": 98,
+        "flags": [
+          "B",
+          "D",
+          "F"
+        ],
+        "hr": 52,
+        "spo2": 75,
+        "plus": "8C9R5CGC+GX"
+      },
+      "wire": "NAJDA1 H9QXR O22M 37.17626,-3.57757 T0618 SA V4 P6 KBP D98 FBDF HR52 SP75 8C9R5CGC+GX #A8"
+    },
+    {
+      "name": "random-3",
+      "packet": {
+        "id": "C89G6",
+        "band": "Y",
+        "score": 41,
+        "conf": "L",
+        "lat": 30.92002,
+        "lon": 5.44217,
+        "time": "1049",
+        "src": "W",
+        "veh": 0,
+        "pers": 5,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "dv": 125,
+        "plus": "8F27WCCR+2V"
+      },
+      "wire": "NAJDA1 C89G6 Y41L 30.92002,5.44217 T1049 SW V0 P5 KBP D125 8F27WCCR+2V #FA"
+    },
+    {
+      "name": "random-4",
+      "packet": {
+        "id": "33KYE",
+        "band": "G",
+        "score": 63,
+        "conf": "L",
+        "lat": 25.14347,
+        "lon": -0.00702,
+        "time": "2218",
+        "src": "W",
+        "veh": 4,
+        "pers": 8,
+        "kinds": [
+          "X"
+        ],
+        "dv": 101,
+        "g": 77,
+        "flags": [
+          "N",
+          "C",
+          "F"
+        ],
+        "plus": "7CQX4XVV+95"
+      },
+      "wire": "NAJDA1 33KYE G63L 25.14347,-0.00702 T2218 SW V4 P8 KX D101 G77 FNCF 7CQX4XVV+95 #B7"
+    },
+    {
+      "name": "random-5",
+      "packet": {
+        "id": "TEPJD",
+        "band": "Y",
+        "score": 39,
+        "conf": "M",
+        "lat": 29.15198,
+        "lon": 2.01722,
+        "time": "0415",
+        "src": "M",
+        "veh": 5,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "flags": [
+          "H",
+          "D",
+          "X",
+          "F"
+        ],
+        "hr": 184,
+        "plus": "7FX45228+QV"
+      },
+      "wire": "NAJDA1 TEPJD Y39M 29.15198,2.01722 T0415 SM V5 P9 KMB FHDXF HR184 7FX45228+QV #44"
+    },
+    {
+      "name": "random-6",
+      "packet": {
+        "id": "G7QBG",
+        "band": "Y",
+        "score": 59,
+        "conf": "H",
+        "lat": 24.85781,
+        "lon": -8.19184,
+        "time": "2349",
+        "src": "W",
+        "veh": 3,
+        "pers": 2,
+        "kinds": [
+          "T"
+        ],
+        "dv": 92,
+        "flags": [
+          "U",
+          "B",
+          "X"
+        ],
+        "spo2": 89
+      },
+      "wire": "NAJDA1 G7QBG Y59H 24.85781,-8.19184 T2349 SW V3 P2 KT D92 FUBX SP89 #E0"
+    },
+    {
+      "name": "random-7",
+      "packet": {
+        "id": "63706",
+        "band": "R",
+        "score": 68,
+        "conf": "M",
+        "lat": 25.23492,
+        "lon": 4.3289,
+        "time": "0639",
+        "src": "M",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "X"
+        ],
+        "dv": 84,
+        "flags": [
+          "N",
+          "H"
+        ],
+        "spo2": 91,
+        "plus": "7FQ668MH+XH"
+      },
+      "wire": "NAJDA1 63706 R68M 25.23492,4.32890 T0639 SM V1 P5 KX D84 FNH SP91 7FQ668MH+XH #07"
+    },
+    {
+      "name": "random-8",
+      "packet": {
+        "id": "K8T02",
+        "band": "G",
+        "score": 24,
+        "conf": "H",
+        "lat": 30.72189,
+        "lon": -8.30436,
+        "time": "0730",
+        "src": "A",
+        "veh": 9,
+        "pers": 9,
+        "kinds": [
+          "X"
+        ],
+        "dv": 98,
+        "flags": [
+          "B",
+          "H",
+          "D",
+          "C"
+        ],
+        "hr": 183,
+        "plus": "8C2HPMCW+Q7"
+      },
+      "wire": "NAJDA1 K8T02 G24H 30.72189,-8.30436 T0730 SA V9 P9 KX D98 FBHDC HR183 8C2HPMCW+Q7 #F6"
+    },
+    {
+      "name": "random-9",
+      "packet": {
+        "id": "DXKN8",
+        "band": "U",
+        "score": 81,
+        "conf": "L",
+        "lat": 28.14906,
+        "lon": -7.36657,
+        "time": "2141",
+        "src": "W",
+        "veh": 8,
+        "pers": 3,
+        "kinds": [
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 33,
+        "g": 38,
+        "roll": true,
+        "flags": [
+          "U",
+          "E",
+          "D",
+          "X",
+          "C",
+          "F"
+        ],
+        "spo2": 75,
+        "plus": "7CWJ4JXM+J9"
+      },
+      "wire": "NAJDA1 DXKN8 U81L 28.14906,-7.36657 T2141 SW V8 P3 KTBX D33 G38 RO FUEDXCF SP75 7CWJ4JXM+J9 #DE"
+    },
+    {
+      "name": "random-10",
+      "packet": {
+        "id": "BHSCY",
+        "band": "U",
+        "score": 86,
+        "conf": "H",
+        "lat": 36.12298,
+        "lon": -2.20727,
+        "time": "0917",
+        "src": "M",
+        "veh": 2,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "dv": 92,
+        "g": 24,
+        "hr": 35,
+        "plus": "8C8V4QFV+53"
+      },
+      "wire": "NAJDA1 BHSCY U86H 36.12298,-2.20727 T0917 SM V2 P6 KCT D92 G24 HR35 8C8V4QFV+53 #A3"
+    },
+    {
+      "name": "random-11",
+      "packet": {
+        "id": "G9SFX",
+        "band": "G",
+        "score": 19,
+        "conf": "L",
+        "lat": 22.53151,
+        "lon": 10.37329,
+        "time": "0827",
+        "src": "M",
+        "veh": 4,
+        "pers": 4,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "g": 41,
+        "plus": "7FJGG9JF+J8"
+      },
+      "wire": "NAJDA1 G9SFX G19L 22.53151,10.37329 T0827 SM V4 P4 KMB G41 7FJGG9JF+J8 #F2"
+    },
+    {
+      "name": "random-12",
+      "packet": {
+        "id": "JZ6YQ",
+        "band": "G",
+        "score": 48,
+        "conf": "H",
+        "lat": 29.44078,
+        "lon": 10.29521,
+        "time": "1556",
+        "src": "M",
+        "veh": 7,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "P",
+          "X"
+        ],
+        "flags": [
+          "N",
+          "E"
+        ],
+        "plus": "7FXGC7RW+83"
+      },
+      "wire": "NAJDA1 JZ6YQ G48H 29.44078,10.29521 T1556 SM V7 P5 KMPX FNE 7FXGC7RW+83 #22"
+    },
+    {
+      "name": "random-13",
+      "packet": {
+        "id": "NM3FP",
+        "band": "Y",
+        "score": 90,
+        "conf": "L",
+        "lat": 33.22843,
+        "lon": 6.1655,
+        "time": "1322",
+        "src": "A",
+        "veh": 9,
+        "pers": 7,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "flags": [
+          "C"
+        ],
+        "plus": "8F5865H8+96"
+      },
+      "wire": "NAJDA1 NM3FP Y90L 33.22843,6.16550 T1322 SA V9 P7 KTX FC 8F5865H8+96 #7C"
+    },
+    {
+      "name": "random-14",
+      "packet": {
+        "id": "EG6GM",
+        "band": "U",
+        "score": 94,
+        "conf": "M",
+        "lat": 24.14216,
+        "lon": 0.0263,
+        "time": "0832",
+        "src": "W",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ],
+        "g": 6,
+        "plus": "7FP242RG+VG"
+      },
+      "wire": "NAJDA1 EG6GM U94M 24.14216,0.02630 T0832 SW V4 P3 KMBP G6 7FP242RG+VG #26"
+    },
+    {
+      "name": "random-15",
+      "packet": {
+        "id": "1RQ3G",
+        "band": "U",
+        "score": 29,
+        "conf": "H",
+        "lat": 32.51881,
+        "lon": 8.53239,
+        "time": "1104",
+        "src": "W",
+        "veh": 0,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 5,
+        "g": 18,
+        "roll": true,
+        "flags": [
+          "N",
+          "C"
+        ],
+        "spo2": 73,
+        "plus": "8F4CGG9J+GX"
+      },
+      "wire": "NAJDA1 1RQ3G U29H 32.51881,8.53239 T1104 SW V0 P6 KMTBX D5 G18 RO FNC SP73 8F4CGG9J+GX #FA"
+    },
+    {
+      "name": "random-16",
+      "packet": {
+        "id": "4J6SX",
+        "band": "R",
+        "score": 49,
+        "conf": "M",
+        "lat": 34.36303,
+        "lon": 6.87902,
+        "time": "0543",
+        "src": "W",
+        "veh": 3,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "g": 50,
+        "spo2": 76,
+        "plus": "8F689V7H+6J"
+      },
+      "wire": "NAJDA1 4J6SX R49M 34.36303,6.87902 T0543 SW V3 P3 KMP G50 SP76 8F689V7H+6J #0C"
+    },
+    {
+      "name": "random-17",
+      "packet": {
+        "id": "Z2CH6",
+        "band": "Y",
+        "score": 34,
+        "conf": "M",
+        "lat": 22.07635,
+        "lon": 1.51057,
+        "time": "2018",
+        "src": "W",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "P",
+          "X"
+        ],
+        "dv": 87,
+        "g": 69,
+        "flags": [
+          "U",
+          "F"
+        ],
+        "plus": "7FJ33GG6+G6"
+      },
+      "wire": "NAJDA1 Z2CH6 Y34M 22.07635,1.51057 T2018 SW V1 P5 KMTBPX D87 G69 FUF 7FJ33GG6+G6 #0E"
+    },
+    {
+      "name": "random-18",
+      "packet": {
+        "id": "4WFKQ",
+        "band": "O",
+        "score": 72,
+        "conf": "M",
+        "lat": 19.48869,
+        "lon": 7.02868,
+        "time": "1621",
+        "src": "M",
+        "veh": 0,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "B",
+          "X"
+        ],
+        "g": 52,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "C"
+        ],
+        "hr": 68,
+        "plus": "7FF9F2QH+FF"
+      },
+      "wire": "NAJDA1 4WFKQ O72M 19.48869,7.02868 T1621 SM V0 P0 KCBX G52 FNUBC HR68 7FF9F2QH+FF #25"
+    },
+    {
+      "name": "random-19",
+      "packet": {
+        "id": "JR47C",
+        "band": "O",
+        "score": 4,
+        "conf": "M",
+        "lat": 21.10213,
+        "lon": -7.58314,
+        "time": "2038",
+        "src": "W",
+        "veh": 2,
+        "pers": 7,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "dv": 24,
+        "roll": true,
+        "plus": "7CHJ4C28+VP"
+      },
+      "wire": "NAJDA1 JR47C O04M 21.10213,-7.58314 T2038 SW V2 P7 KBP D24 RO 7CHJ4C28+VP #61"
+    },
+    {
+      "name": "random-20",
+      "packet": {
+        "id": "GGQNB",
+        "band": "G",
+        "score": 73,
+        "conf": "M",
+        "lat": 32.94539,
+        "lon": 4.40642,
+        "time": "0852",
+        "src": "W",
+        "veh": 1,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 104,
+        "g": 79,
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "C"
+        ],
+        "hr": 87,
+        "plus": "8F46WCW4+5H"
+      },
+      "wire": "NAJDA1 GGQNB G73M 32.94539,4.40642 T0852 SW V1 P3 KMTBX D104 G79 RO FNUBC HR87 8F46WCW4+5H #2F"
+    },
+    {
+      "name": "random-21",
+      "packet": {
+        "id": "7CXMB",
+        "band": "G",
+        "score": 96,
+        "conf": "L",
+        "lat": 35.7509,
+        "lon": 7.44904,
+        "time": "1500",
+        "src": "W",
+        "veh": 9,
+        "pers": 7,
+        "kinds": [
+          "B",
+          "P",
+          "X"
+        ],
+        "dv": 11,
+        "g": 18,
+        "hr": 69,
+        "spo2": 75,
+        "plus": "8F79QC2X+9J"
+      },
+      "wire": "NAJDA1 7CXMB G96L 35.75090,7.44904 T1500 SW V9 P7 KBPX D11 G18 HR69 SP75 8F79QC2X+9J #99"
+    },
+    {
+      "name": "random-22",
+      "packet": {
+        "id": "GPPGR",
+        "band": "R",
+        "score": 46,
+        "conf": "H",
+        "lat": 36.19394,
+        "lon": -0.04888,
+        "time": "1637",
+        "src": "A",
+        "veh": 0,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 41,
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "H",
+          "D",
+          "X",
+          "C"
+        ],
+        "plus": "8C8X5XV2+HC"
+      },
+      "wire": "NAJDA1 GPPGR R46H 36.19394,-0.04888 T1637 SA V0 P6 KMT D41 RO FNUHDXC 8C8X5XV2+HC #5C"
+    },
+    {
+      "name": "random-23",
+      "packet": {
+        "id": "01QPB",
+        "band": "G",
+        "score": 99,
+        "conf": "L",
+        "lat": 36.1319,
+        "lon": 7.76615,
+        "time": "1721",
+        "src": "W",
+        "veh": 4,
+        "pers": 6,
+        "kinds": [
+          "C"
+        ],
+        "hr": 174,
+        "spo2": 75,
+        "plus": "8F894QJ8+QF"
+      },
+      "wire": "NAJDA1 01QPB G99L 36.13190,7.76615 T1721 SW V4 P6 KC HR174 SP75 8F894QJ8+QF #59"
+    },
+    {
+      "name": "random-24",
+      "packet": {
+        "id": "SJ26C",
+        "band": "Y",
+        "score": 16,
+        "conf": "L",
+        "lat": 20.97732,
+        "lon": 9.6678,
+        "time": "1854",
+        "src": "A",
+        "veh": 7,
+        "pers": 1,
+        "kinds": [
+          "X"
+        ],
+        "flags": [
+          "U",
+          "B"
+        ],
+        "hr": 152,
+        "spo2": 75
+      },
+      "wire": "NAJDA1 SJ26C Y16L 20.97732,9.66780 T1854 SA V7 P1 KX FUB HR152 SP75 #23"
+    },
+    {
+      "name": "random-25",
+      "packet": {
+        "id": "5AM88",
+        "band": "Y",
+        "score": 41,
+        "conf": "M",
+        "lat": 19.0112,
+        "lon": 2.30919,
+        "time": "1159",
+        "src": "M",
+        "veh": 2,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "B",
+          "P",
+          "X"
+        ],
+        "g": 18,
+        "flags": [
+          "N",
+          "X"
+        ],
+        "spo2": 80,
+        "plus": "7FF42865+FM"
+      },
+      "wire": "NAJDA1 5AM88 Y41M 19.01120,2.30919 T1159 SM V2 P3 KCBPX G18 FNX SP80 7FF42865+FM #67"
+    },
+    {
+      "name": "random-26",
+      "packet": {
+        "id": "KJDXG",
+        "band": "R",
+        "score": 62,
+        "conf": "L",
+        "lat": 32.26827,
+        "lon": -5.16216,
+        "time": "2204",
+        "src": "W",
+        "veh": 0,
+        "pers": 4,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "dv": 31,
+        "g": 69,
+        "flags": [
+          "B",
+          "E",
+          "X",
+          "F"
+        ],
+        "plus": "8C4P7R9Q+84"
+      },
+      "wire": "NAJDA1 KJDXG R62L 32.26827,-5.16216 T2204 SW V0 P4 KMX D31 G69 FBEXF 8C4P7R9Q+84 #1D"
+    },
+    {
+      "name": "random-27",
+      "packet": {
+        "id": "112FE",
+        "band": "Y",
+        "score": 40,
+        "conf": "L",
+        "lat": 32.17505,
+        "lon": -3.43909,
+        "time": "1154",
+        "src": "M",
+        "veh": 3,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "dv": 115,
+        "g": 60,
+        "flags": [
+          "F"
+        ],
+        "hr": 93,
+        "plus": "8C4R5HG6+29"
+      },
+      "wire": "NAJDA1 112FE Y40L 32.17505,-3.43909 T1154 SM V3 P0 KCMT D115 G60 FF HR93 8C4R5HG6+29 #97"
+    },
+    {
+      "name": "random-28",
+      "packet": {
+        "id": "83JM1",
+        "band": "R",
+        "score": 36,
+        "conf": "L",
+        "lat": 31.93761,
+        "lon": -3.03848,
+        "time": "0024",
+        "src": "W",
+        "veh": 7,
+        "pers": 4,
+        "kinds": [
+          "M"
+        ],
+        "dv": 40,
+        "flags": [
+          "N",
+          "U",
+          "E",
+          "F"
+        ],
+        "spo2": 79,
+        "plus": "8C3RWXQ6+2J"
+      },
+      "wire": "NAJDA1 83JM1 R36L 31.93761,-3.03848 T0024 SW V7 P4 KM D40 FNUEF SP79 8C3RWXQ6+2J #10"
+    },
+    {
+      "name": "random-29",
+      "packet": {
+        "id": "NER80",
+        "band": "G",
+        "score": 75,
+        "conf": "L",
+        "lat": 35.72871,
+        "lon": -5.29808,
+        "time": "2101",
+        "src": "A",
+        "veh": 2,
+        "pers": 2,
+        "kinds": [
+          "P"
+        ],
+        "dv": 117,
+        "g": 77,
+        "roll": true,
+        "spo2": 81,
+        "plus": "8C7PPPH2+FQ"
+      },
+      "wire": "NAJDA1 NER80 G75L 35.72871,-5.29808 T2101 SA V2 P2 KP D117 G77 RO SP81 8C7PPPH2+FQ #39"
+    },
+    {
+      "name": "random-30",
+      "packet": {
+        "id": "S697P",
+        "band": "U",
+        "score": 66,
+        "conf": "H",
+        "lat": 19.31826,
+        "lon": 1.0695,
+        "time": "1440",
+        "src": "M",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "T",
+          "B"
+        ],
+        "dv": 37,
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "H",
+          "E",
+          "D",
+          "C"
+        ],
+        "hr": 123,
+        "plus": "7FF38399+8R"
+      },
+      "wire": "NAJDA1 S697P U66H 19.31826,1.06950 T1440 SM V1 P5 KMTB D37 RO FNUBHEDC HR123 7FF38399+8R #70"
+    },
+    {
+      "name": "random-31",
+      "packet": {
+        "id": "SK94V",
+        "band": "Y",
+        "score": 85,
+        "conf": "M",
+        "lat": 27.57908,
+        "lon": 0.95299,
+        "time": "0254",
+        "src": "A",
+        "veh": 8,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "M",
+          "P"
+        ],
+        "dv": 38,
+        "roll": true,
+        "flags": [
+          "B",
+          "E",
+          "X",
+          "F"
+        ],
+        "hr": 36,
+        "plus": "7FV2HXH3+J5"
+      },
+      "wire": "NAJDA1 SK94V Y85M 27.57908,0.95299 T0254 SA V8 P4 KCMP D38 RO FBEXF HR36 7FV2HXH3+J5 #78"
+    },
+    {
+      "name": "random-32",
+      "packet": {
+        "id": "DCRJA",
+        "band": "R",
+        "score": 50,
+        "conf": "M",
+        "lat": 24.93755,
+        "lon": 9.34585,
+        "time": "1736",
+        "src": "M",
+        "veh": 8,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "B",
+          "P"
+        ],
+        "plus": "7FPFW8QW+28"
+      },
+      "wire": "NAJDA1 DCRJA R50M 24.93755,9.34585 T1736 SM V8 P3 KCBP 7FPFW8QW+28 #A1"
+    },
+    {
+      "name": "random-33",
+      "packet": {
+        "id": "BN76Z",
+        "band": "Y",
+        "score": 41,
+        "conf": "M",
+        "lat": 26.45459,
+        "lon": 5.51304,
+        "time": "1220",
+        "src": "A",
+        "veh": 4,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "dv": 128,
+        "g": 0,
+        "flags": [
+          "H",
+          "X",
+          "F"
+        ],
+        "hr": 46,
+        "plus": "7FR7FG37+R6"
+      },
+      "wire": "NAJDA1 BN76Z Y41M 26.45459,5.51304 T1220 SA V4 P5 KCX D128 G0 FHXF HR46 7FR7FG37+R6 #D7"
+    },
+    {
+      "name": "random-34",
+      "packet": {
+        "id": "AS2Z0",
+        "band": "O",
+        "score": 49,
+        "conf": "L",
+        "lat": 22.67917,
+        "lon": -0.9146,
+        "time": "1223",
+        "src": "M",
+        "veh": 5,
+        "pers": 7,
+        "kinds": [
+          "M"
+        ],
+        "dv": 126,
+        "g": 25,
+        "spo2": 77,
+        "plus": "7CJXM3HP+M5"
+      },
+      "wire": "NAJDA1 AS2Z0 O49L 22.67917,-0.91460 T1223 SM V5 P7 KM D126 G25 SP77 7CJXM3HP+M5 #DB"
+    },
+    {
+      "name": "random-35",
+      "packet": {
+        "id": "WTPF4",
+        "band": "U",
+        "score": 50,
+        "conf": "M",
+        "lat": 20.71261,
+        "lon": 8.97647,
+        "time": "1437",
+        "src": "W",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "C"
+        ],
+        "dv": 128,
+        "hr": 80,
+        "spo2": 93,
+        "plus": "7FGCPX7G+2H"
+      },
+      "wire": "NAJDA1 WTPF4 U50M 20.71261,8.97647 T1437 SW V8 P0 KC D128 HR80 SP93 7FGCPX7G+2H #D1"
+    },
+    {
+      "name": "random-36",
+      "packet": {
+        "id": "6G4NW",
+        "band": "U",
+        "score": 35,
+        "conf": "H",
+        "lat": 20.25941,
+        "lon": -5.77266,
+        "time": "1037",
+        "src": "W",
+        "veh": 8,
+        "pers": 4,
+        "kinds": [
+          "B"
+        ],
+        "dv": 100,
+        "hr": 143,
+        "plus": "7CGP765G+QW"
+      },
+      "wire": "NAJDA1 6G4NW U35H 20.25941,-5.77266 T1037 SW V8 P4 KB D100 HR143 7CGP765G+QW #72"
+    },
+    {
+      "name": "random-37",
+      "packet": {
+        "id": "JY2R5",
+        "band": "R",
+        "score": 6,
+        "conf": "H",
+        "lat": 21.17265,
+        "lon": 10.295,
+        "time": "2014",
+        "src": "A",
+        "veh": 9,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "B",
+          "X"
+        ],
+        "dv": 55,
+        "g": 78,
+        "spo2": 80,
+        "plus": "7FHG57FW+32"
+      },
+      "wire": "NAJDA1 JY2R5 R06H 21.17265,10.29500 T2014 SA V9 P2 KCBX D55 G78 SP80 7FHG57FW+32 #90"
+    },
+    {
+      "name": "random-38",
+      "packet": {
+        "id": "YBD94",
+        "band": "G",
+        "score": 68,
+        "conf": "M",
+        "lat": 28.16275,
+        "lon": -8.31042,
+        "time": "0940",
+        "src": "A",
+        "veh": 3,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 78,
+        "hr": 46,
+        "plus": "7CWH5M7Q+4R"
+      },
+      "wire": "NAJDA1 YBD94 G68M 28.16275,-8.31042 T0940 SA V3 P6 KMT D78 HR46 7CWH5M7Q+4R #E0"
+    },
+    {
+      "name": "random-39",
+      "packet": {
+        "id": "749TP",
+        "band": "G",
+        "score": 61,
+        "conf": "M",
+        "lat": 32.67288,
+        "lon": -3.16067,
+        "time": "1045",
+        "src": "W",
+        "veh": 4,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "P",
+          "X"
+        ],
+        "g": 40,
+        "roll": true,
+        "flags": [
+          "N",
+          "D"
+        ],
+        "spo2": 78,
+        "plus": "8C4RMRFQ+5P"
+      },
+      "wire": "NAJDA1 749TP G61M 32.67288,-3.16067 T1045 SW V4 P1 KCTBPX G40 RO FND SP78 8C4RMRFQ+5P #6D"
+    },
+    {
+      "name": "random-40",
+      "packet": {
+        "id": "ZJB4G",
+        "band": "Y",
+        "score": 70,
+        "conf": "H",
+        "lat": 19.9748,
+        "lon": -5.04633,
+        "time": "1150",
+        "src": "A",
+        "veh": 7,
+        "pers": 4,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 66,
+        "roll": true,
+        "spo2": 84,
+        "plus": "7CFPXXF3+WF"
+      },
+      "wire": "NAJDA1 ZJB4G Y70H 19.97480,-5.04633 T1150 SA V7 P4 KTP D66 RO SP84 7CFPXXF3+WF #29"
+    },
+    {
+      "name": "random-41",
+      "packet": {
+        "id": "ZJGDP",
+        "band": "Y",
+        "score": 1,
+        "conf": "L",
+        "lat": 35.45028,
+        "lon": -8.59775,
+        "time": "0307",
+        "src": "A",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "P"
+        ],
+        "dv": 44,
+        "g": 22,
+        "flags": [
+          "N",
+          "B",
+          "D",
+          "F"
+        ]
+      },
+      "wire": "NAJDA1 ZJGDP Y01L 35.45028,-8.59775 T0307 SA V4 P3 KP D44 G22 FNBDF #18"
+    },
+    {
+      "name": "random-42",
+      "packet": {
+        "id": "8ZMJF",
+        "band": "O",
+        "score": 75,
+        "conf": "M",
+        "lat": 35.16453,
+        "lon": 2.82154,
+        "time": "0430",
+        "src": "M",
+        "veh": 7,
+        "pers": 0,
+        "kinds": [
+          "T",
+          "B",
+          "P",
+          "X"
+        ],
+        "dv": 63,
+        "spo2": 94,
+        "plus": "8F745R7C+RJ"
+      },
+      "wire": "NAJDA1 8ZMJF O75M 35.16453,2.82154 T0430 SM V7 P0 KTBPX D63 SP94 8F745R7C+RJ #07"
+    },
+    {
+      "name": "random-43",
+      "packet": {
+        "id": "YRPM5",
+        "band": "G",
+        "score": 29,
+        "conf": "M",
+        "lat": 27.36927,
+        "lon": -6.0812,
+        "time": "0641",
+        "src": "A",
+        "veh": 6,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 122,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "H",
+          "C"
+        ],
+        "plus": "7CVM9W99+PG"
+      },
+      "wire": "NAJDA1 YRPM5 G29M 27.36927,-6.08120 T0641 SA V6 P3 KMB D122 FNUBHC 7CVM9W99+PG #B1"
+    },
+    {
+      "name": "random-44",
+      "packet": {
+        "id": "Z8KTY",
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "lat": 36.48061,
+        "lon": 5.74949,
+        "time": "0017",
+        "src": "A",
+        "veh": 9,
+        "pers": 4,
+        "kinds": [
+          "T"
+        ],
+        "dv": 72,
+        "g": 54,
+        "roll": true,
+        "flags": [
+          "E",
+          "D",
+          "X",
+          "F"
+        ],
+        "spo2": 76,
+        "plus": "8F87FPJX+6Q"
+      },
+      "wire": "NAJDA1 Z8KTY R77H 36.48061,5.74949 T0017 SA V9 P4 KT D72 G54 RO FEDXF SP76 8F87FPJX+6Q #BF"
+    },
+    {
+      "name": "random-45",
+      "packet": {
+        "id": "FFQ0R",
+        "band": "U",
+        "score": 46,
+        "conf": "H",
+        "lat": 32.28365,
+        "lon": 0.87313,
+        "time": "1715",
+        "src": "A",
+        "veh": 1,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "g": 19,
+        "roll": true,
+        "plus": "8F427VMF+F7"
+      },
+      "wire": "NAJDA1 FFQ0R U46H 32.28365,0.87313 T1715 SA V1 P9 KMB G19 RO 8F427VMF+F7 #4A"
+    },
+    {
+      "name": "random-46",
+      "packet": {
+        "id": "9YWGD",
+        "band": "R",
+        "score": 40,
+        "conf": "M",
+        "lat": 33.45708,
+        "lon": -3.34332,
+        "time": "2008",
+        "src": "M",
+        "veh": 3,
+        "pers": 4,
+        "kinds": [
+          "T"
+        ],
+        "dv": 78,
+        "g": 29,
+        "roll": true,
+        "hr": 164
+      },
+      "wire": "NAJDA1 9YWGD R40M 33.45708,-3.34332 T2008 SM V3 P4 KT D78 G29 RO HR164 #18"
+    },
+    {
+      "name": "random-47",
+      "packet": {
+        "id": "8CCC5",
+        "band": "G",
+        "score": 91,
+        "conf": "L",
+        "lat": 24.07555,
+        "lon": 1.29032,
+        "time": "0126",
+        "src": "M",
+        "veh": 3,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "g": 66,
+        "hr": 86,
+        "spo2": 93,
+        "plus": "7FP337GR+64"
+      },
+      "wire": "NAJDA1 8CCC5 G91L 24.07555,1.29032 T0126 SM V3 P1 KCMX G66 HR86 SP93 7FP337GR+64 #28"
+    },
+    {
+      "name": "random-48",
+      "packet": {
+        "id": "CD3N2",
+        "band": "O",
+        "score": 15,
+        "conf": "M",
+        "lat": 28.83131,
+        "lon": 3.08616,
+        "time": "0008",
+        "src": "W",
+        "veh": 7,
+        "pers": 7,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 0,
+        "g": 66,
+        "flags": [
+          "U",
+          "B",
+          "D",
+          "C"
+        ],
+        "spo2": 80
+      },
+      "wire": "NAJDA1 CD3N2 O15M 28.83131,3.08616 T0008 SW V7 P7 KMB D0 G66 FUBDC SP80 #7B"
+    },
+    {
+      "name": "random-49",
+      "packet": {
+        "id": "XD5F7",
+        "band": "O",
+        "score": 98,
+        "conf": "H",
+        "lat": 37.14906,
+        "lon": 3.33361,
+        "time": "1304",
+        "src": "M",
+        "veh": 6,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 87,
+        "plus": "8F9548XM+JC"
+      },
+      "wire": "NAJDA1 XD5F7 O98H 37.14906,3.33361 T1304 SM V6 P6 KCMTBX D87 8F9548XM+JC #6E"
+    },
+    {
+      "name": "random-50",
+      "packet": {
+        "id": "MFRXH",
+        "band": "U",
+        "score": 63,
+        "conf": "M",
+        "lat": 32.38185,
+        "lon": 10.79374,
+        "time": "0913",
+        "src": "M",
+        "veh": 2,
+        "pers": 4,
+        "kinds": [
+          "X"
+        ],
+        "spo2": 85,
+        "plus": "8F4G9QJV+PF"
+      },
+      "wire": "NAJDA1 MFRXH U63M 32.38185,10.79374 T0913 SM V2 P4 KX SP85 8F4G9QJV+PF #53"
+    },
+    {
+      "name": "random-51",
+      "packet": {
+        "id": "2K2PH",
+        "band": "U",
+        "score": 9,
+        "conf": "H",
+        "lat": 23.01778,
+        "lon": 4.26806,
+        "time": "0815",
+        "src": "A",
+        "veh": 0,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "P",
+          "X"
+        ],
+        "dv": 77,
+        "g": 4,
+        "flags": [
+          "N",
+          "U",
+          "X"
+        ],
+        "hr": 178,
+        "spo2": 84,
+        "plus": "7FM62799+46"
+      },
+      "wire": "NAJDA1 2K2PH U09H 23.01778,4.26806 T0815 SA V0 P2 KMPX D77 G4 FNUX HR178 SP84 7FM62799+46 #28"
+    },
+    {
+      "name": "random-52",
+      "packet": {
+        "id": "ZTB8Y",
+        "band": "Y",
+        "score": 87,
+        "conf": "L",
+        "lat": 33.3216,
+        "lon": 3.89335,
+        "time": "0839",
+        "src": "A",
+        "veh": 7,
+        "pers": 0,
+        "kinds": [
+          "B"
+        ],
+        "roll": true,
+        "hr": 63,
+        "plus": "8F558VCV+J8"
+      },
+      "wire": "NAJDA1 ZTB8Y Y87L 33.32160,3.89335 T0839 SA V7 P0 KB RO HR63 8F558VCV+J8 #FC"
+    },
+    {
+      "name": "random-53",
+      "packet": {
+        "id": "SJ5Y1",
+        "band": "G",
+        "score": 74,
+        "conf": "M",
+        "lat": 21.95918,
+        "lon": 7.08524,
+        "time": "2030",
+        "src": "M",
+        "veh": 6,
+        "pers": 1,
+        "kinds": [
+          "M"
+        ],
+        "dv": 110,
+        "g": 32,
+        "roll": true,
+        "plus": "7FH9X35P+M3"
+      },
+      "wire": "NAJDA1 SJ5Y1 G74M 21.95918,7.08524 T2030 SM V6 P1 KM D110 G32 RO 7FH9X35P+M3 #EB"
+    },
+    {
+      "name": "random-54",
+      "packet": {
+        "id": "6Z4FH",
+        "band": "U",
+        "score": 38,
+        "conf": "L",
+        "lat": 26.92956,
+        "lon": -3.85847,
+        "time": "0059",
+        "src": "M",
+        "veh": 2,
+        "pers": 4,
+        "kinds": [
+          "C"
+        ],
+        "g": 77,
+        "roll": true,
+        "spo2": 73,
+        "plus": "7CRRW4HR+RJ"
+      },
+      "wire": "NAJDA1 6Z4FH U38L 26.92956,-3.85847 T0059 SM V2 P4 KC G77 RO SP73 7CRRW4HR+RJ #98"
+    },
+    {
+      "name": "random-55",
+      "packet": {
+        "id": "W9D4N",
+        "band": "R",
+        "score": 51,
+        "conf": "H",
+        "lat": 36.19635,
+        "lon": -4.71912,
+        "time": "1103",
+        "src": "W",
+        "veh": 2,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "B",
+          "P"
+        ],
+        "dv": 91,
+        "g": 67,
+        "roll": true,
+        "flags": [
+          "U",
+          "E"
+        ],
+        "plus": "8C8Q57WJ+G9"
+      },
+      "wire": "NAJDA1 W9D4N R51H 36.19635,-4.71912 T1103 SW V2 P1 KCBP D91 G67 RO FUE 8C8Q57WJ+G9 #BD"
+    },
+    {
+      "name": "random-56",
+      "packet": {
+        "id": "94MF8",
+        "band": "U",
+        "score": 96,
+        "conf": "M",
+        "lat": 28.81515,
+        "lon": -4.88005,
+        "time": "2344",
+        "src": "M",
+        "veh": 1,
+        "pers": 0,
+        "kinds": [
+          "X"
+        ],
+        "g": 52,
+        "flags": [
+          "H"
+        ],
+        "hr": 109,
+        "plus": "7CWQR489+3X"
+      },
+      "wire": "NAJDA1 94MF8 U96M 28.81515,-4.88005 T2344 SM V1 P0 KX G52 FH HR109 7CWQR489+3X #C6"
+    },
+    {
+      "name": "random-57",
+      "packet": {
+        "id": "QZW1C",
+        "band": "G",
+        "score": 48,
+        "conf": "L",
+        "lat": 27.41918,
+        "lon": 5.61987,
+        "time": "2234",
+        "src": "W",
+        "veh": 5,
+        "pers": 4,
+        "kinds": [
+          "T"
+        ],
+        "dv": 35,
+        "g": 76,
+        "spo2": 95,
+        "plus": "7FV7CJ99+MW"
+      },
+      "wire": "NAJDA1 QZW1C G48L 27.41918,5.61987 T2234 SW V5 P4 KT D35 G76 SP95 7FV7CJ99+MW #9B"
+    },
+    {
+      "name": "random-58",
+      "packet": {
+        "id": "YY0FF",
+        "band": "O",
+        "score": 10,
+        "conf": "L",
+        "lat": 24.2892,
+        "lon": 1.9907,
+        "time": "1043",
+        "src": "A",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "roll": true,
+        "flags": [
+          "N",
+          "C"
+        ],
+        "plus": "7FP37XQR+M7"
+      },
+      "wire": "NAJDA1 YY0FF O10L 24.28920,1.99070 T1043 SA V8 P6 KCT RO FNC 7FP37XQR+M7 #FD"
+    },
+    {
+      "name": "random-59",
+      "packet": {
+        "id": "PPJJK",
+        "band": "R",
+        "score": 82,
+        "conf": "H",
+        "lat": 28.36462,
+        "lon": 1.54278,
+        "time": "0414",
+        "src": "M",
+        "veh": 0,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 52,
+        "g": 28,
+        "roll": true,
+        "flags": [
+          "N"
+        ],
+        "plus": "7FW39G7V+R4"
+      },
+      "wire": "NAJDA1 PPJJK R82H 28.36462,1.54278 T0414 SM V0 P3 KMT D52 G28 RO FN 7FW39G7V+R4 #A1"
+    },
+    {
+      "name": "random-60",
+      "packet": {
+        "id": "2PNPR",
+        "band": "G",
+        "score": 94,
+        "conf": "M",
+        "lat": 19.08467,
+        "lon": 8.33307,
+        "time": "1945",
+        "src": "W",
+        "veh": 5,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ],
+        "g": 30,
+        "flags": [
+          "U",
+          "H",
+          "E",
+          "C",
+          "F"
+        ],
+        "plus": "7FFC38MM+V6"
+      },
+      "wire": "NAJDA1 2PNPR G94M 19.08467,8.33307 T1945 SW V5 P6 KMBP G30 FUHECF 7FFC38MM+V6 #A3"
+    },
+    {
+      "name": "random-61",
+      "packet": {
+        "id": "4666T",
+        "band": "Y",
+        "score": 77,
+        "conf": "M",
+        "lat": 19.77763,
+        "lon": -6.52732,
+        "time": "1117",
+        "src": "A",
+        "veh": 3,
+        "pers": 4,
+        "kinds": [
+          "B"
+        ],
+        "dv": 19,
+        "g": 33,
+        "roll": true,
+        "flags": [
+          "B",
+          "H",
+          "E",
+          "D"
+        ],
+        "plus": "7CFMQFHF+33"
+      },
+      "wire": "NAJDA1 4666T Y77M 19.77763,-6.52732 T1117 SA V3 P4 KB D19 G33 RO FBHED 7CFMQFHF+33 #84"
+    },
+    {
+      "name": "random-62",
+      "packet": {
+        "id": "HB9PT",
+        "band": "O",
+        "score": 12,
+        "conf": "L",
+        "lat": 21.77171,
+        "lon": -1.27429,
+        "time": "0923",
+        "src": "A",
+        "veh": 0,
+        "pers": 8,
+        "kinds": [
+          "P"
+        ],
+        "dv": 88,
+        "spo2": 72,
+        "plus": "7CHWQPCG+M7"
+      },
+      "wire": "NAJDA1 HB9PT O12L 21.77171,-1.27429 T0923 SA V0 P8 KP D88 SP72 7CHWQPCG+M7 #65"
+    },
+    {
+      "name": "random-63",
+      "packet": {
+        "id": "58QA9",
+        "band": "R",
+        "score": 89,
+        "conf": "L",
+        "lat": 31.24993,
+        "lon": 10.95356,
+        "time": "1408",
+        "src": "A",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "dv": 119,
+        "g": 17,
+        "flags": [
+          "N",
+          "C"
+        ],
+        "plus": "8F3G6XX3+XC"
+      },
+      "wire": "NAJDA1 58QA9 R89L 31.24993,10.95356 T1408 SA V8 P0 KMP D119 G17 FNC 8F3G6XX3+XC #58"
+    },
+    {
+      "name": "random-64",
+      "packet": {
+        "id": "1Q7RQ",
+        "band": "O",
+        "score": 33,
+        "conf": "M",
+        "lat": 34.9549,
+        "lon": -4.54219,
+        "time": "0219",
+        "src": "M",
+        "veh": 6,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "P",
+          "X"
+        ],
+        "dv": 85,
+        "g": 68,
+        "flags": [
+          "N",
+          "H",
+          "X"
+        ],
+        "hr": 142,
+        "plus": "8C6QXF35+X4"
+      },
+      "wire": "NAJDA1 1Q7RQ O33M 34.95490,-4.54219 T0219 SM V6 P2 KCMTPX D85 G68 FNHX HR142 8C6QXF35+X4 #22"
+    },
+    {
+      "name": "random-65",
+      "packet": {
+        "id": "B7BZ0",
+        "band": "O",
+        "score": 84,
+        "conf": "H",
+        "lat": 28.57295,
+        "lon": -8.25123,
+        "time": "1754",
+        "src": "A",
+        "veh": 5,
+        "pers": 8,
+        "kinds": [
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 73,
+        "g": 35,
+        "flags": [
+          "B",
+          "C"
+        ],
+        "hr": 144,
+        "plus": "7CWHHPFX+5G"
+      },
+      "wire": "NAJDA1 B7BZ0 O84H 28.57295,-8.25123 T1754 SA V5 P8 KTBX D73 G35 FBC HR144 7CWHHPFX+5G #AE"
+    },
+    {
+      "name": "random-66",
+      "packet": {
+        "id": "XS366",
+        "band": "O",
+        "score": 6,
+        "conf": "M",
+        "lat": 19.21656,
+        "lon": 1.8096,
+        "time": "0139",
+        "src": "W",
+        "veh": 3,
+        "pers": 4,
+        "kinds": [
+          "T",
+          "B",
+          "P"
+        ],
+        "dv": 90,
+        "flags": [
+          "U",
+          "H",
+          "X",
+          "F"
+        ],
+        "hr": 32,
+        "plus": "7FF36R85+JR"
+      },
+      "wire": "NAJDA1 XS366 O06M 19.21656,1.80960 T0139 SW V3 P4 KTBP D90 FUHXF HR32 7FF36R85+JR #7F"
+    },
+    {
+      "name": "random-67",
+      "packet": {
+        "id": "CRENG",
+        "band": "O",
+        "score": 57,
+        "conf": "M",
+        "lat": 24.10175,
+        "lon": -7.22354,
+        "time": "1346",
+        "src": "W",
+        "veh": 2,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 50,
+        "g": 41,
+        "plus": "7CPJ4Q2G+PH"
+      },
+      "wire": "NAJDA1 CRENG O57M 24.10175,-7.22354 T1346 SW V2 P8 KMB D50 G41 7CPJ4Q2G+PH #84"
+    },
+    {
+      "name": "random-68",
+      "packet": {
+        "id": "ZWP6Y",
+        "band": "U",
+        "score": 59,
+        "conf": "M",
+        "lat": 22.5716,
+        "lon": -4.72524,
+        "time": "1459",
+        "src": "W",
+        "veh": 6,
+        "pers": 4,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "dv": 35,
+        "plus": "7CJQH7CF+JW"
+      },
+      "wire": "NAJDA1 ZWP6Y U59M 22.57160,-4.72524 T1459 SW V6 P4 KTB D35 7CJQH7CF+JW #4B"
+    },
+    {
+      "name": "random-69",
+      "packet": {
+        "id": "KDWJP",
+        "band": "Y",
+        "score": 68,
+        "conf": "L",
+        "lat": 32.93667,
+        "lon": -6.51169,
+        "time": "0158",
+        "src": "M",
+        "veh": 6,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "B"
+        ],
+        "dv": 63,
+        "g": 63,
+        "flags": [
+          "B",
+          "H",
+          "X"
+        ],
+        "hr": 170
+      },
+      "wire": "NAJDA1 KDWJP Y68L 32.93667,-6.51169 T0158 SM V6 P6 KCMB D63 G63 FBHX HR170 #53"
+    },
+    {
+      "name": "random-70",
+      "packet": {
+        "id": "4JY42",
+        "band": "G",
+        "score": 93,
+        "conf": "H",
+        "lat": 28.70927,
+        "lon": 9.0931,
+        "time": "1005",
+        "src": "A",
+        "veh": 6,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 89,
+        "g": 67,
+        "roll": true,
+        "flags": [
+          "N",
+          "B",
+          "E",
+          "X"
+        ],
+        "plus": "7FWFP35V+P6"
+      },
+      "wire": "NAJDA1 4JY42 G93H 28.70927,9.09310 T1005 SA V6 P8 KMTBX D89 G67 RO FNBEX 7FWFP35V+P6 #72"
+    },
+    {
+      "name": "random-71",
+      "packet": {
+        "id": "EQ3CV",
+        "band": "R",
+        "score": 11,
+        "conf": "M",
+        "lat": 29.02078,
+        "lon": 9.77199,
+        "time": "2156",
+        "src": "W",
+        "veh": 4,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "g": 18,
+        "flags": [
+          "U",
+          "F"
+        ],
+        "hr": 39,
+        "plus": "7FXF2QCC+8Q"
+      },
+      "wire": "NAJDA1 EQ3CV R11M 29.02078,9.77199 T2156 SW V4 P6 KCMX G18 FUF HR39 7FXF2QCC+8Q #A3"
+    },
+    {
+      "name": "random-72",
+      "packet": {
+        "id": "V5RZW",
+        "band": "G",
+        "score": 24,
+        "conf": "M",
+        "lat": 35.36153,
+        "lon": 10.40522,
+        "time": "1755",
+        "src": "A",
+        "veh": 4,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "M",
+          "P",
+          "X"
+        ],
+        "g": 46,
+        "flags": [
+          "E",
+          "D",
+          "F"
+        ],
+        "plus": "8F7G9C64+J3"
+      },
+      "wire": "NAJDA1 V5RZW G24M 35.36153,10.40522 T1755 SA V4 P7 KCMPX G46 FEDF 8F7G9C64+J3 #1D"
+    },
+    {
+      "name": "random-73",
+      "packet": {
+        "id": "09ABD",
+        "band": "R",
+        "score": 96,
+        "conf": "M",
+        "lat": 19.64045,
+        "lon": -8.12462,
+        "time": "1206",
+        "src": "A",
+        "veh": 9,
+        "pers": 3,
+        "kinds": [
+          "M"
+        ],
+        "dv": 20,
+        "g": 37,
+        "flags": [
+          "B",
+          "D",
+          "F"
+        ],
+        "hr": 126,
+        "spo2": 75,
+        "plus": "7CFHJVRG+55"
+      },
+      "wire": "NAJDA1 09ABD R96M 19.64045,-8.12462 T1206 SA V9 P3 KM D20 G37 FBDF HR126 SP75 7CFHJVRG+55 #A0"
+    },
+    {
+      "name": "random-74",
+      "packet": {
+        "id": "75PJV",
+        "band": "R",
+        "score": 61,
+        "conf": "M",
+        "lat": 23.89334,
+        "lon": -1.41856,
+        "time": "2208",
+        "src": "W",
+        "veh": 5,
+        "pers": 0,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "dv": 36,
+        "g": 31,
+        "hr": 94,
+        "plus": "7CMWVHVJ+8H"
+      },
+      "wire": "NAJDA1 75PJV R61M 23.89334,-1.41856 T2208 SW V5 P0 KTX D36 G31 HR94 7CMWVHVJ+8H #19"
+    },
+    {
+      "name": "random-75",
+      "packet": {
+        "id": "J7MT9",
+        "band": "O",
+        "score": 21,
+        "conf": "L",
+        "lat": 25.93955,
+        "lon": 0.68897,
+        "time": "2213",
+        "src": "A",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "g": 15,
+        "plus": "7FQ2WMQQ+RH"
+      },
+      "wire": "NAJDA1 J7MT9 O21L 25.93955,0.68897 T2213 SA V8 P6 KCPX G15 7FQ2WMQQ+RH #74"
+    },
+    {
+      "name": "random-76",
+      "packet": {
+        "id": "P7JX4",
+        "band": "Y",
+        "score": 90,
+        "conf": "L",
+        "lat": 27.71329,
+        "lon": 9.04026,
+        "time": "0408",
+        "src": "W",
+        "veh": 9,
+        "pers": 5,
+        "kinds": [
+          "B"
+        ],
+        "dv": 50,
+        "g": 71,
+        "flags": [
+          "B",
+          "E",
+          "X",
+          "C"
+        ],
+        "spo2": 85,
+        "plus": "7FVFP27R+84"
+      },
+      "wire": "NAJDA1 P7JX4 Y90L 27.71329,9.04026 T0408 SW V9 P5 KB D50 G71 FBEXC SP85 7FVFP27R+84 #CE"
+    },
+    {
+      "name": "random-77",
+      "packet": {
+        "id": "7PE9Q",
+        "band": "R",
+        "score": 67,
+        "conf": "L",
+        "lat": 21.55151,
+        "lon": 3.05823,
+        "time": "1512",
+        "src": "W",
+        "veh": 7,
+        "pers": 7,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "dv": 83,
+        "g": 78,
+        "plus": "7FH5H325+J7"
+      },
+      "wire": "NAJDA1 7PE9Q R67L 21.55151,3.05823 T1512 SW V7 P7 KMP D83 G78 7FH5H325+J7 #68"
+    },
+    {
+      "name": "random-78",
+      "packet": {
+        "id": "JVGEJ",
+        "band": "Y",
+        "score": 67,
+        "conf": "H",
+        "lat": 24.17502,
+        "lon": 9.83923,
+        "time": "1908",
+        "src": "W",
+        "veh": 1,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "g": 73,
+        "roll": true,
+        "spo2": 73,
+        "plus": "7FPF5RGQ+2M"
+      },
+      "wire": "NAJDA1 JVGEJ Y67H 24.17502,9.83923 T1908 SW V1 P3 KMP G73 RO SP73 7FPF5RGQ+2M #75"
+    },
+    {
+      "name": "random-79",
+      "packet": {
+        "id": "WQRVF",
+        "band": "O",
+        "score": 86,
+        "conf": "M",
+        "lat": 36.26617,
+        "lon": -5.08177,
+        "time": "0331",
+        "src": "A",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "C"
+        ],
+        "dv": 16,
+        "g": 72,
+        "flags": [
+          "N",
+          "E",
+          "D"
+        ],
+        "plus": "8C8P7W89+F7"
+      },
+      "wire": "NAJDA1 WQRVF O86M 36.26617,-5.08177 T0331 SA V4 P3 KC D16 G72 FNED 8C8P7W89+F7 #B5"
+    },
+    {
+      "name": "random-80",
+      "packet": {
+        "id": "YRFE8",
+        "band": "Y",
+        "score": 60,
+        "conf": "L",
+        "lat": 36.93774,
+        "lon": -8.3984,
+        "time": "0124",
+        "src": "M",
+        "veh": 5,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 56,
+        "spo2": 82,
+        "plus": "8C8HWJQ2+3J"
+      },
+      "wire": "NAJDA1 YRFE8 Y60L 36.93774,-8.39840 T0124 SM V5 P2 KMB D56 SP82 8C8HWJQ2+3J #35"
+    },
+    {
+      "name": "random-81",
+      "packet": {
+        "id": "MGB11",
+        "band": "R",
+        "score": 49,
+        "conf": "L",
+        "lat": 21.94277,
+        "lon": 10.34593,
+        "time": "1132",
+        "src": "M",
+        "veh": 8,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "g": 66,
+        "flags": [
+          "D"
+        ],
+        "hr": 85,
+        "plus": "7FHGW8VW+49"
+      },
+      "wire": "NAJDA1 MGB11 R49L 21.94277,10.34593 T1132 SM V8 P3 KMB G66 FD HR85 7FHGW8VW+49 #C0"
+    },
+    {
+      "name": "random-82",
+      "packet": {
+        "id": "2PNDK",
+        "band": "O",
+        "score": 44,
+        "conf": "H",
+        "lat": 19.27951,
+        "lon": -1.37209,
+        "time": "1541",
+        "src": "W",
+        "veh": 5,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "dv": 34,
+        "g": 76,
+        "flags": [
+          "N"
+        ],
+        "hr": 33
+      },
+      "wire": "NAJDA1 2PNDK O44H 19.27951,-1.37209 T1541 SW V5 P2 KCMT D34 G76 FN HR33 #30"
+    },
+    {
+      "name": "random-83",
+      "packet": {
+        "id": "9JCD7",
+        "band": "R",
+        "score": 66,
+        "conf": "M",
+        "lat": 29.19854,
+        "lon": -4.71844,
+        "time": "1518",
+        "src": "M",
+        "veh": 7,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "dv": 58,
+        "plus": "7CXQ57XJ+CJ"
+      },
+      "wire": "NAJDA1 9JCD7 R66M 29.19854,-4.71844 T1518 SM V7 P8 KCPX D58 7CXQ57XJ+CJ #E3"
+    },
+    {
+      "name": "random-84",
+      "packet": {
+        "id": "3BHG6",
+        "band": "Y",
+        "score": 80,
+        "conf": "M",
+        "lat": 29.60264,
+        "lon": 3.15534,
+        "time": "1450",
+        "src": "A",
+        "veh": 6,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "T",
+          "B"
+        ],
+        "flags": [
+          "N",
+          "H",
+          "C"
+        ],
+        "plus": "7FX5J534+34"
+      },
+      "wire": "NAJDA1 3BHG6 Y80M 29.60264,3.15534 T1450 SA V6 P7 KCTB FNHC 7FX5J534+34 #BA"
+    },
+    {
+      "name": "random-85",
+      "packet": {
+        "id": "5PB81",
+        "band": "U",
+        "score": 26,
+        "conf": "H",
+        "lat": 28.85048,
+        "lon": 7.67756,
+        "time": "0800",
+        "src": "W",
+        "veh": 0,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "P"
+        ],
+        "dv": 59,
+        "g": 59,
+        "roll": true,
+        "plus": "7FW9VM2H+52"
+      },
+      "wire": "NAJDA1 5PB81 U26H 28.85048,7.67756 T0800 SW V0 P2 KCTBP D59 G59 RO 7FW9VM2H+52 #89"
+    },
+    {
+      "name": "random-86",
+      "packet": {
+        "id": "QQVYG",
+        "band": "R",
+        "score": 46,
+        "conf": "H",
+        "lat": 22.14776,
+        "lon": 11.6823,
+        "time": "1306",
+        "src": "A",
+        "veh": 7,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "dv": 40,
+        "flags": [
+          "N",
+          "X"
+        ],
+        "hr": 192,
+        "plus": "7FJH4MXJ+4W"
+      },
+      "wire": "NAJDA1 QQVYG R46H 22.14776,11.68230 T1306 SA V7 P3 KCP D40 FNX HR192 7FJH4MXJ+4W #FD"
+    },
+    {
+      "name": "random-87",
+      "packet": {
+        "id": "BK5EG",
+        "band": "O",
+        "score": 99,
+        "conf": "M",
+        "lat": 36.24951,
+        "lon": -6.14248,
+        "time": "0344",
+        "src": "W",
+        "veh": 5,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 31,
+        "spo2": 82
+      },
+      "wire": "NAJDA1 BK5EG O99M 36.24951,-6.14248 T0344 SW V5 P2 KMT D31 SP82 #8D"
+    },
+    {
+      "name": "random-88",
+      "packet": {
+        "id": "RCRAX",
+        "band": "Y",
+        "score": 29,
+        "conf": "H",
+        "lat": 31.3807,
+        "lon": 9.29001,
+        "time": "1154",
+        "src": "W",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "g": 13,
+        "spo2": 79,
+        "plus": "8F3F97JR+72"
+      },
+      "wire": "NAJDA1 RCRAX Y29H 31.38070,9.29001 T1154 SW V4 P3 KCB G13 SP79 8F3F97JR+72 #46"
+    },
+    {
+      "name": "random-89",
+      "packet": {
+        "id": "YCRRQ",
+        "band": "U",
+        "score": 75,
+        "conf": "L",
+        "lat": 27.54746,
+        "lon": 6.81512,
+        "time": "0529",
+        "src": "A",
+        "veh": 0,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "dv": 10,
+        "hr": 56,
+        "plus": "7FV8GRW8+X2"
+      },
+      "wire": "NAJDA1 YCRRQ U75L 27.54746,6.81512 T0529 SA V0 P4 KCMT D10 HR56 7FV8GRW8+X2 #5A"
+    },
+    {
+      "name": "random-90",
+      "packet": {
+        "id": "HKRTK",
+        "band": "U",
+        "score": 81,
+        "conf": "H",
+        "lat": 22.48591,
+        "lon": 9.16752,
+        "time": "0213",
+        "src": "W",
+        "veh": 3,
+        "pers": 7,
+        "kinds": [
+          "C"
+        ],
+        "roll": true,
+        "flags": [
+          "N",
+          "B",
+          "E",
+          "X",
+          "C"
+        ],
+        "hr": 125,
+        "plus": "7FJFF5P9+92"
+      },
+      "wire": "NAJDA1 HKRTK U81H 22.48591,9.16752 T0213 SW V3 P7 KC RO FNBEXC HR125 7FJFF5P9+92 #74"
+    },
+    {
+      "name": "random-91",
+      "packet": {
+        "id": "DKY55",
+        "band": "G",
+        "score": 14,
+        "conf": "M",
+        "lat": 20.90039,
+        "lon": 9.83061,
+        "time": "0050",
+        "src": "W",
+        "veh": 8,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "dv": 42,
+        "g": 7,
+        "plus": "7FGFWR2J+56"
+      },
+      "wire": "NAJDA1 DKY55 G14M 20.90039,9.83061 T0050 SW V8 P8 KMP D42 G7 7FGFWR2J+56 #8A"
+    },
+    {
+      "name": "random-92",
+      "packet": {
+        "id": "XHVRT",
+        "band": "Y",
+        "score": 73,
+        "conf": "L",
+        "lat": 21.81826,
+        "lon": 9.18827,
+        "time": "1208",
+        "src": "A",
+        "veh": 6,
+        "pers": 9,
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "X"
+        ],
+        "dv": 17,
+        "flags": [
+          "B",
+          "C",
+          "F"
+        ],
+        "plus": "7FHFR59Q+88"
+      },
+      "wire": "NAJDA1 XHVRT Y73L 21.81826,9.18827 T1208 SA V6 P9 KCMBX D17 FBCF 7FHFR59Q+88 #14"
+    },
+    {
+      "name": "random-93",
+      "packet": {
+        "id": "DN7KM",
+        "band": "Y",
+        "score": 10,
+        "conf": "M",
+        "lat": 25.23685,
+        "lon": 2.6634,
+        "time": "1839",
+        "src": "A",
+        "veh": 8,
+        "pers": 7,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 51,
+        "flags": [
+          "E",
+          "X",
+          "C",
+          "F"
+        ],
+        "plus": "7FQ46MP7+P9"
+      },
+      "wire": "NAJDA1 DN7KM Y10M 25.23685,2.66340 T1839 SA V8 P7 KMB D51 FEXCF 7FQ46MP7+P9 #2A"
+    },
+    {
+      "name": "random-94",
+      "packet": {
+        "id": "KCPMC",
+        "band": "R",
+        "score": 23,
+        "conf": "H",
+        "lat": 27.23788,
+        "lon": 3.52045,
+        "time": "1549",
+        "src": "W",
+        "veh": 8,
+        "pers": 2,
+        "kinds": [
+          "X"
+        ],
+        "flags": [
+          "U",
+          "C"
+        ],
+        "spo2": 100,
+        "plus": "7FV56GQC+55"
+      },
+      "wire": "NAJDA1 KCPMC R23H 27.23788,3.52045 T1549 SW V8 P2 KX FUC SP100 7FV56GQC+55 #55"
+    },
+    {
+      "name": "random-95",
+      "packet": {
+        "id": "QDTAJ",
+        "band": "G",
+        "score": 32,
+        "conf": "L",
+        "lat": 31.65354,
+        "lon": 6.84492,
+        "time": "2033",
+        "src": "M",
+        "veh": 4,
+        "pers": 1,
+        "kinds": [
+          "X"
+        ],
+        "dv": 13,
+        "g": 68,
+        "flags": [
+          "N",
+          "B",
+          "C"
+        ],
+        "plus": "8F38MR3V+CX"
+      },
+      "wire": "NAJDA1 QDTAJ G32L 31.65354,6.84492 T2033 SM V4 P1 KX D13 G68 FNBC 8F38MR3V+CX #98"
+    },
+    {
+      "name": "random-96",
+      "packet": {
+        "id": "KRW6X",
+        "band": "O",
+        "score": 8,
+        "conf": "L",
+        "lat": 32.1563,
+        "lon": 3.81971,
+        "time": "1937",
+        "src": "A",
+        "veh": 2,
+        "pers": 1,
+        "kinds": [
+          "C"
+        ],
+        "g": 78,
+        "roll": true,
+        "flags": [
+          "U",
+          "B"
+        ],
+        "spo2": 79,
+        "plus": "8F455R49+GV"
+      },
+      "wire": "NAJDA1 KRW6X O08L 32.15630,3.81971 T1937 SA V2 P1 KC G78 RO FUB SP79 8F455R49+GV #8A"
+    },
+    {
+      "name": "random-97",
+      "packet": {
+        "id": "YYEKQ",
+        "band": "Y",
+        "score": 46,
+        "conf": "H",
+        "lat": 32.17687,
+        "lon": 1.06114,
+        "time": "0432",
+        "src": "A",
+        "veh": 0,
+        "pers": 1,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "dv": 78,
+        "flags": [
+          "B",
+          "X",
+          "C"
+        ],
+        "hr": 73,
+        "plus": "8F4353G6+PF"
+      },
+      "wire": "NAJDA1 YYEKQ Y46H 32.17687,1.06114 T0432 SA V0 P1 KPX D78 FBXC HR73 8F4353G6+PF #49"
+    },
+    {
+      "name": "random-98",
+      "packet": {
+        "id": "CTD9Z",
+        "band": "Y",
+        "score": 33,
+        "conf": "H",
+        "lat": 21.64857,
+        "lon": 5.81457,
+        "time": "2057",
+        "src": "M",
+        "veh": 2,
+        "pers": 2,
+        "kinds": [
+          "T"
+        ],
+        "g": 79,
+        "flags": [
+          "U",
+          "H",
+          "X",
+          "C"
+        ],
+        "hr": 135,
+        "plus": "7FH7JRX7+CR"
+      },
+      "wire": "NAJDA1 CTD9Z Y33H 21.64857,5.81457 T2057 SM V2 P2 KT G79 FUHXC HR135 7FH7JRX7+CR #E5"
+    },
+    {
+      "name": "random-99",
+      "packet": {
+        "id": "GXGAY",
+        "band": "R",
+        "score": 25,
+        "conf": "M",
+        "lat": 19.9247,
+        "lon": 3.30674,
+        "time": "1319",
+        "src": "A",
+        "veh": 8,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "M",
+          "B"
+        ],
+        "g": 73,
+        "spo2": 92
+      },
+      "wire": "NAJDA1 GXGAY R25M 19.92470,3.30674 T1319 SA V8 P8 KCMB G73 SP92 #0F"
+    },
+    {
+      "name": "random-100",
+      "packet": {
+        "id": "QRNKZ",
+        "band": "U",
+        "score": 18,
+        "conf": "L",
+        "lat": 36.47632,
+        "lon": -2.22784,
+        "time": "0933",
+        "src": "W",
+        "veh": 4,
+        "pers": 7,
+        "kinds": [
+          "T"
+        ],
+        "flags": [
+          "H",
+          "E",
+          "X"
+        ],
+        "spo2": 93
+      },
+      "wire": "NAJDA1 QRNKZ U18L 36.47632,-2.22784 T0933 SW V4 P7 KT FHEX SP93 #86"
+    },
+    {
+      "name": "random-101",
+      "packet": {
+        "id": "845Q8",
+        "band": "U",
+        "score": 38,
+        "conf": "L",
+        "lat": 27.58709,
+        "lon": 3.58743,
+        "time": "2318",
+        "src": "M",
+        "veh": 8,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "dv": 47,
+        "g": 41,
+        "roll": true,
+        "plus": "7FV5HHPP+RX"
+      },
+      "wire": "NAJDA1 845Q8 U38L 27.58709,3.58743 T2318 SM V8 P7 KCB D47 G41 RO 7FV5HHPP+RX #7A"
+    },
+    {
+      "name": "random-102",
+      "packet": {
+        "id": "FRS3R",
+        "band": "U",
+        "score": 60,
+        "conf": "H",
+        "lat": 29.09292,
+        "lon": -7.20046,
+        "time": "0909",
+        "src": "W",
+        "veh": 8,
+        "pers": 4,
+        "kinds": [
+          "B",
+          "P",
+          "X"
+        ],
+        "flags": [
+          "N",
+          "B",
+          "D",
+          "C"
+        ],
+        "hr": 161,
+        "spo2": 85,
+        "plus": "7CXJ3QVX+5R"
+      },
+      "wire": "NAJDA1 FRS3R U60H 29.09292,-7.20046 T0909 SW V8 P4 KBPX FNBDC HR161 SP85 7CXJ3QVX+5R #2E"
+    },
+    {
+      "name": "random-103",
+      "packet": {
+        "id": "AQVZH",
+        "band": "R",
+        "score": 50,
+        "conf": "L",
+        "lat": 24.80309,
+        "lon": 11.85649,
+        "time": "1259",
+        "src": "M",
+        "veh": 2,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 13,
+        "g": 11,
+        "hr": 41,
+        "plus": "7FPHRV34+6H"
+      },
+      "wire": "NAJDA1 AQVZH R50L 24.80309,11.85649 T1259 SM V2 P9 KMT D13 G11 HR41 7FPHRV34+6H #C9"
+    },
+    {
+      "name": "random-104",
+      "packet": {
+        "id": "3JY73",
+        "band": "G",
+        "score": 6,
+        "conf": "L",
+        "lat": 23.07928,
+        "lon": 2.95218,
+        "time": "1026",
+        "src": "A",
+        "veh": 6,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "g": 75,
+        "flags": [
+          "H",
+          "X"
+        ],
+        "spo2": 78,
+        "plus": "7FM43XH2+PV"
+      },
+      "wire": "NAJDA1 3JY73 G06L 23.07928,2.95218 T1026 SA V6 P6 KCMTBX G75 FHX SP78 7FM43XH2+PV #66"
+    },
+    {
+      "name": "random-105",
+      "packet": {
+        "id": "KM62N",
+        "band": "R",
+        "score": 82,
+        "conf": "M",
+        "lat": 19.34635,
+        "lon": 10.61284,
+        "time": "0823",
+        "src": "M",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "dv": 93,
+        "g": 20,
+        "flags": [
+          "U",
+          "E",
+          "X",
+          "C"
+        ],
+        "hr": 164,
+        "spo2": 77,
+        "plus": "7FFG8JW7+G4"
+      },
+      "wire": "NAJDA1 KM62N R82M 19.34635,10.61284 T0823 SM V8 P6 KCPX D93 G20 FUEXC HR164 SP77 7FFG8JW7+G4 #D2"
+    },
+    {
+      "name": "random-106",
+      "packet": {
+        "id": "NGABE",
+        "band": "Y",
+        "score": 36,
+        "conf": "H",
+        "lat": 31.53441,
+        "lon": 6.38257,
+        "time": "1334",
+        "src": "W",
+        "veh": 4,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "T",
+          "P",
+          "X"
+        ],
+        "flags": [
+          "N"
+        ],
+        "hr": 91,
+        "plus": "8F38G9MM+Q2"
+      },
+      "wire": "NAJDA1 NGABE Y36H 31.53441,6.38257 T1334 SW V4 P9 KMTPX FN HR91 8F38G9MM+Q2 #49"
+    },
+    {
+      "name": "random-107",
+      "packet": {
+        "id": "MDDP4",
+        "band": "Y",
+        "score": 57,
+        "conf": "M",
+        "lat": 24.44842,
+        "lon": 3.38367,
+        "time": "1944",
+        "src": "A",
+        "veh": 7,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "B",
+          "P"
+        ],
+        "dv": 48,
+        "g": 49,
+        "flags": [
+          "N",
+          "U",
+          "H",
+          "E",
+          "F"
+        ],
+        "hr": 194
+      },
+      "wire": "NAJDA1 MDDP4 Y57M 24.44842,3.38367 T1944 SA V7 P3 KCBP D48 G49 FNUHEF HR194 #0B"
+    },
+    {
+      "name": "random-108",
+      "packet": {
+        "id": "VP8NZ",
+        "band": "U",
+        "score": 46,
+        "conf": "H",
+        "lat": 20.25911,
+        "lon": 9.6941,
+        "time": "0120",
+        "src": "M",
+        "veh": 2,
+        "pers": 9,
+        "kinds": [
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 123,
+        "hr": 32,
+        "spo2": 92,
+        "plus": "7FGF7M5V+JJ"
+      },
+      "wire": "NAJDA1 VP8NZ U46H 20.25911,9.69410 T0120 SM V2 P9 KTBX D123 HR32 SP92 7FGF7M5V+JJ #F9"
+    },
+    {
+      "name": "random-109",
+      "packet": {
+        "id": "H5NJR",
+        "band": "R",
+        "score": 70,
+        "conf": "H",
+        "lat": 32.70328,
+        "lon": 5.52623,
+        "time": "2153",
+        "src": "M",
+        "veh": 9,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "dv": 52,
+        "roll": true,
+        "flags": [
+          "B",
+          "D"
+        ]
+      },
+      "wire": "NAJDA1 H5NJR R70H 32.70328,5.52623 T2153 SM V9 P5 KCX D52 RO FBD #37"
+    },
+    {
+      "name": "random-110",
+      "packet": {
+        "id": "D812G",
+        "band": "U",
+        "score": 51,
+        "conf": "M",
+        "lat": 33.03965,
+        "lon": 0.68456,
+        "time": "0441",
+        "src": "A",
+        "veh": 1,
+        "pers": 7,
+        "kinds": [
+          "M"
+        ],
+        "dv": 13,
+        "g": 0,
+        "flags": [
+          "E",
+          "D",
+          "X"
+        ],
+        "spo2": 89,
+        "plus": "8F522MQM+VR"
+      },
+      "wire": "NAJDA1 D812G U51M 33.03965,0.68456 T0441 SA V1 P7 KM D13 G0 FEDX SP89 8F522MQM+VR #A8"
+    },
+    {
+      "name": "random-111",
+      "packet": {
+        "id": "2TFG7",
+        "band": "U",
+        "score": 56,
+        "conf": "M",
+        "lat": 23.34985,
+        "lon": -3.06704,
+        "time": "1505",
+        "src": "W",
+        "veh": 0,
+        "pers": 9,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 12,
+        "flags": [
+          "F"
+        ],
+        "plus": "7CMR8WXM+W5"
+      },
+      "wire": "NAJDA1 2TFG7 U56M 23.34985,-3.06704 T1505 SW V0 P9 KTP D12 FF 7CMR8WXM+W5 #8B"
+    },
+    {
+      "name": "random-112",
+      "packet": {
+        "id": "F2AGR",
+        "band": "U",
+        "score": 57,
+        "conf": "H",
+        "lat": 31.42593,
+        "lon": 10.40208,
+        "time": "0818",
+        "src": "M",
+        "veh": 7,
+        "pers": 2,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "roll": true,
+        "flags": [
+          "H",
+          "D",
+          "X"
+        ],
+        "spo2": 73,
+        "plus": "8F3GCCG2+9R"
+      },
+      "wire": "NAJDA1 F2AGR U57H 31.42593,10.40208 T0818 SM V7 P2 KTP RO FHDX SP73 8F3GCCG2+9R #24"
+    },
+    {
+      "name": "random-113",
+      "packet": {
+        "id": "1F01E",
+        "band": "O",
+        "score": 74,
+        "conf": "L",
+        "lat": 21.47917,
+        "lon": -1.5386,
+        "time": "0859",
+        "src": "A",
+        "veh": 8,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "B",
+          "P"
+        ],
+        "dv": 48,
+        "g": 47,
+        "flags": [
+          "N",
+          "U",
+          "E",
+          "F"
+        ],
+        "hr": 138,
+        "spo2": 72,
+        "plus": "7CHWFFH6+MH"
+      },
+      "wire": "NAJDA1 1F01E O74L 21.47917,-1.53860 T0859 SA V8 P2 KCBP D48 G47 FNUEF HR138 SP72 7CHWFFH6+MH #92"
+    },
+    {
+      "name": "random-114",
+      "packet": {
+        "id": "C5RVE",
+        "band": "U",
+        "score": 97,
+        "conf": "M",
+        "lat": 33.56347,
+        "lon": 3.20446,
+        "time": "0311",
+        "src": "M",
+        "veh": 8,
+        "pers": 9,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "dv": 72,
+        "g": 9,
+        "spo2": 70,
+        "plus": "8F55H673+9Q"
+      },
+      "wire": "NAJDA1 C5RVE U97M 33.56347,3.20446 T0311 SM V8 P9 KCX D72 G9 SP70 8F55H673+9Q #D0"
+    },
+    {
+      "name": "random-115",
+      "packet": {
+        "id": "DRHR1",
+        "band": "R",
+        "score": 16,
+        "conf": "M",
+        "lat": 32.37467,
+        "lon": -0.73039,
+        "time": "2059",
+        "src": "M",
+        "veh": 2,
+        "pers": 4,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 31,
+        "g": 39,
+        "flags": [
+          "H",
+          "E",
+          "F"
+        ],
+        "plus": "8C4X97F9+VR"
+      },
+      "wire": "NAJDA1 DRHR1 R16M 32.37467,-0.73039 T2059 SM V2 P4 KTP D31 G39 FHEF 8C4X97F9+VR #20"
+    },
+    {
+      "name": "random-116",
+      "packet": {
+        "id": "TCYA9",
+        "band": "Y",
+        "score": 53,
+        "conf": "M",
+        "lat": 31.81426,
+        "lon": -0.41599,
+        "time": "2342",
+        "src": "M",
+        "veh": 0,
+        "pers": 2,
+        "kinds": [
+          "C"
+        ],
+        "g": 57,
+        "flags": [
+          "H"
+        ],
+        "hr": 187,
+        "plus": "8C3XRH7M+PJ"
+      },
+      "wire": "NAJDA1 TCYA9 Y53M 31.81426,-0.41599 T2342 SM V0 P2 KC G57 FH HR187 8C3XRH7M+PJ #42"
+    },
+    {
+      "name": "random-117",
+      "packet": {
+        "id": "KQXZJ",
+        "band": "G",
+        "score": 84,
+        "conf": "L",
+        "lat": 32.45825,
+        "lon": -6.67652,
+        "time": "1716",
+        "src": "A",
+        "veh": 7,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "dv": 99,
+        "hr": 32,
+        "spo2": 93,
+        "plus": "8C4MF85F+89"
+      },
+      "wire": "NAJDA1 KQXZJ G84L 32.45825,-6.67652 T1716 SA V7 P1 KCMT D99 HR32 SP93 8C4MF85F+89 #28"
+    },
+    {
+      "name": "random-118",
+      "packet": {
+        "id": "AM9KJ",
+        "band": "U",
+        "score": 78,
+        "conf": "H",
+        "lat": 22.52199,
+        "lon": 4.06587,
+        "time": "0226",
+        "src": "M",
+        "veh": 5,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "E",
+          "X",
+          "F"
+        ],
+        "hr": 187,
+        "spo2": 91,
+        "plus": "7FJ6G3C8+Q8"
+      },
+      "wire": "NAJDA1 AM9KJ U78H 22.52199,4.06587 T0226 SM V5 P5 KMX FNBHEXF HR187 SP91 7FJ6G3C8+Q8 #23"
+    },
+    {
+      "name": "random-119",
+      "packet": {
+        "id": "WT8VR",
+        "band": "G",
+        "score": 48,
+        "conf": "M",
+        "lat": 30.15261,
+        "lon": 0.7923,
+        "time": "2004",
+        "src": "A",
+        "veh": 6,
+        "pers": 0,
+        "kinds": [
+          "X"
+        ],
+        "g": 50,
+        "flags": [
+          "N",
+          "U",
+          "E",
+          "D",
+          "X",
+          "F"
+        ],
+        "spo2": 79
+      },
+      "wire": "NAJDA1 WT8VR G48M 30.15261,0.79230 T2004 SA V6 P0 KX G50 FNUEDXF SP79 #D4"
+    },
+    {
+      "name": "random-120",
+      "packet": {
+        "id": "5HPNK",
+        "band": "Y",
+        "score": 47,
+        "conf": "H",
+        "lat": 37.17598,
+        "lon": -2.48188,
+        "time": "1015",
+        "src": "M",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "dv": 50,
+        "g": 68,
+        "flags": [
+          "E",
+          "X",
+          "C",
+          "F"
+        ],
+        "hr": 154
+      },
+      "wire": "NAJDA1 5HPNK Y47H 37.17598,-2.48188 T1015 SM V1 P5 KCPX D50 G68 FEXCF HR154 #C6"
+    },
+    {
+      "name": "random-121",
+      "packet": {
+        "id": "G15QD",
+        "band": "U",
+        "score": 25,
+        "conf": "L",
+        "lat": 20.72168,
+        "lon": 0.85792,
+        "time": "0425",
+        "src": "W",
+        "veh": 9,
+        "pers": 4,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "g": 59,
+        "roll": true,
+        "flags": [
+          "N",
+          "H",
+          "E",
+          "D",
+          "X"
+        ],
+        "hr": 169,
+        "plus": "7FG2PVC5+M5"
+      },
+      "wire": "NAJDA1 G15QD U25L 20.72168,0.85792 T0425 SW V9 P4 KMP G59 RO FNHEDX HR169 7FG2PVC5+M5 #41"
+    },
+    {
+      "name": "random-122",
+      "packet": {
+        "id": "V8PT4",
+        "band": "Y",
+        "score": 37,
+        "conf": "H",
+        "lat": 33.7927,
+        "lon": 0.37346,
+        "time": "0450",
+        "src": "M",
+        "veh": 3,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "T",
+          "B"
+        ],
+        "dv": 52,
+        "g": 46,
+        "flags": [
+          "U",
+          "B",
+          "H",
+          "E",
+          "X"
+        ]
+      },
+      "wire": "NAJDA1 V8PT4 Y37H 33.79270,0.37346 T0450 SM V3 P3 KCTB D52 G46 FUBHEX #2E"
+    },
+    {
+      "name": "random-123",
+      "packet": {
+        "id": "S42VY",
+        "band": "G",
+        "score": 62,
+        "conf": "M",
+        "lat": 28.7769,
+        "lon": -3.93827,
+        "time": "1219",
+        "src": "A",
+        "veh": 8,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "T",
+          "B"
+        ],
+        "dv": 101,
+        "g": 37,
+        "flags": [
+          "D"
+        ],
+        "plus": "7CWRQ3G6+QM"
+      },
+      "wire": "NAJDA1 S42VY G62M 28.77690,-3.93827 T1219 SA V8 P3 KCTB D101 G37 FD 7CWRQ3G6+QM #F3"
+    },
+    {
+      "name": "random-124",
+      "packet": {
+        "id": "RHQR9",
+        "band": "O",
+        "score": 87,
+        "conf": "M",
+        "lat": 22.68477,
+        "lon": 9.77684,
+        "time": "0221",
+        "src": "M",
+        "veh": 6,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "T",
+          "B"
+        ],
+        "g": 74,
+        "flags": [
+          "B",
+          "H",
+          "E",
+          "X",
+          "F"
+        ],
+        "spo2": 80,
+        "plus": "7FJFMQMG+WP"
+      },
+      "wire": "NAJDA1 RHQR9 O87M 22.68477,9.77684 T0221 SM V6 P4 KCTB G74 FBHEXF SP80 7FJFMQMG+WP #20"
+    },
+    {
+      "name": "random-125",
+      "packet": {
+        "id": "8EY6P",
+        "band": "U",
+        "score": 62,
+        "conf": "M",
+        "lat": 34.86204,
+        "lon": 8.35263,
+        "time": "1238",
+        "src": "A",
+        "veh": 4,
+        "pers": 0,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "roll": true,
+        "hr": 195,
+        "plus": "8F6CV963+R3"
+      },
+      "wire": "NAJDA1 8EY6P U62M 34.86204,8.35263 T1238 SA V4 P0 KTX RO HR195 8F6CV963+R3 #22"
+    },
+    {
+      "name": "random-126",
+      "packet": {
+        "id": "GM3VC",
+        "band": "O",
+        "score": 62,
+        "conf": "H",
+        "lat": 28.11482,
+        "lon": -3.73916,
+        "time": "2158",
+        "src": "W",
+        "veh": 0,
+        "pers": 9,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "P"
+        ],
+        "dv": 83,
+        "g": 45,
+        "flags": [
+          "U",
+          "D"
+        ],
+        "spo2": 71,
+        "plus": "7CWR4776+W8"
+      },
+      "wire": "NAJDA1 GM3VC O62H 28.11482,-3.73916 T2158 SW V0 P9 KCMTP D83 G45 FUD SP71 7CWR4776+W8 #1F"
+    },
+    {
+      "name": "random-127",
+      "packet": {
+        "id": "2RGBK",
+        "band": "Y",
+        "score": 67,
+        "conf": "H",
+        "lat": 32.65231,
+        "lon": 4.44967,
+        "time": "0452",
+        "src": "W",
+        "veh": 9,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "T",
+          "P"
+        ],
+        "flags": [
+          "N",
+          "B",
+          "H"
+        ],
+        "spo2": 99,
+        "plus": "8F46MC2X+WV"
+      },
+      "wire": "NAJDA1 2RGBK Y67H 32.65231,4.44967 T0452 SW V9 P8 KMTP FNBH SP99 8F46MC2X+WV #5A"
+    },
+    {
+      "name": "random-128",
+      "packet": {
+        "id": "QSV8A",
+        "band": "R",
+        "score": 23,
+        "conf": "L",
+        "lat": 35.8017,
+        "lon": -1.68375,
+        "time": "1954",
+        "src": "A",
+        "veh": 3,
+        "pers": 7,
+        "kinds": [
+          "M",
+          "T",
+          "X"
+        ],
+        "g": 8,
+        "spo2": 92,
+        "plus": "8C7WR828+MG"
+      },
+      "wire": "NAJDA1 QSV8A R23L 35.80170,-1.68375 T1954 SA V3 P7 KMTX G8 SP92 8C7WR828+MG #7C"
+    },
+    {
+      "name": "random-129",
+      "packet": {
+        "id": "7A3E7",
+        "band": "U",
+        "score": 61,
+        "conf": "L",
+        "lat": 24.09308,
+        "lon": 0.19418,
+        "time": "1314",
+        "src": "A",
+        "veh": 9,
+        "pers": 3,
+        "kinds": [
+          "M"
+        ],
+        "dv": 95,
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "E",
+          "X",
+          "F"
+        ],
+        "hr": 171,
+        "spo2": 73,
+        "plus": "7FP235VV+6M"
+      },
+      "wire": "NAJDA1 7A3E7 U61L 24.09308,0.19418 T1314 SA V9 P3 KM D95 FNBHEXF HR171 SP73 7FP235VV+6M #C9"
+    },
+    {
+      "name": "random-130",
+      "packet": {
+        "id": "FPEYN",
+        "band": "U",
+        "score": 98,
+        "conf": "L",
+        "lat": 20.67877,
+        "lon": 9.94928,
+        "time": "0105",
+        "src": "A",
+        "veh": 2,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "B",
+          "X"
+        ],
+        "roll": true,
+        "hr": 157,
+        "plus": "7FGFMWHX+GP"
+      },
+      "wire": "NAJDA1 FPEYN U98L 20.67877,9.94928 T0105 SA V2 P5 KMBX RO HR157 7FGFMWHX+GP #BD"
+    },
+    {
+      "name": "random-131",
+      "packet": {
+        "id": "SEZ0R",
+        "band": "G",
+        "score": 99,
+        "conf": "M",
+        "lat": 26.66931,
+        "lon": -8.44085,
+        "time": "0529",
+        "src": "M",
+        "veh": 6,
+        "pers": 3,
+        "kinds": [
+          "P"
+        ],
+        "dv": 68,
+        "g": 60,
+        "hr": 190,
+        "plus": "7CRHMH95+PM"
+      },
+      "wire": "NAJDA1 SEZ0R G99M 26.66931,-8.44085 T0529 SM V6 P3 KP D68 G60 HR190 7CRHMH95+PM #EA"
+    },
+    {
+      "name": "random-132",
+      "packet": {
+        "id": "QBVW2",
+        "band": "G",
+        "score": 22,
+        "conf": "L",
+        "lat": 20.18932,
+        "lon": 11.60056,
+        "time": "0101",
+        "src": "W",
+        "veh": 8,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "dv": 7,
+        "g": 58,
+        "hr": 179,
+        "plus": "7FGH5JQ2+P6"
+      },
+      "wire": "NAJDA1 QBVW2 G22L 20.18932,11.60056 T0101 SW V8 P2 KMX D7 G58 HR179 7FGH5JQ2+P6 #5A"
+    },
+    {
+      "name": "random-133",
+      "packet": {
+        "id": "K0QYW",
+        "band": "R",
+        "score": 60,
+        "conf": "M",
+        "lat": 21.53568,
+        "lon": 2.52253,
+        "time": "0251",
+        "src": "W",
+        "veh": 3,
+        "pers": 7,
+        "kinds": [
+          "P"
+        ],
+        "dv": 124,
+        "flags": [
+          "N",
+          "U",
+          "H"
+        ],
+        "plus": "7FH4GGPF+72"
+      },
+      "wire": "NAJDA1 K0QYW R60M 21.53568,2.52253 T0251 SW V3 P7 KP D124 FNUH 7FH4GGPF+72 #8B"
+    },
+    {
+      "name": "random-134",
+      "packet": {
+        "id": "B67W6",
+        "band": "R",
+        "score": 8,
+        "conf": "L",
+        "lat": 21.02357,
+        "lon": -1.89068,
+        "time": "0349",
+        "src": "A",
+        "veh": 5,
+        "pers": 3,
+        "kinds": [
+          "T"
+        ],
+        "dv": 13,
+        "g": 69,
+        "flags": [
+          "N",
+          "E",
+          "X"
+        ],
+        "hr": 107,
+        "spo2": 82,
+        "plus": "7CHW24F5+CP"
+      },
+      "wire": "NAJDA1 B67W6 R08L 21.02357,-1.89068 T0349 SA V5 P3 KT D13 G69 FNEX HR107 SP82 7CHW24F5+CP #0A"
+    },
+    {
+      "name": "random-135",
+      "packet": {
+        "id": "2FMD3",
+        "band": "G",
+        "score": 18,
+        "conf": "H",
+        "lat": 31.95002,
+        "lon": -6.04076,
+        "time": "2219",
+        "src": "W",
+        "veh": 4,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "T",
+          "P"
+        ],
+        "g": 31,
+        "hr": 75,
+        "plus": "8C3MXX25+2M"
+      },
+      "wire": "NAJDA1 2FMD3 G18H 31.95002,-6.04076 T2219 SW V4 P9 KMTP G31 HR75 8C3MXX25+2M #60"
+    },
+    {
+      "name": "random-136",
+      "packet": {
+        "id": "ZV5SP",
+        "band": "U",
+        "score": 18,
+        "conf": "L",
+        "lat": 36.63547,
+        "lon": -3.96955,
+        "time": "2249",
+        "src": "M",
+        "veh": 3,
+        "pers": 0,
+        "kinds": [
+          "X"
+        ],
+        "roll": true,
+        "flags": [
+          "E"
+        ],
+        "plus": "8C8RJ2PJ+55"
+      },
+      "wire": "NAJDA1 ZV5SP U18L 36.63547,-3.96955 T2249 SM V3 P0 KX RO FE 8C8RJ2PJ+55 #B5"
+    },
+    {
+      "name": "random-137",
+      "packet": {
+        "id": "Y768T",
+        "band": "U",
+        "score": 6,
+        "conf": "M",
+        "lat": 28.9346,
+        "lon": 4.59366,
+        "time": "1936",
+        "src": "M",
+        "veh": 3,
+        "pers": 2,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "flags": [
+          "N",
+          "D"
+        ],
+        "plus": "7FW6WHMV+RF"
+      },
+      "wire": "NAJDA1 Y768T U06M 28.93460,4.59366 T1936 SM V3 P2 KPX FND 7FW6WHMV+RF #6E"
+    },
+    {
+      "name": "random-138",
+      "packet": {
+        "id": "GZDWZ",
+        "band": "R",
+        "score": 1,
+        "conf": "L",
+        "lat": 24.61007,
+        "lon": 3.81978,
+        "time": "2056",
+        "src": "W",
+        "veh": 7,
+        "pers": 1,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "flags": [
+          "U",
+          "B",
+          "D",
+          "C",
+          "F"
+        ],
+        "hr": 131,
+        "plus": "7FP5JR69+2W"
+      },
+      "wire": "NAJDA1 GZDWZ R01L 24.61007,3.81978 T2056 SW V7 P1 KBP FUBDCF HR131 7FP5JR69+2W #BA"
+    },
+    {
+      "name": "random-139",
+      "packet": {
+        "id": "XHQ0Y",
+        "band": "R",
+        "score": 91,
+        "conf": "M",
+        "lat": 29.26379,
+        "lon": -3.6585,
+        "time": "2117",
+        "src": "W",
+        "veh": 5,
+        "pers": 1,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "dv": 101,
+        "g": 65,
+        "flags": [
+          "U",
+          "B",
+          "H",
+          "E",
+          "C",
+          "F"
+        ],
+        "plus": "7CXR787R+GJ"
+      },
+      "wire": "NAJDA1 XHQ0Y R91M 29.26379,-3.65850 T2117 SW V5 P1 KPX D101 G65 FUBHECF 7CXR787R+GJ #C3"
+    },
+    {
+      "name": "random-140",
+      "packet": {
+        "id": "HBQC4",
+        "band": "Y",
+        "score": 93,
+        "conf": "H",
+        "lat": 31.52929,
+        "lon": -5.36726,
+        "time": "1522",
+        "src": "M",
+        "veh": 1,
+        "pers": 9,
+        "kinds": [
+          "C",
+          "T",
+          "P",
+          "X"
+        ],
+        "dv": 109,
+        "flags": [
+          "U",
+          "B"
+        ],
+        "plus": "8C3PGJHM+P3"
+      },
+      "wire": "NAJDA1 HBQC4 Y93H 31.52929,-5.36726 T1522 SM V1 P9 KCTPX D109 FUB 8C3PGJHM+P3 #97"
+    },
+    {
+      "name": "random-141",
+      "packet": {
+        "id": "G0QAV",
+        "band": "G",
+        "score": 99,
+        "conf": "H",
+        "lat": 34.85576,
+        "lon": 10.51902,
+        "time": "1444",
+        "src": "A",
+        "veh": 9,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "B",
+          "P"
+        ],
+        "g": 13,
+        "plus": "8F6GVG49+8J"
+      },
+      "wire": "NAJDA1 G0QAV G99H 34.85576,10.51902 T1444 SA V9 P3 KCBP G13 8F6GVG49+8J #BD"
+    },
+    {
+      "name": "random-142",
+      "packet": {
+        "id": "GCYTN",
+        "band": "O",
+        "score": 66,
+        "conf": "H",
+        "lat": 31.42854,
+        "lon": -4.85806,
+        "time": "0639",
+        "src": "A",
+        "veh": 7,
+        "pers": 4,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 61,
+        "g": 63,
+        "flags": [
+          "E",
+          "D"
+        ],
+        "hr": 90,
+        "plus": "8C3QC4HR+CQ"
+      },
+      "wire": "NAJDA1 GCYTN O66H 31.42854,-4.85806 T0639 SA V7 P4 KMB D61 G63 FED HR90 8C3QC4HR+CQ #D4"
+    },
+    {
+      "name": "random-143",
+      "packet": {
+        "id": "9GGPJ",
+        "band": "R",
+        "score": 26,
+        "conf": "L",
+        "lat": 28.58993,
+        "lon": 9.71834,
+        "time": "1759",
+        "src": "M",
+        "veh": 8,
+        "pers": 2,
+        "kinds": [
+          "X"
+        ],
+        "dv": 43,
+        "flags": [
+          "N",
+          "U",
+          "E",
+          "D"
+        ],
+        "spo2": 74,
+        "plus": "7FWFHPQ9+X8"
+      },
+      "wire": "NAJDA1 9GGPJ R26L 28.58993,9.71834 T1759 SM V8 P2 KX D43 FNUED SP74 7FWFHPQ9+X8 #8E"
+    },
+    {
+      "name": "random-144",
+      "packet": {
+        "id": "9Z2N0",
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "lat": 36.54252,
+        "lon": -1.83281,
+        "time": "2115",
+        "src": "W",
+        "veh": 6,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "roll": true,
+        "flags": [
+          "U",
+          "D",
+          "C",
+          "F"
+        ],
+        "spo2": 72,
+        "plus": "8C8WG5V8+2V"
+      },
+      "wire": "NAJDA1 9Z2N0 Y28L 36.54252,-1.83281 T2115 SW V6 P5 KCB RO FUDCF SP72 8C8WG5V8+2V #99"
+    },
+    {
+      "name": "random-145",
+      "packet": {
+        "id": "JKB2G",
+        "band": "G",
+        "score": 45,
+        "conf": "H",
+        "lat": 30.19264,
+        "lon": 3.33367,
+        "time": "2207",
+        "src": "W",
+        "veh": 1,
+        "pers": 0,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "g": 55,
+        "flags": [
+          "N"
+        ],
+        "hr": 190,
+        "plus": "8F2558VM+3F"
+      },
+      "wire": "NAJDA1 JKB2G G45H 30.19264,3.33367 T2207 SW V1 P0 KMP G55 FN HR190 8F2558VM+3F #56"
+    },
+    {
+      "name": "random-146",
+      "packet": {
+        "id": "Q2DCD",
+        "band": "Y",
+        "score": 48,
+        "conf": "H",
+        "lat": 24.12763,
+        "lon": -5.10585,
+        "time": "2344",
+        "src": "M",
+        "veh": 5,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "P"
+        ],
+        "g": 56,
+        "flags": [
+          "N",
+          "H",
+          "C"
+        ],
+        "plus": "7CPP4VHV+3M"
+      },
+      "wire": "NAJDA1 Q2DCD Y48H 24.12763,-5.10585 T2344 SM V5 P8 KCMTP G56 FNHC 7CPP4VHV+3M #FA"
+    },
+    {
+      "name": "random-147",
+      "packet": {
+        "id": "B6H0E",
+        "band": "Y",
+        "score": 24,
+        "conf": "L",
+        "lat": 33.1517,
+        "lon": 3.02231,
+        "time": "1424",
+        "src": "A",
+        "veh": 6,
+        "pers": 9,
+        "kinds": [
+          "C",
+          "T",
+          "X"
+        ],
+        "flags": [
+          "U",
+          "D",
+          "C",
+          "F"
+        ],
+        "plus": "8F55522C+MW"
+      },
+      "wire": "NAJDA1 B6H0E Y24L 33.15170,3.02231 T1424 SA V6 P9 KCTX FUDCF 8F55522C+MW #DD"
+    },
+    {
+      "name": "random-148",
+      "packet": {
+        "id": "T5X4J",
+        "band": "Y",
+        "score": 93,
+        "conf": "L",
+        "lat": 30.71368,
+        "lon": 5.17897,
+        "time": "1034",
+        "src": "A",
+        "veh": 6,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 90,
+        "plus": "8F27P57H+FH"
+      },
+      "wire": "NAJDA1 T5X4J Y93L 30.71368,5.17897 T1034 SA V6 P5 KMT D90 8F27P57H+FH #02"
+    },
+    {
+      "name": "random-149",
+      "packet": {
+        "id": "S4ASE",
+        "band": "Y",
+        "score": 85,
+        "conf": "H",
+        "lat": 37.03663,
+        "lon": 7.53321,
+        "time": "2101",
+        "src": "W",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "X"
+        ],
+        "g": 60,
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "E"
+        ],
+        "spo2": 87,
+        "plus": "8F992GPM+M7"
+      },
+      "wire": "NAJDA1 S4ASE Y85H 37.03663,7.53321 T2101 SW V1 P5 KCMBX G60 RO FNUBE SP87 8F992GPM+M7 #73"
+    },
+    {
+      "name": "random-150",
+      "packet": {
+        "id": "DETDW",
+        "band": "U",
+        "score": 38,
+        "conf": "L",
+        "lat": 34.5758,
+        "lon": 3.06151,
+        "time": "0328",
+        "src": "A",
+        "veh": 6,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "roll": true,
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "E",
+          "C"
+        ],
+        "plus": "8F65H3G6+8J"
+      },
+      "wire": "NAJDA1 DETDW U38L 34.57580,3.06151 T0328 SA V6 P9 KMP RO FNBHEC 8F65H3G6+8J #EB"
+    },
+    {
+      "name": "random-151",
+      "packet": {
+        "id": "260XH",
+        "band": "U",
+        "score": 22,
+        "conf": "H",
+        "lat": 34.33673,
+        "lon": -2.91582,
+        "time": "0028",
+        "src": "A",
+        "veh": 3,
+        "pers": 8,
+        "kinds": [
+          "B"
+        ],
+        "dv": 102,
+        "flags": [
+          "H",
+          "D",
+          "F"
+        ],
+        "spo2": 77
+      },
+      "wire": "NAJDA1 260XH U22H 34.33673,-2.91582 T0028 SA V3 P8 KB D102 FHDF SP77 #B1"
+    },
+    {
+      "name": "random-152",
+      "packet": {
+        "id": "T1TP5",
+        "band": "G",
+        "score": 97,
+        "conf": "L",
+        "lat": 20.17854,
+        "lon": -4.67437,
+        "time": "1819",
+        "src": "W",
+        "veh": 9,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "T",
+          "B"
+        ],
+        "plus": "7CGQ58HG+C7"
+      },
+      "wire": "NAJDA1 T1TP5 G97L 20.17854,-4.67437 T1819 SW V9 P4 KCTB 7CGQ58HG+C7 #5F"
+    },
+    {
+      "name": "random-153",
+      "packet": {
+        "id": "2ES5T",
+        "band": "U",
+        "score": 61,
+        "conf": "M",
+        "lat": 28.65533,
+        "lon": -1.28062,
+        "time": "1242",
+        "src": "A",
+        "veh": 9,
+        "pers": 5,
+        "kinds": [
+          "B"
+        ],
+        "dv": 122,
+        "roll": true,
+        "hr": 170,
+        "spo2": 70
+      },
+      "wire": "NAJDA1 2ES5T U61M 28.65533,-1.28062 T1242 SA V9 P5 KB D122 RO HR170 SP70 #EF"
+    },
+    {
+      "name": "random-154",
+      "packet": {
+        "id": "XJQ7Y",
+        "band": "Y",
+        "score": 60,
+        "conf": "L",
+        "lat": 19.19275,
+        "lon": -7.931,
+        "time": "1735",
+        "src": "A",
+        "veh": 6,
+        "pers": 2,
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "dv": 28,
+        "g": 42,
+        "roll": true,
+        "flags": [
+          "B",
+          "F"
+        ],
+        "hr": 119,
+        "plus": "7CFJ53V9+4J"
+      },
+      "wire": "NAJDA1 XJQ7Y Y60L 19.19275,-7.93100 T1735 SA V6 P2 KBX D28 G42 RO FBF HR119 7CFJ53V9+4J #0F"
+    },
+    {
+      "name": "random-155",
+      "packet": {
+        "id": "T01D3",
+        "band": "O",
+        "score": 4,
+        "conf": "H",
+        "lat": 35.87917,
+        "lon": 9.88725,
+        "time": "0816",
+        "src": "M",
+        "veh": 2,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "g": 30,
+        "roll": true,
+        "hr": 150,
+        "spo2": 98,
+        "plus": "8F7FVVHP+MW"
+      },
+      "wire": "NAJDA1 T01D3 O04H 35.87917,9.88725 T0816 SM V2 P2 KCPX G30 RO HR150 SP98 8F7FVVHP+MW #B3"
+    },
+    {
+      "name": "random-156",
+      "packet": {
+        "id": "XBKW9",
+        "band": "Y",
+        "score": 26,
+        "conf": "M",
+        "lat": 24.6294,
+        "lon": 5.02188,
+        "time": "0906",
+        "src": "M",
+        "veh": 6,
+        "pers": 5,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "dv": 125,
+        "g": 9,
+        "spo2": 91,
+        "plus": "7FP7J2HC+QQ"
+      },
+      "wire": "NAJDA1 XBKW9 Y26M 24.62940,5.02188 T0906 SM V6 P5 KTB D125 G9 SP91 7FP7J2HC+QQ #FD"
+    },
+    {
+      "name": "random-157",
+      "packet": {
+        "id": "XWTGY",
+        "band": "G",
+        "score": 40,
+        "conf": "H",
+        "lat": 28.11829,
+        "lon": -6.89549,
+        "time": "0506",
+        "src": "W",
+        "veh": 2,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "B",
+          "X"
+        ],
+        "dv": 68,
+        "g": 17,
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "F"
+        ],
+        "plus": "7CWM4493+8R"
+      },
+      "wire": "NAJDA1 XWTGY G40H 28.11829,-6.89549 T0506 SW V2 P2 KCBX D68 G17 RO FNUF 7CWM4493+8R #7B"
+    },
+    {
+      "name": "random-158",
+      "packet": {
+        "id": "TMB0X",
+        "band": "U",
+        "score": 2,
+        "conf": "H",
+        "lat": 36.01312,
+        "lon": 1.76126,
+        "time": "2010",
+        "src": "A",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "C"
+        ],
+        "flags": [
+          "E",
+          "D",
+          "C"
+        ],
+        "hr": 134,
+        "plus": "8F832Q76+6G"
+      },
+      "wire": "NAJDA1 TMB0X U02H 36.01312,1.76126 T2010 SA V1 P5 KC FEDC HR134 8F832Q76+6G #58"
+    },
+    {
+      "name": "random-159",
+      "packet": {
+        "id": "0H8GH",
+        "band": "G",
+        "score": 71,
+        "conf": "H",
+        "lat": 31.36808,
+        "lon": -0.61577,
+        "time": "1125",
+        "src": "M",
+        "veh": 2,
+        "pers": 6,
+        "kinds": [
+          "X"
+        ],
+        "dv": 47,
+        "spo2": 86
+      },
+      "wire": "NAJDA1 0H8GH G71H 31.36808,-0.61577 T1125 SM V2 P6 KX D47 SP86 #C7"
+    },
+    {
+      "name": "random-160",
+      "packet": {
+        "id": "RZ4WA",
+        "band": "R",
+        "score": 32,
+        "conf": "H",
+        "lat": 24.57193,
+        "lon": 2.54703,
+        "time": "1913",
+        "src": "A",
+        "veh": 6,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "dv": 79,
+        "g": 13,
+        "roll": true,
+        "spo2": 73,
+        "plus": "7FP4HGCW+QR"
+      },
+      "wire": "NAJDA1 RZ4WA R32H 24.57193,2.54703 T1913 SA V6 P6 KMP D79 G13 RO SP73 7FP4HGCW+QR #C2"
+    },
+    {
+      "name": "random-161",
+      "packet": {
+        "id": "VTTQZ",
+        "band": "Y",
+        "score": 56,
+        "conf": "L",
+        "lat": 18.93621,
+        "lon": -2.49948,
+        "time": "1445",
+        "src": "A",
+        "veh": 9,
+        "pers": 6,
+        "kinds": [
+          "T"
+        ],
+        "dv": 95,
+        "g": 70,
+        "flags": [
+          "U",
+          "B",
+          "X",
+          "C",
+          "F"
+        ],
+        "spo2": 80
+      },
+      "wire": "NAJDA1 VTTQZ Y56L 18.93621,-2.49948 T1445 SA V9 P6 KT D95 G70 FUBXCF SP80 #E4"
+    },
+    {
+      "name": "random-162",
+      "packet": {
+        "id": "MTFNZ",
+        "band": "G",
+        "score": 52,
+        "conf": "L",
+        "lat": 35.91552,
+        "lon": -7.02196,
+        "time": "1007",
+        "src": "M",
+        "veh": 2,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 70,
+        "g": 31,
+        "flags": [
+          "E",
+          "D",
+          "X",
+          "F"
+        ],
+        "spo2": 75,
+        "plus": "8C7JWX8H+66"
+      },
+      "wire": "NAJDA1 MTFNZ G52L 35.91552,-7.02196 T1007 SM V2 P9 KMT D70 G31 FEDXF SP75 8C7JWX8H+66 #B2"
+    },
+    {
+      "name": "random-163",
+      "packet": {
+        "id": "RTKXJ",
+        "band": "R",
+        "score": 20,
+        "conf": "L",
+        "lat": 22.97906,
+        "lon": 6.04615,
+        "time": "1441",
+        "src": "M",
+        "veh": 3,
+        "pers": 1,
+        "kinds": [
+          "M"
+        ],
+        "g": 55,
+        "plus": "7FJ8X2HW+JF"
+      },
+      "wire": "NAJDA1 RTKXJ R20L 22.97906,6.04615 T1441 SM V3 P1 KM G55 7FJ8X2HW+JF #74"
+    },
+    {
+      "name": "random-164",
+      "packet": {
+        "id": "BRSD3",
+        "band": "R",
+        "score": 81,
+        "conf": "H",
+        "lat": 36.97504,
+        "lon": 2.24171,
+        "time": "0153",
+        "src": "A",
+        "veh": 4,
+        "pers": 9,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "flags": [
+          "N",
+          "B",
+          "C"
+        ],
+        "spo2": 78,
+        "plus": "8F84X6GR+2M"
+      },
+      "wire": "NAJDA1 BRSD3 R81H 36.97504,2.24171 T0153 SA V4 P9 KTB FNBC SP78 8F84X6GR+2M #8F"
+    },
+    {
+      "name": "random-165",
+      "packet": {
+        "id": "GJKPK",
+        "band": "O",
+        "score": 98,
+        "conf": "L",
+        "lat": 27.7061,
+        "lon": 8.39457,
+        "time": "0358",
+        "src": "W",
+        "veh": 7,
+        "pers": 0,
+        "kinds": [
+          "M"
+        ],
+        "dv": 13,
+        "roll": true,
+        "hr": 94,
+        "spo2": 89,
+        "plus": "7FVCP94V+CR"
+      },
+      "wire": "NAJDA1 GJKPK O98L 27.70610,8.39457 T0358 SW V7 P0 KM D13 RO HR94 SP89 7FVCP94V+CR #BC"
+    },
+    {
+      "name": "random-166",
+      "packet": {
+        "id": "Q80EN",
+        "band": "G",
+        "score": 81,
+        "conf": "M",
+        "lat": 28.08237,
+        "lon": -4.34496,
+        "time": "0000",
+        "src": "A",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "T",
+          "B"
+        ],
+        "dv": 125,
+        "g": 40,
+        "roll": true,
+        "flags": [
+          "N",
+          "B",
+          "D",
+          "C",
+          "F"
+        ],
+        "spo2": 72
+      },
+      "wire": "NAJDA1 Q80EN G81M 28.08237,-4.34496 T0000 SA V8 P6 KMTB D125 G40 RO FNBDCF SP72 #B1"
+    },
+    {
+      "name": "random-167",
+      "packet": {
+        "id": "MKKV8",
+        "band": "U",
+        "score": 94,
+        "conf": "L",
+        "lat": 31.07458,
+        "lon": 4.42787,
+        "time": "1101",
+        "src": "M",
+        "veh": 5,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "g": 40,
+        "flags": [
+          "U",
+          "X",
+          "F"
+        ],
+        "plus": "8F363CFH+R4"
+      },
+      "wire": "NAJDA1 MKKV8 U94L 31.07458,4.42787 T1101 SM V5 P7 KCP G40 FUXF 8F363CFH+R4 #EC"
+    },
+    {
+      "name": "random-168",
+      "packet": {
+        "id": "2KBS9",
+        "band": "G",
+        "score": 46,
+        "conf": "H",
+        "lat": 21.65603,
+        "lon": -6.32848,
+        "time": "0750",
+        "src": "A",
+        "veh": 1,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "g": 61,
+        "roll": true,
+        "flags": [
+          "B",
+          "H"
+        ],
+        "spo2": 74
+      },
+      "wire": "NAJDA1 2KBS9 G46H 21.65603,-6.32848 T0750 SA V1 P4 KCT G61 RO FBH SP74 #AE"
+    },
+    {
+      "name": "random-169",
+      "packet": {
+        "id": "G6F6G",
+        "band": "G",
+        "score": 96,
+        "conf": "L",
+        "lat": 20.07338,
+        "lon": -1.68723,
+        "time": "0635",
+        "src": "W",
+        "veh": 4,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "B",
+          "X"
+        ],
+        "dv": 105,
+        "g": 64
+      },
+      "wire": "NAJDA1 G6F6G G96L 20.07338,-1.68723 T0635 SW V4 P2 KMBX D105 G64 #AD"
+    },
+    {
+      "name": "random-170",
+      "packet": {
+        "id": "F1XZ2",
+        "band": "U",
+        "score": 67,
+        "conf": "M",
+        "lat": 30.21055,
+        "lon": 3.10556,
+        "time": "1731",
+        "src": "A",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "g": 13,
+        "plus": "8F256464+66"
+      },
+      "wire": "NAJDA1 F1XZ2 U67M 30.21055,3.10556 T1731 SA V8 P0 KCB G13 8F256464+66 #AD"
+    },
+    {
+      "name": "random-171",
+      "packet": {
+        "id": "JR40F",
+        "band": "R",
+        "score": 27,
+        "conf": "H",
+        "lat": 31.98979,
+        "lon": -5.26107,
+        "time": "0516",
+        "src": "A",
+        "veh": 4,
+        "pers": 4,
+        "kinds": [
+          "T"
+        ],
+        "dv": 62,
+        "flags": [
+          "U"
+        ]
+      },
+      "wire": "NAJDA1 JR40F R27H 31.98979,-5.26107 T0516 SA V4 P4 KT D62 FU #F1"
+    },
+    {
+      "name": "random-172",
+      "packet": {
+        "id": "W3AX2",
+        "band": "U",
+        "score": 75,
+        "conf": "M",
+        "lat": 21.14708,
+        "lon": -2.29592,
+        "time": "2248",
+        "src": "M",
+        "veh": 5,
+        "pers": 2,
+        "kinds": [
+          "X"
+        ],
+        "g": 20,
+        "flags": [
+          "H",
+          "D",
+          "X"
+        ],
+        "plus": "7CHV4PW3+RJ"
+      },
+      "wire": "NAJDA1 W3AX2 U75M 21.14708,-2.29592 T2248 SM V5 P2 KX G20 FHDX 7CHV4PW3+RJ #2C"
+    },
+    {
+      "name": "random-173",
+      "packet": {
+        "id": "QM26E",
+        "band": "Y",
+        "score": 24,
+        "conf": "L",
+        "lat": 23.91078,
+        "lon": -1.26173,
+        "time": "0414",
+        "src": "W",
+        "veh": 9,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "T",
+          "P"
+        ],
+        "dv": 64,
+        "g": 71,
+        "flags": [
+          "E",
+          "X",
+          "F"
+        ],
+        "hr": 164,
+        "spo2": 80,
+        "plus": "7CMWWP6Q+88"
+      },
+      "wire": "NAJDA1 QM26E Y24L 23.91078,-1.26173 T0414 SW V9 P5 KCTP D64 G71 FEXF HR164 SP80 7CMWWP6Q+88 #65"
+    },
+    {
+      "name": "random-174",
+      "packet": {
+        "id": "WG7CT",
+        "band": "Y",
+        "score": 2,
+        "conf": "M",
+        "lat": 27.59153,
+        "lon": 5.58311,
+        "time": "0024",
+        "src": "W",
+        "veh": 7,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "dv": 67,
+        "spo2": 76
+      },
+      "wire": "NAJDA1 WG7CT Y02M 27.59153,5.58311 T0024 SW V7 P0 KCX D67 SP76 #85"
+    },
+    {
+      "name": "random-175",
+      "packet": {
+        "id": "1JT1S",
+        "band": "G",
+        "score": 23,
+        "conf": "L",
+        "lat": 24.96954,
+        "lon": -7.39703,
+        "time": "2102",
+        "src": "A",
+        "veh": 0,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "B",
+          "X"
+        ],
+        "dv": 54,
+        "flags": [
+          "U",
+          "D",
+          "X",
+          "C"
+        ],
+        "plus": "7CPJXJ93+R5"
+      },
+      "wire": "NAJDA1 1JT1S G23L 24.96954,-7.39703 T2102 SA V0 P2 KMBX D54 FUDXC 7CPJXJ93+R5 #31"
+    },
+    {
+      "name": "random-176",
+      "packet": {
+        "id": "CDHKW",
+        "band": "Y",
+        "score": 12,
+        "conf": "H",
+        "lat": 32.9737,
+        "lon": -2.9781,
+        "time": "1121",
+        "src": "A",
+        "veh": 6,
+        "pers": 4,
+        "kinds": [
+          "T"
+        ],
+        "dv": 86,
+        "g": 21,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "E",
+          "C"
+        ],
+        "plus": "8C4VX2FC+FQ"
+      },
+      "wire": "NAJDA1 CDHKW Y12H 32.97370,-2.97810 T1121 SA V6 P4 KT D86 G21 FNUBEC 8C4VX2FC+FQ #6F"
+    },
+    {
+      "name": "random-177",
+      "packet": {
+        "id": "Y3CGQ",
+        "band": "U",
+        "score": 79,
+        "conf": "H",
+        "lat": 28.00862,
+        "lon": -0.97434,
+        "time": "1103",
+        "src": "A",
+        "veh": 2,
+        "pers": 1,
+        "kinds": [
+          "M"
+        ],
+        "dv": 106,
+        "flags": [
+          "H",
+          "E",
+          "D",
+          "C"
+        ],
+        "spo2": 71,
+        "plus": "7CWX225G+C7"
+      },
+      "wire": "NAJDA1 Y3CGQ U79H 28.00862,-0.97434 T1103 SA V2 P1 KM D106 FHEDC SP71 7CWX225G+C7 #AC"
+    },
+    {
+      "name": "random-178",
+      "packet": {
+        "id": "89VEH",
+        "band": "O",
+        "score": 59,
+        "conf": "M",
+        "lat": 23.33081,
+        "lon": -5.09371,
+        "time": "0040",
+        "src": "A",
+        "veh": 1,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ],
+        "g": 69,
+        "hr": 127,
+        "spo2": 75
+      },
+      "wire": "NAJDA1 89VEH O59M 23.33081,-5.09371 T0040 SA V1 P8 KMBP G69 HR127 SP75 #37"
+    },
+    {
+      "name": "random-179",
+      "packet": {
+        "id": "3DE0H",
+        "band": "G",
+        "score": 24,
+        "conf": "L",
+        "lat": 24.98816,
+        "lon": 6.17354,
+        "time": "1027",
+        "src": "A",
+        "veh": 8,
+        "pers": 9,
+        "kinds": [
+          "M"
+        ],
+        "g": 7,
+        "spo2": 91,
+        "plus": "7FP8X5QF+7C"
+      },
+      "wire": "NAJDA1 3DE0H G24L 24.98816,6.17354 T1027 SA V8 P9 KM G7 SP91 7FP8X5QF+7C #E5"
+    },
+    {
+      "name": "random-180",
+      "packet": {
+        "id": "G9TM5",
+        "band": "O",
+        "score": 40,
+        "conf": "M",
+        "lat": 27.82413,
+        "lon": 10.93394,
+        "time": "2016",
+        "src": "W",
+        "veh": 5,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "M",
+          "P"
+        ],
+        "g": 75,
+        "hr": 137
+      },
+      "wire": "NAJDA1 G9TM5 O40M 27.82413,10.93394 T2016 SW V5 P1 KCMP G75 HR137 #E8"
+    },
+    {
+      "name": "random-181",
+      "packet": {
+        "id": "FAZ9T",
+        "band": "G",
+        "score": 70,
+        "conf": "M",
+        "lat": 19.24037,
+        "lon": -3.57884,
+        "time": "1351",
+        "src": "A",
+        "veh": 7,
+        "pers": 1,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "g": 48,
+        "flags": [
+          "U",
+          "B",
+          "H",
+          "D"
+        ],
+        "plus": "7CFR6CRC+4F"
+      },
+      "wire": "NAJDA1 FAZ9T G70M 19.24037,-3.57884 T1351 SA V7 P1 KTX G48 FUBHD 7CFR6CRC+4F #6C"
+    },
+    {
+      "name": "random-182",
+      "packet": {
+        "id": "6ZWC1",
+        "band": "Y",
+        "score": 80,
+        "conf": "H",
+        "lat": 27.41411,
+        "lon": 3.19033,
+        "time": "1353",
+        "src": "A",
+        "veh": 1,
+        "pers": 5,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 124,
+        "spo2": 75,
+        "plus": "7FV5C57R+J4"
+      },
+      "wire": "NAJDA1 6ZWC1 Y80H 27.41411,3.19033 T1353 SA V1 P5 KMB D124 SP75 7FV5C57R+J4 #72"
+    },
+    {
+      "name": "random-183",
+      "packet": {
+        "id": "G1JM6",
+        "band": "Y",
+        "score": 14,
+        "conf": "M",
+        "lat": 28.149,
+        "lon": -5.50367,
+        "time": "1321",
+        "src": "M",
+        "veh": 8,
+        "pers": 5,
+        "kinds": [
+          "T"
+        ],
+        "flags": [
+          "H",
+          "D",
+          "X"
+        ],
+        "hr": 194
+      },
+      "wire": "NAJDA1 G1JM6 Y14M 28.14900,-5.50367 T1321 SM V8 P5 KT FHDX HR194 #2C"
+    },
+    {
+      "name": "random-184",
+      "packet": {
+        "id": "8D01Z",
+        "band": "R",
+        "score": 40,
+        "conf": "M",
+        "lat": 26.07729,
+        "lon": -0.14396,
+        "time": "1344",
+        "src": "M",
+        "veh": 9,
+        "pers": 5,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 60,
+        "g": 66,
+        "roll": true,
+        "flags": [
+          "U",
+          "D",
+          "F"
+        ],
+        "spo2": 100
+      },
+      "wire": "NAJDA1 8D01Z R40M 26.07729,-0.14396 T1344 SM V9 P5 KTP D60 G66 RO FUDF SP100 #44"
+    },
+    {
+      "name": "random-185",
+      "packet": {
+        "id": "E0GGE",
+        "band": "R",
+        "score": 83,
+        "conf": "L",
+        "lat": 26.19739,
+        "lon": 9.56813,
+        "time": "1437",
+        "src": "A",
+        "veh": 0,
+        "pers": 4,
+        "kinds": [
+          "C"
+        ],
+        "dv": 27,
+        "g": 1,
+        "spo2": 82
+      },
+      "wire": "NAJDA1 E0GGE R83L 26.19739,9.56813 T1437 SA V0 P4 KC D27 G1 SP82 #A2"
+    },
+    {
+      "name": "random-186",
+      "packet": {
+        "id": "N1VAD",
+        "band": "O",
+        "score": 61,
+        "conf": "L",
+        "lat": 34.8258,
+        "lon": 11.30663,
+        "time": "0135",
+        "src": "A",
+        "veh": 8,
+        "pers": 7,
+        "kinds": [
+          "X"
+        ],
+        "dv": 14,
+        "g": 61,
+        "roll": true,
+        "flags": [
+          "N",
+          "D"
+        ],
+        "plus": "8F6HR8G4+8M"
+      },
+      "wire": "NAJDA1 N1VAD O61L 34.82580,11.30663 T0135 SA V8 P7 KX D14 G61 RO FND 8F6HR8G4+8M #08"
+    },
+    {
+      "name": "random-187",
+      "packet": {
+        "id": "4KWSA",
+        "band": "O",
+        "score": 96,
+        "conf": "L",
+        "lat": 29.62726,
+        "lon": 11.29843,
+        "time": "1114",
+        "src": "W",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "T",
+          "B"
+        ],
+        "g": 27,
+        "plus": "7FXHJ7GX+W9"
+      },
+      "wire": "NAJDA1 4KWSA O96L 29.62726,11.29843 T1114 SW V8 P6 KCTB G27 7FXHJ7GX+W9 #0A"
+    },
+    {
+      "name": "random-188",
+      "packet": {
+        "id": "QQ5HK",
+        "band": "O",
+        "score": 26,
+        "conf": "H",
+        "lat": 29.00704,
+        "lon": 7.5116,
+        "time": "2158",
+        "src": "M",
+        "veh": 1,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "T",
+          "P"
+        ],
+        "g": 76,
+        "flags": [
+          "F"
+        ],
+        "plus": "7FX92G46+RJ"
+      },
+      "wire": "NAJDA1 QQ5HK O26H 29.00704,7.51160 T2158 SM V1 P4 KCTP G76 FF 7FX92G46+RJ #59"
+    },
+    {
+      "name": "random-189",
+      "packet": {
+        "id": "M4KBJ",
+        "band": "R",
+        "score": 80,
+        "conf": "M",
+        "lat": 32.10739,
+        "lon": -3.52773,
+        "time": "1554",
+        "src": "M",
+        "veh": 9,
+        "pers": 6,
+        "kinds": [
+          "T"
+        ],
+        "dv": 126,
+        "g": 1,
+        "hr": 87,
+        "plus": "8C4R4F4C+XW"
+      },
+      "wire": "NAJDA1 M4KBJ R80M 32.10739,-3.52773 T1554 SM V9 P6 KT D126 G1 HR87 8C4R4F4C+XW #26"
+    },
+    {
+      "name": "random-190",
+      "packet": {
+        "id": "18NZC",
+        "band": "R",
+        "score": 53,
+        "conf": "M",
+        "lat": 36.29418,
+        "lon": -3.96955,
+        "time": "1312",
+        "src": "A",
+        "veh": 8,
+        "pers": 9,
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "flags": [
+          "N",
+          "D",
+          "C",
+          "F"
+        ],
+        "spo2": 91,
+        "plus": "8C8R72VJ+M5"
+      },
+      "wire": "NAJDA1 18NZC R53M 36.29418,-3.96955 T1312 SA V8 P9 KCT FNDCF SP91 8C8R72VJ+M5 #42"
+    },
+    {
+      "name": "random-191",
+      "packet": {
+        "id": "BSBEQ",
+        "band": "U",
+        "score": 58,
+        "conf": "H",
+        "lat": 33.66385,
+        "lon": -0.18837,
+        "time": "2341",
+        "src": "A",
+        "veh": 0,
+        "pers": 0,
+        "kinds": [
+          "C"
+        ],
+        "dv": 23,
+        "flags": [
+          "N",
+          "B",
+          "D"
+        ],
+        "hr": 126,
+        "spo2": 81,
+        "plus": "8C5XMR76+GM"
+      },
+      "wire": "NAJDA1 BSBEQ U58H 33.66385,-0.18837 T2341 SA V0 P0 KC D23 FNBD HR126 SP81 8C5XMR76+GM #61"
+    },
+    {
+      "name": "random-192",
+      "packet": {
+        "id": "A2FHF",
+        "band": "R",
+        "score": 45,
+        "conf": "M",
+        "lat": 28.80516,
+        "lon": -4.97669,
+        "time": "0026",
+        "src": "W",
+        "veh": 6,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "dv": 101,
+        "roll": true,
+        "flags": [
+          "E",
+          "D"
+        ],
+        "spo2": 83,
+        "plus": "7CWQR24F+38"
+      },
+      "wire": "NAJDA1 A2FHF R45M 28.80516,-4.97669 T0026 SW V6 P8 KMTBX D101 RO FED SP83 7CWQR24F+38 #A2"
+    },
+    {
+      "name": "random-193",
+      "packet": {
+        "id": "ND38R",
+        "band": "G",
+        "score": 51,
+        "conf": "M",
+        "lat": 22.1361,
+        "lon": 6.16201,
+        "time": "2218",
+        "src": "W",
+        "veh": 9,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "dv": 69,
+        "g": 63,
+        "flags": [
+          "N",
+          "H",
+          "D"
+        ]
+      },
+      "wire": "NAJDA1 ND38R G51M 22.13610,6.16201 T2218 SW V9 P8 KCT D69 G63 FNHD #28"
+    },
+    {
+      "name": "random-194",
+      "packet": {
+        "id": "0NJ6E",
+        "band": "R",
+        "score": 21,
+        "conf": "M",
+        "lat": 30.99249,
+        "lon": 5.18433,
+        "time": "1155",
+        "src": "A",
+        "veh": 2,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "g": 35,
+        "flags": [
+          "N",
+          "B"
+        ],
+        "hr": 89,
+        "plus": "8F27X5RM+XP"
+      },
+      "wire": "NAJDA1 0NJ6E R21M 30.99249,5.18433 T1155 SA V2 P0 KCX G35 FNB HR89 8F27X5RM+XP #61"
+    },
+    {
+      "name": "random-195",
+      "packet": {
+        "id": "JD521",
+        "band": "O",
+        "score": 82,
+        "conf": "M",
+        "lat": 31.27196,
+        "lon": 6.38233,
+        "time": "0118",
+        "src": "A",
+        "veh": 3,
+        "pers": 8,
+        "kinds": [
+          "X"
+        ],
+        "flags": [
+          "B",
+          "E",
+          "C"
+        ]
+      },
+      "wire": "NAJDA1 JD521 O82M 31.27196,6.38233 T0118 SA V3 P8 KX FBEC #20"
+    },
+    {
+      "name": "random-196",
+      "packet": {
+        "id": "RN8B8",
+        "band": "G",
+        "score": 14,
+        "conf": "H",
+        "lat": 20.0204,
+        "lon": 10.59042,
+        "time": "1614",
+        "src": "M",
+        "veh": 1,
+        "pers": 4,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "roll": true,
+        "flags": [
+          "E",
+          "X"
+        ],
+        "hr": 124,
+        "plus": "7FGG2HCR+55"
+      },
+      "wire": "NAJDA1 RN8B8 G14H 20.02040,10.59042 T1614 SM V1 P4 KTP RO FEX HR124 7FGG2HCR+55 #E3"
+    },
+    {
+      "name": "random-197",
+      "packet": {
+        "id": "6BRRY",
+        "band": "U",
+        "score": 58,
+        "conf": "L",
+        "lat": 24.12446,
+        "lon": 10.24562,
+        "time": "0416",
+        "src": "M",
+        "veh": 8,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "M",
+          "P"
+        ],
+        "g": 52,
+        "flags": [
+          "H",
+          "C"
+        ],
+        "plus": "7FPG46FW+Q6"
+      },
+      "wire": "NAJDA1 6BRRY U58L 24.12446,10.24562 T0416 SM V8 P2 KCMP G52 FHC 7FPG46FW+Q6 #02"
+    },
+    {
+      "name": "random-198",
+      "packet": {
+        "id": "QM9QB",
+        "band": "G",
+        "score": 68,
+        "conf": "L",
+        "lat": 35.25911,
+        "lon": -6.75819,
+        "time": "2240",
+        "src": "A",
+        "veh": 2,
+        "pers": 8,
+        "kinds": [
+          "X"
+        ],
+        "dv": 50,
+        "g": 53,
+        "flags": [
+          "N",
+          "B",
+          "D"
+        ],
+        "hr": 178,
+        "plus": "8C7M765R+JP"
+      },
+      "wire": "NAJDA1 QM9QB G68L 35.25911,-6.75819 T2240 SA V2 P8 KX D50 G53 FNBD HR178 8C7M765R+JP #AA"
+    },
+    {
+      "name": "random-199",
+      "packet": {
+        "id": "VG11J",
+        "band": "O",
+        "score": 25,
+        "conf": "M",
+        "lat": 33.34869,
+        "lon": 10.94004,
+        "time": "0039",
+        "src": "M",
+        "veh": 6,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 122,
+        "flags": [
+          "B",
+          "H",
+          "E",
+          "D",
+          "F"
+        ],
+        "plus": "8F5G8WXR+F2"
+      },
+      "wire": "NAJDA1 VG11J O25M 33.34869,10.94004 T0039 SM V6 P3 KMB D122 FBHEDF 8F5G8WXR+F2 #3B"
+    },
+    {
+      "name": "random-200",
+      "packet": {
+        "id": "QGNNA",
+        "band": "U",
+        "score": 14,
+        "conf": "L",
+        "lat": 27.62943,
+        "lon": 8.99848,
+        "time": "2145",
+        "src": "A",
+        "veh": 7,
+        "pers": 7,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "dv": 26,
+        "g": 61,
+        "roll": true,
+        "hr": 64,
+        "plus": "7FVCJXHX+Q9"
+      },
+      "wire": "NAJDA1 QGNNA U14L 27.62943,8.99848 T2145 SA V7 P7 KBP D26 G61 RO HR64 7FVCJXHX+Q9 #80"
+    },
+    {
+      "name": "random-201",
+      "packet": {
+        "id": "4HCX7",
+        "band": "O",
+        "score": 39,
+        "conf": "L",
+        "lat": 31.45189,
+        "lon": 10.97601,
+        "time": "2029",
+        "src": "W",
+        "veh": 0,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "dv": 94,
+        "g": 62,
+        "roll": true,
+        "flags": [
+          "E",
+          "C",
+          "F"
+        ],
+        "hr": 153,
+        "spo2": 90,
+        "plus": "8F3GFX2G+QC"
+      },
+      "wire": "NAJDA1 4HCX7 O39L 31.45189,10.97601 T2029 SW V0 P6 KCX D94 G62 RO FECF HR153 SP90 8F3GFX2G+QC #36"
+    },
+    {
+      "name": "random-202",
+      "packet": {
+        "id": "7G5J5",
+        "band": "U",
+        "score": 24,
+        "conf": "L",
+        "lat": 19.66173,
+        "lon": 8.17951,
+        "time": "1236",
+        "src": "M",
+        "veh": 4,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "spo2": 95,
+        "plus": "7FFCM56H+MR"
+      },
+      "wire": "NAJDA1 7G5J5 U24L 19.66173,8.17951 T1236 SM V4 P2 KCMT SP95 7FFCM56H+MR #98"
+    },
+    {
+      "name": "random-203",
+      "packet": {
+        "id": "AZ0J3",
+        "band": "G",
+        "score": 70,
+        "conf": "L",
+        "lat": 24.76667,
+        "lon": -2.34529,
+        "time": "1118",
+        "src": "A",
+        "veh": 0,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "dv": 52,
+        "roll": true,
+        "plus": "7CPVQM83+MV"
+      },
+      "wire": "NAJDA1 AZ0J3 G70L 24.76667,-2.34529 T1118 SA V0 P1 KCB D52 RO 7CPVQM83+MV #96"
+    },
+    {
+      "name": "random-204",
+      "packet": {
+        "id": "D8DAQ",
+        "band": "G",
+        "score": 43,
+        "conf": "M",
+        "lat": 28.90399,
+        "lon": -2.64897,
+        "time": "1020",
+        "src": "A",
+        "veh": 8,
+        "pers": 8,
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "dv": 38,
+        "g": 60,
+        "roll": true,
+        "flags": [
+          "E",
+          "C",
+          "F"
+        ],
+        "spo2": 90
+      },
+      "wire": "NAJDA1 D8DAQ G43M 28.90399,-2.64897 T1020 SA V8 P8 KBX D38 G60 RO FECF SP90 #EB"
+    },
+    {
+      "name": "random-205",
+      "packet": {
+        "id": "NW2WR",
+        "band": "Y",
+        "score": 49,
+        "conf": "L",
+        "lat": 27.213,
+        "lon": 8.72041,
+        "time": "0228",
+        "src": "W",
+        "veh": 3,
+        "pers": 5,
+        "kinds": [
+          "P"
+        ],
+        "dv": 90,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "H",
+          "D",
+          "C",
+          "F"
+        ]
+      },
+      "wire": "NAJDA1 NW2WR Y49L 27.21300,8.72041 T0228 SW V3 P5 KP D90 FNUBHDCF #CC"
+    },
+    {
+      "name": "random-206",
+      "packet": {
+        "id": "1H3W2",
+        "band": "Y",
+        "score": 29,
+        "conf": "H",
+        "lat": 19.30923,
+        "lon": -2.42961,
+        "time": "0605",
+        "src": "A",
+        "veh": 2,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "dv": 122,
+        "flags": [
+          "N"
+        ]
+      },
+      "wire": "NAJDA1 1H3W2 Y29H 19.30923,-2.42961 T0605 SA V2 P3 KCP D122 FN #17"
+    },
+    {
+      "name": "random-207",
+      "packet": {
+        "id": "VQ47H",
+        "band": "Y",
+        "score": 30,
+        "conf": "H",
+        "lat": 24.02765,
+        "lon": 11.91658,
+        "time": "2236",
+        "src": "A",
+        "veh": 2,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "g": 15,
+        "flags": [
+          "N",
+          "U",
+          "X"
+        ],
+        "plus": "7FPH2WH8+3J"
+      },
+      "wire": "NAJDA1 VQ47H Y30H 24.02765,11.91658 T2236 SA V2 P2 KMT G15 FNUX 7FPH2WH8+3J #48"
+    },
+    {
+      "name": "random-208",
+      "packet": {
+        "id": "ECB9Y",
+        "band": "U",
+        "score": 69,
+        "conf": "L",
+        "lat": 35.8865,
+        "lon": 4.78304,
+        "time": "1030",
+        "src": "W",
+        "veh": 6,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "dv": 66,
+        "g": 39,
+        "hr": 197,
+        "plus": "8F76VQPM+J6"
+      },
+      "wire": "NAJDA1 ECB9Y U69L 35.88650,4.78304 T1030 SW V6 P8 KCB D66 G39 HR197 8F76VQPM+J6 #01"
+    },
+    {
+      "name": "random-209",
+      "packet": {
+        "id": "S41VD",
+        "band": "G",
+        "score": 39,
+        "conf": "M",
+        "lat": 20.8063,
+        "lon": 0.33308,
+        "time": "0506",
+        "src": "M",
+        "veh": 4,
+        "pers": 1,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "roll": true,
+        "hr": 116,
+        "spo2": 76,
+        "plus": "7FG2R84M+G6"
+      },
+      "wire": "NAJDA1 S41VD G39M 20.80630,0.33308 T0506 SM V4 P1 KTB RO HR116 SP76 7FG2R84M+G6 #CC"
+    },
+    {
+      "name": "random-210",
+      "packet": {
+        "id": "HRTM8",
+        "band": "Y",
+        "score": 8,
+        "conf": "L",
+        "lat": 34.871,
+        "lon": 3.105,
+        "time": "1031",
+        "src": "M",
+        "veh": 6,
+        "pers": 8,
+        "kinds": [
+          "P"
+        ],
+        "dv": 72,
+        "g": 56,
+        "flags": [
+          "N",
+          "B",
+          "E",
+          "D"
+        ],
+        "spo2": 72,
+        "plus": "8F65V4C4+C2"
+      },
+      "wire": "NAJDA1 HRTM8 Y08L 34.87100,3.10500 T1031 SM V6 P8 KP D72 G56 FNBED SP72 8F65V4C4+C2 #5D"
+    },
+    {
+      "name": "random-211",
+      "packet": {
+        "id": "C5AK7",
+        "band": "R",
+        "score": 62,
+        "conf": "M",
+        "lat": 18.99493,
+        "lon": 2.90953,
+        "time": "0022",
+        "src": "M",
+        "veh": 1,
+        "pers": 3,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "dv": 104,
+        "g": 33,
+        "flags": [
+          "U",
+          "B",
+          "H",
+          "D",
+          "X",
+          "C"
+        ],
+        "spo2": 77,
+        "plus": "7FC4XWV5+XR"
+      },
+      "wire": "NAJDA1 C5AK7 R62M 18.99493,2.90953 T0022 SM V1 P3 KCMX D104 G33 FUBHDXC SP77 7FC4XWV5+XR #19"
+    },
+    {
+      "name": "random-212",
+      "packet": {
+        "id": "ST6KG",
+        "band": "U",
+        "score": 56,
+        "conf": "M",
+        "lat": 22.34504,
+        "lon": 3.98141,
+        "time": "1507",
+        "src": "W",
+        "veh": 9,
+        "pers": 1,
+        "kinds": [
+          "T"
+        ],
+        "dv": 107,
+        "g": 48,
+        "hr": 76,
+        "spo2": 93,
+        "plus": "7FJ58XWJ+2H"
+      },
+      "wire": "NAJDA1 ST6KG U56M 22.34504,3.98141 T1507 SW V9 P1 KT D107 G48 HR76 SP93 7FJ58XWJ+2H #FB"
+    },
+    {
+      "name": "random-213",
+      "packet": {
+        "id": "1SNRY",
+        "band": "O",
+        "score": 8,
+        "conf": "L",
+        "lat": 27.49924,
+        "lon": 11.36966,
+        "time": "0922",
+        "src": "W",
+        "veh": 9,
+        "pers": 1,
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "P",
+          "X"
+        ],
+        "plus": "7FVHF9X9+MV"
+      },
+      "wire": "NAJDA1 1SNRY O08L 27.49924,11.36966 T0922 SW V9 P1 KCMBPX 7FVHF9X9+MV #FB"
+    },
+    {
+      "name": "random-214",
+      "packet": {
+        "id": "7EK0N",
+        "band": "G",
+        "score": 14,
+        "conf": "H",
+        "lat": 21.085,
+        "lon": 1.51412,
+        "time": "0759",
+        "src": "M",
+        "veh": 6,
+        "pers": 6,
+        "kinds": [
+          "M"
+        ],
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "H"
+        ],
+        "plus": "7FH33GP7+2J"
+      },
+      "wire": "NAJDA1 7EK0N G14H 21.08500,1.51412 T0759 SM V6 P6 KM RO FNUBH 7FH33GP7+2J #C3"
+    },
+    {
+      "name": "random-215",
+      "packet": {
+        "id": "26DG2",
+        "band": "G",
+        "score": 15,
+        "conf": "H",
+        "lat": 32.15341,
+        "lon": 5.40619,
+        "time": "1427",
+        "src": "M",
+        "veh": 3,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "M",
+          "P"
+        ],
+        "dv": 49,
+        "g": 50,
+        "flags": [
+          "B",
+          "D",
+          "C",
+          "F"
+        ],
+        "hr": 186
+      },
+      "wire": "NAJDA1 26DG2 G15H 32.15341,5.40619 T1427 SM V3 P8 KCMP D49 G50 FBDCF HR186 #A0"
+    },
+    {
+      "name": "random-216",
+      "packet": {
+        "id": "KYFEV",
+        "band": "G",
+        "score": 75,
+        "conf": "M",
+        "lat": 23.56626,
+        "lon": -1.07696,
+        "time": "1009",
+        "src": "W",
+        "veh": 8,
+        "pers": 4,
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ],
+        "g": 24,
+        "roll": true,
+        "flags": [
+          "B",
+          "C",
+          "F"
+        ],
+        "plus": "7CMWHW8F+G6"
+      },
+      "wire": "NAJDA1 KYFEV G75M 23.56626,-1.07696 T1009 SW V8 P4 KMBP G24 RO FBCF 7CMWHW8F+G6 #EE"
+    },
+    {
+      "name": "random-217",
+      "packet": {
+        "id": "FMRNY",
+        "band": "U",
+        "score": 69,
+        "conf": "M",
+        "lat": 29.1641,
+        "lon": -6.43177,
+        "time": "2156",
+        "src": "W",
+        "veh": 4,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "g": 39,
+        "hr": 48,
+        "plus": "7CXM5H79+J7"
+      },
+      "wire": "NAJDA1 FMRNY U69M 29.16410,-6.43177 T2156 SW V4 P8 KCT G39 HR48 7CXM5H79+J7 #B0"
+    },
+    {
+      "name": "random-218",
+      "packet": {
+        "id": "KY7QD",
+        "band": "O",
+        "score": 91,
+        "conf": "M",
+        "lat": 33.0966,
+        "lon": 3.82058,
+        "time": "1536",
+        "src": "M",
+        "veh": 1,
+        "pers": 0,
+        "kinds": [
+          "T",
+          "P",
+          "X"
+        ],
+        "dv": 3,
+        "g": 57,
+        "flags": [
+          "N",
+          "H",
+          "D"
+        ],
+        "hr": 155,
+        "plus": "8F553RWC+J6"
+      },
+      "wire": "NAJDA1 KY7QD O91M 33.09660,3.82058 T1536 SM V1 P0 KTPX D3 G57 FNHD HR155 8F553RWC+J6 #96"
+    },
+    {
+      "name": "random-219",
+      "packet": {
+        "id": "DE44V",
+        "band": "U",
+        "score": 69,
+        "conf": "H",
+        "lat": 27.42603,
+        "lon": 11.31462,
+        "time": "0724",
+        "src": "M",
+        "veh": 6,
+        "pers": 6,
+        "kinds": [
+          "T"
+        ],
+        "g": 16,
+        "roll": true,
+        "flags": [
+          "X",
+          "C"
+        ]
+      },
+      "wire": "NAJDA1 DE44V U69H 27.42603,11.31462 T0724 SM V6 P6 KT G16 RO FXC #C2"
+    },
+    {
+      "name": "random-220",
+      "packet": {
+        "id": "T5YKV",
+        "band": "U",
+        "score": 44,
+        "conf": "L",
+        "lat": 21.75721,
+        "lon": 2.85952,
+        "time": "0837",
+        "src": "A",
+        "veh": 2,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "M",
+          "P",
+          "X"
+        ],
+        "dv": 34,
+        "g": 3,
+        "roll": true,
+        "hr": 48,
+        "spo2": 90
+      },
+      "wire": "NAJDA1 T5YKV U44L 21.75721,2.85952 T0837 SA V2 P7 KCMPX D34 G3 RO HR48 SP90 #90"
+    },
+    {
+      "name": "random-221",
+      "packet": {
+        "id": "CPKZ4",
+        "band": "O",
+        "score": 75,
+        "conf": "M",
+        "lat": 33.9695,
+        "lon": 0.79212,
+        "time": "0910",
+        "src": "M",
+        "veh": 0,
+        "pers": 0,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 48,
+        "g": 68,
+        "flags": [
+          "E",
+          "D",
+          "X"
+        ],
+        "hr": 139
+      },
+      "wire": "NAJDA1 CPKZ4 O75M 33.96950,0.79212 T0910 SM V0 P0 KMB D48 G68 FEDX HR139 #83"
+    },
+    {
+      "name": "random-222",
+      "packet": {
+        "id": "PNFSN",
+        "band": "R",
+        "score": 99,
+        "conf": "H",
+        "lat": 19.90912,
+        "lon": 3.83867,
+        "time": "0637",
+        "src": "M",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "M",
+          "B",
+          "P",
+          "X"
+        ],
+        "dv": 106,
+        "g": 31,
+        "roll": true,
+        "spo2": 88,
+        "plus": "7FF5WR5Q+JF"
+      },
+      "wire": "NAJDA1 PNFSN R99H 19.90912,3.83867 T0637 SM V8 P0 KMBPX D106 G31 RO SP88 7FF5WR5Q+JF #24"
+    },
+    {
+      "name": "random-223",
+      "packet": {
+        "id": "607HY",
+        "band": "G",
+        "score": 42,
+        "conf": "H",
+        "lat": 22.42518,
+        "lon": -4.26654,
+        "time": "0841",
+        "src": "M",
+        "veh": 6,
+        "pers": 5,
+        "kinds": [
+          "C"
+        ],
+        "dv": 95,
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "E",
+          "F"
+        ],
+        "plus": "7CJQCPGM+39"
+      },
+      "wire": "NAJDA1 607HY G42H 22.42518,-4.26654 T0841 SM V6 P5 KC D95 FNBHEF 7CJQCPGM+39 #3D"
+    },
+    {
+      "name": "random-224",
+      "packet": {
+        "id": "JQP88",
+        "band": "O",
+        "score": 76,
+        "conf": "L",
+        "lat": 25.96953,
+        "lon": -0.55403,
+        "time": "0431",
+        "src": "A",
+        "veh": 8,
+        "pers": 5,
+        "kinds": [
+          "X"
+        ],
+        "roll": true,
+        "flags": [
+          "H",
+          "E"
+        ],
+        "plus": "7CQXXC9W+R9"
+      },
+      "wire": "NAJDA1 JQP88 O76L 25.96953,-0.55403 T0431 SA V8 P5 KX RO FHE 7CQXXC9W+R9 #4D"
+    },
+    {
+      "name": "random-225",
+      "packet": {
+        "id": "ES3G9",
+        "band": "O",
+        "score": 42,
+        "conf": "L",
+        "lat": 19.8582,
+        "lon": -1.51892,
+        "time": "2242",
+        "src": "M",
+        "veh": 4,
+        "pers": 6,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "dv": 107,
+        "g": 60,
+        "roll": true,
+        "spo2": 98,
+        "plus": "7CFWVF5J+7C"
+      },
+      "wire": "NAJDA1 ES3G9 O42L 19.85820,-1.51892 T2242 SM V4 P6 KTX D107 G60 RO SP98 7CFWVF5J+7C #8B"
+    },
+    {
+      "name": "random-226",
+      "packet": {
+        "id": "8PYEN",
+        "band": "Y",
+        "score": 96,
+        "conf": "L",
+        "lat": 19.0246,
+        "lon": -1.59799,
+        "time": "0533",
+        "src": "M",
+        "veh": 3,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "X"
+        ],
+        "dv": 62,
+        "roll": true,
+        "spo2": 99,
+        "plus": "7CFW2CF2+RR"
+      },
+      "wire": "NAJDA1 8PYEN Y96L 19.02460,-1.59799 T0533 SM V3 P6 KCMBX D62 RO SP99 7CFW2CF2+RR #FB"
+    },
+    {
+      "name": "random-227",
+      "packet": {
+        "id": "J2BAG",
+        "band": "Y",
+        "score": 43,
+        "conf": "M",
+        "lat": 30.3924,
+        "lon": -6.50994,
+        "time": "0621",
+        "src": "M",
+        "veh": 2,
+        "pers": 4,
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "g": 6,
+        "roll": true,
+        "hr": 146,
+        "plus": "8C2M9FRR+X2"
+      },
+      "wire": "NAJDA1 J2BAG Y43M 30.39240,-6.50994 T0621 SM V2 P4 KBX G6 RO HR146 8C2M9FRR+X2 #28"
+    },
+    {
+      "name": "random-228",
+      "packet": {
+        "id": "RR8KY",
+        "band": "O",
+        "score": 1,
+        "conf": "M",
+        "lat": 35.12412,
+        "lon": 11.67836,
+        "time": "0528",
+        "src": "W",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "B"
+        ],
+        "roll": true,
+        "plus": "8F7H4MFH+J8"
+      },
+      "wire": "NAJDA1 RR8KY O01M 35.12412,11.67836 T0528 SW V8 P6 KCMTB RO 8F7H4MFH+J8 #0D"
+    },
+    {
+      "name": "random-229",
+      "packet": {
+        "id": "BPJ8E",
+        "band": "G",
+        "score": 7,
+        "conf": "H",
+        "lat": 24.4204,
+        "lon": 7.65527,
+        "time": "1721",
+        "src": "A",
+        "veh": 9,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "dv": 39,
+        "g": 46,
+        "flags": [
+          "H",
+          "D",
+          "C"
+        ],
+        "plus": "7FP9CMC4+54"
+      },
+      "wire": "NAJDA1 BPJ8E G07H 24.42040,7.65527 T1721 SA V9 P5 KCMX D39 G46 FHDC 7FP9CMC4+54 #13"
+    },
+    {
+      "name": "random-230",
+      "packet": {
+        "id": "BVA72",
+        "band": "G",
+        "score": 75,
+        "conf": "H",
+        "lat": 35.78703,
+        "lon": -5.0814,
+        "time": "0512",
+        "src": "M",
+        "veh": 4,
+        "pers": 9,
+        "kinds": [
+          "P"
+        ],
+        "dv": 115,
+        "g": 7,
+        "hr": 131,
+        "plus": "8C7PQWP9+RC"
+      },
+      "wire": "NAJDA1 BVA72 G75H 35.78703,-5.08140 T0512 SM V4 P9 KP D115 G7 HR131 8C7PQWP9+RC #EC"
+    },
+    {
+      "name": "random-231",
+      "packet": {
+        "id": "8N86A",
+        "band": "U",
+        "score": 68,
+        "conf": "H",
+        "lat": 31.40638,
+        "lon": 7.41843,
+        "time": "2248",
+        "src": "A",
+        "veh": 0,
+        "pers": 1,
+        "kinds": [
+          "X"
+        ],
+        "hr": 40,
+        "plus": "8F39CC49+H9"
+      },
+      "wire": "NAJDA1 8N86A U68H 31.40638,7.41843 T2248 SA V0 P1 KX HR40 8F39CC49+H9 #00"
+    },
+    {
+      "name": "random-232",
+      "packet": {
+        "id": "EGBNZ",
+        "band": "U",
+        "score": 1,
+        "conf": "H",
+        "lat": 30.64136,
+        "lon": 10.80703,
+        "time": "0717",
+        "src": "W",
+        "veh": 5,
+        "pers": 8,
+        "kinds": [
+          "T"
+        ],
+        "dv": 45,
+        "spo2": 83,
+        "plus": "8F2GJRR4+GR"
+      },
+      "wire": "NAJDA1 EGBNZ U01H 30.64136,10.80703 T0717 SW V5 P8 KT D45 SP83 8F2GJRR4+GR #B7"
+    },
+    {
+      "name": "random-233",
+      "packet": {
+        "id": "7V4MC",
+        "band": "Y",
+        "score": 33,
+        "conf": "L",
+        "lat": 27.20371,
+        "lon": -1.01545,
+        "time": "0950",
+        "src": "W",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "C"
+        ],
+        "g": 31,
+        "flags": [
+          "U",
+          "H",
+          "X",
+          "C",
+          "F"
+        ],
+        "hr": 78,
+        "plus": "7CVW6X3M+FR"
+      },
+      "wire": "NAJDA1 7V4MC Y33L 27.20371,-1.01545 T0950 SW V8 P0 KC G31 FUHXCF HR78 7CVW6X3M+FR #D9"
+    },
+    {
+      "name": "random-234",
+      "packet": {
+        "id": "QPA06",
+        "band": "Y",
+        "score": 38,
+        "conf": "L",
+        "lat": 28.45087,
+        "lon": -7.65517,
+        "time": "1904",
+        "src": "A",
+        "veh": 2,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "dv": 36,
+        "g": 48,
+        "flags": [
+          "F"
+        ],
+        "plus": "7CWJF82V+8W"
+      },
+      "wire": "NAJDA1 QPA06 Y38L 28.45087,-7.65517 T1904 SA V2 P7 KCB D36 G48 FF 7CWJF82V+8W #5D"
+    },
+    {
+      "name": "random-235",
+      "packet": {
+        "id": "RH07X",
+        "band": "R",
+        "score": 97,
+        "conf": "L",
+        "lat": 23.39371,
+        "lon": -5.96883,
+        "time": "0453",
+        "src": "A",
+        "veh": 3,
+        "pers": 8,
+        "kinds": [
+          "T"
+        ],
+        "g": 18,
+        "flags": [
+          "U",
+          "H",
+          "E"
+        ],
+        "hr": 44,
+        "spo2": 78,
+        "plus": "7CMP92VJ+FF"
+      },
+      "wire": "NAJDA1 RH07X R97L 23.39371,-5.96883 T0453 SA V3 P8 KT G18 FUHE HR44 SP78 7CMP92VJ+FF #72"
+    },
+    {
+      "name": "random-236",
+      "packet": {
+        "id": "CN246",
+        "band": "Y",
+        "score": 98,
+        "conf": "H",
+        "lat": 33.03126,
+        "lon": -6.46115,
+        "time": "2354",
+        "src": "A",
+        "veh": 4,
+        "pers": 6,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 105,
+        "g": 52,
+        "flags": [
+          "U",
+          "B",
+          "E",
+          "X",
+          "F"
+        ],
+        "hr": 98,
+        "plus": "8C5M2GJQ+GG"
+      },
+      "wire": "NAJDA1 CN246 Y98H 33.03126,-6.46115 T2354 SA V4 P6 KTP D105 G52 FUBEXF HR98 8C5M2GJQ+GG #BA"
+    },
+    {
+      "name": "random-237",
+      "packet": {
+        "id": "DNB4X",
+        "band": "G",
+        "score": 95,
+        "conf": "L",
+        "lat": 33.60684,
+        "lon": 6.0607,
+        "time": "0107",
+        "src": "W",
+        "veh": 2,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "dv": 83,
+        "g": 23,
+        "spo2": 99,
+        "plus": "8F58J346+P7"
+      },
+      "wire": "NAJDA1 DNB4X G95L 33.60684,6.06070 T0107 SW V2 P5 KCB D83 G23 SP99 8F58J346+P7 #C7"
+    },
+    {
+      "name": "random-238",
+      "packet": {
+        "id": "JN64W",
+        "band": "Y",
+        "score": 16,
+        "conf": "M",
+        "lat": 35.40334,
+        "lon": 10.92126,
+        "time": "2327",
+        "src": "M",
+        "veh": 5,
+        "pers": 1,
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "dv": 117,
+        "g": 1,
+        "hr": 110,
+        "plus": "8F7GCW3C+8G"
+      },
+      "wire": "NAJDA1 JN64W Y16M 35.40334,10.92126 T2327 SM V5 P1 KBX D117 G1 HR110 8F7GCW3C+8G #C2"
+    },
+    {
+      "name": "random-239",
+      "packet": {
+        "id": "6V9M8",
+        "band": "Y",
+        "score": 79,
+        "conf": "M",
+        "lat": 28.16384,
+        "lon": 4.09254,
+        "time": "0357",
+        "src": "W",
+        "veh": 3,
+        "pers": 9,
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "dv": 94,
+        "flags": [
+          "D",
+          "X",
+          "C",
+          "F"
+        ],
+        "hr": 70,
+        "spo2": 85,
+        "plus": "7FW6537V+G2"
+      },
+      "wire": "NAJDA1 6V9M8 Y79M 28.16384,4.09254 T0357 SW V3 P9 KBX D94 FDXCF HR70 SP85 7FW6537V+G2 #34"
+    },
+    {
+      "name": "random-240",
+      "packet": {
+        "id": "SQT08",
+        "band": "O",
+        "score": 32,
+        "conf": "H",
+        "lat": 30.24837,
+        "lon": 11.95191,
+        "time": "0339",
+        "src": "M",
+        "veh": 0,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "B"
+        ],
+        "g": 56,
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "E"
+        ],
+        "hr": 168,
+        "plus": "8F2H6XX2+8Q"
+      },
+      "wire": "NAJDA1 SQT08 O32H 30.24837,11.95191 T0339 SM V0 P2 KCMTB G56 FNBHE HR168 8F2H6XX2+8Q #6B"
+    },
+    {
+      "name": "random-241",
+      "packet": {
+        "id": "VXP1K",
+        "band": "O",
+        "score": 79,
+        "conf": "H",
+        "lat": 21.89502,
+        "lon": -7.23961,
+        "time": "1430",
+        "src": "W",
+        "veh": 3,
+        "pers": 7,
+        "kinds": [
+          "C",
+          "T",
+          "X"
+        ],
+        "dv": 79,
+        "g": 40,
+        "flags": [
+          "U",
+          "D",
+          "X"
+        ],
+        "plus": "7CHJVQW6+25"
+      },
+      "wire": "NAJDA1 VXP1K O79H 21.89502,-7.23961 T1430 SW V3 P7 KCTX D79 G40 FUDX 7CHJVQW6+25 #2D"
+    },
+    {
+      "name": "random-242",
+      "packet": {
+        "id": "NJDQ7",
+        "band": "Y",
+        "score": 95,
+        "conf": "L",
+        "lat": 30.04564,
+        "lon": 0.53665,
+        "time": "0645",
+        "src": "W",
+        "veh": 1,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "dv": 102,
+        "roll": true,
+        "hr": 199,
+        "spo2": 72,
+        "plus": "8F222GWP+7M"
+      },
+      "wire": "NAJDA1 NJDQ7 Y95L 30.04564,0.53665 T0645 SW V1 P8 KMP D102 RO HR199 SP72 8F222GWP+7M #D4"
+    },
+    {
+      "name": "random-243",
+      "packet": {
+        "id": "M8D37",
+        "band": "Y",
+        "score": 36,
+        "conf": "M",
+        "lat": 36.95262,
+        "lon": -7.31021,
+        "time": "1424",
+        "src": "A",
+        "veh": 6,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "B",
+          "X"
+        ],
+        "dv": 38,
+        "g": 28,
+        "plus": "8C8JXM3Q+2W"
+      },
+      "wire": "NAJDA1 M8D37 Y36M 36.95262,-7.31021 T1424 SA V6 P3 KMBX D38 G28 8C8JXM3Q+2W #3E"
+    },
+    {
+      "name": "random-244",
+      "packet": {
+        "id": "69T9S",
+        "band": "U",
+        "score": 12,
+        "conf": "H",
+        "lat": 33.90112,
+        "lon": -3.80186,
+        "time": "1740",
+        "src": "W",
+        "veh": 2,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "B",
+          "X"
+        ],
+        "dv": 30,
+        "g": 3,
+        "roll": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "X"
+        ],
+        "hr": 179,
+        "plus": "8C5RW52X+C7"
+      },
+      "wire": "NAJDA1 69T9S U12H 33.90112,-3.80186 T1740 SW V2 P5 KCBX D30 G3 RO FNUBX HR179 8C5RW52X+C7 #6B"
+    },
+    {
+      "name": "random-245",
+      "packet": {
+        "id": "3G3V8",
+        "band": "U",
+        "score": 20,
+        "conf": "M",
+        "lat": 30.57036,
+        "lon": -2.49306,
+        "time": "0303",
+        "src": "M",
+        "veh": 8,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "P"
+        ],
+        "g": 27,
+        "flags": [
+          "E",
+          "D",
+          "X",
+          "F"
+        ],
+        "plus": "8C2VHGC4+4Q"
+      },
+      "wire": "NAJDA1 3G3V8 U20M 30.57036,-2.49306 T0303 SM V8 P4 KCTBP G27 FEDXF 8C2VHGC4+4Q #C7"
+    },
+    {
+      "name": "random-246",
+      "packet": {
+        "id": "VT8D2",
+        "band": "O",
+        "score": 81,
+        "conf": "M",
+        "lat": 22.82363,
+        "lon": 9.46296,
+        "time": "1022",
+        "src": "W",
+        "veh": 3,
+        "pers": 1,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "g": 42,
+        "hr": 68,
+        "plus": "7FJFRFF7+F5"
+      },
+      "wire": "NAJDA1 VT8D2 O81M 22.82363,9.46296 T1022 SW V3 P1 KTX G42 HR68 7FJFRFF7+F5 #5B"
+    },
+    {
+      "name": "random-247",
+      "packet": {
+        "id": "M4322",
+        "band": "G",
+        "score": 66,
+        "conf": "M",
+        "lat": 20.00382,
+        "lon": 2.43734,
+        "time": "2328",
+        "src": "W",
+        "veh": 6,
+        "pers": 7,
+        "kinds": [
+          "T",
+          "P",
+          "X"
+        ],
+        "dv": 113,
+        "hr": 105,
+        "spo2": 90,
+        "plus": "7FG42C3P+GW"
+      },
+      "wire": "NAJDA1 M4322 G66M 20.00382,2.43734 T2328 SW V6 P7 KTPX D113 HR105 SP90 7FG42C3P+GW #0D"
+    },
+    {
+      "name": "random-248",
+      "packet": {
+        "id": "KW0D4",
+        "band": "R",
+        "score": 77,
+        "conf": "L",
+        "lat": 28.72821,
+        "lon": 5.09341,
+        "time": "1805",
+        "src": "A",
+        "veh": 8,
+        "pers": 9,
+        "kinds": [
+          "M",
+          "T",
+          "P"
+        ],
+        "g": 2,
+        "roll": true,
+        "flags": [
+          "H",
+          "X",
+          "F"
+        ],
+        "spo2": 98,
+        "plus": "7FW7P3HV+79"
+      },
+      "wire": "NAJDA1 KW0D4 R77L 28.72821,5.09341 T1805 SA V8 P9 KMTP G2 RO FHXF SP98 7FW7P3HV+79 #90"
+    },
+    {
+      "name": "random-249",
+      "packet": {
+        "id": "KJKQS",
+        "band": "Y",
+        "score": 87,
+        "conf": "H",
+        "lat": 25.93279,
+        "lon": 0.54535,
+        "time": "0035",
+        "src": "A",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "B"
+        ],
+        "dv": 7,
+        "spo2": 90,
+        "plus": "7FQ2WGMW+44"
+      },
+      "wire": "NAJDA1 KJKQS Y87H 25.93279,0.54535 T0035 SA V4 P3 KB D7 SP90 7FQ2WGMW+44 #19"
+    },
+    {
+      "name": "random-250",
+      "packet": {
+        "id": "RQAX6",
+        "band": "Y",
+        "score": 89,
+        "conf": "M",
+        "lat": 21.91054,
+        "lon": -1.21717,
+        "time": "2231",
+        "src": "A",
+        "veh": 4,
+        "pers": 4,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "dv": 90,
+        "g": 23,
+        "hr": 169,
+        "plus": "7CHWWQ6M+64"
+      },
+      "wire": "NAJDA1 RQAX6 Y89M 21.91054,-1.21717 T2231 SA V4 P4 KMX D90 G23 HR169 7CHWWQ6M+64 #45"
+    },
+    {
+      "name": "random-251",
+      "packet": {
+        "id": "RSKV5",
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "lat": 36.93487,
+        "lon": 7.95029,
+        "time": "0224",
+        "src": "M",
+        "veh": 4,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "T",
+          "X"
+        ],
+        "dv": 85,
+        "plus": "8F89WXM2+W4"
+      },
+      "wire": "NAJDA1 RSKV5 R80H 36.93487,7.95029 T0224 SM V4 P8 KMTX D85 8F89WXM2+W4 #12"
+    },
+    {
+      "name": "random-252",
+      "packet": {
+        "id": "XQ6SB",
+        "band": "R",
+        "score": 36,
+        "conf": "M",
+        "lat": 21.42453,
+        "lon": -7.47196,
+        "time": "0713",
+        "src": "W",
+        "veh": 4,
+        "pers": 6,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 76,
+        "g": 17,
+        "hr": 175,
+        "plus": "7CHJCGFH+R6"
+      },
+      "wire": "NAJDA1 XQ6SB R36M 21.42453,-7.47196 T0713 SW V4 P6 KTP D76 G17 HR175 7CHJCGFH+R6 #97"
+    },
+    {
+      "name": "random-253",
+      "packet": {
+        "id": "Q6HM7",
+        "band": "U",
+        "score": 81,
+        "conf": "H",
+        "lat": 31.88633,
+        "lon": 10.03014,
+        "time": "2036",
+        "src": "M",
+        "veh": 1,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "T"
+        ],
+        "dv": 76,
+        "g": 56,
+        "flags": [
+          "N",
+          "D",
+          "X",
+          "F"
+        ]
+      },
+      "wire": "NAJDA1 Q6HM7 U81H 31.88633,10.03014 T2036 SM V1 P2 KMT D76 G56 FNDXF #10"
+    },
+    {
+      "name": "random-254",
+      "packet": {
+        "id": "S0D6F",
+        "band": "U",
+        "score": 98,
+        "conf": "H",
+        "lat": 21.30416,
+        "lon": -1.30447,
+        "time": "0813",
+        "src": "M",
+        "veh": 7,
+        "pers": 0,
+        "kinds": [
+          "P"
+        ],
+        "g": 38,
+        "hr": 84
+      },
+      "wire": "NAJDA1 S0D6F U98H 21.30416,-1.30447 T0813 SM V7 P0 KP G38 HR84 #07"
+    },
+    {
+      "name": "random-255",
+      "packet": {
+        "id": "J2BTD",
+        "band": "R",
+        "score": 91,
+        "conf": "L",
+        "lat": 35.11928,
+        "lon": -2.74158,
+        "time": "2219",
+        "src": "W",
+        "veh": 4,
+        "pers": 0,
+        "kinds": [
+          "T"
+        ],
+        "dv": 58,
+        "g": 8
+      },
+      "wire": "NAJDA1 J2BTD R91L 35.11928,-2.74158 T2219 SW V4 P0 KT D58 G8 #B3"
+    },
+    {
+      "name": "random-256",
+      "packet": {
+        "id": "W7MTW",
+        "band": "R",
+        "score": 10,
+        "conf": "L",
+        "lat": 20.28573,
+        "lon": 1.60552,
+        "time": "1317",
+        "src": "A",
+        "veh": 0,
+        "pers": 2,
+        "kinds": [
+          "C"
+        ],
+        "dv": 126,
+        "g": 23,
+        "plus": "7FG37JP4+76"
+      },
+      "wire": "NAJDA1 W7MTW R10L 20.28573,1.60552 T1317 SA V0 P2 KC D126 G23 7FG37JP4+76 #0C"
+    },
+    {
+      "name": "random-257",
+      "packet": {
+        "id": "5Q30H",
+        "band": "G",
+        "score": 5,
+        "conf": "L",
+        "lat": 20.51077,
+        "lon": -3.1718,
+        "time": "0033",
+        "src": "M",
+        "veh": 3,
+        "pers": 2,
+        "kinds": [
+          "B"
+        ],
+        "g": 12,
+        "flags": [
+          "U"
+        ],
+        "hr": 189,
+        "spo2": 72,
+        "plus": "7CGRGR6H+87"
+      },
+      "wire": "NAJDA1 5Q30H G05L 20.51077,-3.17180 T0033 SM V3 P2 KB G12 FU HR189 SP72 7CGRGR6H+87 #BB"
+    },
+    {
+      "name": "random-258",
+      "packet": {
+        "id": "WVG2F",
+        "band": "G",
+        "score": 77,
+        "conf": "M",
+        "lat": 36.48582,
+        "lon": 8.00284,
+        "time": "0925",
+        "src": "A",
+        "veh": 8,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "dv": 106,
+        "hr": 111,
+        "spo2": 71,
+        "plus": "8F8CF2P3+84"
+      },
+      "wire": "NAJDA1 WVG2F G77M 36.48582,8.00284 T0925 SA V8 P4 KCPX D106 HR111 SP71 8F8CF2P3+84 #4C"
+    },
+    {
+      "name": "random-259",
+      "packet": {
+        "id": "A92DS",
+        "band": "R",
+        "score": 42,
+        "conf": "H",
+        "lat": 30.81072,
+        "lon": 7.81351,
+        "time": "0337",
+        "src": "A",
+        "veh": 2,
+        "pers": 6,
+        "kinds": [
+          "X"
+        ],
+        "dv": 97,
+        "g": 19,
+        "roll": true,
+        "flags": [
+          "B",
+          "F"
+        ],
+        "spo2": 94,
+        "plus": "8F29RR67+7C"
+      },
+      "wire": "NAJDA1 A92DS R42H 30.81072,7.81351 T0337 SA V2 P6 KX D97 G19 RO FBF SP94 8F29RR67+7C #3F"
+    },
+    {
+      "name": "random-260",
+      "packet": {
+        "id": "28W89",
+        "band": "O",
+        "score": 31,
+        "conf": "H",
+        "lat": 36.7916,
+        "lon": 5.30648,
+        "time": "0308",
+        "src": "A",
+        "veh": 2,
+        "pers": 1,
+        "kinds": [
+          "T"
+        ],
+        "g": 47,
+        "hr": 85,
+        "plus": "8F87Q8R4+JH"
+      },
+      "wire": "NAJDA1 28W89 O31H 36.79160,5.30648 T0308 SA V2 P1 KT G47 HR85 8F87Q8R4+JH #24"
+    },
+    {
+      "name": "random-261",
+      "packet": {
+        "id": "DET70",
+        "band": "U",
+        "score": 69,
+        "conf": "L",
+        "lat": 30.38323,
+        "lon": 2.98039,
+        "time": "1334",
+        "src": "W",
+        "veh": 2,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "dv": 34,
+        "g": 20,
+        "roll": true,
+        "plus": "8F249XMJ+75"
+      },
+      "wire": "NAJDA1 DET70 U69L 30.38323,2.98039 T1334 SW V2 P5 KCP D34 G20 RO 8F249XMJ+75 #C9"
+    },
+    {
+      "name": "random-262",
+      "packet": {
+        "id": "JQSEG",
+        "band": "Y",
+        "score": 5,
+        "conf": "L",
+        "lat": 34.81062,
+        "lon": 11.55192,
+        "time": "1256",
+        "src": "M",
+        "veh": 2,
+        "pers": 3,
+        "kinds": [
+          "X"
+        ],
+        "roll": true,
+        "flags": [
+          "N",
+          "E"
+        ],
+        "hr": 146
+      },
+      "wire": "NAJDA1 JQSEG Y05L 34.81062,11.55192 T1256 SM V2 P3 KX RO FNE HR146 #AF"
+    },
+    {
+      "name": "random-263",
+      "packet": {
+        "id": "Y5457",
+        "band": "O",
+        "score": 17,
+        "conf": "M",
+        "lat": 29.98733,
+        "lon": -6.2496,
+        "time": "1616",
+        "src": "M",
+        "veh": 5,
+        "pers": 5,
+        "kinds": [
+          "T"
+        ],
+        "dv": 70,
+        "spo2": 73,
+        "plus": "7CXMXQP2+W5"
+      },
+      "wire": "NAJDA1 Y5457 O17M 29.98733,-6.24960 T1616 SM V5 P5 KT D70 SP73 7CXMXQP2+W5 #32"
+    },
+    {
+      "name": "random-264",
+      "packet": {
+        "id": "JDXWS",
+        "band": "Y",
+        "score": 69,
+        "conf": "M",
+        "lat": 20.00561,
+        "lon": -6.70229,
+        "time": "0213",
+        "src": "W",
+        "veh": 9,
+        "pers": 4,
+        "kinds": [
+          "B"
+        ],
+        "dv": 53,
+        "g": 68
+      },
+      "wire": "NAJDA1 JDXWS Y69M 20.00561,-6.70229 T0213 SW V9 P4 KB D53 G68 #1C"
+    },
+    {
+      "name": "random-265",
+      "packet": {
+        "id": "20KTY",
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "lat": 26.94092,
+        "lon": 1.89685,
+        "time": "0920",
+        "src": "M",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "dv": 127,
+        "flags": [
+          "N",
+          "U",
+          "F"
+        ],
+        "hr": 126,
+        "plus": "7FR3WVRW+9P"
+      },
+      "wire": "NAJDA1 20KTY O59H 26.94092,1.89685 T0920 SM V4 P3 KTB D127 FNUF HR126 7FR3WVRW+9P #44"
+    },
+    {
+      "name": "random-266",
+      "packet": {
+        "id": "QRJ6A",
+        "band": "G",
+        "score": 90,
+        "conf": "M",
+        "lat": 34.41952,
+        "lon": 3.41929,
+        "time": "1036",
+        "src": "A",
+        "veh": 1,
+        "pers": 4,
+        "kinds": [
+          "C"
+        ],
+        "g": 2,
+        "flags": [
+          "B",
+          "D"
+        ],
+        "hr": 182,
+        "spo2": 100
+      },
+      "wire": "NAJDA1 QRJ6A G90M 34.41952,3.41929 T1036 SA V1 P4 KC G2 FBD HR182 SP100 #3D"
+    },
+    {
+      "name": "random-267",
+      "packet": {
+        "id": "2DT8T",
+        "band": "Y",
+        "score": 47,
+        "conf": "H",
+        "lat": 30.47487,
+        "lon": 10.65882,
+        "time": "1908",
+        "src": "M",
+        "veh": 5,
+        "pers": 6,
+        "kinds": [
+          "X"
+        ],
+        "dv": 14,
+        "g": 75,
+        "spo2": 74,
+        "plus": "8F2GFMF5+WG"
+      },
+      "wire": "NAJDA1 2DT8T Y47H 30.47487,10.65882 T1908 SM V5 P6 KX D14 G75 SP74 8F2GFMF5+WG #51"
+    },
+    {
+      "name": "random-268",
+      "packet": {
+        "id": "WK4N9",
+        "band": "U",
+        "score": 44,
+        "conf": "L",
+        "lat": 28.54793,
+        "lon": -0.35889,
+        "time": "2337",
+        "src": "W",
+        "veh": 7,
+        "pers": 2,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "dv": 79,
+        "g": 56,
+        "flags": [
+          "U",
+          "E"
+        ],
+        "hr": 110
+      },
+      "wire": "NAJDA1 WK4N9 U44L 28.54793,-0.35889 T2337 SW V7 P2 KMB D79 G56 FUE HR110 #A9"
+    },
+    {
+      "name": "random-269",
+      "packet": {
+        "id": "C9EF4",
+        "band": "U",
+        "score": 36,
+        "conf": "M",
+        "lat": 26.95181,
+        "lon": 10.31433,
+        "time": "0247",
+        "src": "M",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 2,
+        "flags": [
+          "E"
+        ],
+        "plus": "7FRGX827+PP"
+      },
+      "wire": "NAJDA1 C9EF4 U36M 26.95181,10.31433 T0247 SM V4 P3 KTP D2 FE 7FRGX827+PP #3E"
+    },
+    {
+      "name": "random-270",
+      "packet": {
+        "id": "2AY8T",
+        "band": "O",
+        "score": 5,
+        "conf": "M",
+        "lat": 34.33892,
+        "lon": -8.50048,
+        "time": "1928",
+        "src": "W",
+        "veh": 4,
+        "pers": 3,
+        "kinds": [
+          "P"
+        ],
+        "dv": 24,
+        "g": 12,
+        "flags": [
+          "B",
+          "H",
+          "C"
+        ],
+        "spo2": 77
+      },
+      "wire": "NAJDA1 2AY8T O05M 34.33892,-8.50048 T1928 SW V4 P3 KP D24 G12 FBHC SP77 #13"
+    },
+    {
+      "name": "random-271",
+      "packet": {
+        "id": "JG8XA",
+        "band": "G",
+        "score": 24,
+        "conf": "M",
+        "lat": 22.41099,
+        "lon": -2.73561,
+        "time": "2142",
+        "src": "W",
+        "veh": 2,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "X"
+        ]
+      },
+      "wire": "NAJDA1 JG8XA G24M 22.41099,-2.73561 T2142 SW V2 P0 KCMTX #80"
+    },
+    {
+      "name": "random-272",
+      "packet": {
+        "id": "KP8YD",
+        "band": "Y",
+        "score": 51,
+        "conf": "L",
+        "lat": 21.39618,
+        "lon": -4.26352,
+        "time": "0632",
+        "src": "W",
+        "veh": 5,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "P"
+        ],
+        "hr": 151,
+        "plus": "7CHQ9PWP+FH"
+      },
+      "wire": "NAJDA1 KP8YD Y51L 21.39618,-4.26352 T0632 SW V5 P0 KCTBP HR151 7CHQ9PWP+FH #C6"
+    },
+    {
+      "name": "random-273",
+      "packet": {
+        "id": "GFXB1",
+        "band": "O",
+        "score": 3,
+        "conf": "L",
+        "lat": 26.81589,
+        "lon": 4.71187,
+        "time": "0214",
+        "src": "M",
+        "veh": 0,
+        "pers": 0,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "dv": 117,
+        "g": 23,
+        "flags": [
+          "E",
+          "X"
+        ],
+        "hr": 180,
+        "plus": "7FR6RP86+9P"
+      },
+      "wire": "NAJDA1 GFXB1 O03L 26.81589,4.71187 T0214 SM V0 P0 KBP D117 G23 FEX HR180 7FR6RP86+9P #E7"
+    },
+    {
+      "name": "random-274",
+      "packet": {
+        "id": "HKXRG",
+        "band": "G",
+        "score": 16,
+        "conf": "M",
+        "lat": 24.36379,
+        "lon": 1.43547,
+        "time": "1340",
+        "src": "W",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "M",
+          "T",
+          "P",
+          "X"
+        ],
+        "dv": 17,
+        "g": 74,
+        "roll": true,
+        "flags": [
+          "H"
+        ],
+        "plus": "7FP39C7P+G5"
+      },
+      "wire": "NAJDA1 HKXRG G16M 24.36379,1.43547 T1340 SW V8 P0 KMTPX D17 G74 RO FH 7FP39C7P+G5 #69"
+    },
+    {
+      "name": "random-275",
+      "packet": {
+        "id": "X2V5E",
+        "band": "G",
+        "score": 29,
+        "conf": "L",
+        "lat": 27.06928,
+        "lon": -7.13595,
+        "time": "1944",
+        "src": "A",
+        "veh": 9,
+        "pers": 0,
+        "kinds": [
+          "M",
+          "T",
+          "X"
+        ],
+        "flags": [
+          "E",
+          "C"
+        ]
+      },
+      "wire": "NAJDA1 X2V5E G29L 27.06928,-7.13595 T1944 SA V9 P0 KMTX FEC #AF"
+    },
+    {
+      "name": "random-276",
+      "packet": {
+        "id": "HDDS9",
+        "band": "Y",
+        "score": 84,
+        "conf": "H",
+        "lat": 36.56125,
+        "lon": 2.94803,
+        "time": "1145",
+        "src": "A",
+        "veh": 1,
+        "pers": 8,
+        "kinds": [
+          "X"
+        ],
+        "dv": 91,
+        "g": 44,
+        "roll": true,
+        "spo2": 80,
+        "plus": "8F84HW6X+G6"
+      },
+      "wire": "NAJDA1 HDDS9 Y84H 36.56125,2.94803 T1145 SA V1 P8 KX D91 G44 RO SP80 8F84HW6X+G6 #8D"
+    },
+    {
+      "name": "random-277",
+      "packet": {
+        "id": "9Q903",
+        "band": "G",
+        "score": 87,
+        "conf": "L",
+        "lat": 33.85016,
+        "lon": 2.37027,
+        "time": "0153",
+        "src": "A",
+        "veh": 2,
+        "pers": 7,
+        "kinds": [
+          "P"
+        ],
+        "dv": 86,
+        "g": 52,
+        "spo2": 82,
+        "plus": "8F54V92C+34"
+      },
+      "wire": "NAJDA1 9Q903 G87L 33.85016,2.37027 T0153 SA V2 P7 KP D86 G52 SP82 8F54V92C+34 #CB"
+    },
+    {
+      "name": "random-278",
+      "packet": {
+        "id": "T07AZ",
+        "band": "G",
+        "score": 8,
+        "conf": "M",
+        "lat": 27.67331,
+        "lon": -3.89005,
+        "time": "1638",
+        "src": "W",
+        "veh": 3,
+        "pers": 0,
+        "kinds": [
+          "C"
+        ],
+        "g": 67,
+        "spo2": 81
+      },
+      "wire": "NAJDA1 T07AZ G08M 27.67331,-3.89005 T1638 SW V3 P0 KC G67 SP81 #67"
+    },
+    {
+      "name": "random-279",
+      "packet": {
+        "id": "6J9XJ",
+        "band": "O",
+        "score": 19,
+        "conf": "L",
+        "lat": 26.97363,
+        "lon": 5.6704,
+        "time": "1624",
+        "src": "W",
+        "veh": 1,
+        "pers": 3,
+        "kinds": [
+          "T"
+        ],
+        "dv": 85,
+        "g": 72,
+        "roll": true,
+        "hr": 176,
+        "plus": "7FR7XMFC+F5"
+      },
+      "wire": "NAJDA1 6J9XJ O19L 26.97363,5.67040 T1624 SW V1 P3 KT D85 G72 RO HR176 7FR7XMFC+F5 #10"
+    },
+    {
+      "name": "random-280",
+      "packet": {
+        "id": "RTCB8",
+        "band": "Y",
+        "score": 18,
+        "conf": "L",
+        "lat": 31.18969,
+        "lon": 7.5443,
+        "time": "0650",
+        "src": "A",
+        "veh": 3,
+        "pers": 5,
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "dv": 19,
+        "g": 50,
+        "hr": 96
+      },
+      "wire": "NAJDA1 RTCB8 Y18L 31.18969,7.54430 T0650 SA V3 P5 KCM D19 G50 HR96 #86"
+    },
+    {
+      "name": "random-281",
+      "packet": {
+        "id": "5M9ER",
+        "band": "R",
+        "score": 86,
+        "conf": "L",
+        "lat": 19.00912,
+        "lon": -0.20864,
+        "time": "1317",
+        "src": "M",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "M",
+          "T",
+          "P"
+        ],
+        "dv": 57,
+        "g": 17,
+        "flags": [
+          "U"
+        ],
+        "plus": "7CFX2Q5R+JG"
+      },
+      "wire": "NAJDA1 5M9ER R86L 19.00912,-0.20864 T1317 SM V8 P6 KMTP D57 G17 FU 7CFX2Q5R+JG #06"
+    },
+    {
+      "name": "random-282",
+      "packet": {
+        "id": "KR6TV",
+        "band": "U",
+        "score": 7,
+        "conf": "H",
+        "lat": 22.20175,
+        "lon": -7.69491,
+        "time": "2316",
+        "src": "W",
+        "veh": 8,
+        "pers": 3,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "roll": true,
+        "hr": 164,
+        "plus": "7CJJ6824+P2"
+      },
+      "wire": "NAJDA1 KR6TV U07H 22.20175,-7.69491 T2316 SW V8 P3 KPX RO HR164 7CJJ6824+P2 #8B"
+    },
+    {
+      "name": "random-283",
+      "packet": {
+        "id": "YYJXH",
+        "band": "G",
+        "score": 50,
+        "conf": "M",
+        "lat": 30.39453,
+        "lon": 0.61117,
+        "time": "0553",
+        "src": "W",
+        "veh": 3,
+        "pers": 2,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "P",
+          "X"
+        ],
+        "g": 24,
+        "flags": [
+          "U",
+          "H",
+          "C",
+          "F"
+        ],
+        "hr": 159,
+        "plus": "8F229JV6+RF"
+      },
+      "wire": "NAJDA1 YYJXH G50M 30.39453,0.61117 T0553 SW V3 P2 KCMTPX G24 FUHCF HR159 8F229JV6+RF #FA"
+    },
+    {
+      "name": "random-284",
+      "packet": {
+        "id": "W1P4A",
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "lat": 21.8921,
+        "lon": 9.77471,
+        "time": "1231",
+        "src": "W",
+        "veh": 8,
+        "pers": 6,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "dv": 6,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "D",
+          "X"
+        ]
+      },
+      "wire": "NAJDA1 W1P4A R68H 21.89210,9.77471 T1231 SW V8 P6 KPX D6 FNUBDX #6B"
+    },
+    {
+      "name": "random-285",
+      "packet": {
+        "id": "19FFQ",
+        "band": "R",
+        "score": 62,
+        "conf": "L",
+        "lat": 33.78398,
+        "lon": -0.57333,
+        "time": "1740",
+        "src": "A",
+        "veh": 3,
+        "pers": 9,
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "hr": 112,
+        "spo2": 94
+      },
+      "wire": "NAJDA1 19FFQ R62L 33.78398,-0.57333 T1740 SA V3 P9 KBX HR112 SP94 #96"
+    },
+    {
+      "name": "random-286",
+      "packet": {
+        "id": "WS8AB",
+        "band": "O",
+        "score": 89,
+        "conf": "H",
+        "lat": 26.3977,
+        "lon": 6.4751,
+        "time": "0747",
+        "src": "M",
+        "veh": 5,
+        "pers": 6,
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "P"
+        ],
+        "g": 2,
+        "roll": true,
+        "flags": [
+          "N",
+          "B",
+          "D",
+          "F"
+        ],
+        "hr": 146,
+        "spo2": 77
+      },
+      "wire": "NAJDA1 WS8AB O89H 26.39770,6.47510 T0747 SM V5 P6 KCMBP G2 RO FNBDF HR146 SP77 #02"
+    },
+    {
+      "name": "random-287",
+      "packet": {
+        "id": "XVFZ2",
+        "band": "R",
+        "score": 68,
+        "conf": "M",
+        "lat": 34.6963,
+        "lon": -1.9099,
+        "time": "1752",
+        "src": "M",
+        "veh": 8,
+        "pers": 3,
+        "kinds": [
+          "M",
+          "T",
+          "B"
+        ],
+        "g": 69,
+        "roll": true,
+        "plus": "8C6WM3WR+G2"
+      },
+      "wire": "NAJDA1 XVFZ2 R68M 34.69630,-1.90990 T1752 SM V8 P3 KMTB G69 RO 8C6WM3WR+G2 #57"
+    },
+    {
+      "name": "random-288",
+      "packet": {
+        "id": "Y1HWV",
+        "band": "U",
+        "score": 40,
+        "conf": "H",
+        "lat": 25.80165,
+        "lon": -6.7537,
+        "time": "1911",
+        "src": "W",
+        "veh": 9,
+        "pers": 7,
+        "kinds": [
+          "M"
+        ],
+        "g": 9,
+        "hr": 108,
+        "spo2": 86,
+        "plus": "7CQMR62W+MG"
+      },
+      "wire": "NAJDA1 Y1HWV U40H 25.80165,-6.75370 T1911 SW V9 P7 KM G9 HR108 SP86 7CQMR62W+MG #FB"
+    },
+    {
+      "name": "random-289",
+      "packet": {
+        "id": "T8D8V",
+        "band": "O",
+        "score": 9,
+        "conf": "M",
+        "lat": 30.81827,
+        "lon": -5.00601,
+        "time": "0657",
+        "src": "M",
+        "veh": 4,
+        "pers": 9,
+        "kinds": [
+          "P"
+        ],
+        "dv": 30,
+        "flags": [
+          "B",
+          "X"
+        ],
+        "plus": "8C2PRX9V+8H"
+      },
+      "wire": "NAJDA1 T8D8V O09M 30.81827,-5.00601 T0657 SM V4 P9 KP D30 FBX 8C2PRX9V+8H #15"
+    },
+    {
+      "name": "random-290",
+      "packet": {
+        "id": "73ZJ9",
+        "band": "O",
+        "score": 59,
+        "conf": "L",
+        "lat": 34.17584,
+        "lon": -6.31493,
+        "time": "0445",
+        "src": "A",
+        "veh": 7,
+        "pers": 3,
+        "kinds": [
+          "M"
+        ],
+        "dv": 105,
+        "g": 39,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "H",
+          "E",
+          "X",
+          "F"
+        ],
+        "spo2": 84,
+        "plus": "8C6M5MGP+82"
+      },
+      "wire": "NAJDA1 73ZJ9 O59L 34.17584,-6.31493 T0445 SA V7 P3 KM D105 G39 FNUBHEXF SP84 8C6M5MGP+82 #47"
+    },
+    {
+      "name": "random-291",
+      "packet": {
+        "id": "9ZGSV",
+        "band": "R",
+        "score": 93,
+        "conf": "M",
+        "lat": 29.32173,
+        "lon": 8.22368,
+        "time": "1700",
+        "src": "W",
+        "veh": 8,
+        "pers": 2,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "dv": 121,
+        "g": 78,
+        "roll": true,
+        "hr": 170,
+        "plus": "7FXC86CF+MF"
+      },
+      "wire": "NAJDA1 9ZGSV R93M 29.32173,8.22368 T1700 SW V8 P2 KTB D121 G78 RO HR170 7FXC86CF+MF #BB"
+    },
+    {
+      "name": "random-292",
+      "packet": {
+        "id": "EVFW7",
+        "band": "R",
+        "score": 70,
+        "conf": "L",
+        "lat": 28.15072,
+        "lon": -4.01658,
+        "time": "0848",
+        "src": "W",
+        "veh": 8,
+        "pers": 8,
+        "kinds": [
+          "M",
+          "P",
+          "X"
+        ],
+        "dv": 97
+      },
+      "wire": "NAJDA1 EVFW7 R70L 28.15072,-4.01658 T0848 SW V8 P8 KMPX D97 #B8"
+    },
+    {
+      "name": "random-293",
+      "packet": {
+        "id": "SSEWJ",
+        "band": "O",
+        "score": 42,
+        "conf": "L",
+        "lat": 30.50812,
+        "lon": -1.72992,
+        "time": "1248",
+        "src": "A",
+        "veh": 3,
+        "pers": 2,
+        "kinds": [
+          "M"
+        ],
+        "dv": 51,
+        "g": 27,
+        "spo2": 78,
+        "plus": "8C2WG75C+62"
+      },
+      "wire": "NAJDA1 SSEWJ O42L 30.50812,-1.72992 T1248 SA V3 P2 KM D51 G27 SP78 8C2WG75C+62 #B6"
+    },
+    {
+      "name": "random-294",
+      "packet": {
+        "id": "TS5GC",
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "lat": 30.73354,
+        "lon": -6.243,
+        "time": "0211",
+        "src": "A",
+        "veh": 3,
+        "pers": 4,
+        "kinds": [
+          "C",
+          "T",
+          "P",
+          "X"
+        ],
+        "dv": 95,
+        "roll": true,
+        "hr": 196,
+        "spo2": 72,
+        "plus": "8C2MPQM4+CR"
+      },
+      "wire": "NAJDA1 TS5GC R77H 30.73354,-6.24300 T0211 SA V3 P4 KCTPX D95 RO HR196 SP72 8C2MPQM4+CR #E7"
+    },
+    {
+      "name": "random-295",
+      "packet": {
+        "id": "PYFPS",
+        "band": "R",
+        "score": 69,
+        "conf": "H",
+        "lat": 33.7169,
+        "lon": 8.12891,
+        "time": "1326",
+        "src": "W",
+        "veh": 7,
+        "pers": 3,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "dv": 19,
+        "g": 46,
+        "hr": 92,
+        "spo2": 77,
+        "plus": "8F5CP48H+QH"
+      },
+      "wire": "NAJDA1 PYFPS R69H 33.71690,8.12891 T1326 SW V7 P3 KPX D19 G46 HR92 SP77 8F5CP48H+QH #9E"
+    },
+    {
+      "name": "random-296",
+      "packet": {
+        "id": "B53B8",
+        "band": "G",
+        "score": 69,
+        "conf": "H",
+        "lat": 36.72435,
+        "lon": 4.8768,
+        "time": "0308",
+        "src": "A",
+        "veh": 8,
+        "pers": 7,
+        "kinds": [
+          "B"
+        ],
+        "dv": 33,
+        "g": 28,
+        "flags": [
+          "H",
+          "X",
+          "C",
+          "F"
+        ],
+        "plus": "8F86PVFG+PP"
+      },
+      "wire": "NAJDA1 B53B8 G69H 36.72435,4.87680 T0308 SA V8 P7 KB D33 G28 FHXCF 8F86PVFG+PP #A2"
+    },
+    {
+      "name": "random-297",
+      "packet": {
+        "id": "BV8ZM",
+        "band": "G",
+        "score": 16,
+        "conf": "M",
+        "lat": 30.42652,
+        "lon": -7.2883,
+        "time": "0321",
+        "src": "W",
+        "veh": 6,
+        "pers": 0,
+        "kinds": [
+          "C",
+          "M",
+          "B"
+        ],
+        "g": 43,
+        "flags": [
+          "U",
+          "B",
+          "E",
+          "F"
+        ],
+        "plus": "8C2JCPG6+JM"
+      },
+      "wire": "NAJDA1 BV8ZM G16M 30.42652,-7.28830 T0321 SW V6 P0 KCMB G43 FUBEF 8C2JCPG6+JM #A6"
+    },
+    {
+      "name": "random-298",
+      "packet": {
+        "id": "D0Z42",
+        "band": "O",
+        "score": 65,
+        "conf": "M",
+        "lat": 28.15088,
+        "lon": -5.21355,
+        "time": "0427",
+        "src": "A",
+        "veh": 4,
+        "pers": 8,
+        "kinds": [
+          "C"
+        ],
+        "dv": 45,
+        "flags": [
+          "E",
+          "D",
+          "C"
+        ],
+        "plus": "7CWP5Q2P+9H"
+      },
+      "wire": "NAJDA1 D0Z42 O65M 28.15088,-5.21355 T0427 SA V4 P8 KC D45 FEDC 7CWP5Q2P+9H #27"
+    },
+    {
+      "name": "random-299",
+      "packet": {
+        "id": "Z75YB",
+        "band": "O",
+        "score": 95,
+        "conf": "H",
+        "lat": 24.5087,
+        "lon": 6.10333,
+        "time": "2026",
+        "src": "M",
+        "veh": 1,
+        "pers": 8,
+        "kinds": [
+          "C",
+          "B",
+          "X"
+        ],
+        "dv": 13,
+        "flags": [
+          "U",
+          "D",
+          "F"
+        ],
+        "hr": 47,
+        "spo2": 91,
+        "plus": "7FP8G453+F8"
+      },
+      "wire": "NAJDA1 Z75YB O95H 24.50870,6.10333 T2026 SM V1 P8 KCBX D13 FUDF HR47 SP91 7FP8G453+F8 #16"
+    },
+    {
+      "name": "random-300",
+      "packet": {
+        "id": "PJKVT",
+        "band": "U",
+        "score": 19,
+        "conf": "M",
+        "lat": 36.76336,
+        "lon": 8.91672,
+        "time": "1319",
+        "src": "M",
+        "veh": 8,
+        "pers": 0,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "dv": 36,
+        "g": 57,
+        "flags": [
+          "U",
+          "E",
+          "F"
+        ],
+        "plus": "8F8CQW78+8M"
+      },
+      "wire": "NAJDA1 PJKVT U19M 36.76336,8.91672 T1319 SM V8 P0 KTP D36 G57 FUEF 8F8CQW78+8M #C8"
+    }
+  ]
+}

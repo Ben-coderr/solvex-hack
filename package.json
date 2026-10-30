@@ -1,0 +1,21 @@
+{
+  "name": "najda",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "vectors": "pnpm --filter @najda/shared vectors",
+    "crosscheck": "python3 -I packages/shared/scripts/crosscheck.py",
+    "tokens": "pnpm --filter @najda/tokens build",
+    "check": "pnpm test && pnpm typecheck && pnpm crosscheck"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

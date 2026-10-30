@@ -1,0 +1,16 @@
+node_modules
+.next
+.expo
+dist
+!packages/tokens/dist
+android/
+ios/
+*.apk
+*.aab
+.env
+.env.local
+.DS_Store
+supabase/.temp
+data/osrm/*.osrm*
+data/*.pbf
+data/*.pmtiles

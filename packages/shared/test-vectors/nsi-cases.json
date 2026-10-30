@@ -1,0 +1,7971 @@
+{
+  "description": "NSI engine golden cases (engine nsi-1.0.0). capMechanismOnly=true. Compare band, score, conf, rawPoints, redCriteria.",
+  "cases": [
+    {
+      "input": {
+        "dvKmh": 71,
+        "peakG": 38,
+        "rollover": true,
+        "noResponse": true,
+        "spo2": 89,
+        "hr": 124,
+        "flags": [
+          "N"
+        ],
+        "kinds": [
+          "C"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "X",
+          "C"
+        ],
+        "kinds": [
+          "C",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "M",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 45,
+        "peakG": 12
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 30,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {},
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 5,
+        "peakG": 7,
+        "rollover": true,
+        "flags": [
+          "N",
+          "H"
+        ],
+        "sbp": 127,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 24,
+        "peakG": 23,
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "hr": 114,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 20,
+        "peakG": 2,
+        "multiImpact": true,
+        "flags": [
+          "E"
+        ],
+        "kinds": [
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 1,
+        "peakG": 44,
+        "kinds": [
+          "T",
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "L",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "X",
+          "F"
+        ],
+        "sbp": 94,
+        "age": 54
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 2,
+        "peakG": 15,
+        "hr": 113,
+        "pregnant": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "H",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 26,
+        "rollover": true,
+        "flags": [
+          "N",
+          "H",
+          "X"
+        ],
+        "spo2": 91,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 43,
+        "peakG": 52,
+        "flags": [
+          "N",
+          "D"
+        ],
+        "spo2": 92,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "B"
+        ],
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "P"
+        ],
+        "spo2": 85
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 17,
+        "multiImpact": true,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "pregnant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "H",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 16,
+        "rollover": true,
+        "spo2": 98,
+        "hr": 116,
+        "age": 37
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 55,
+        "multiImpact": true,
+        "flags": [
+          "C"
+        ],
+        "hr": 45,
+        "age": 44,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 54,
+        "noResponse": true,
+        "spo2": 83,
+        "hr": 91
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "kinds": [],
+        "confirmedOk": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "M",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 79,
+        "peakG": 33,
+        "flags": [],
+        "kinds": [],
+        "hr": 74
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "hr": 171,
+        "gcs": 10,
+        "sbp": 137,
+        "confirmedOk": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "multiImpact": true,
+        "flags": [
+          "N",
+          "H",
+          "E",
+          "F"
+        ],
+        "sbp": 71,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "bleeding",
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 72,
+        "peakG": 55,
+        "kinds": [
+          "C",
+          "M",
+          "B"
+        ],
+        "spo2": 99,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 28,
+        "flags": [
+          "B",
+          "E",
+          "X"
+        ],
+        "kinds": [
+          "M"
+        ],
+        "spo2": 84,
+        "gcs": 13,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 54,
+        "noResponse": true,
+        "kinds": [
+          "T"
+        ],
+        "spo2": 92,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "H",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 54,
+        "flags": [
+          "E",
+          "D",
+          "F"
+        ],
+        "gcs": 4,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "noResponse": true,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "P",
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "H",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 107,
+        "rollover": true,
+        "kinds": [
+          "C"
+        ],
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "M",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 56,
+        "peakG": 33,
+        "rollover": true,
+        "flags": [
+          "B",
+          "D",
+          "F"
+        ],
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 94,
+        "peakG": 43,
+        "flags": [
+          "B",
+          "D"
+        ],
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "spo2": 82,
+        "hr": 88,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 25,
+        "peakG": 34,
+        "flags": [
+          "U",
+          "H",
+          "X"
+        ],
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "pregnant": true,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 104,
+        "flags": [
+          "N",
+          "E",
+          "D"
+        ],
+        "kinds": [
+          "C"
+        ],
+        "hr": 64,
+        "sbp": 76
+      },
+      "expected": {
+        "band": "R",
+        "score": 82,
+        "conf": "H",
+        "rawPoints": 105,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {},
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 77,
+        "multiImpact": true,
+        "kinds": [
+          "M",
+          "B",
+          "P",
+          "X"
+        ],
+        "spo2": 74,
+        "hr": 96,
+        "sbp": 119,
+        "age": 22
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 42,
+        "flags": [
+          "C"
+        ],
+        "spo2": 91,
+        "age": 62
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 12,
+        "flags": [
+          "N",
+          "U",
+          "X"
+        ],
+        "spo2": 88,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "unresponsive",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 44,
+        "flags": [
+          "U"
+        ],
+        "kinds": [
+          "C",
+          "T",
+          "P"
+        ],
+        "spo2": 84,
+        "age": 76
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "unresponsive",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 89,
+        "kinds": [
+          "M"
+        ],
+        "spo2": 79
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 58,
+        "spo2": 89,
+        "hr": 81,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 35,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "E",
+          "D"
+        ],
+        "kinds": [
+          "B"
+        ],
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 83,
+        "conf": "H",
+        "rawPoints": 110,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "flags": [
+          "H",
+          "E"
+        ],
+        "hr": 37
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 37,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 3,
+        "flags": [
+          "N",
+          "U",
+          "E",
+          "X"
+        ],
+        "hr": 81,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 39,
+        "flags": [
+          "B",
+          "E"
+        ],
+        "spo2": 97,
+        "gcs": 11,
+        "sbp": 107
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "breathing",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "T"
+        ],
+        "hr": 147,
+        "sbp": 107,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 101,
+        "peakG": 4,
+        "flags": [
+          "H"
+        ],
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "hr": 30,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 24,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "spo2": 85,
+        "hr": 157,
+        "anticoagulant": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "spo2": 71,
+        "hr": 166,
+        "sbp": 60,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "spo2_low",
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 5,
+        "flags": [
+          "U",
+          "H"
+        ],
+        "age": 39,
+        "pregnant": true,
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "L",
+        "rawPoints": 55,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 103,
+        "noResponse": true,
+        "flags": [
+          "F"
+        ],
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 6,
+        "peakG": 29,
+        "age": 89,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 104,
+        "peakG": 16,
+        "rollover": true,
+        "flags": [
+          "B",
+          "H",
+          "D",
+          "X",
+          "C"
+        ],
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 88,
+        "conf": "H",
+        "rawPoints": 130,
+        "redCriteria": [
+          "breathing",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 21,
+        "rollover": true,
+        "flags": [
+          "U",
+          "B",
+          "E",
+          "F"
+        ],
+        "kinds": [
+          "M",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "kinds": [
+          "C",
+          "M",
+          "B"
+        ],
+        "age": 64,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 5,
+        "peakG": 57,
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "C"
+        ],
+        "spo2": 85,
+        "hr": 159,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 82,
+        "conf": "H",
+        "rawPoints": 105,
+        "redCriteria": [
+          "breathing",
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "N",
+          "U",
+          "H",
+          "X"
+        ],
+        "spo2": 85,
+        "hr": 39
+      },
+      "expected": {
+        "band": "R",
+        "score": 83,
+        "conf": "H",
+        "rawPoints": 110,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "peakG": 28,
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "B",
+          "E",
+          "C"
+        ],
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "hr": 50
+      },
+      "expected": {
+        "band": "R",
+        "score": 87,
+        "conf": "H",
+        "rawPoints": 125,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 82,
+        "peakG": 44,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "H",
+          "C"
+        ],
+        "kinds": [
+          "P",
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 84,
+        "conf": "H",
+        "rawPoints": 115,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 73,
+        "peakG": 56,
+        "noResponse": true,
+        "age": 54,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 58,
+        "peakG": 14,
+        "rollover": true,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "hr": 53,
+        "sbp": 63,
+        "age": 43,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 30,
+        "peakG": 8,
+        "noResponse": true,
+        "spo2": 73,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 2,
+        "spo2": 99,
+        "hr": 128,
+        "sbp": 78,
+        "age": 37,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "L",
+        "rawPoints": 25,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "F"
+        ],
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 83,
+        "rollover": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "X",
+          "F"
+        ],
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "spo2": 84,
+        "sbp": 124
+      },
+      "expected": {
+        "band": "R",
+        "score": 89,
+        "conf": "H",
+        "rawPoints": 140,
+        "redCriteria": [
+          "unresponsive",
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 34,
+        "kinds": [
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "spo2": 92,
+        "age": 79
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "H",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 54,
+        "flags": [
+          "U"
+        ],
+        "kinds": [
+          "M",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 43,
+        "flags": [
+          "B",
+          "F"
+        ],
+        "spo2": 84,
+        "sbp": 97,
+        "confirmedOk": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 21,
+        "hr": 94,
+        "sbp": 63
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 16,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 83,
+        "noResponse": true,
+        "flags": [
+          "H",
+          "C"
+        ],
+        "spo2": 96,
+        "sbp": 69
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "bleeding",
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 45,
+        "kinds": [
+          "M"
+        ],
+        "hr": 171
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 41,
+        "rollover": true,
+        "flags": [
+          "N",
+          "F"
+        ],
+        "kinds": []
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "M",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "sbp": 146
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "hr": 130,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "L",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 17,
+        "peakG": 0,
+        "noResponse": true,
+        "kinds": [
+          "M",
+          "T",
+          "P"
+        ],
+        "spo2": 91
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 43,
+        "peakG": 51,
+        "kinds": [
+          "C"
+        ],
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "L",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 56,
+        "noResponse": true,
+        "flags": [
+          "D"
+        ],
+        "spo2": 92,
+        "hr": 57
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "spo2": 84
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 73,
+        "peakG": 47,
+        "noResponse": true,
+        "hr": 86,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 70,
+        "rollover": true,
+        "flags": [
+          "N",
+          "B"
+        ],
+        "kinds": [
+          "B"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "X",
+          "C",
+          "F"
+        ],
+        "hr": 168,
+        "age": 36,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "O",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "X"
+        ],
+        "hr": 113,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 21,
+        "rollover": true,
+        "hr": 179,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "C"
+        ],
+        "spo2": 91
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 89,
+        "rollover": true,
+        "flags": [
+          "N",
+          "B"
+        ],
+        "sbp": 144,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "age": 86,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 27,
+        "peakG": 57,
+        "flags": [
+          "U",
+          "X"
+        ],
+        "hr": 166,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 12,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "X"
+        ],
+        "hr": 130,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 29,
+        "multiImpact": true,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "pregnant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 100,
+        "peakG": 46,
+        "kinds": [
+          "C",
+          "T",
+          "P"
+        ],
+        "age": 68
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 50,
+        "hr": 123,
+        "sbp": 121
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 48
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 108,
+        "peakG": 47,
+        "flags": [
+          "H",
+          "E",
+          "X"
+        ],
+        "kinds": [
+          "C",
+          "B",
+          "P"
+        ],
+        "spo2": 82,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "H",
+          "D"
+        ],
+        "kinds": [
+          "B"
+        ],
+        "spo2": 94,
+        "gcs": 4,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "bleeding",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 39,
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ],
+        "hr": 169,
+        "age": 25
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 54,
+        "flags": [
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "hr": 170,
+        "age": 77
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "F"
+        ],
+        "kinds": [
+          "P"
+        ],
+        "spo2": 91,
+        "anticoagulant": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 37,
+        "peakG": 53,
+        "noResponse": true,
+        "flags": [
+          "E"
+        ],
+        "hr": 63,
+        "sbp": 115,
+        "age": 29,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 21,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "E",
+          "D",
+          "X"
+        ],
+        "age": 58
+      },
+      "expected": {
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "rawPoints": 100,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 82,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [],
+        "kinds": [
+          "B"
+        ],
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "spo2": 72,
+        "gcs": 10,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 39,
+        "kinds": [],
+        "hr": 122,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 73,
+        "rollover": true,
+        "kinds": [
+          "M",
+          "T",
+          "B"
+        ],
+        "hr": 72,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 19,
+        "multiImpact": true,
+        "noResponse": true,
+        "kinds": [
+          "B"
+        ],
+        "spo2": 81,
+        "hr": 172,
+        "age": 37,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "spo2": 95,
+        "age": 49
+      },
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 36,
+        "multiImpact": true,
+        "flags": [
+          "B",
+          "E",
+          "C",
+          "F"
+        ],
+        "spo2": 94
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "spo2": 80,
+        "gcs": 6,
+        "anticoagulant": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 9,
+        "noResponse": true,
+        "hr": 87
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 12,
+        "noResponse": true,
+        "hr": 84
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 82,
+        "rollover": true,
+        "flags": [
+          "N",
+          "U",
+          "B",
+          "D",
+          "F"
+        ],
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "spo2": 75,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 92,
+        "conf": "H",
+        "rawPoints": 160,
+        "redCriteria": [
+          "unresponsive",
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 48
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "B",
+          "E",
+          "F"
+        ],
+        "spo2": 81,
+        "hr": 38,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 30,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "D",
+          "X",
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "B",
+          "P",
+          "X"
+        ],
+        "spo2": 93
+      },
+      "expected": {
+        "band": "R",
+        "score": 82,
+        "conf": "H",
+        "rawPoints": 105,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 4,
+        "peakG": 10,
+        "kinds": [],
+        "hr": 151
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "B"
+        ],
+        "age": 86,
+        "anticoagulant": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 77,
+        "flags": [
+          "C"
+        ],
+        "age": 59
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 29,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "E"
+        ],
+        "hr": 97
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 44,
+        "spo2": 74,
+        "hr": 105,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 18,
+        "noResponse": true,
+        "flags": [
+          "H",
+          "C"
+        ],
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 21,
+        "multiImpact": true,
+        "noResponse": true,
+        "spo2": 89
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 6,
+        "peakG": 48,
+        "flags": [
+          "C"
+        ],
+        "spo2": 87
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "T"
+        ],
+        "hr": 124,
+        "sbp": 142,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "hr": 136,
+        "age": 32,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 15,
+        "peakG": 55,
+        "kinds": [
+          "M"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 40,
+        "noResponse": true,
+        "flags": [
+          "N"
+        ],
+        "spo2": 71,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 15,
+        "multiImpact": true,
+        "flags": [
+          "F"
+        ],
+        "spo2": 94
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "L",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "flags": [
+          "U",
+          "F"
+        ],
+        "hr": 129,
+        "gcs": 15,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 61,
+        "flags": [
+          "U",
+          "E"
+        ],
+        "gcs": 12
+      },
+      "expected": {
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "rawPoints": 100,
+        "redCriteria": [
+          "unresponsive",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "D",
+          "F"
+        ],
+        "sbp": 134,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 23,
+        "multiImpact": true,
+        "flags": [
+          "N",
+          "F"
+        ],
+        "kinds": [],
+        "spo2": 94,
+        "sbp": 91,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 101,
+        "peakG": 51,
+        "rollover": true,
+        "hr": 102,
+        "age": 39
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "M",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 79,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "H"
+        ],
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "spo2": 87,
+        "hr": 134
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "breathing",
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 55,
+        "spo2": 72,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 52,
+        "peakG": 27,
+        "flags": [
+          "H",
+          "C",
+          "F"
+        ],
+        "spo2": 87,
+        "hr": 123,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 91,
+        "noResponse": true,
+        "kinds": [],
+        "spo2": 94,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "M",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {},
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 27,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "hr": 172,
+        "age": 33,
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 73,
+        "peakG": 57,
+        "rollover": true,
+        "kinds": [
+          "C",
+          "T",
+          "X"
+        ],
+        "hr": 167,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "O",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 50,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "E",
+          "C",
+          "F"
+        ],
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "U",
+          "B",
+          "E",
+          "C"
+        ],
+        "kinds": [
+          "B"
+        ],
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 23,
+        "flags": [
+          "H"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 25,
+        "multiImpact": true,
+        "flags": [
+          "E",
+          "F"
+        ],
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 101,
+        "rollover": true,
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "spo2": 89,
+        "hr": 135,
+        "gcs": 5,
+        "age": 25
+      },
+      "expected": {
+        "band": "R",
+        "score": 84,
+        "conf": "H",
+        "rawPoints": 115,
+        "redCriteria": [
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 41,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "X"
+        ],
+        "hr": 119,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 107,
+        "peakG": 8,
+        "rollover": true,
+        "flags": [
+          "U",
+          "E"
+        ],
+        "spo2": 87,
+        "hr": 162,
+        "age": 57
+      },
+      "expected": {
+        "band": "R",
+        "score": 87,
+        "conf": "H",
+        "rawPoints": 125,
+        "redCriteria": [
+          "unresponsive",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 19,
+        "multiImpact": true,
+        "noResponse": true,
+        "sbp": 107,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "L",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 8,
+        "peakG": 9,
+        "rollover": true,
+        "flags": [
+          "C"
+        ],
+        "kinds": [],
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 21,
+        "flags": [
+          "U",
+          "B",
+          "H",
+          "X"
+        ],
+        "kinds": [
+          "B",
+          "P",
+          "X"
+        ],
+        "spo2": 84
+      },
+      "expected": {
+        "band": "R",
+        "score": 84,
+        "conf": "H",
+        "rawPoints": 115,
+        "redCriteria": [
+          "unresponsive",
+          "breathing",
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 32,
+        "flags": [
+          "D",
+          "F"
+        ],
+        "spo2": 86,
+        "hr": 93,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 13,
+        "kinds": [],
+        "hr": 125
+      },
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 19,
+        "multiImpact": true,
+        "flags": [
+          "N",
+          "F"
+        ],
+        "gcs": 15
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 37,
+        "peakG": 57,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "E"
+        ],
+        "hr": 176,
+        "sbp": 125,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "multiImpact": true,
+        "noResponse": true,
+        "spo2": 90,
+        "pregnant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "L",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "kinds": [
+          "C"
+        ],
+        "gcs": 3,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 23,
+        "spo2": 90,
+        "age": 80
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "spo2": 80,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 29,
+        "kinds": [
+          "M"
+        ],
+        "spo2": 76,
+        "hr": 78
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 106,
+        "peakG": 34,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 25,
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "hr": 148
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "L",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "D"
+        ],
+        "hr": 46
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 37,
+        "noResponse": true,
+        "kinds": [
+          "M",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 3,
+        "multiImpact": true,
+        "spo2": 74
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "multiImpact": true,
+        "flags": [
+          "U",
+          "D",
+          "C"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 51,
+        "flags": [
+          "N",
+          "H",
+          "X",
+          "F"
+        ],
+        "spo2": 92,
+        "age": 40,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 18,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 47,
+        "spo2": 85
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 51,
+        "noResponse": true,
+        "flags": [
+          "H"
+        ],
+        "spo2": 73,
+        "age": 85,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 23,
+        "rollover": true,
+        "flags": [
+          "N"
+        ],
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "sbp": 149,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 11,
+        "flags": [],
+        "spo2": 94,
+        "sbp": 135
+      },
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 60,
+        "peakG": 41,
+        "flags": [
+          "N",
+          "B",
+          "D",
+          "X"
+        ],
+        "spo2": 90,
+        "age": 64
+      },
+      "expected": {
+        "band": "R",
+        "score": 82,
+        "conf": "H",
+        "rawPoints": 105,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 19,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "X"
+        ],
+        "spo2": 82
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "multiImpact": true,
+        "flags": [
+          "N",
+          "B"
+        ],
+        "kinds": [
+          "X"
+        ],
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 94,
+        "flags": [
+          "N",
+          "H",
+          "E",
+          "C"
+        ],
+        "kinds": [
+          "P"
+        ],
+        "spo2": 90,
+        "age": 67,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 83,
+        "conf": "H",
+        "rawPoints": 110,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "spo2": 81
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 93,
+        "peakG": 49,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "U",
+          "E"
+        ],
+        "kinds": [
+          "T",
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "M"
+        ],
+        "spo2": 88,
+        "hr": 169,
+        "gcs": 11,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 25,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "B",
+          "E",
+          "D",
+          "F"
+        ],
+        "hr": 176
+      },
+      "expected": {
+        "band": "R",
+        "score": 87,
+        "conf": "H",
+        "rawPoints": 125,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 109,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "U",
+          "D"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 61,
+        "peakG": 46,
+        "multiImpact": true,
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "hr": 171,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 50,
+        "peakG": 10,
+        "multiImpact": true,
+        "flags": [
+          "E",
+          "D",
+          "F"
+        ],
+        "spo2": 83,
+        "hr": 38,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "rawPoints": 100,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 24,
+        "peakG": 53,
+        "rollover": true,
+        "flags": [
+          "U"
+        ],
+        "kinds": [
+          "C",
+          "M",
+          "T"
+        ],
+        "hr": 31,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 58,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "H",
+          "D"
+        ],
+        "spo2": 75
+      },
+      "expected": {
+        "band": "R",
+        "score": 82,
+        "conf": "H",
+        "rawPoints": 105,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 43,
+        "peakG": 42,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "H",
+          "E",
+          "D"
+        ],
+        "spo2": 72,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 9,
+        "rollover": true,
+        "multiImpact": true,
+        "noResponse": true,
+        "kinds": [
+          "X"
+        ],
+        "hr": 108,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "M",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 65,
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "F"
+        ],
+        "kinds": [
+          "B"
+        ],
+        "hr": 59,
+        "gcs": 3,
+        "age": 46,
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 83,
+        "conf": "H",
+        "rawPoints": 110,
+        "redCriteria": [
+          "breathing",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 15,
+        "flags": [
+          "B",
+          "D",
+          "X",
+          "C",
+          "F"
+        ],
+        "kinds": [
+          "C"
+        ],
+        "hr": 32,
+        "age": 41,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 36,
+        "rollover": true,
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "spo2": 99,
+        "gcs": 9,
+        "age": 71
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 47,
+        "flags": [
+          "U",
+          "X"
+        ],
+        "sbp": 114
+      },
+      "expected": {
+        "band": "R",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 91,
+        "flags": [
+          "N",
+          "B",
+          "X"
+        ],
+        "hr": 107,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 33,
+        "kinds": [
+          "M"
+        ],
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "H",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 16,
+        "peakG": 39,
+        "noResponse": true,
+        "kinds": [
+          "T"
+        ],
+        "spo2": 84
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "multiImpact": true,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "X"
+        ],
+        "hr": 112
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 43,
+        "flags": [
+          "D",
+          "F"
+        ],
+        "kinds": [],
+        "gcs": 10,
+        "age": 85,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 68,
+        "peakG": 16,
+        "rollover": true,
+        "kinds": [
+          "B",
+          "P",
+          "X"
+        ],
+        "spo2": 80,
+        "gcs": 11,
+        "sbp": 139,
+        "age": 52
+      },
+      "expected": {
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "rawPoints": 100,
+        "redCriteria": [
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 2,
+        "rollover": true,
+        "flags": [
+          "D"
+        ],
+        "kinds": [],
+        "spo2": 91,
+        "hr": 151,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 24,
+        "rollover": true,
+        "multiImpact": true,
+        "flags": [
+          "D",
+          "C"
+        ],
+        "spo2": 77,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 1,
+        "peakG": 11,
+        "rollover": true,
+        "flags": [
+          "F"
+        ],
+        "kinds": [
+          "M",
+          "B",
+          "X"
+        ],
+        "spo2": 92,
+        "sbp": 139,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 105,
+        "flags": [
+          "U",
+          "F"
+        ],
+        "hr": 42,
+        "age": 23
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 22,
+        "rollover": true,
+        "hr": 54,
+        "age": 35
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 106,
+        "rollover": true,
+        "flags": [
+          "E",
+          "F"
+        ],
+        "hr": 131,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "flags": [
+          "N",
+          "U",
+          "H",
+          "E",
+          "X",
+          "C"
+        ],
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "spo2": 92,
+        "anticoagulant": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 89,
+        "conf": "H",
+        "rawPoints": 140,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 14,
+        "rollover": true,
+        "spo2": 91,
+        "gcs": 15
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 49,
+        "rollover": true,
+        "multiImpact": true,
+        "kinds": [
+          "M",
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "sbp": 121,
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "H",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "multiImpact": true,
+        "flags": [],
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "L",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 108,
+        "spo2": 74
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 107,
+        "flags": [
+          "U",
+          "B"
+        ],
+        "sbp": 149
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 74,
+        "peakG": 19,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "H"
+        ],
+        "kinds": [
+          "X"
+        ],
+        "spo2": 99
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 12,
+        "flags": [
+          "N",
+          "H"
+        ],
+        "gcs": 7,
+        "age": 29,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "bleeding",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 38,
+        "peakG": 19,
+        "rollover": true,
+        "hr": 162,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 41,
+        "hr": 175,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 18,
+        "multiImpact": true,
+        "flags": [
+          "C"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "hr": 140,
+        "gcs": 11,
+        "age": 59
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "L",
+        "rawPoints": 40,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 76,
+        "rollover": true,
+        "kinds": [
+          "C",
+          "M",
+          "P"
+        ],
+        "sbp": 77
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "H",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 0,
+        "peakG": 59,
+        "flags": [
+          "B",
+          "E",
+          "X",
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "H",
+          "X"
+        ],
+        "hr": 98,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "L",
+        "rawPoints": 40,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 42,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "D"
+        ],
+        "kinds": [
+          "C",
+          "T"
+        ],
+        "hr": 124,
+        "gcs": 13
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 30,
+        "noResponse": true,
+        "gcs": 13,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "L",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 83,
+        "peakG": 27,
+        "rollover": true,
+        "kinds": [
+          "M"
+        ],
+        "spo2": 90,
+        "gcs": 12
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 18,
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 32,
+        "flags": [
+          "N",
+          "H",
+          "E",
+          "D",
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "T",
+          "X"
+        ],
+        "spo2": 77,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 87,
+        "conf": "H",
+        "rawPoints": 125,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 45,
+        "peakG": 32,
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "M",
+          "T",
+          "B",
+          "X"
+        ],
+        "spo2": 78,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 55,
+        "rollover": true,
+        "noResponse": true,
+        "hr": 159
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "E"
+        ],
+        "hr": 169,
+        "age": 42,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 21,
+        "kinds": [
+          "M"
+        ],
+        "hr": 176
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "multiImpact": true,
+        "flags": [
+          "H"
+        ],
+        "kinds": [
+          "C",
+          "B"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "E"
+        ],
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "spo2": 85,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 21,
+        "peakG": 34,
+        "age": 56,
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "G",
+        "score": 8,
+        "conf": "H",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 59,
+        "flags": [
+          "X",
+          "C",
+          "F"
+        ],
+        "age": 72
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 47,
+        "noResponse": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "hr": 89,
+        "age": 39,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 28,
+        "rollover": true,
+        "flags": [
+          "U",
+          "E",
+          "D"
+        ],
+        "kinds": [
+          "C",
+          "T",
+          "X"
+        ],
+        "gcs": 12
+      },
+      "expected": {
+        "band": "R",
+        "score": 84,
+        "conf": "H",
+        "rawPoints": 115,
+        "redCriteria": [
+          "unresponsive",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 1,
+        "peakG": 29,
+        "multiImpact": true,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "sbp": 102,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "M",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "D",
+          "X",
+          "F"
+        ],
+        "spo2": 70,
+        "sbp": 110,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 108,
+        "peakG": 44,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "hr": 89,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "noResponse": true,
+        "flags": [
+          "X",
+          "F"
+        ],
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "O",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 39,
+        "peakG": 16,
+        "flags": [
+          "U",
+          "B",
+          "C"
+        ],
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "spo2": 80,
+        "gcs": 12,
+        "age": 39,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "unresponsive",
+          "breathing",
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 82,
+        "peakG": 26,
+        "rollover": true,
+        "kinds": [
+          "C"
+        ],
+        "spo2": 93
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "M",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "peakG": 56,
+        "flags": [
+          "U",
+          "B"
+        ],
+        "spo2": 70,
+        "hr": 156,
+        "anticoagulant": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "unresponsive",
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 90,
+        "flags": [
+          "E"
+        ],
+        "kinds": [
+          "M",
+          "T",
+          "X"
+        ],
+        "gcs": 8,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 19,
+        "rollover": true,
+        "multiImpact": true,
+        "flags": [
+          "N",
+          "X",
+          "F"
+        ],
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "sbp": 98,
+        "age": 68
+      },
+      "expected": {
+        "band": "O",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "X"
+        ],
+        "hr": 60,
+        "sbp": 139,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "breathing",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 20,
+        "flags": [
+          "N",
+          "D"
+        ],
+        "hr": 74,
+        "sbp": 127,
+        "age": 61,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 59,
+        "rollover": true,
+        "spo2": 93,
+        "hr": 104,
+        "age": 84,
+        "pregnant": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "L",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 20,
+        "flags": [
+          "N",
+          "F"
+        ],
+        "gcs": 13
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 48,
+        "flags": [
+          "E"
+        ]
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "U",
+          "B"
+        ],
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "spo2": 100,
+        "hr": 46,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 77,
+        "peakG": 27,
+        "flags": [
+          "B",
+          "X",
+          "C"
+        ],
+        "kinds": [
+          "C",
+          "M",
+          "B",
+          "P"
+        ],
+        "spo2": 98,
+        "gcs": 13
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 49,
+        "peakG": 55,
+        "flags": [
+          "H",
+          "D"
+        ],
+        "kinds": [
+          "C"
+        ],
+        "spo2": 72,
+        "hr": 99,
+        "age": 21,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 105,
+        "flags": [
+          "E"
+        ],
+        "spo2": 80,
+        "hr": 42,
+        "gcs": 15,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 3,
+        "multiImpact": true
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "L",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 89,
+        "peakG": 0,
+        "multiImpact": true,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "T",
+          "X"
+        ],
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 71,
+        "peakG": 15,
+        "multiImpact": true,
+        "hr": 127,
+        "sbp": 142,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "H",
+          "E",
+          "C",
+          "F"
+        ],
+        "gcs": 8,
+        "age": 55
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "bleeding",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 102,
+        "peakG": 46,
+        "rollover": true,
+        "noResponse": true,
+        "gcs": 6,
+        "sbp": 127,
+        "age": 30
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 28,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "spo2": 79,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 64,
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "E"
+        ],
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "hr": 135,
+        "age": 84
+      },
+      "expected": {
+        "band": "R",
+        "score": 89,
+        "conf": "H",
+        "rawPoints": 135,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 73,
+        "multiImpact": true,
+        "flags": [],
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "spo2": 93,
+        "gcs": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 42,
+        "rollover": true,
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "hr": 48,
+        "anticoagulant": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 6,
+        "sbp": 118,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 18,
+        "peakG": 3,
+        "flags": [
+          "D",
+          "X"
+        ],
+        "spo2": 77,
+        "hr": 94,
+        "age": 49,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 106,
+        "flags": [
+          "U",
+          "E",
+          "F"
+        ],
+        "gcs": 6,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "rawPoints": 100,
+        "redCriteria": [
+          "unresponsive",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 65,
+        "peakG": 32,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "hr": 167
+      },
+      "expected": {
+        "band": "O",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 69,
+        "rollover": true,
+        "kinds": [
+          "C",
+          "P"
+        ]
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 15,
+        "peakG": 9,
+        "kinds": [
+          "M"
+        ],
+        "hr": 166
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "peakG": 47,
+        "rollover": true,
+        "spo2": 73,
+        "hr": 48,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 100,
+        "peakG": 3,
+        "kinds": [
+          "X"
+        ],
+        "spo2": 73,
+        "hr": 125,
+        "age": 61,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 107,
+        "peakG": 32,
+        "multiImpact": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "M",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 97,
+        "peakG": 28,
+        "flags": [
+          "N",
+          "U",
+          "D"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 90,
+        "peakG": 56,
+        "flags": [
+          "N",
+          "F"
+        ],
+        "age": 37,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "M",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 3,
+        "rollover": true,
+        "noResponse": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "L",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 93,
+        "peakG": 29,
+        "rollover": true,
+        "flags": [
+          "B",
+          "E",
+          "C"
+        ],
+        "hr": 48,
+        "age": 80,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 86,
+        "rollover": true,
+        "multiImpact": true,
+        "flags": [],
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 49,
+        "peakG": 5,
+        "rollover": true,
+        "hr": 30,
+        "anticoagulant": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 77,
+        "flags": [
+          "E"
+        ],
+        "kinds": [
+          "P"
+        ],
+        "spo2": 80,
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 52,
+        "noResponse": true,
+        "age": 57,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "L",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 102,
+        "peakG": 51,
+        "noResponse": true,
+        "flags": [
+          "H",
+          "C",
+          "F"
+        ],
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "age": 43,
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "flags": [
+          "U",
+          "E",
+          "C"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 1,
+        "peakG": 15,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "X"
+        ],
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "spo2": 97,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 39,
+        "flags": [],
+        "hr": 164,
+        "anticoagulant": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 18,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "hr": 142,
+        "gcs": 14
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 67,
+        "noResponse": true,
+        "kinds": [
+          "M",
+          "B",
+          "P"
+        ],
+        "spo2": 71,
+        "age": 84
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 106,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "B",
+          "C"
+        ],
+        "kinds": []
+      },
+      "expected": {
+        "band": "R",
+        "score": 39,
+        "conf": "L",
+        "rawPoints": 30,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 1,
+        "peakG": 23,
+        "flags": [
+          "U"
+        ],
+        "hr": 157,
+        "sbp": 126
+      },
+      "expected": {
+        "band": "R",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "N",
+          "X"
+        ],
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 65,
+        "peakG": 32,
+        "flags": [
+          "F"
+        ],
+        "kinds": [
+          "M"
+        ]
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 53,
+        "flags": [
+          "X"
+        ],
+        "hr": 172
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 31,
+        "peakG": 50,
+        "multiImpact": true,
+        "flags": [
+          "U",
+          "E",
+          "D",
+          "X"
+        ],
+        "kinds": [
+          "X"
+        ],
+        "spo2": 81,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "unresponsive",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 16,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "T"
+        ]
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 31,
+        "noResponse": true,
+        "flags": [
+          "E",
+          "C",
+          "F"
+        ],
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "spo2": 100,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "H",
+          "F"
+        ],
+        "hr": 128
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 34,
+        "peakG": 6,
+        "flags": [
+          "U",
+          "D",
+          "F"
+        ],
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "spo2": 81,
+        "age": 36
+      },
+      "expected": {
+        "band": "R",
+        "score": 75,
+        "conf": "H",
+        "rawPoints": 85,
+        "redCriteria": [
+          "unresponsive",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "multiImpact": true,
+        "flags": [
+          "U",
+          "X"
+        ],
+        "kinds": [],
+        "hr": 160,
+        "age": 75,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 101,
+        "flags": [
+          "E",
+          "X"
+        ],
+        "kinds": [],
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 50,
+        "peakG": 55,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "hr": 145,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 93,
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "M",
+          "B"
+        ],
+        "hr": 103,
+        "age": 81
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [],
+        "hr": 125
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 54,
+        "rollover": true,
+        "flags": [
+          "N"
+        ],
+        "kinds": [],
+        "age": 29,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "M",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "spo2": 91,
+        "age": 22,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 59,
+        "rollover": true,
+        "spo2": 88,
+        "age": 72
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "D",
+          "F"
+        ],
+        "kinds": [
+          "T"
+        ],
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 4,
+        "flags": [
+          "E"
+        ],
+        "kinds": [
+          "P"
+        ],
+        "spo2": 70
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 109,
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "D",
+          "C",
+          "F"
+        ],
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 83,
+        "conf": "H",
+        "rawPoints": 110,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 40,
+        "noResponse": true,
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "hr": 144,
+        "sbp": 97,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 14,
+        "peakG": 31,
+        "noResponse": true,
+        "flags": [
+          "C"
+        ],
+        "kinds": [
+          "B"
+        ],
+        "spo2": 95,
+        "hr": 139,
+        "gcs": 9
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 0,
+        "flags": [
+          "N",
+          "B",
+          "D"
+        ],
+        "spo2": 75,
+        "gcs": 13,
+        "sbp": 87,
+        "age": 45
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "breathing",
+          "spo2_low",
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 46,
+        "flags": [
+          "C"
+        ],
+        "age": 61,
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "H",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "spo2": 79,
+        "confirmedOk": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "M",
+        "rawPoints": 20,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "D",
+          "F"
+        ],
+        "spo2": 83,
+        "age": 69
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 27,
+        "flags": [
+          "U",
+          "E",
+          "X"
+        ],
+        "kinds": [
+          "T"
+        ],
+        "hr": 50,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 40,
+        "gcs": 14,
+        "sbp": 89,
+        "age": 82
+      },
+      "expected": {
+        "band": "R",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 69,
+        "multiImpact": true,
+        "flags": [
+          "U",
+          "X",
+          "F"
+        ],
+        "kinds": [
+          "T"
+        ],
+        "spo2": 97
+      },
+      "expected": {
+        "band": "R",
+        "score": 71,
+        "conf": "H",
+        "rawPoints": 75,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 51,
+        "rollover": true,
+        "flags": [
+          "N",
+          "H",
+          "X",
+          "F"
+        ],
+        "spo2": 71,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 103,
+        "peakG": 58,
+        "rollover": true,
+        "multiImpact": true,
+        "spo2": 90,
+        "age": 86
+      },
+      "expected": {
+        "band": "O",
+        "score": 59,
+        "conf": "M",
+        "rawPoints": 55,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 88,
+        "peakG": 49,
+        "spo2": 82,
+        "sbp": 92
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 19,
+        "noResponse": true,
+        "kinds": [
+          "T",
+          "X"
+        ],
+        "spo2": 85,
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 19,
+        "flags": [
+          "N",
+          "B",
+          "D"
+        ],
+        "hr": 77
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 107,
+        "peakG": 2,
+        "kinds": [],
+        "gcs": 5,
+        "sbp": 92
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 26,
+        "peakG": 19,
+        "noResponse": true,
+        "flags": [
+          "U",
+          "B",
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "gcs": 9,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 84,
+        "conf": "H",
+        "rawPoints": 115,
+        "redCriteria": [
+          "unresponsive",
+          "breathing",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "X"
+        ],
+        "sbp": 96
+      },
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 66,
+        "peakG": 51,
+        "flags": [],
+        "kinds": [
+          "X"
+        ],
+        "hr": 53,
+        "gcs": 15
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "spo2": 92,
+        "hr": 30,
+        "gcs": 12
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "spo2": 84
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "hr": 49,
+        "gcs": 13,
+        "age": 39,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 5,
+        "peakG": 20,
+        "flags": [
+          "B",
+          "D"
+        ],
+        "hr": 111,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 109,
+        "spo2": 98,
+        "hr": 35,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 107,
+        "peakG": 19,
+        "kinds": [
+          "T",
+          "P"
+        ],
+        "age": 53
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 81,
+        "peakG": 17,
+        "multiImpact": true,
+        "flags": [
+          "N",
+          "U",
+          "E"
+        ],
+        "kinds": [
+          "C",
+          "P",
+          "X"
+        ],
+        "age": 67,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 83,
+        "conf": "H",
+        "rawPoints": 110,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 37,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "B",
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "B",
+          "X"
+        ],
+        "spo2": 100
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "N",
+          "U",
+          "D",
+          "C"
+        ],
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 25,
+        "multiImpact": true,
+        "flags": [
+          "X"
+        ],
+        "spo2": 96,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 34,
+        "conf": "H",
+        "rawPoints": 25,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 90,
+        "flags": [
+          "N",
+          "B",
+          "C"
+        ],
+        "kinds": [
+          "T",
+          "P",
+          "X"
+        ],
+        "hr": 134,
+        "gcs": 11,
+        "anticoagulant": true,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 88,
+        "conf": "H",
+        "rawPoints": 130,
+        "redCriteria": [
+          "breathing",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 42,
+        "kinds": [
+          "T",
+          "B"
+        ],
+        "sbp": 116
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 13,
+        "rollover": true,
+        "spo2": 97,
+        "age": 45
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 8,
+        "rollover": true,
+        "noResponse": true,
+        "kinds": [
+          "B",
+          "P"
+        ],
+        "spo2": 83,
+        "hr": 112,
+        "gcs": 15,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 79,
+        "peakG": 35,
+        "flags": [
+          "X",
+          "F"
+        ],
+        "hr": 134,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 69,
+        "peakG": 26,
+        "sbp": 132
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "spo2": 79,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "H",
+        "rawPoints": 20,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 3,
+        "flags": [],
+        "kinds": [
+          "M",
+          "T",
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "B",
+          "X"
+        ],
+        "spo2": 87,
+        "age": 34
+      },
+      "expected": {
+        "band": "R",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 108,
+        "peakG": 24,
+        "multiImpact": true,
+        "kinds": [
+          "C",
+          "M",
+          "X"
+        ],
+        "spo2": 74
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "X"
+        ],
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 63,
+        "peakG": 43,
+        "kinds": [
+          "B",
+          "P",
+          "X"
+        ],
+        "age": 40,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 40,
+        "peakG": 46,
+        "flags": [
+          "E",
+          "X",
+          "C"
+        ],
+        "gcs": 5,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 79,
+        "conf": "H",
+        "rawPoints": 95,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 44,
+        "rollover": true,
+        "kinds": [
+          "C",
+          "X"
+        ],
+        "spo2": 98,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 5,
+        "multiImpact": true,
+        "noResponse": true,
+        "kinds": [],
+        "age": 45
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 23,
+        "noResponse": true,
+        "flags": [
+          "N",
+          "F"
+        ],
+        "hr": 53,
+        "sbp": 127,
+        "confirmedOk": true,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 70,
+        "rollover": true,
+        "spo2": 99,
+        "gcs": 5
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 31,
+        "noResponse": true,
+        "spo2": 74,
+        "sbp": 140
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "N"
+        ],
+        "kinds": [
+          "C",
+          "B"
+        ],
+        "spo2": 92,
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "flags": [
+          "N",
+          "B",
+          "H",
+          "X"
+        ],
+        "spo2": 84,
+        "sbp": 92,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "breathing",
+          "bleeding",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 57,
+        "multiImpact": true,
+        "noResponse": true,
+        "flags": [
+          "H",
+          "D"
+        ],
+        "kinds": [
+          "X"
+        ]
+      },
+      "expected": {
+        "band": "R",
+        "score": 65,
+        "conf": "H",
+        "rawPoints": 65,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "flags": [
+          "B",
+          "H",
+          "E",
+          "C",
+          "F"
+        ],
+        "spo2": 78,
+        "gcs": 6
+      },
+      "expected": {
+        "band": "R",
+        "score": 88,
+        "conf": "H",
+        "rawPoints": 130,
+        "redCriteria": [
+          "breathing",
+          "bleeding",
+          "spo2_low",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 24,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "U",
+        "score": 8,
+        "conf": "M",
+        "rawPoints": 5,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 25,
+        "flags": [
+          "U",
+          "H"
+        ],
+        "kinds": []
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "unresponsive",
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "E",
+          "C",
+          "F"
+        ],
+        "pregnant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 31,
+        "peakG": 28,
+        "multiImpact": true,
+        "kinds": [
+          "M"
+        ],
+        "confirmedOk": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 77,
+        "flags": [
+          "C"
+        ],
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 52,
+        "conf": "H",
+        "rawPoints": 45,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 34,
+        "peakG": 28,
+        "kinds": [],
+        "age": 59,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 10,
+        "flags": [
+          "D",
+          "X"
+        ],
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "X"
+        ],
+        "hr": 56,
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "L",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "kinds": [
+          "B"
+        ],
+        "hr": 60
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "L",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "kinds": [
+          "C"
+        ]
+      },
+      "expected": {
+        "band": "U",
+        "score": 0,
+        "conf": "L",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 14,
+        "rollover": true,
+        "multiImpact": true,
+        "kinds": [
+          "C",
+          "T",
+          "B",
+          "X"
+        ],
+        "spo2": 94
+      },
+      "expected": {
+        "band": "Y",
+        "score": 28,
+        "conf": "L",
+        "rawPoints": 20,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 39,
+        "kinds": [
+          "B"
+        ],
+        "hr": 124,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "M",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 82,
+        "hr": 54,
+        "sbp": 73
+      },
+      "expected": {
+        "band": "R",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 85,
+        "peakG": 58,
+        "rollover": true,
+        "noResponse": true,
+        "flags": [
+          "X",
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "X"
+        ],
+        "sbp": 82,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 86,
+        "conf": "H",
+        "rawPoints": 120,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 1,
+        "peakG": 14,
+        "kinds": [
+          "C",
+          "P"
+        ],
+        "hr": 45,
+        "gcs": 6,
+        "age": 77
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "N"
+        ],
+        "hr": 40,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 7,
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "hr": 80,
+        "age": 54,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "G",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 89,
+        "peakG": 38,
+        "kinds": [
+          "X"
+        ],
+        "hr": 144,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "gcs": 10,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "L",
+        "rawPoints": 25,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "noResponse": true,
+        "age": 34,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "M",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "confirmedOk": true,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "G",
+        "score": 0,
+        "conf": "H",
+        "rawPoints": 0,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 29,
+        "rollover": true,
+        "hr": 116,
+        "sbp": 91,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "L",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 75
+      },
+      "expected": {
+        "band": "Y",
+        "score": 39,
+        "conf": "L",
+        "rawPoints": 30,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "peakG": 57,
+        "spo2": 74,
+        "age": 80
+      },
+      "expected": {
+        "band": "R",
+        "score": 39,
+        "conf": "H",
+        "rawPoints": 30,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 13,
+        "peakG": 48,
+        "flags": [
+          "D"
+        ],
+        "kinds": [
+          "M",
+          "P",
+          "X"
+        ],
+        "spo2": 80,
+        "age": 44,
+        "anticoagulant": true,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "R",
+        "score": 63,
+        "conf": "H",
+        "rawPoints": 60,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 11,
+        "rollover": true,
+        "noResponse": true,
+        "spo2": 97,
+        "gcs": 9,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 28,
+        "flags": [
+          "B",
+          "H"
+        ],
+        "gcs": 5
+      },
+      "expected": {
+        "band": "R",
+        "score": 68,
+        "conf": "H",
+        "rawPoints": 70,
+        "redCriteria": [
+          "breathing",
+          "bleeding",
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 96,
+        "flags": [
+          "B",
+          "E"
+        ],
+        "kinds": [
+          "P"
+        ],
+        "hr": 73,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 21,
+        "rollover": true,
+        "multiImpact": true,
+        "kinds": [
+          "M"
+        ],
+        "hr": 134,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "O",
+        "score": 56,
+        "conf": "H",
+        "rawPoints": 50,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 31,
+        "flags": [
+          "U",
+          "F"
+        ],
+        "spo2": 100,
+        "hr": 99,
+        "gcs": 14,
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 17,
+        "sbp": 79,
+        "anticoagulant": true,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 34,
+        "conf": "L",
+        "rawPoints": 25,
+        "redCriteria": [
+          "sbp_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "hr": 94,
+        "independentReports": 2
+      },
+      "expected": {
+        "band": "Y",
+        "score": 22,
+        "conf": "M",
+        "rawPoints": 15,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "spo2": 90,
+        "hr": 159,
+        "gcs": 11,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 27,
+        "multiImpact": true,
+        "flags": [
+          "H"
+        ],
+        "pregnant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "input": {
+        "peakG": 29,
+        "multiImpact": true,
+        "kinds": []
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 83,
+        "noResponse": true,
+        "kinds": [
+          "C",
+          "M"
+        ],
+        "spo2": 88,
+        "hr": 141,
+        "independentReports": 1
+      },
+      "expected": {
+        "band": "R",
+        "score": 77,
+        "conf": "H",
+        "rawPoints": 90,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 33,
+        "peakG": 15,
+        "kinds": [],
+        "spo2": 98,
+        "age": 63
+      },
+      "expected": {
+        "band": "U",
+        "score": 15,
+        "conf": "L",
+        "rawPoints": 10,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "flags": [
+          "U",
+          "B",
+          "E",
+          "X"
+        ],
+        "kinds": [
+          "C"
+        ],
+        "gcs": 15,
+        "age": 55,
+        "confirmedOk": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "M",
+        "rawPoints": 80,
+        "redCriteria": [
+          "unresponsive",
+          "breathing"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "spo2": 72
+      },
+      "expected": {
+        "band": "R",
+        "score": 44,
+        "conf": "H",
+        "rawPoints": 35,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "rollover": true,
+        "multiImpact": true,
+        "kinds": [
+          "T"
+        ],
+        "spo2": 79,
+        "hr": 110
+      },
+      "expected": {
+        "band": "R",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": [
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 56,
+        "peakG": 20,
+        "flags": [
+          "U"
+        ],
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "R",
+        "score": 59,
+        "conf": "H",
+        "rawPoints": 55,
+        "redCriteria": [
+          "unresponsive"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 25,
+        "peakG": 41,
+        "flags": [
+          "N",
+          "B"
+        ],
+        "kinds": [
+          "P",
+          "X"
+        ],
+        "spo2": 74,
+        "hr": 33,
+        "age": 77
+      },
+      "expected": {
+        "band": "R",
+        "score": 80,
+        "conf": "H",
+        "rawPoints": 100,
+        "redCriteria": [
+          "breathing",
+          "spo2_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 100,
+        "peakG": 55,
+        "flags": [
+          "C"
+        ],
+        "kinds": [
+          "M",
+          "P"
+        ],
+        "gcs": 6,
+        "confirmedOk": true,
+        "independentReports": 3
+      },
+      "expected": {
+        "band": "R",
+        "score": 73,
+        "conf": "H",
+        "rawPoints": 80,
+        "redCriteria": [
+          "gcs_low"
+        ]
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 20,
+        "peakG": 47,
+        "noResponse": true,
+        "flags": [
+          "D"
+        ],
+        "independentReports": 4
+      },
+      "expected": {
+        "band": "O",
+        "score": 48,
+        "conf": "H",
+        "rawPoints": 40,
+        "redCriteria": []
+      }
+    },
+    {
+      "input": {
+        "dvKmh": 75,
+        "hr": 120,
+        "anticoagulant": true
+      },
+      "expected": {
+        "band": "Y",
+        "score": 44,
+        "conf": "L",
+        "rawPoints": 35,
+        "redCriteria": []
+      }
+    }
+  ]
+}

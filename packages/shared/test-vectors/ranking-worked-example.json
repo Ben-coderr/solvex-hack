@@ -1,0 +1,96 @@
+{
+  "description": "Spec §8 worked example, CORRECTED: EPH-B scores 0.77 (the source doc printed 0.71). CHU-A ranks first only because of the C>=0.75 gate.",
+  "input": {
+    "band": "R",
+    "flags": [
+      "N"
+    ],
+    "incident": {
+      "lat": 36.47213,
+      "lon": 2.82871
+    },
+    "hospitals": [
+      {
+        "id": "CHU-A",
+        "name": "CHU-A (illustrative)",
+        "level": "A",
+        "lat": 36.7,
+        "lon": 3,
+        "capabilities": [
+          "ed24",
+          "general_surgery",
+          "trauma_surgery",
+          "ct",
+          "icu",
+          "neurosurgery",
+          "pediatrics",
+          "burns"
+        ]
+      },
+      {
+        "id": "EPH-B",
+        "name": "EPH-B (illustrative)",
+        "level": "B",
+        "lat": 36.5,
+        "lon": 2.9,
+        "capabilities": [
+          "ed24",
+          "general_surgery",
+          "trauma_surgery",
+          "ct"
+        ]
+      },
+      {
+        "id": "CHU-C",
+        "name": "CHU-C (illustrative)",
+        "level": "A",
+        "lat": 36.2,
+        "lon": 2.4,
+        "capabilities": [
+          "ed24",
+          "general_surgery",
+          "trauma_surgery",
+          "ct",
+          "icu",
+          "neurosurgery"
+        ]
+      }
+    ],
+    "etaMin": {
+      "CHU-A": 24,
+      "EPH-B": 9,
+      "CHU-C": 58
+    },
+    "statuses": {
+      "EPH-B": {
+        "status": "OK",
+        "setAt": 1793356200000
+      },
+      "CHU-C": {
+        "status": "SATURATED",
+        "setAt": 1793358000000
+      }
+    },
+    "now": 1793361600000
+  },
+  "expected": {
+    "required": [
+      "ed24",
+      "trauma_surgery",
+      "ct",
+      "icu",
+      "neurosurgery"
+    ],
+    "mode": "direct",
+    "order": [
+      "CHU-A",
+      "CHU-C",
+      "EPH-B"
+    ],
+    "scores": {
+      "CHU-A": 0.76,
+      "CHU-C": 0.43,
+      "EPH-B": 0.77
+    }
+  }
+}

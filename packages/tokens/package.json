@@ -1,0 +1,11 @@
+{
+  "name": "@najda/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/theme.ts",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test scripts/contrast.test.mjs"
+  }
+}
