@@ -8,7 +8,8 @@ A phone detects a crash (or a witness reports it in 5 taps) and sends a 160-char
 
 ## Status
 DONE and tested: `packages/shared` (codec, CRC-8, GSM-7, Plus Codes, NSI scoring, hospital ranking, merge) and `packages/tokens` (design tokens + WCAG tests).
-TODO: `apps/web`, `apps/mobile`, `supabase/`, `data/`, `scripts/` (see phase prompts P0–P8).
+P0 skeletons: `apps/web` (Next 16) and `apps/mobile` (Expo SDK 58 dev build) render a real packet from `@najda/shared`.
+TODO: `supabase/`, `data/`, `scripts/`, and the real app screens (see phase prompts P1–P8).
 
 ## Commands
 ```bash
@@ -17,7 +18,8 @@ pnpm check            # shared tests + typecheck + tokens contrast + independent
 pnpm vectors          # regenerate golden vectors (only after an intentional protocol/scoring change, see below)
 pnpm tokens           # rebuild packages/tokens/dist from tokens.json
 supabase start | supabase db reset
-pnpm --filter web dev | build | start
+pnpm dev:web          # = pnpm --filter web dev  (also: build | start | typecheck)
+pnpm dev:mobile       # Metro for the dev build (first install: pnpm --filter mobile android, JAVA_HOME = Android Studio JBR 17)
 npx expo run:android  # development build (NOT Expo Go: custom native code)
 ```
 
