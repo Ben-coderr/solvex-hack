@@ -31,6 +31,8 @@ const ERRORS = ['confirm_place', 'invalid', 'rate_limited', 'closed'] as const;
 /*
  * D10 witness page. Plain server-rendered HTML form (works with JS off and on old Android browsers);
  * <WitnessEnhance> only adds the offline notice and the double-submit guard when JS runs.
+ * NO loading.tsx here: it makes Next stream the page behind a Suspense boundary that only JS reveals, so a
+ * browser without JS stays on the skeleton forever (caught by the e2e old-phone test). The browser's own spinner is the loading state.
  * Shows a ~100 m position and nothing about the victims (docs/11 #4).
  */
 export default async function WitnessPage({ params, searchParams }: PageProps<'/w/[id]'>) {

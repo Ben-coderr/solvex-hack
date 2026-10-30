@@ -1,6 +1,9 @@
 import type { NextRequest } from 'next/server';
+import { BRAND } from '@/brand';
+import { formatHHMM, parseStatusSms } from '@/server/domain';
 import { env } from '@/server/env';
 import { clientIp, fail, json, limited, readRaw } from '@/server/http';
+import { statusFromSms } from '@/server/services/hospitals';
 import { ingest } from '@/server/services/ingest';
 import { deliverOutbox } from '@/server/services/outbox';
 import { LIMITS } from '@/server/services/rate-limit';
@@ -33,18 +36,26 @@ export async function POST(req: NextRequest) {
   const msg = parseInbound(body, now);
   if (msg.kind === 'ignored') return json({ stored: false, ignored: msg.event });
 
+  // Per-sender flood limit (docs/05 §7) counts every SMS, status updates included (each reply costs SIM credit).
+  const hash = msg.kind === 'sms' && msg.from ? senderHash(`sms:${msg.from}`) : null;
+  const flood = hash ? limited(`sms-sender:${hash}`, LIMITS.smsPerSender) : null;
+
+  // D14: a hospital's status SMS, from its registered number only; anything else falls through to ingest.
+  const st = msg.kind === 'sms' && msg.from && !flood ? parseStatusSms(msg.text, BRAND.smsVerb) : null;
+  if (st && msg.kind === 'sms' && msg.from &&
+      (await statusFromSms(st.hospitalId, st.status, msg.from, `${BRAND.smsName} STATUT ${st.hospitalId} ${st.status} ENREGISTRE ${formatHHMM(now)}. Valable 6 h.`))) {
+    void deliverOutbox().catch(() => undefined);
+    return json({ stored: true, status_update: st });
+  }
+
   const store = postgresStore();
   const ack =
     msg.kind === 'invalid'
       ? await ingest({ kind: 'text', channel: 'sms', text: raw.raw, receivedAt: now, senderHash: null, replyTo: null, quarantine: 'bad_webhook_payload' }, store)
-      : await (async () => {
-          const hash = msg.from ? senderHash(`sms:${msg.from}`) : null;
-          const flood = hash ? limited(`sms-sender:${hash}`, LIMITS.smsPerSender) : null;
-          return ingest({
-            kind: 'text', channel: 'sms', text: msg.text, receivedAt: msg.receivedAt, senderHash: hash, replyTo: msg.from,
-            ...(flood && { quarantine: 'rate_limited' as const }),
-          }, store);
-        })();
+      : await ingest({
+          kind: 'text', channel: 'sms', text: msg.text, receivedAt: msg.receivedAt, senderHash: hash, replyTo: msg.from,
+          ...(flood && { quarantine: 'rate_limited' as const }),
+        }, store);
 
   void deliverOutbox().catch(() => undefined); // ACK SMS after commit; failures stay visible in sms_outbox
   return json({ stored: true, ...ack });

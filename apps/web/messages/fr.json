@@ -309,7 +309,8 @@
     "witness_oran": "Piéton + enfant, incarcéré (témoin, Oran)",
     "witness_near_rollover": "Témoin à 120 m du tonneau",
     "bad_crc": "Tonneau avec somme de contrôle corrompue",
-    "send": "Envoyer"
+    "send": "Envoyer",
+    "frontal": "Choc frontal 45 km/h (SMS)"
   },
   "paste": {
     "open": "Coller un SMS",
@@ -449,7 +450,77 @@
       "network": "Le signalement n’a pas pu être envoyé. Vérifiez votre connexion et réessayez, ou appelez le 14."
     },
     "offline": "Pas de connexion internet. Le signalement ne peut pas partir : appelez le 14.",
-    "slow": "Trop de requêtes depuis cette connexion. Attendez une minute puis rechargez, ou appelez le 14.",
-    "loading": "Chargement du formulaire…"
+    "slow": "Trop de requêtes depuis cette connexion. Attendez une minute puis rechargez, ou appelez le 14."
+  },
+  "demo": {
+    "nav": "Démo",
+    "title": "Pilotage de la démo",
+    "phonesTitle": "Téléphones virtuels",
+    "lead": "Commandes de scène. Chaque bouton passe par le vrai chemin d’ingestion ; tout ici est synthétique et marqué DÉMO.",
+    "scenarios": "Scénarios",
+    "actions": "Sur l’incident le plus récent",
+    "scenario": {
+      "rollover": "Tonneau 71 km/h (SMS)",
+      "frontal": "Choc frontal 45 km/h (SMS)",
+      "witness_oran": "Témoin, Oran (autre lieu)",
+      "bad_crc": "Somme de contrôle corrompue",
+      "witness_near_rollover": "Témoin à 120 m (SMS)"
+    },
+    "action": {
+      "witness": "Signalement témoin (5 gestes)",
+      "duplicate": "Même SMS renvoyé (doublon)"
+    },
+    "outcome": {
+      "created": "Nouvel incident {id}",
+      "merged": "Fusionné dans {id} · ×{count}",
+      "updated": "{id} mis à jour",
+      "duplicate": "Doublon : rien n’a changé ({id})",
+      "unparsed": "Stocké brut, illisible ({error})"
+    },
+    "reset": "Réinitialiser la démo",
+    "resetConfirm": "Confirmer : effacer tous les incidents",
+    "resetting": "Réinitialisation…",
+    "resetOk": "Base propre en {ms} ms",
+    "resetDirty": "Réinitialisé mais il reste des lignes : {rows}",
+    "resetSlow": "au-dessus de l’objectif de 5 s",
+    "stopwatch": "Chronomètre",
+    "start": "Démarrer",
+    "stop": "Arrêter",
+    "lap": "Tour",
+    "clear": "Effacer",
+    "laps": "Tours",
+    "spaceHint": "Espace : démarrer / arrêter",
+    "latest": "Incident ouvert le plus récent",
+    "noIncident": "Aucun incident ouvert. Lancez un scénario.",
+    "witnessQr": "Page témoin (à scanner avec le deuxième téléphone)",
+    "open": {
+      "dashboard": "Tableau de bord",
+      "phones": "Téléphones virtuels",
+      "demo": "Pilotage",
+      "hospital": "Écran urgences {id}",
+      "witness": "Ouvrir la page témoin"
+    },
+    "phone": {
+      "driver": "Conducteur · téléphone A",
+      "witness": "Témoin · téléphone C",
+      "hospital": "Hôpital · téléphone D",
+      "driverHint": "Simule le paquet envoyé par le téléphone après un compte à rebours sans réponse.",
+      "lastPacket": "Dernier paquet reçu par le serveur",
+      "noPacket": "Aucun paquet pour l’instant.",
+      "ackSms": "SMS de retour au conducteur",
+      "noSms": "Aucun SMS pour l’instant.",
+      "witnessEmpty": "La page témoin apparaît ici dès qu’un incident est ouvert.",
+      "hospitalEmpty": "Les SMS de pré-alerte à l’hôpital arrivent ici.",
+      "simulateWitness": "Simuler le témoin à la place",
+      "smsStatus": {
+        "queued": "en attente",
+        "sent": "envoyé",
+        "failed": "échec",
+        "simulated": "simulé (pas de passerelle)",
+        "no_number": "pas de numéro"
+      }
+    },
+    "error": "L’action a échoué : {message}",
+    "notAllowed": "Les pages de démo sont réservées au compte régulateur."
   }
 }

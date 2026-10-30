@@ -309,7 +309,8 @@
     "witness_oran": "Pedestrian + child, trapped (witness, Oran)",
     "witness_near_rollover": "Witness 120 m from the rollover",
     "bad_crc": "Rollover with a corrupted checksum",
-    "send": "Send"
+    "send": "Send",
+    "frontal": "Frontal 45 km/h (SMS)"
   },
   "paste": {
     "open": "Paste SMS",
@@ -449,7 +450,77 @@
       "network": "The report could not be sent. Check your connection and try again, or call 14."
     },
     "offline": "No internet connection. Your report cannot be sent: call 14.",
-    "slow": "Too many requests from this connection. Wait a minute and reload, or call 14.",
-    "loading": "Loading the report form…"
+    "slow": "Too many requests from this connection. Wait a minute and reload, or call 14."
+  },
+  "demo": {
+    "nav": "Demo",
+    "title": "Demo control",
+    "phonesTitle": "Virtual phones",
+    "lead": "Stage controls. Every button goes through the real ingest path; everything here is synthetic and labelled DEMO.",
+    "scenarios": "Scenarios",
+    "actions": "On the newest incident",
+    "scenario": {
+      "rollover": "Rollover 71 km/h (SMS)",
+      "frontal": "Frontal 45 km/h (SMS)",
+      "witness_oran": "Witness, Oran (other place)",
+      "bad_crc": "Corrupted checksum",
+      "witness_near_rollover": "Witness 120 m away (SMS)"
+    },
+    "action": {
+      "witness": "Witness report (5 taps)",
+      "duplicate": "Same SMS again (duplicate)"
+    },
+    "outcome": {
+      "created": "New incident {id}",
+      "merged": "Merged into {id} · ×{count}",
+      "updated": "Updated {id}",
+      "duplicate": "Duplicate: nothing changed ({id})",
+      "unparsed": "Stored raw, unparsed ({error})"
+    },
+    "reset": "Reset the demo",
+    "resetConfirm": "Confirm reset: erase every incident",
+    "resetting": "Resetting…",
+    "resetOk": "Clean database in {ms} ms",
+    "resetDirty": "Reset ran but rows remain: {rows}",
+    "resetSlow": "over the 5 s target",
+    "stopwatch": "Stopwatch",
+    "start": "Start",
+    "stop": "Stop",
+    "lap": "Lap",
+    "clear": "Clear",
+    "laps": "Laps",
+    "spaceHint": "Space: start / stop",
+    "latest": "Newest open incident",
+    "noIncident": "No open incident. Run a scenario.",
+    "witnessQr": "Witness page (scan with the second phone)",
+    "open": {
+      "dashboard": "Dashboard",
+      "phones": "Virtual phones",
+      "demo": "Demo control",
+      "hospital": "ED screen {id}",
+      "witness": "Open the witness page"
+    },
+    "phone": {
+      "driver": "Driver · phone A",
+      "witness": "Witness · phone C",
+      "hospital": "Hospital · phone D",
+      "driverHint": "Simulates the packet the phone sends after a countdown with no response.",
+      "lastPacket": "Last packet received by the server",
+      "noPacket": "No packet yet.",
+      "ackSms": "SMS back to the driver",
+      "noSms": "No SMS yet.",
+      "witnessEmpty": "The witness page appears here once an incident is open.",
+      "hospitalEmpty": "Pre-alert SMS to the hospital arrive here.",
+      "simulateWitness": "Simulate the witness instead",
+      "smsStatus": {
+        "queued": "queued",
+        "sent": "sent",
+        "failed": "failed",
+        "simulated": "simulated (no gateway)",
+        "no_number": "no number"
+      }
+    },
+    "error": "The action failed: {message}",
+    "notAllowed": "Demo pages are for the dispatcher account."
   }
 }

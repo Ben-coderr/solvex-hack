@@ -1,46 +1,11 @@
-import { expect, test, type Browser, type Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+import { DISPATCHER, HOSPITAL_A, login, PASSWORD } from './helpers';
 
 /**
  * G2 hero flow (docs/03 §4 flow C + D): simulate SMS → pin → detail → orientation → pre-alert → hospital ACK →
  * dispatcher sees ✓ → audit shows every step. Runs on a clean DB (demo reset). Needs DEMO_MODE=true.
  * Reused by P7 for the rehearsal timings.
  */
-
-const PASSWORD = process.env.DEMO_USER_PASSWORD ?? '';
-const DISPATCHER = 'dispatcher@najda.test';
-const HOSPITAL_A = 'hospital-a@najda.test';
-
-/**
- * Console errors, uncaught exceptions and any 4xx/5xx from our own origin fail the test. Third-party online tiles
- * (OpenFreeMap) are a network dependency, not our bug: their failures are ignored.
- */
-function watchConsole(page: Page, sink: string[]) {
-  const origin = new URL(test.info().project.use.baseURL!).origin;
-  page.on('pageerror', (e) => sink.push(`pageerror: ${e.message}`));
-  page.on('response', (r) => {
-    if (r.status() >= 400 && r.url().startsWith(origin)) sink.push(`http ${r.status()}: ${r.url()}`);
-  });
-  page.on('console', (m) => {
-    if (m.type() !== 'error') return;
-    const text = m.text();
-    // the browser's generic line for a failed fetch carries no URL; our own failures are caught by 'response' above
-    if (/^Failed to load resource/.test(text)) return;
-    sink.push(`console: ${text}`);
-  });
-}
-
-async function login(browser: Browser, email: string, errors: string[]) {
-  const context = await browser.newContext({ locale: 'en-GB' });
-  await context.addCookies([{ name: 'NEXT_LOCALE', value: 'en', url: test.info().project.use.baseURL! }]);
-  const page = await context.newPage();
-  watchConsole(page, errors);
-  await page.goto('/login');
-  await page.getByLabel('Email').fill(email);
-  await page.getByLabel('Password').fill(PASSWORD);
-  await page.getByRole('button', { name: 'Sign in' }).click();
-  await page.waitForURL((u) => !u.pathname.startsWith('/login'));
-  return page;
-}
 
 test.beforeAll(() => {
   expect(PASSWORD, 'DEMO_USER_PASSWORD must be set in .env.local (pnpm env:local && pnpm db:users)').not.toBe('');

@@ -1,7 +1,8 @@
 import type { NextRequest } from 'next/server';
 import { z } from 'zod';
 import { requireRole } from '@/server/auth';
-import { fail, json, parseJson, readRaw } from '@/server/http';
+import { fail, json, parseJson, readRaw, limited } from '@/server/http';
+import { LIMITS } from '@/server/services/rate-limit';
 import { setHospitalStatus } from '@/server/services/hospitals';
 
 const Body = z.object({ status: z.enum(['OK', 'BUSY', 'SATURATED']) }).strict();
@@ -10,6 +11,8 @@ const Body = z.object({ status: z.enum(['OK', 'BUSY', 'SATURATED']) }).strict();
 export async function POST(req: NextRequest, ctx: RouteContext<'/api/hospitals/[id]/status'>) {
   const auth = await requireRole(req, ['dispatcher', 'admin', 'hospital']);
   if (!auth.ok) return auth.res;
+  const slow = limited(`staff:${auth.actor.userId}`, LIMITS.dispatcher);
+  if (slow) return slow;
   const { id } = await ctx.params;
   if (auth.actor.role === 'hospital' && auth.actor.hospitalId !== id) return fail(403, 'not your facility');
   const raw = await readRaw(req);

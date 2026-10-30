@@ -8,6 +8,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 loadEnvConfig(path.resolve(process.cwd(), "../.."), process.env.NODE_ENV !== "production", { info: () => {}, error: console.error }, true);
 
 const nextConfig: NextConfig = {
+  // NEXT_DIST_DIR=.next-e2e: build + start a second copy (e2e, rehearsal) without touching the running server's .next.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   // The floating dev badge overlaps content in QA/pitch screenshots.
   devIndicators: false,
   // @najda/shared ships TypeScript source (main: src/index.ts); Next compiles it like app code.

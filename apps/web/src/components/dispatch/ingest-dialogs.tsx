@@ -9,7 +9,7 @@ import { useIngest } from '@/lib/dispatch';
 import { cn } from '@/lib/utils';
 
 /** Must match SCENARIOS in server/services/demo.ts (the canonical packets of docs/05). */
-const SCENARIOS = ['rollover', 'witness_near_rollover', 'witness_oran', 'bad_crc'] as const;
+const SCENARIOS = ['rollover', 'frontal', 'witness_near_rollover', 'witness_oran', 'bad_crc'] as const;
 
 function AckLine({ ack, onOpen }: { ack: IngestAck; onOpen: (id: string) => void }) {
   const t = useTranslations('paste.result');

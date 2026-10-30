@@ -1,6 +1,7 @@
 import 'server-only';
 import type postgres from 'postgres';
 import { sql as getSql } from '../db';
+import { samePhone } from '../domain';
 
 export type HospitalStatus = 'OK' | 'BUSY' | 'SATURATED';
 
@@ -19,4 +20,17 @@ export async function setHospitalStatus(id: string, status: HospitalStatus, acto
         ${sql.json({ hospital_id: id, status } as postgres.JSONValue)}, null)`;
     return true;
   });
+}
+
+/**
+ * D14: `SLK STATUS CHU-A SAT` from the hospital's own registered number sets its status and gets a reply.
+ * Returns false when the number does not match: the caller then stores the text like any other SMS (never dropped).
+ */
+export async function statusFromSms(hospitalId: string, status: HospitalStatus, from: string, reply: string): Promise<boolean> {
+  const [h] = await getSql()<{ phone_sms: string | null }[]>`select phone_sms from public.hospitals where id = ${hospitalId}`;
+  if (!h?.phone_sms || !samePhone(h.phone_sms, from)) return false;
+  await setHospitalStatus(hospitalId, status, `sms:${hospitalId}`);
+  await getSql()`insert into public.sms_outbox (to_number, body, purpose, incident_id)
+                 values (${from}, ${reply}, 'status_reply', null)`;
+  return true;
 }

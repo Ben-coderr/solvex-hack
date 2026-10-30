@@ -15,7 +15,8 @@ P1 (gate-H10): `supabase/` schema+RLS+seed, `packages/api-contract`, `apps/web/s
 P2 (gate-design-1): tokens fixes, web + mobile design systems, `/styleguide`.
 P3 (gate-H20): dispatcher dashboard `/` (status strip, queue, MapLibre map, detail drawer, orientation, lifecycle, pre-alert, paste/simulate SMS), `/audit`, minimal hospital view `/hospital/[id]`; e2e `pnpm --filter web test:e2e`.
 P4 (in progress, `feat/mobile-core`): mobile shell, onboarding, Drive mode, countdown, alert state machine, outbox, replay; adapter onto `@najda/detector`.
-TODO: the remaining phases (see phase prompts P4–P8 and the cut list in docs/17).
+P6 (`demo-v1-rc1`): witness page `/w/[id]?k=` (no-JS form, signed link, merge into the linked incident, QR in the drawer), `/demo` + `/phones` (scenarios, verified reset, stopwatch), D14 status SMS, rate-limit review (limits in DECISIONS.md). Crew page and in-app witness mode cut (docs/17 §2).
+TODO: the remaining phases (see phase prompts P7–P8 and the cut list in docs/17).
 
 ## Commands
 Quickest: `./najda up` (Docker → Supabase → env + demo logins → web), `./najda open` (signed-in dispatcher + hospital windows),
@@ -32,7 +33,9 @@ pnpm env:local          # fill EMPTY keys of the root .env.local (local keys + r
 pnpm db:users           # demo logins dispatcher@najda.test / hospital-a@najda.test (password: DEMO_USER_PASSWORD)
 pnpm --filter web test:db   # ingest through real Postgres (truncates local incident tables)
 pnpm realtime:probe     # print Realtime events as the dispatcher sees them (RLS)
-pnpm --filter web test:e2e   # G2 hero flow (Playwright + installed Chrome; app running, BASE_URL=http://localhost:3001)
+pnpm --filter web test:e2e   # hero flow + P6 (Playwright + installed Chrome; app running, BASE_URL=http://localhost:3001)
+#   run it against a production build (next dev reload-loops here):  cd apps/web && NEXT_DIST_DIR=.next-e2e pnpm exec next build && NEXT_DIST_DIR=.next-e2e pnpm exec next start -p 3001
+#   P6_SCREENS=1 also writes docs/pitch/design/p6; add --output <dir outside the repo>
 pnpm --filter web screens:p3 <ID>  # screenshot matrix → docs/pitch/design/p3
 scripts/curl-demo.sh    # G1 drill through the signed SMS webhook (BASE_URL=http://localhost:3000)
 pnpm dev:web          # = pnpm --filter web dev  (also: build | start | typecheck)

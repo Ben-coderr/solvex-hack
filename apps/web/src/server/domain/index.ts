@@ -3,3 +3,4 @@ export * from '@najda/shared';
 export * from './json-packet';
 export * from './links';
 export * from './witness';
+export * from './status-sms';
