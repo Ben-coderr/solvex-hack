@@ -4,7 +4,7 @@
 #   ./sellekni up [--prod] [--mobile] [--replace]
 #                                    Docker/colima → Supabase → env + demo logins → web app (dev, or build+start)
 #                                    --replace: stop another `next dev` already running for apps/web (one per folder)
-#   ./sellekni open [--no-stage]        Chrome already signed in: dispatcher + hospital CHU-A + stage (/demo, /phones)
+#   ./sellekni open [--no-stage]        Chrome already signed in: dispatcher + hospital A + stage (/demo, /phones)
 #   ./sellekni login                    print the demo accounts and password
 #   ./sellekni status                   what is running, on which port
 #   ./sellekni reset                    empty the demo database (incidents, pre-alerts, audit)
@@ -28,6 +28,8 @@ die()  { printf '%s\n' "  ${R}✗${N} $*" >&2; exit 1; }
 
 # value of KEY in .env.local, without an inline "# comment"
 envget() { [[ -f "$ENV_FILE" ]] && grep -E "^$1=" "$ENV_FILE" | tail -1 | cut -d= -f2- | sed -E 's/[[:space:]]+#.*$//; s/^"(.*)"$/\1/' || true; }
+# hospital id of a demo login for the active HOSPITAL_SET (data/demo-hospitals.json)
+demo_hospital() { node -e 'const set=process.argv[2]==="demo"?"demo":"national";console.log(require(process.argv[1]).logins[set][process.argv[3]])' "$ROOT/data/demo-hospitals.json" "$(envget HOSPITAL_SET)" "$1"; }
 
 port_busy() { lsof -nP -iTCP:"$1" -sTCP:LISTEN >/dev/null 2>&1; }
 # spawn NAME DIR CMD…: detached, all three streams redirected (so `./sellekni up | tee` ends), pid in .sellekni/NAME.pid
@@ -178,8 +180,8 @@ ${B}SELLEKNI is ready${N}  ${D}(synthetic data only)${N}
   Password       ${B}$pw${N}   ${D}(same for every demo account, from .env.local)${N}
 
   Dispatcher     dispatcher@sellekni.test    → $url/
-  Hospital CHU-A hospital-a@sellekni.test    → $url/hospital/CHU-A
-  Hospital EPH-B hospital-b@sellekni.test    → $url/hospital/EPH-B
+  Hospital A     hospital-a@sellekni.test    → $url/hospital/$(demo_hospital hospital-a)
+  Hospital B     hospital-b@sellekni.test    → $url/hospital/$(demo_hospital hospital-b)
 
   ${D}Use one normal window for the dispatcher and a private window for the hospital (separate sessions),${N}
   ${D}or let the script do it:${N}  ${B}./sellekni open${N}
@@ -233,7 +235,7 @@ cmd_reset() {
 cmd_open() {
   local url; url="$(base_url)"
   healthy "$url" || die "no app at $url (./sellekni up first)"
-  say "Opening Chrome: dispatcher + hospital CHU-A + stage (/demo, /phones), already signed in (close all windows to quit)"
+  say "Opening Chrome: dispatcher + hospital A + stage (/demo, /phones), already signed in (close all windows to quit)"
   (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm -s exec tsx scripts/open-demo.mts "$@")
 }
 

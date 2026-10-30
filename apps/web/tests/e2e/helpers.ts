@@ -1,9 +1,22 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { test, type Browser, type Page } from '@playwright/test';
 
 /** Shared by the e2e specs: demo logins, and a console/HTTP error sink that fails the test. */
 export const PASSWORD = process.env.DEMO_USER_PASSWORD ?? '';
 export const DISPATCHER = 'dispatcher@sellekni.test';
 export const HOSPITAL_A = 'hospital-a@sellekni.test';
+
+/**
+ * The hospital hospital-a signs in to, for the server's HOSPITAL_SET (data/demo-hospitals.json). By design it is also
+ * the top recommendation for the canonical rollover near Blida: the nearest emergency department is NOT it.
+ *   national: CHU Frantz Fanon (Blida) beats the closer EPH Ibn Rochd (ED + surgery only)
+ *   demo:     CHU-A beats the closer EPH-B (docs/05 §5.1 worked example)
+ */
+const demoHospitals = JSON.parse(readFileSync(path.resolve(__dirname, '../../../../data/demo-hospitals.json'), 'utf8'));
+export const HOSPITAL_SET: 'demo' | 'national' = process.env.HOSPITAL_SET === 'demo' ? 'demo' : 'national';
+export const HOSPITAL_A_ID: string = demoHospitals.logins[HOSPITAL_SET]['hospital-a'];
+export const HOSPITAL_B_ID: string = demoHospitals.logins[HOSPITAL_SET]['hospital-b'];
 
 /**
  * Console errors, uncaught exceptions and any 4xx/5xx from our own origin fail the test. Third-party online tiles

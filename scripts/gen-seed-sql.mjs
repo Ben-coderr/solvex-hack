@@ -10,9 +10,16 @@ const { hospitals: demo, statuses } = JSON.parse(readFileSync('data/hospitals.se
 const { hospitals: national } = existsSync('data/hospitals.national.json')
   ? JSON.parse(readFileSync('data/hospitals.national.json', 'utf8'))
   : { hospitals: [] };
+// synthetic SMS numbers for the national hospitals used on stage (never a real line)
+const { contacts = {} } = JSON.parse(readFileSync('data/demo-hospitals.json', 'utf8'));
+const SYNTHETIC = /^\+213555000\d{3}$/;
+for (const [id, phone] of Object.entries(contacts)) {
+  if (!national.some((h) => h.id === id)) fail(`demo contact for unknown national hospital ${id}`);
+  if (!SYNTHETIC.test(phone)) fail(`${id}: demo contact ${phone} is not a synthetic +213555000xxx number`);
+}
 const SETS = [
   { rows: demo, source: 'illustrative', suffix: /\(illustrative\)$/ },
-  { rows: national, source: 'osm-unverified', suffix: /\(unverified\)$/ },
+  { rows: national.map((h) => ({ ...h, phone_sms: contacts[h.id] })), source: 'osm-unverified', suffix: /\(unverified\)$/ },
 ];
 
 const q = (s) => (s === null || s === undefined ? 'null' : `'${String(s).replaceAll("'", "''")}'`);
@@ -26,7 +33,7 @@ const rows = SETS.flatMap(({ rows: set, source, suffix }) => set.map((h) => {
   if (ids.has(h.id)) fail(`duplicate id ${h.id}`);
   ids.add(h.id);
   if (!suffix.test(h.name)) fail(`${h.id}: name must end with "(${suffix.source.slice(2, -3)})" until verified`);
-  if (source !== 'illustrative' && h.phone_sms) fail(`${h.id}: no phone numbers outside the synthetic set (pre-alerts are texted to them)`);
+  if (h.phone_sms && !SYNTHETIC.test(h.phone_sms)) fail(`${h.id}: only synthetic +213555000xxx numbers (pre-alerts are texted to them)`);
   if (!['A', 'B', 'C'].includes(h.level)) fail(`${h.id}: bad level ${h.level}`);
   for (const c of h.capabilities) if (!VOCAB.has(c)) fail(`${h.id}: capability "${c}" not in the fixed vocabulary`);
   if (!(Math.abs(h.lat) <= 90 && Math.abs(h.lon) <= 180)) fail(`${h.id}: bad coordinates`);

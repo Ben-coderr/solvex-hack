@@ -1,0 +1,12 @@
+{
+  "$comment": "Which hospitals the demo logins belong to, per HOSPITAL_SET, and SYNTHETIC SMS numbers for the national hospitals used on stage (pre-alert SMS, D14 status SMS). Never put a real hospital number here: the seed generator only accepts +213555000xxx. Read by scripts/gen-seed-sql.mjs, scripts/seed-users.mts and ./sellekni.",
+  "logins": {
+    "demo": { "hospital-a": "CHU-A", "hospital-b": "EPH-B" },
+    "national": { "hospital-a": "N-CHU-BLIDA-FRANTZ-FANON", "hospital-b": "N-EPH-BLIDA-IBN-ROCHD" }
+  },
+  "contacts": {
+    "N-CHU-BLIDA-FRANTZ-FANON": "+213555000201",
+    "N-EPH-BLIDA-IBN-ROCHD": "+213555000202",
+    "N-CHU-ORAN-BENZERDJEB": "+213555000203"
+  }
+}

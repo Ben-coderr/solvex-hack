@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { DISPATCHER, HOSPITAL_A, login, PASSWORD } from './helpers';
+import { DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, HOSPITAL_B_ID, login, PASSWORD } from './helpers';
 
 /**
  * G2 hero flow (docs/03 §4 flow C + D): simulate SMS → pin → detail → orientation → pre-alert → hospital ACK →
@@ -70,10 +70,13 @@ test('hero flow: SMS → pin → orientation → pre-alert → hospital ACK → 
   const top = d.getByTestId('orientation').getByTestId(/^hospital-/).first();
   await expect(top).toBeVisible();
   const hospitalId = (await top.getAttribute('data-testid'))!.replace('hospital-', '');
-  expect(hospitalId).toBe('CHU-A'); // docs/05 §5.1 worked example: closest (EPH-B) is not best
+  expect(hospitalId).toBe(HOSPITAL_A_ID); // closest is not best: the nearest ED lacks ICU / trauma surgery
   await expect(d.getByTestId('orientation').getByText('Nearest ED').first()).toBeVisible();
-  // every hospital of the active set is on the map as an H marker (12 synthetic ones in the demo set)
-  await expect(d.getByTestId('map').locator('[data-testid^="map-hospital-"]')).toHaveCount(12);
+  await expect(d.getByTestId(`hospital-${HOSPITAL_B_ID}`)).toContainText('Nearest ED');
+  // every hospital of the active set is on the map as an H marker
+  const { hospitals } = (await (await d.request.get('/api/hospitals')).json()) as { hospitals: unknown[] };
+  expect(hospitals.length).toBeGreaterThanOrEqual(12);
+  await expect(d.getByTestId('map').locator('[data-testid^="map-hospital-"]')).toHaveCount(hospitals.length);
   await top.hover(); // route on the map
   await d.locator('[data-testid="lifecycle"] [data-step="DISPATCHED"]').click();
   await expect(d.locator('[data-testid="lifecycle"] [data-step="DISPATCHED"]')).toHaveAttribute('aria-current', 'step');
@@ -103,7 +106,7 @@ test('hero flow: SMS → pin → orientation → pre-alert → hospital ACK → 
   for (const action of ['incident.created', 'incident.transition', 'incident.hospital_set', 'prealert.sent', 'prealert.acked']) {
     await expect(table.locator(`tr[data-action="${action}"]`).first()).toBeVisible();
   }
-  await expect(table.locator('tr[data-action="prealert.acked"]')).toContainText('CHU A ED (demo)');
+  await expect(table.locator('tr[data-action="prealert.acked"]')).toContainText('Hospital A ED (demo)');
   await expect(table.locator('tr[data-action="incident.transition"]')).toHaveCount(2);
 
   test.info().annotations.push({ type: 'hero-flow-ms', description: String(Date.now() - t0) });

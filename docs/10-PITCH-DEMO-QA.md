@@ -41,7 +41,7 @@
 | 6 | Phone A | ✓ SMS delivered (and "Received by rescuers" if M12 is built) | |
 | 7 | Teammate on Phone C: **5 taps** (2 vehicles, motorbike, trapped, child) | merged into the same pin, "×2 reports", **confidence M → H**, hint *extrication* | Simulate witness from `/phones` |
 | 8 | Click ACKNOWLEDGED → DISPATCHED | lifecycle bar advances (audit entry each time) | |
-| 9 | Open **Orientation** | top-3 hospitals, route drawn; CHU-A 24 min all capabilities; the nearer EPH greyed "no neurosurgery / ICU" — *"closest ≠ best"*; the *nearest ED* tag is still shown | |
+| 9 | Open **Orientation** | top-3 hospitals, route drawn; CHU Frantz Fanon (Blida) ~5 min, all capabilities; the nearer EPH Ibn Rochd tagged *nearest ED* but missing ICU / trauma surgery (with `HOSPITAL_SET=demo`: CHU-A 24 min vs EPH-B) — *"closest ≠ best"*; the *nearest ED* tag is still shown | |
 | 10 | **Pre-alert** | Laptop 2 shows the patient card + ETA countdown; **Phone D buzzes**; hospital ACK → ✓ on dispatcher | |
 | 11 | Close | "From impact to a ready hospital, without internet. Humans decided every step." Open the audit log for 3 seconds | |
 

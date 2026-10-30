@@ -7,7 +7,7 @@ Project rules and architecture: `DEVELOPMENT.md` and `docs/`.
 
 ```bash
 ./sellekni up            # Docker → Supabase → .env.local + demo logins → web app (dev mode)
-./sellekni open          # Chrome, already signed in: dispatcher + hospital CHU-A + stage window (/demo, /phones)
+./sellekni open          # Chrome, already signed in: dispatcher + hospital A + stage window (/demo, /phones)
 ```
 
 That's it. `./sellekni up` prints the URL, the accounts and the password when it's ready.
@@ -18,7 +18,7 @@ That's it. `./sellekni up` prints the URL, the accounts and the password when it
 | `./sellekni up --prod` | Production build + `next start`. Faster pages; use it for rehearsals and the stage. |
 | `./sellekni up --mobile` | Also starts Metro for the phone app (development build, **not** Expo Go). |
 | `./sellekni up --replace` | Another `next dev` for this app is already running somewhere: stop it, start fresh. |
-| `./sellekni open [--reset] [--locale=ar] [--no-stage]` | Signed-in Chrome windows: dispatcher, hospital CHU-A, and (DEMO_MODE) the stage window with `/demo` + `/phones`. `--reset` empties the demo data first. |
+| `./sellekni open [--reset] [--locale=ar] [--no-stage]` | Signed-in Chrome windows: dispatcher, hospital A, and (DEMO_MODE) the stage window with `/demo` + `/phones`. `--reset` empties the demo data first. |
 | `./sellekni login` | Prints the accounts and the password again. |
 | `./sellekni status` | Shows what's running and on which port. |
 | `./sellekni reset` | Empties incidents, pre-alerts and the audit log (hospitals stay). |
@@ -39,8 +39,10 @@ Open `http://localhost:3000/login` (the port `./sellekni up` printed).
 | Who | Email | Lands on |
 |---|---|---|
 | Dispatcher (operations room) | `dispatcher@sellekni.test` | `/` dashboard |
-| Hospital CHU-A emergency dept | `hospital-a@sellekni.test` | `/hospital/CHU-A` |
-| Hospital EPH-B emergency dept | `hospital-b@sellekni.test` | `/hospital/EPH-B` |
+| Hospital A emergency dept | `hospital-a@sellekni.test` | CHU Frantz Fanon, Blida (`/hospital/N-CHU-BLIDA-FRANTZ-FANON`) |
+| Hospital B emergency dept | `hospital-b@sellekni.test` | EPH Ibn Rochd, Blida (`/hospital/N-EPH-BLIDA-IBN-ROCHD`) |
+
+**Hospitals:** by default the map and the ranking use 273 real Algerian hospitals (`HOSPITAL_SET=national`, positions from OpenStreetMap, services inferred and **unverified**). Their real phone numbers are not used: the two Blida hospitals and CHU Oran get synthetic `+213 555 000 2xx` numbers for the SMS demo. `HOSPITAL_SET=demo` in `.env.local` switches back to the 12 synthetic hospitals (CHU-A, EPH-B…); run `pnpm db:users` after switching so the hospital logins follow.
 
 **Password:** the same for every account. It's `DEMO_USER_PASSWORD` in `.env.local`, and `./sellekni login` prints it.
 It's generated locally and never committed.
@@ -54,8 +56,8 @@ window keeps one session. `./sellekni open` does this for you.
    A red ▲ pin appears on the map and in the queue (*Auto · unconfirmed*).
 2. Click the pin: the drawer shows **R 75**, confidence, the 3 reasons and the disclaimer.
 3. In the lifecycle bar, click **Acknowledged**.
-4. In **Orientation**, check that CHU-A is ranked #1 and that *Nearest ED* is visible. Hover a card to see the route, then click **Dispatched**.
-5. Click **Pre-alert** on CHU-A: you'll see *Pre-alert sent hh:mm · web card + SMS*.
+4. In **Orientation**, check that CHU Frantz Fanon (Blida) is ranked #1 and that the closer EPH Ibn Rochd is tagged *Nearest ED*. Hover a card to see the route, then click **Dispatched**.
+5. Click **Pre-alert** on CHU Frantz Fanon: you'll see *Pre-alert sent hh:mm · web card + SMS*.
 6. **Hospital window:** the patient card appears with an arrival countdown. Click **Acknowledge**.
 7. **Dispatcher:** *✓ Acknowledged hh:mm* appears without a reload.
 8. **Audit log** (top bar): every step is listed with who, what, before/after and when.
