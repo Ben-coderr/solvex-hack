@@ -28,7 +28,8 @@ pnpm vectors          # regenerate golden vectors (only after an intentional pro
 pnpm tokens           # rebuild packages/tokens/dist from tokens.json
 pnpm --filter @sellekni/detector report   # scenario x sensor-range table (docs/13 §4) · also: `test`, `traces`
 supabase start          # local Postgres+PostGIS, Auth, Realtime (Docker/colima)
-pnpm db:reset           # regenerate seed.sql from data/hospitals.seed.json + supabase db reset
+pnpm db:reset           # regenerate seed.sql from data/hospitals.seed.json + data/hospitals.national.json, then supabase db reset
+node scripts/import-hospitals.mjs <list.json>   # rebuild data/hospitals.national.json from a national facility list (then pnpm db:seed-sql)
 pnpm env:local          # fill EMPTY keys of the root .env.local (local keys + random secrets); prints names only
 pnpm db:users           # demo logins dispatcher@sellekni.test / hospital-a@sellekni.test (password: DEMO_USER_PASSWORD)
 pnpm --filter web test:db   # ingest through real Postgres (truncates local incident tables)

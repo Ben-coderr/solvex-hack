@@ -1,6 +1,6 @@
 import 'server-only';
 import {
-  rankHospitals,
+  rankHospitals, rankingCandidates,
   type Capability, type Flag, type HospitalLevel, type HospitalRecord, type LoadStatus, type Recommendation, type StatusRecord,
 } from '../domain';
 import { sql as getSql } from '../db';
@@ -10,14 +10,18 @@ import { getEtas, type Eta, type EtaCache, type EtaSource } from './routing';
 
 export interface HospitalWithContact extends HospitalRecord { phoneSms: string | null }
 
+/** Rows of the active set: HOSPITAL_SET=demo → the synthetic seed ('illustrative'), national → 'osm-unverified'. */
+export const HOSPITAL_SOURCE = { demo: 'illustrative', national: 'osm-unverified' } as const;
+
 export async function loadHospitals(): Promise<HospitalWithContact[]> {
   const sql = getSql();
+  const source = HOSPITAL_SOURCE[env().HOSPITAL_SET];
   const rows = await sql<{
     id: string; name: string; level: HospitalLevel; lat: number; lon: number; capabilities: Capability[]; phone_sms: string | null;
   }[]>`
     select id, name, level, capabilities, phone_sms,
       extensions.st_y(location::extensions.geometry) as lat, extensions.st_x(location::extensions.geometry) as lon
-    from public.hospitals order by id`;
+    from public.hospitals where source = ${source} order by id`;
   return rows.map((r) => ({
     id: r.id, name: r.name, level: r.level, lat: r.lat, lon: r.lon, capabilities: r.capabilities, phoneSms: r.phone_sms,
   }));
@@ -73,7 +77,8 @@ export type RecommendationView = Recommendation & {
 export async function recommend(incidentId: string, now = new Date()): Promise<RecommendationView | null> {
   const incident = await getIncidentRow(incidentId);
   if (!incident) return null;
-  const [hospitals, statuses, flags] = await Promise.all([loadHospitals(), loadStatuses(), latestFlags(incidentId)]);
+  const [all, statuses, flags] = await Promise.all([loadHospitals(), loadStatuses(), latestFlags(incidentId)]);
+  const hospitals = rankingCandidates(all, incident);
   const e = env();
   const { etas, notes } = await getEtas(
     incident, hospitals,

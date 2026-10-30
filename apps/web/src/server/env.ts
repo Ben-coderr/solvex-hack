@@ -19,6 +19,8 @@ const Env = z.object({
   PUBLIC_BASE_URL: z.string().url().optional().or(z.literal('')),
   OSRM_URL: z.string().url().optional().or(z.literal('')),
   ORS_API_KEY: z.string().optional(),
+  /** which hospitals the app ranks: the synthetic stage set, or the unverified national set (data/hospitals.national.json) */
+  HOSPITAL_SET: z.enum(['demo', 'national']).default('demo'),
   DEMO_MODE: z
     .enum(['true', 'false'])
     .default('false')

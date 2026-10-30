@@ -9,7 +9,7 @@ import { Protocol } from 'pmtiles';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import MapGL, { Layer, Marker, Source, type MapRef } from 'react-map-gl/maplibre';
 import { TriageMarker } from '@/components/ui/triage-marker';
-import { useHealth, type QueueItem } from '@/lib/dispatch';
+import { useHealth, useHospitals, type QueueItem } from '@/lib/dispatch';
 import { cn } from '@/lib/utils';
 import type { TilesMode } from './status-strip';
 
@@ -60,9 +60,13 @@ function useTheme(): 'dark' | 'light' {
 /** MapLibre paints need concrete colours: read the token CSS variables (recomputed when the theme flips). */
 function useTokenColors(theme: 'dark' | 'light') {
   return useMemo(() => {
-    if (typeof window === 'undefined') return { route: 'currentColor', casing: 'transparent' };
+    if (typeof window === 'undefined') return { route: 'currentColor', casing: 'transparent', facility: 'currentColor' };
     const css = getComputedStyle(document.documentElement);
-    return { route: css.getPropertyValue('--sellekni-brand-text').trim(), casing: css.getPropertyValue('--sellekni-bg').trim() };
+    return {
+      route: css.getPropertyValue('--sellekni-brand-text').trim(),
+      casing: css.getPropertyValue('--sellekni-bg').trim(),
+      facility: css.getPropertyValue('--sellekni-muted').trim(),
+    };
   }, [theme]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
@@ -123,6 +127,20 @@ export function IncidentMap({ incidents, selectedId, newIds, route, onSelect, on
     }
   }, [selected?.id, selected?.lat, selected?.lon, route?.hospitalId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Every hospital of the active set as a quiet dot (Level A larger): context for the dispatcher, not a choice.
+  const hospitals = useHospitals();
+  const facilities = useMemo(
+    () => ({
+      type: 'FeatureCollection' as const,
+      features: (hospitals.data?.hospitals ?? []).map((h) => ({
+        type: 'Feature' as const,
+        properties: { id: h.id, name: h.name, a: h.level === 'A' ? 1 : 0 },
+        geometry: { type: 'Point' as const, coordinates: [h.lon, h.lat] },
+      })),
+    }),
+    [hospitals.data],
+  );
+
   const line = useMemo(
     () =>
       selected && route
@@ -147,6 +165,19 @@ export function IncidentMap({ incidents, selectedId, newIds, route, onSelect, on
             if (tiles === 'online' && /style|fetch|Failed/i.test(String(e.error?.message))) setFailed(true);
           }}
         >
+          <Source id="facilities" type="geojson" data={facilities}>
+            <Layer
+              id="facilities-dot"
+              type="circle"
+              paint={{
+                'circle-color': colors.facility,
+                'circle-opacity': 0.55,
+                'circle-radius': ['interpolate', ['linear'], ['zoom'], 5, ['case', ['==', ['get', 'a'], 1], 3, 1.5], 11, ['case', ['==', ['get', 'a'], 1], 6, 4]],
+                'circle-stroke-color': colors.casing,
+                'circle-stroke-width': 1,
+              }}
+            />
+          </Source>
           {line && (
             <Source id="route" type="geojson" data={line}>
               <Layer id="route-casing" type="line" paint={{ 'line-color': colors.casing, 'line-width': 8, 'line-opacity': 0.8 }} />
