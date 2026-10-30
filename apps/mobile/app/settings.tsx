@@ -55,6 +55,12 @@ export default function SettingsScreen() {
         <Txt v="small" tone="muted">{t('onboarding.rtlRestart')}</Txt>
       </Section>
 
+      <Section title={t('settings.theme')}>
+        <Segmented label={t('settings.theme')} value={s.theme} onChange={(v) => s.set({ theme: v })}
+          options={[{ value: 'system', label: t('settings.themeSystem') }, { value: 'light', label: t('settings.themeLight') }, { value: 'dark', label: t('settings.themeDark') }]} />
+        <Txt v="small" tone="muted">{t('settings.themeHint')}</Txt>
+      </Section>
+
       <Section title={t('settings.server')}>
         <Field testID="server-url" label={t('settings.serverUrl')} value={serverUrl} onChangeText={setServerUrl} hint={t('settings.serverHint')} error={urlErr} ltr keyboardType="url" />
         <Field testID="ingest-key" label={t('settings.key')} value={ingestKey} onChangeText={setIngestKey} hint={t('settings.keyHint')} ltr secure />

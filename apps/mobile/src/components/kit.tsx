@@ -135,8 +135,8 @@ export function Segmented<V extends string | number>({ value, options, onChange,
     <View accessibilityRole="radiogroup" accessibilityLabel={label} style={{ flexDirection: 'row', gap: T.space[1], padding: T.space[1], borderWidth: 1, borderColor: c.line, borderRadius: T.radius.md }}>
       {options.map((o) => (
         <Pressable key={String(o.value)} accessibilityRole="radio" accessibilityState={{ checked: o.value === value }} onPress={() => onChange(o.value)}
-          style={{ flex: 1, minHeight: T.size.touchMin, alignItems: 'center', justifyContent: 'center', borderRadius: T.radius.sm, backgroundColor: o.value === value ? c.brandFill : 'transparent' }}>
-          <Text style={{ fontFamily: FONT.uiMedium, fontSize: T.fontSize.base, color: o.value === value ? c.onBrand : c.text }}>{o.label}</Text>
+          style={{ flex: 1, minHeight: T.size.touchMin, alignItems: 'center', justifyContent: 'center', paddingHorizontal: T.space[2], borderRadius: T.radius.sm, backgroundColor: o.value === value ? c.brandFill : 'transparent' }}>
+          <Text style={{ fontFamily: FONT.uiMedium, fontSize: T.fontSize.base, textAlign: 'center', color: o.value === value ? c.onBrand : c.text }}>{o.label}</Text>
         </Pressable>
       ))}
     </View>

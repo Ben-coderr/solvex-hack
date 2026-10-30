@@ -2,6 +2,8 @@
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useState } from 'react';
+import { ThemeToggle } from '@/components/dispatch/app-header';
+import { BrandLockup } from '@/components/ui/brand-mark';
 import { Button } from '@/components/ui/button';
 import { LocaleSwitch } from '@/components/ui/locale-switch';
 import { supabaseBrowser } from '@/lib/supabase/client';
@@ -50,13 +52,13 @@ export default function LoginPage() {
   return (
     <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-8 px-4 py-12">
       <div className="flex flex-col gap-2">
-        <h1 className="font-display text-4xl font-semibold">{BRAND.name} <span className="font-ui text-2xl font-normal text-muted-foreground">{BRAND.nameAr}</span></h1>
+        <h1 aria-label={`${BRAND.name} ${BRAND.nameAr}`}><BrandLockup size="lg" /></h1>
         <p className="text-base text-muted-foreground">{t('subtitle')}</p>
       </div>
       <Suspense>
         <LoginForm />
       </Suspense>
-      <LocaleSwitch />
+      <div className="flex items-center gap-2"><LocaleSwitch /><ThemeToggle /></div>
       <p className="text-sm text-muted-foreground">{t('prototype')}</p>
     </main>
   );

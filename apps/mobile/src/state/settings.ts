@@ -10,6 +10,8 @@ import { COUNTDOWN } from '../config';
  */
 export interface Settings {
   locale: Locale | null;
+  /** 'system' follows the phone; light is for direct sun, dark for night */
+  theme: 'system' | 'light' | 'dark';
   onboarded: boolean;
   serverUrl: string;
   ingestKey: string;
@@ -37,6 +39,7 @@ export const useSettings = create<Settings>()(
   persist(
     (set) => ({
       locale: null,
+      theme: 'system',
       onboarded: false,
       serverUrl: process.env.EXPO_PUBLIC_NAJDA_SERVER_URL ?? '',
       ingestKey: process.env.EXPO_PUBLIC_NAJDA_INGEST_KEY ?? '',

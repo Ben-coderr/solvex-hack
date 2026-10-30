@@ -78,10 +78,9 @@ export default function Home() {
 
       <View style={{ gap: T.space[3] }}>
         <Btn kind="secondary" icon={Phone} label={t('numbers.call', { n: EMERGENCY.civil })} onPress={() => void openDialler(EMERGENCY.civil)} />
-        <View style={{ flexDirection: 'row', gap: T.space[2] }}>
-          <View style={{ flex: 1 }}><Btn kind="quiet" icon={FlaskConical} label={t('settings.sensorLab')} onPress={() => router.push('/sensor-lab')} /></View>
-          {demo && <View style={{ flex: 1 }}><Btn testID="open-replay" kind="quiet" icon={PlayCircle} label={t('home.replay')} onPress={() => router.push('/replay')} /></View>}
-        </View>
+        {/* stacked, not side by side: half a phone width wrapped "Replay a trip (demo)" onto two ragged lines */}
+        <Btn kind="quiet" icon={FlaskConical} label={t('settings.sensorLab')} onPress={() => router.push('/sensor-lab')} />
+        {demo && <Btn testID="open-replay" kind="quiet" icon={PlayCircle} label={t('home.replay')} onPress={() => router.push('/replay')} />}
       </View>
     </Screen>
   );

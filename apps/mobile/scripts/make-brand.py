@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "assets/brand/logo-source.png"
 IMG = ROOT / "assets/images"
 BRAND = ROOT / "assets/brand"
+WEB = ROOT.parent / "web"
 DARK_BG = (0x0E, 0x11, 0x14)  # tokens color.dark.bg
 
 # boxes in source pixels (1254 x 1254)
@@ -88,6 +89,13 @@ def main() -> None:
 
     fit(mono(mark), 256, 1.0).save(BRAND / "mark-mono.png")
     fit(mono(full), 512, 1.0).save(BRAND / "logo-mono.png")
+
+    # web console: the same mono mask (tinted with --najda-logo-mono) and the red icon for the tab / home screen
+    icon = fit(mark_k, 512, 0.84, DARK_BG + (255,))
+    fit(mono(mark), 256, 1.0).save(WEB / "public/brand/mark-mono.png")
+    icon.convert("RGB").save(WEB / "src/app/icon.png")
+    icon.resize((180, 180), Image.LANCZOS).convert("RGB").save(WEB / "src/app/apple-icon.png")
+    icon.save(WEB / "src/app/favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
     print("brand assets written")
 
 

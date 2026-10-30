@@ -93,6 +93,7 @@ export const en = {
     reportId: 'Report {{id}}', merged: 'Joined an existing incident ({{n}} reports)',
   },
   settings: {
+    theme: 'Appearance', themeSystem: 'Auto', themeLight: 'Light', themeDark: 'Dark', themeHint: 'Auto follows the phone. Light is easier to read in direct sun; dark is easier at night.',
     simAccessNote: 'Android calls this "make and manage phone calls". The app only reads which SIMs are present; it never places a call.',
     simDefault: 'Phone default', simAsk: 'This phone has {{n}} SIMs: choose the one that sends alerts.', simSlot: 'SIM {{slot}} · {{carrier}}',
     simAccess: 'Show the SIMs (asks for phone access)', simNone: 'No SIM found.', simUnknownCarrier: 'operator unknown', simChosen: 'Alerts go out on SIM {{slot}} · {{carrier}}',

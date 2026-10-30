@@ -92,6 +92,7 @@ export const fr: Messages = {
     reportId: 'Signalement {{id}}', merged: 'Rattaché à un incident existant ({{n}} signalements)',
   },
   settings: {
+    theme: 'Apparence', themeSystem: 'Auto', themeLight: 'Clair', themeDark: 'Sombre', themeHint: 'Auto suit le téléphone. Le clair se lit mieux en plein soleil ; le sombre la nuit.',
     simAccessNote: 'Android l’appelle « passer et gérer des appels ». L’app lit seulement quelles SIM sont présentes ; elle ne passe jamais d’appel.',
     simDefault: 'Par défaut du téléphone', simAsk: 'Ce téléphone a {{n}} SIM : choisissez celle qui envoie les alertes.', simSlot: 'SIM {{slot}} · {{carrier}}',
     simAccess: "Afficher les SIM (demande l'accès au téléphone)", simNone: 'Aucune SIM trouvée.', simUnknownCarrier: 'opérateur inconnu', simChosen: 'Les alertes partent par la SIM {{slot}} · {{carrier}}',

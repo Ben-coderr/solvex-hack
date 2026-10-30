@@ -1,5 +1,6 @@
 import { tokens, type ThemeMode } from '@najda/tokens';
 import { useColorScheme } from 'react-native';
+import { useSettings } from '../state/settings';
 import {
   BricolageGrotesque_600SemiBold, BricolageGrotesque_700Bold,
 } from '@expo-google-fonts/bricolage-grotesque';
@@ -28,10 +29,14 @@ export const FONT = {
 /** Same keys in both modes; values widened to string (the token file is `as const`). */
 export type Palette = { readonly [K in keyof (typeof tokens.color)['dark']]: string };
 
-/** Night-first: dark unless the phone is explicitly in light mode. `force` for the styleguide. */
+/**
+ * The person's choice in Settings (Appearance); 'system' is night-first: dark unless the phone is explicitly in
+ * light mode. `force` for the styleguide.
+ */
 export function useTheme(force?: ThemeMode): { mode: ThemeMode; c: Palette } {
   const scheme = useColorScheme();
-  const mode: ThemeMode = force ?? (scheme === 'light' ? 'light' : 'dark');
+  const pref = useSettings((s) => s.theme);
+  const mode: ThemeMode = force ?? (pref === 'system' ? (scheme === 'light' ? 'light' : 'dark') : pref);
   return { mode, c: tokens.color[mode] };
 }
 

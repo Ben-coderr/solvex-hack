@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
+import { BrandLockup } from '@/components/ui/brand-mark';
 import { Button } from '@/components/ui/button';
 import { LocaleSwitch } from '@/components/ui/locale-switch';
 import { supabaseBrowser } from '@/lib/supabase/client';
@@ -52,7 +53,7 @@ export function AppHeader({ actions, nav = true }: { actions?: ReactNode; nav?: 
   ];
   return (
     <header className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-surface px-4 py-2">
-      <span className="font-display text-2xl font-semibold">{BRAND.name} <span className="font-ui text-lg font-normal text-muted-foreground">{BRAND.nameAr}</span></span>
+      <Link href="/" aria-label={BRAND.name} className="rounded-md"><BrandLockup /></Link>
       {nav && (
         <nav aria-label={t('nav')} className="flex items-center gap-1">
           {links.map((l) => (
