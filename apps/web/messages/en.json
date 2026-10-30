@@ -176,5 +176,141 @@
     "errorTitle": "Could not load",
     "errorBody": "Your data is safe. Check the connection and try again.",
     "retry": "Try again"
+  },
+  "login": {
+    "subtitle": "Operations room — sign in",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "failed": "Wrong email or password.",
+    "prototype": "Prototype for SolveX 3.0 — synthetic data, not an official service."
+  },
+  "app": {
+    "queue": "Incidents",
+    "audit": "Audit log",
+    "signOut": "Sign out",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "map": "Map",
+    "list": "List",
+    "close": "Close",
+    "unparsed": "Unparsed messages",
+    "unparsedHint": "Shown exactly as received. Read it, call back if needed.",
+    "notAllowed": "This account cannot open the dispatch room."
+  },
+  "strip": {
+    "online": "Online",
+    "offline": "Offline",
+    "realtime": "Live updates",
+    "realtimeDown": "Live updates paused",
+    "gateway": "SMS gateway",
+    "gatewaySim": "SMS gateway: simulated",
+    "gatewayDown": "SMS gateway unreachable",
+    "osrm": "Routing",
+    "osrmOff": "Routing: estimates only",
+    "osrmDown": "Routing down: estimates only",
+    "tilesOnline": "ONLINE TILES",
+    "tilesOffline": "Offline map",
+    "clock": "Local time"
+  },
+  "detail": {
+    "tabs": {
+      "orientation": "Orientation",
+      "reports": "Reports",
+      "audit": "Audit"
+    },
+    "callBack": "Call back",
+    "noCallBack": "No call-back number (SMS sender hidden)",
+    "plusCode": "Plus Code",
+    "coords": "Coordinates",
+    "copy": "Copy",
+    "copied": "Copied",
+    "openOsm": "Open in OpenStreetMap",
+    "raw": "Raw text",
+    "timeline": "Reports",
+    "hints": "Resource hints",
+    "hint": {
+      "extrication": "Extrication",
+      "fire": "Fire",
+      "mci": "Several victims"
+    },
+    "overrideBand": "Change band…",
+    "clearOverride": "Back to computed band",
+    "overridden": "Band set by {actor}",
+    "crashed": "Impact {time}",
+    "loadError": "Could not load this incident.",
+    "computed": "Computed {band} {nsi}"
+  },
+  "override": {
+    "titleBand": "Change the band",
+    "titleHospital": "Choose another facility",
+    "reason": "Reason (required, at least 5 characters)",
+    "reasonHint": "It is recorded in the audit log with your name.",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "band": "New band"
+  },
+  "orient": {
+    "loading": "Ranking facilities…",
+    "none": "No facility within 90 min: contact the SAMU regulation.",
+    "stabilise": "No level-A centre within 60 min: stabilise, then transfer.",
+    "route": "Straight line (estimated)",
+    "sent": "Pre-alert sent {time}",
+    "acked": "Acknowledged {time} ✓",
+    "waiting": "No acknowledgement for {minutes} min",
+    "chosen": "Chosen facility",
+    "notes": "Routing: {notes}"
+  },
+  "lifecycle2": {
+    "cancel": "False alarm…",
+    "cancelTitle": "Cancel as false alarm",
+    "cancelled": "Cancelled",
+    "merged": "Merged into another incident"
+  },
+  "sim": {
+    "open": "Simulate SMS",
+    "title": "Simulate an incoming SMS",
+    "hint": "Runs the real ingest path on channel 'sim'. Labelled DEMO.",
+    "rollover": "Rollover, no response (auto)",
+    "witness_oran": "Pedestrian + child, trapped (witness, Oran)",
+    "witness_near_rollover": "Witness 120 m from the rollover",
+    "bad_crc": "Rollover with a corrupted checksum",
+    "send": "Send"
+  },
+  "paste": {
+    "open": "Paste SMS",
+    "title": "Paste a received SMS",
+    "hint": "Same ingest path as the gateway. Text that cannot be read is kept and shown raw.",
+    "label": "SMS text",
+    "send": "Add to queue",
+    "result": {
+      "created": "New incident {id}",
+      "merged": "Merged into {id}",
+      "updated": "Updated {id}",
+      "duplicate": "Already received",
+      "unparsed": "Kept as unparsed: {error}"
+    }
+  },
+  "auditPage": {
+    "title": "Audit log",
+    "filter": "Incident id",
+    "all": "All incidents",
+    "when": "When",
+    "who": "Who",
+    "what": "What",
+    "before": "Before",
+    "after": "After",
+    "reason": "Reason",
+    "empty": "No events yet."
+  },
+  "hospitalView": {
+    "title": "Emergency department",
+    "incoming": "Incoming patients",
+    "none": "No incoming patient.",
+    "status": "Our status",
+    "expires": "Expires after 6 h",
+    "set": "Set {status}"
   }
 }

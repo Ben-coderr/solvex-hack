@@ -176,5 +176,141 @@
     "errorTitle": "Chargement impossible",
     "errorBody": "Vos données sont en sécurité. Vérifiez la connexion et réessayez.",
     "retry": "Réessayer"
+  },
+  "login": {
+    "subtitle": "Salle opérationnelle — connexion",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion…",
+    "failed": "E-mail ou mot de passe incorrect.",
+    "prototype": "Prototype SolveX 3.0 — données fictives, pas un service officiel."
+  },
+  "app": {
+    "queue": "Incidents",
+    "audit": "Journal d'audit",
+    "signOut": "Se déconnecter",
+    "theme": "Thème",
+    "dark": "Sombre",
+    "light": "Clair",
+    "map": "Carte",
+    "list": "Liste",
+    "close": "Fermer",
+    "unparsed": "Messages illisibles",
+    "unparsedHint": "Affichés tels que reçus. Lisez-les, rappelez si besoin.",
+    "notAllowed": "Ce compte ne peut pas ouvrir la salle de régulation."
+  },
+  "strip": {
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "realtime": "Temps réel",
+    "realtimeDown": "Temps réel en pause",
+    "gateway": "Passerelle SMS",
+    "gatewaySim": "Passerelle SMS : simulée",
+    "gatewayDown": "Passerelle SMS injoignable",
+    "osrm": "Itinéraires",
+    "osrmOff": "Itinéraires : estimations seulement",
+    "osrmDown": "Itinéraires indisponibles : estimations",
+    "tilesOnline": "TUILES EN LIGNE",
+    "tilesOffline": "Carte hors ligne",
+    "clock": "Heure locale"
+  },
+  "detail": {
+    "tabs": {
+      "orientation": "Orientation",
+      "reports": "Signalements",
+      "audit": "Audit"
+    },
+    "callBack": "Rappeler",
+    "noCallBack": "Pas de numéro de rappel (expéditeur masqué)",
+    "plusCode": "Plus Code",
+    "coords": "Coordonnées",
+    "copy": "Copier",
+    "copied": "Copié",
+    "openOsm": "Ouvrir dans OpenStreetMap",
+    "raw": "Texte brut",
+    "timeline": "Signalements",
+    "hints": "Moyens suggérés",
+    "hint": {
+      "extrication": "Désincarcération",
+      "fire": "Incendie",
+      "mci": "Plusieurs victimes"
+    },
+    "overrideBand": "Changer le niveau…",
+    "clearOverride": "Revenir au niveau calculé",
+    "overridden": "Niveau fixé par {actor}",
+    "crashed": "Choc {time}",
+    "loadError": "Impossible de charger cet incident.",
+    "computed": "Calculé {band} {nsi}"
+  },
+  "override": {
+    "titleBand": "Changer le niveau",
+    "titleHospital": "Choisir un autre établissement",
+    "reason": "Motif (obligatoire, 5 caractères minimum)",
+    "reasonHint": "Il est enregistré dans le journal d'audit avec votre nom.",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "band": "Nouveau niveau"
+  },
+  "orient": {
+    "loading": "Classement des établissements…",
+    "none": "Aucun établissement à moins de 90 min : contacter la régulation SAMU.",
+    "stabilise": "Pas de centre de niveau A à moins de 60 min : stabiliser puis transférer.",
+    "route": "Ligne droite (estimée)",
+    "sent": "Pré-alerte envoyée {time}",
+    "acked": "Pris en compte {time} ✓",
+    "waiting": "Pas de réponse depuis {minutes} min",
+    "chosen": "Établissement choisi",
+    "notes": "Itinéraires : {notes}"
+  },
+  "lifecycle2": {
+    "cancel": "Fausse alerte…",
+    "cancelTitle": "Annuler : fausse alerte",
+    "cancelled": "Annulé",
+    "merged": "Fusionné avec un autre incident"
+  },
+  "sim": {
+    "open": "Simuler un SMS",
+    "title": "Simuler un SMS entrant",
+    "hint": "Passe par la vraie chaîne d'ingestion, canal « sim ». Marqué DÉMO.",
+    "rollover": "Tonneau, pas de réponse (auto)",
+    "witness_oran": "Piéton + enfant, incarcéré (témoin, Oran)",
+    "witness_near_rollover": "Témoin à 120 m du tonneau",
+    "bad_crc": "Tonneau avec somme de contrôle corrompue",
+    "send": "Envoyer"
+  },
+  "paste": {
+    "open": "Coller un SMS",
+    "title": "Coller un SMS reçu",
+    "hint": "Même chaîne que la passerelle. Un texte illisible est conservé et affiché brut.",
+    "label": "Texte du SMS",
+    "send": "Ajouter à la file",
+    "result": {
+      "created": "Nouvel incident {id}",
+      "merged": "Fusionné avec {id}",
+      "updated": "{id} mis à jour",
+      "duplicate": "Déjà reçu",
+      "unparsed": "Conservé comme illisible : {error}"
+    }
+  },
+  "auditPage": {
+    "title": "Journal d'audit",
+    "filter": "Identifiant d'incident",
+    "all": "Tous les incidents",
+    "when": "Quand",
+    "who": "Qui",
+    "what": "Quoi",
+    "before": "Avant",
+    "after": "Après",
+    "reason": "Motif",
+    "empty": "Aucun événement."
+  },
+  "hospitalView": {
+    "title": "Service des urgences",
+    "incoming": "Patients attendus",
+    "none": "Aucun patient attendu.",
+    "status": "Notre statut",
+    "expires": "Expire après 6 h",
+    "set": "Passer à {status}"
   }
 }

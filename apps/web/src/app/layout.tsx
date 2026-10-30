@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, IBM_Plex_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
+import { cookies } from "next/headers";
 import { dirOf, isLocale, DEFAULT_LOCALE } from "@/i18n/config";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -31,10 +32,13 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const raw = await getLocale();
   const locale = isLocale(raw) ? raw : DEFAULT_LOCALE;
+  // Night-first (docs/06 §1): dark unless the user chose light.
+  const theme = (await cookies()).get("najda-theme")?.value === "light" ? "light" : "dark";
   return (
     <html
       lang={locale}
       dir={dirOf(locale)}
+      data-theme={theme}
       className={cn("h-full", "antialiased", plexArabic.variable, plexMono.variable, bricolage.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col">

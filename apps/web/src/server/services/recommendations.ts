@@ -65,6 +65,9 @@ export type RecommendationView = Recommendation & {
   /** routing provider per hospital id: osrm | ors | haversine (the fallback shows an "estimated" tag) */
   etaProvider: Record<string, EtaSource>;
   etaNotes: string[];
+  /** facility coordinates for the map (straight line when the ETA is the haversine estimate) */
+  coords: Record<string, { lat: number; lon: number }>;
+  incident: { lat: number; lon: number };
 };
 
 export async function recommend(incidentId: string, now = new Date()): Promise<RecommendationView | null> {
@@ -87,5 +90,6 @@ export async function recommend(incidentId: string, now = new Date()): Promise<R
     now: now.getTime(),
   });
   const etaProvider = Object.fromEntries(hospitals.map((h) => [h.id, etas[h.id]?.source ?? 'haversine'])) as Record<string, EtaSource>;
-  return { ...rec, etaProvider, etaNotes: notes };
+  const coords = Object.fromEntries(hospitals.map((h) => [h.id, { lat: h.lat, lon: h.lon }]));
+  return { ...rec, etaProvider, etaNotes: notes, coords, incident: { lat: incident.lat, lon: incident.lon } };
 }

@@ -58,3 +58,48 @@ export async function createPrealert(incidentId: string, hospitalId: string, act
   void deliverOutbox().catch(() => undefined); // status is visible in sms_outbox
   return { ok: true, prealerts, sms: { body, to: hospital.phoneSms }, etaMin, etaEstimated: !cached };
 }
+
+export type AckResult = { ok: true; ackedAt: string; already: boolean } | { ok: false; status: 403 | 404; error: string };
+
+/** Hospital acknowledges a pre-alert (all channels of that incident → hospital). Idempotent; audited. */
+export async function ackPrealert(prealertId: string, actor: string, hospitalId: string | null): Promise<AckResult> {
+  return getSql().begin(async (tx): Promise<AckResult> => {
+    const [p] = await tx<{ incident_id: string; hospital_id: string; acked_at: Date | null }[]>`
+      select incident_id, hospital_id, acked_at from public.prealerts where id = ${prealertId} for update`;
+    if (!p) return { ok: false, status: 404, error: 'pre-alert not found' };
+    if (hospitalId !== null && p.hospital_id !== hospitalId) return { ok: false, status: 403, error: 'not your facility' };
+    if (p.acked_at) return { ok: true, ackedAt: p.acked_at.toISOString(), already: true };
+    const [row] = await tx<{ acked_at: Date }[]>`
+      update public.prealerts set acked_at = now(), acked_by = ${actor}
+      where incident_id = ${p.incident_id} and hospital_id = ${p.hospital_id} and acked_at is null
+      returning acked_at`;
+    await tx`
+      insert into public.audit_events (incident_id, actor, action, before, after, reason)
+      values (${p.incident_id}, ${actor}, 'prealert.acked', null,
+        ${tx.json({ hospital_id: p.hospital_id, prealert_id: prealertId } as postgres.JSONValue)}, null)`;
+    return { ok: true, ackedAt: row!.acked_at.toISOString(), already: false };
+  });
+}
+
+export interface IncomingPrealert {
+  id: string; incident_id: string; channel: string; sent_at: Date; acked_at: Date | null; acked_by: string | null;
+  band: string; nsi: number; conf: string; status: string; crashed_at: Date;
+  reasons: Array<{ code: string; points: number; text: string }> | null; inputs: Record<string, unknown> | null;
+  eta_min: number | null;
+}
+
+/** The hospital's incoming patients: one row per incident (the web card), newest first, last 12 h. */
+export async function listIncoming(hospitalId: string): Promise<IncomingPrealert[]> {
+  const sql = getSql();
+  return sql<IncomingPrealert[]>`
+    select p.id, p.incident_id, p.channel, p.sent_at, p.acked_at, p.acked_by,
+           i.band, i.nsi, i.conf, i.status, i.crashed_at, a.reasons, a.inputs,
+           (select (a2.after->>'eta_min')::int from public.audit_events a2
+              where a2.incident_id = p.incident_id and a2.action = 'prealert.sent'
+                and a2.after->>'hospital_id' = p.hospital_id order by a2.id desc limit 1) as eta_min
+    from public.prealerts p
+    join public.incidents i on i.id = p.incident_id
+    left join lateral (select reasons, inputs from public.assessments where incident_id = p.incident_id order by version desc limit 1) a on true
+    where p.hospital_id = ${hospitalId} and p.channel = 'web' and p.sent_at > now() - interval '12 hours'
+    order by p.sent_at desc`;
+}
