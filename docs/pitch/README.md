@@ -2,7 +2,7 @@
 
 | File | What |
 |---|---|
-| Slides | “Sellekni — pitch” deck (claude.ai artifact, private until shared): 12 slides + sources appendix, dark, 16:9, real screenshots from `screens/` |
+| Slides | “Sellekni — pitch” deck (claude.ai artifact, private until shared): 13 slides + sources appendix (incl. roadmap: OBD, box, prevention radar), dark, 16:9, real screenshots from `screens/` |
 | `ladder.md` | resilience ladder with the trigger for each step down — print |
 | `qa-sheet.md` | Q&A: the docs/10 §6 bank + 10 hard questions — print |
 | `runbook.md` | switch to the cloud backup (≤ 5 lines) and how the backup is set up |

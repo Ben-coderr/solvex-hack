@@ -26,6 +26,8 @@ SAMU, the Gendarmerie or any hospital — don't imply one.
 | 15 | Why SMS and not just 4G? | We send over the internet first and fall back to SMS, which needs only the voice/SMS network. Coverage numbers: not measured; we'd ask the operators. |
 | 16 | Why a phone, not a box in the car? | A box sees the real crash pulse; a phone saturates — so we use how long, not how hard. A box is roadmap; the phone needs nothing installed, which makes a pilot possible. |
 | 17 | What was prepared before the event? | Protocol, scoring, detector packages and the design system — disclosed. Apps, dashboard and integration were built during the event. |
+| 18 | Why not read the airbag from the car's OBD port? | There is no standard OBD signal for "airbag deployed"; it is specific to each manufacturer. A code like B0001 is an airbag-circuit fault, not a deployment. That's one reason our roadmap has our own sensor box. The OBD link would give wheel speed, a sharper speed drop. Roadmap, not built for this demo. |
+| 19 | Your radar predicts accident risk? | Not in this product. A teammate's prototype warns before known black spots (sourced, traced on OpenStreetMap). We quote no accuracy: there is no Algerian data to validate a risk model yet. Roadmap. |
 
 ## B. Ten harder questions
 
