@@ -64,3 +64,45 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter mobile typecheck
+
+  e2e:
+    name: e2e (Playwright headless against `supabase start`)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: "true"
+      SMSGATE_MODE: sim # no gateway phone in CI: outbound SMS are logged, not sent
+      BASE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.122.0
+      - run: pnpm install --frozen-lockfile
+      - name: supabase start (migrations + seed)
+        run: supabase start -x vector,logflare,studio,imgproxy,edge-runtime
+      - name: .env.local + demo logins
+        run: pnpm env:local && pnpm db:users
+      - name: DB integration tests
+        run: pnpm --filter web test:db
+      - run: pnpm --filter web build
+      - name: start the app and wait until /login answers
+        run: |
+          (cd apps/web && nohup pnpm exec next start -p 3000 > ../../next.log 2>&1 &)
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://localhost:3000/login && exit 0; sleep 1; done
+          cat next.log; exit 1
+      - name: e2e (installed Chrome, headless)
+        run: pnpm --filter web test:e2e
+      - if: failure()
+        run: tail -200 next.log
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: apps/web/test-results
+          retention-days: 7

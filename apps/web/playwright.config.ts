@@ -11,7 +11,9 @@ export default defineConfig({
   timeout: 90_000,
   expect: { timeout: 10_000 },
   workers: 1, // one shared database: the hero flow resets it
-  reporter: [['list']],
+  retries: 0, // a flaky test is a bug to fix (wait on UI state), not to retry
+  forbidOnly: !!process.env.CI,
+  reporter: process.env.CI ? [['github'], ['list']] : [['list']],
   use: {
     baseURL: process.env.BASE_URL ?? 'http://localhost:3001',
     channel: 'chrome', // the installed Chrome: no browser download

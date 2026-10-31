@@ -189,6 +189,8 @@ test('D9: crew page states — forged, expired, empty form, closed', async ({ br
 test('D11: /demo — scenario starts the stopwatch, witness merges, Reset returns a verified clean DB in < 5 s', async ({ browser }) => {
   const errors: string[] = [];
   const d = await login(browser, DISPATCHER, errors);
+  // own clean DB: a frontal incident left by an earlier test would make the scenario merge (×2) instead of creating one
+  expect((await d.request.post('/api/demo/reset')).ok()).toBe(true);
   await d.goto('/demo');
   await expect(d.getByText('DEMO — synthetic data')).toBeVisible();
 
@@ -258,7 +260,9 @@ test('screens: witness + crew ar/en/fr light/dark, /demo, /phones', async ({ bro
       await d.setViewportSize({ width, height: 900 });
       for (const page of ['demo', 'phones']) {
         await d.goto(`/${page}`);
-        await d.waitForTimeout(800);
+        // settled = the page's anchor element is up and the web fonts are in (no fixed sleep)
+        await expect(d.getByTestId(page === 'demo' ? 'stopwatch' : 'phone-driver')).toBeVisible();
+        await d.evaluate(() => document.fonts.ready);
         await d.screenshot({ path: `${out}/${page}-${width}-${theme}-${locale}.jpg`, fullPage: true, quality: 70 });
         // no sideways scroll at any width (docs/guidelines/design-constitution.md)
         expect(await d.evaluate(() => document.documentElement.scrollWidth), `${page} ${width}`).toBeLessThanOrEqual(width);
