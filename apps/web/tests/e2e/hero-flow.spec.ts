@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, HOSPITAL_B_ID, login, PASSWORD } from './helpers';
+import { closeOpened, DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, HOSPITAL_B_ID, login, PASSWORD } from './helpers';
 
 /**
  * G2 hero flow (docs/03 §4 flow C + D): simulate SMS → pin → detail → orientation → pre-alert → hospital ACK →
@@ -10,6 +10,7 @@ import { DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, HOSPITAL_B_ID, login, PASSWORD }
 test.beforeAll(() => {
   expect(PASSWORD, 'DEMO_USER_PASSWORD must be set in .env.local (pnpm env:local && pnpm db:users)').not.toBe('');
 });
+test.afterEach(closeOpened);
 
 test('hero flow: SMS → pin → orientation → pre-alert → hospital ACK → audit', async ({ browser }) => {
   const errors: string[] = [];

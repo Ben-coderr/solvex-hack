@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { test, type Browser, type Page } from '@playwright/test';
+import { test, type Browser, type BrowserContext, type Page } from '@playwright/test';
 
 /** Shared by the e2e specs: demo logins, and a console/HTTP error sink that fails the test. */
 export const PASSWORD = process.env.DEMO_USER_PASSWORD ?? '';
@@ -37,8 +37,22 @@ export function watchConsole(page: Page, sink: string[]) {
   });
 }
 
+/**
+ * Contexts a test opened with browser.newContext() live until the WORKER ends, not the test. Left open, every earlier
+ * test's dashboard kept polling and refetching on each Realtime push under the same dispatcher's rate-limit key, and a
+ * later test got 429 (P7: intermittent D9 failure). Specs call `closeOpened` in afterEach.
+ */
+const opened: BrowserContext[] = [];
+export function track<C extends BrowserContext>(ctx: C): C {
+  opened.push(ctx);
+  return ctx;
+}
+export async function closeOpened() {
+  await Promise.all(opened.splice(0).map((c) => c.close().catch(() => undefined)));
+}
+
 export async function login(browser: Browser, email: string, errors: string[]) {
-  const context = await browser.newContext({ locale: 'en-GB' });
+  const context = track(await browser.newContext({ locale: 'en-GB' }));
   await context.addCookies([{ name: 'NEXT_LOCALE', value: 'en', url: test.info().project.use.baseURL! }]);
   const page = await context.newPage();
   watchConsole(page, errors);

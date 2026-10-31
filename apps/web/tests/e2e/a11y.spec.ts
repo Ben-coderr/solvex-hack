@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Browser, type Page } from '@playwright/test';
-import { DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, PASSWORD } from './helpers';
+import { closeOpened, DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, PASSWORD, track } from './helpers';
 
 /**
  * P7 accessibility pass on the real screens (docs/06 §7): axe WCAG 2.1 A/AA (contrast, names, labels), touch targets,
@@ -14,9 +14,10 @@ const VARIANTS: Variant[] = [{ locale: 'en', theme: 'light' }, { locale: 'ar', t
 test.beforeAll(() => {
   expect(PASSWORD, 'DEMO_USER_PASSWORD must be set in .env.local').not.toBe('');
 });
+test.afterEach(closeOpened); // also on failure, when the test's own ctx.close() is never reached
 
 async function context(browser: Browser, v: Variant, width: number, reducedMotion: 'reduce' | 'no-preference' = 'reduce') {
-  const ctx = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: v.theme, reducedMotion });
+  const ctx = track(await browser.newContext({ viewport: { width, height: 900 }, colorScheme: v.theme, reducedMotion }));
   const base = test.info().project.use.baseURL!;
   await ctx.addCookies([{ name: 'NEXT_LOCALE', value: v.locale, url: base }, { name: 'sellekni-theme', value: v.theme, url: base }]);
   return ctx;

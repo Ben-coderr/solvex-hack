@@ -2,7 +2,7 @@ import { createHmac } from 'node:crypto';
 import { mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { expect, test, type Browser } from '@playwright/test';
-import { DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, login, PASSWORD, watchConsole } from './helpers';
+import { closeOpened, DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, login, PASSWORD, track, watchConsole } from './helpers';
 
 /**
  * P6: witness page (D10) merge on an old-browser profile, crew update (D9) raising the band, /demo reset (D11),
@@ -16,9 +16,10 @@ const OLD_ANDROID = 'Mozilla/5.0 (Linux; U; Android 4.4.2; fr-fr; GT-I9505 Build
 test.beforeAll(() => {
   expect(PASSWORD, 'DEMO_USER_PASSWORD must be set in .env.local').not.toBe('');
 });
+test.afterEach(closeOpened);
 
 async function oldPhone(browser: Browser) {
-  const ctx = await browser.newContext({ javaScriptEnabled: false, userAgent: OLD_ANDROID, viewport: { width: 320, height: 640 }, locale: 'fr-FR' });
+  const ctx = track(await browser.newContext({ javaScriptEnabled: false, userAgent: OLD_ANDROID, viewport: { width: 320, height: 640 }, locale: 'fr-FR' }));
   return ctx.newPage();
 }
 
@@ -88,7 +89,7 @@ test('D10: wrong token, closed incident, missing confirmation, offline', async (
   await expect(w.getByTestId('witness-error')).toContainText('Cochez la case');
 
   // offline (JS on): the form says so instead of failing silently
-  const ctx = await browser.newContext({ locale: 'en-GB', viewport: { width: 360, height: 740 } });
+  const ctx = track(await browser.newContext({ locale: 'en-GB', viewport: { width: 360, height: 740 } }));
   await ctx.addCookies([{ name: 'NEXT_LOCALE', value: 'en', url }]);
   const on = await ctx.newPage();
   await on.goto(url);
