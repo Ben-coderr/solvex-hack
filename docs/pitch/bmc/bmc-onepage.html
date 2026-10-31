@@ -1,0 +1,147 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Sellekni Business Model Canvas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+@page { size: 420mm 297mm; margin: 0; }
+:root { --fg:#141A21; --soft:#3A4553; --muted:#5B6776; --line:#D5DCE4; --sunk:#F3F5F8; --red:#D92B3A; --blue:#2F6FE0; --green:#12865A; --amber:#A86500;
+  --d:'Nunito',Arial,sans-serif; --b:'Inter',Helvetica,Arial,sans-serif; --m:'IBM Plex Mono',Menlo,monospace; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html,body { width:1587px; height:1122px; background:#fff; color:var(--fg); font-family:var(--b); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.page { width:1587px; height:1122px; padding:24px 28px 18px; display:flex; flex-direction:column; gap:12px; overflow:hidden; }
+header { display:flex; align-items:center; gap:16px; }
+.tile { width:56px; height:56px; border-radius:14px; background:#0D1013; display:grid; place-items:center; flex:none; }
+.tile img { width:38px; height:44px; object-fit:contain; }
+.ht { flex:1; display:flex; flex-direction:column; gap:3px; }
+h1 { font-family:var(--d); font-weight:800; font-size:27px; line-height:1.1; }
+.sub { font-size:12.5px; color:var(--soft); }
+.hr { display:flex; flex-direction:column; align-items:flex-end; gap:5px; font-size:11.5px; color:var(--muted); text-align:right; }
+.hr b { color:var(--fg); }
+.chip { display:inline-block; font-family:var(--m); font-size:9.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; padding:1px 6px; border-radius:99px; white-space:nowrap; vertical-align:1px; }
+.v { background:#E2F4EC; color:var(--green); } .h { background:#FFF2DC; color:var(--amber); } .p { background:#FDE9EB; color:var(--red); }
+.thesis { font-size:13px; line-height:1.4; background:var(--sunk); border-left:4px solid var(--red); border-radius:8px; padding:8px 14px; }
+.canvas { flex:1; display:grid; grid-template-columns:repeat(10,1fr); grid-template-rows:1fr 1fr auto; gap:8px;
+  grid-template-areas:"kp kp ka ka vp vp cr cr cs cs" "kp kp kr kr vp vp ch ch cs cs" "co co co co co rs rs rs rs rs"; min-height:0; }
+.box { border:1.5px solid var(--line); border-radius:10px; padding:9px 11px; display:flex; flex-direction:column; gap:5px; min-height:0; overflow:hidden; }
+.box .n { font-family:var(--m); font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.box h2 { font-family:var(--d); font-weight:800; font-size:15px; line-height:1.15; }
+.box ul { padding-left:13px; display:flex; flex-direction:column; gap:3px; font-size:11.4px; line-height:1.35; color:var(--soft); }
+.box b { color:var(--fg); font-weight:600; }
+.kp{grid-area:kp}.ka{grid-area:ka}.kr{grid-area:kr}.cr{grid-area:cr}.ch{grid-area:ch}.cs{grid-area:cs}.co{grid-area:co}
+.vp{grid-area:vp;border:2px solid var(--red)} .rs{grid-area:rs;border:2px solid var(--green)}
+.bottom { display:grid; grid-template-columns:.9fr 1.55fr .85fr; gap:10px; height:318px; flex:none; }
+.panel { border:1.5px solid var(--line); border-radius:10px; padding:9px 12px; display:flex; flex-direction:column; gap:6px; min-width:0; overflow:hidden; }
+.panel h3 { font-family:var(--d); font-weight:800; font-size:14px; }
+.panel .k { font-family:var(--m); font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); }
+.panel svg { width:100%; height:auto; display:block; }
+.panel p, .panel li { font-size:11px; line-height:1.35; color:var(--soft); }
+.panel ul { padding-left:13px; display:flex; flex-direction:column; gap:2px; }
+.tiers { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.tier { border:1.5px solid var(--line); border-radius:8px; padding:6px 8px; display:flex; flex-direction:column; gap:2px; font-size:11px; color:var(--soft); }
+.tier b { font-size:12.5px; color:var(--fg); } .tier.free { border-color:#9ED8BF; } .tier.paid { border-style:dashed; border-color:#E8A0A7; }
+.tier .chip { align-self:flex-start; }
+.flow { display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:11.5px; color:var(--muted); background:var(--sunk); border-radius:8px; padding:7px 9px; }
+.flow b { color:var(--fg); background:#fff; border:1.5px solid var(--red); border-radius:6px; padding:2px 6px; }
+.chain { display:flex; align-items:center; gap:4px; font-size:10.5px; color:var(--muted); }
+.chain span { flex:1; border:1.5px solid var(--line); border-radius:7px; padding:5px 6px; color:var(--fg); font-weight:600; line-height:1.25; }
+.chain i { font-style:normal; font-weight:400; color:var(--soft); }
+.cc { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.cc div { background:var(--sunk); border-radius:8px; padding:6px 8px; }
+.cc b { font-size:11px; }
+footer { font-size:10px; color:var(--muted); display:flex; justify-content:space-between; gap:16px; border-top:1px solid var(--line); padding-top:6px; }
+</style></head><body><div class="page">
+<header>
+  <div class="tile"><img src="data:image/png;base64,__MARK__" alt="Sellekni logo"></div>
+  <div class="ht">
+    <h1>Sellekni · Business Model Canvas</h1>
+    <p class="sub">SolveX 3.0 · Challenge 1 · Road emergencies in Algeria · A phone-based crash alert that reaches the emergency operations room by internet or plain SMS, with an estimated risk and a hospital suggestion.</p>
+  </div>
+  <div class="hr">
+    <span><b>Team:</b> Cheikh Mohamed Tahar · Benkorich Abdenour · Ould Miloud Zakaria · Bouzid Mustapha · Baghdad Imad Eddine</span>
+    <span>31 Oct 2026 · prototype, synthetic data &nbsp; <span class="chip v">Verified</span> <span class="chip h">Hypothesis</span> <span class="chip p">Paid</span></span>
+  </div>
+</header>
+<p class="thesis"><b>The model in one sentence.</b> The apps are free for everyone who sends an alert and, during the pilot, for the emergency services that receive it. Money comes from paid hardware (an OBD dongle and the Sellekni Box) for drivers and fleets who want stronger crash detection, then from institutional licences and insurers, with non-dilutive funding to start. Payers and prices are still to be validated.</p>
+
+<div class="canvas">
+  <div class="box kp"><span class="n">8 · Key partners</span><h2>Who could help us?</h2><ul>
+    <li><b>Civil Protection</b> (14 / 1021) ops rooms: co-design, ground truth</li>
+    <li><b>Health ministry, SAMU, hospital EDs:</b> capability data, clinical review</li>
+    <li><b>Telecom operators:</b> SMS short code, coverage maps, LTE SIMs for the box</li>
+    <li><b>Emergency physicians, universities:</b> score calibration</li>
+    <li><b>Electronics makers and assemblers:</b> box prototype and production</li>
+    <li><b>ARPCE:</b> equipment homologation</li>
+    <li><b>DNSR:</b> statistics, road-safety campaigns</li>
+    <li><b>Incubators, startup-label committee</b></li>
+    <li>Later: <b>insurers, fleets</b> for distribution</li>
+    <li><span class="chip h">To approach · none agreed</span></li></ul></div>
+  <div class="box ka"><span class="n">7 · Key activities</span><h2>What must we do?</h2><ul>
+    <li>Build the app, gateway and dashboard</li>
+    <li>Record real drives, tune the detector</li>
+    <li>Verify hospitals; calibrate the score with physicians</li>
+    <li><b>Hardware:</b> box prototype, C encoder, homologation</li>
+    <li>Operator training; legal (law 18-07 / 25-11)</li></ul></div>
+  <div class="box kr"><span class="n">6 · Key resources</span><h2>What do we need?</h2><ul>
+    <li><b>Built:</b> SLK1 protocol and rules engine (67 tests + Python cross-check), crash detector with replays (21 tests), dashboard, witness and hospital views in AR / FR / EN <span class="chip v">Verified</span></li>
+    <li><b>Designed:</b> Sellekni Box (ESP32), OBD link</li>
+    <li><b>To build:</b> verified hospital registry, hosting in Algeria, real driving data</li></ul></div>
+  <div class="box vp"><span class="n">2 · Value proposition</span><h2>What problem do we solve?</h2><ul>
+    <li><b>Victim:</b> if you can’t call, your phone alerts with your exact position. 30 s to say “I’m OK”, then it sends itself. Works by plain SMS when data is weak; queues when there is no signal.</li>
+    <li><b>Witness:</b> report in 5 taps in the app, or 4 questions from a web link; no account.</li>
+    <li><b>14 operator:</b> one merged, located report with an estimated risk and its reasons; hospitals ranked by capability and travel time. The human decides; every action is logged.</li>
+    <li><b>Hospital ED:</b> a pre-alert before the patient arrives, acknowledged.</li>
+    <li><b>Hardware buyer:</b> the OBD dongle sharpens the speed drop; the Box’s ±200 g sensor sees the real crash pulse that phones clip, with its own GNSS, LTE and backup power.</li>
+    <li><b>We don’t</b> replace 14 / 1021, diagnose, or claim real-time bed data.</li></ul></div>
+  <div class="box cr"><span class="n">4 · Customer relationships</span><h2>How do we support them?</h2><ul>
+    <li>Weekly co-design and a training day with operators; a named contact per partner</li>
+    <li>Quiet app: no ads, no tracking outside an alert; SMS receipt to the sender</li>
+    <li>“False alarm” feedback loop tunes the detector</li>
+    <li><b>Hardware:</b> install guide, firmware updates, warranty <span class="chip h">H</span></li></ul></div>
+  <div class="box ch"><span class="n">3 · Channels</span><h2>How do we reach them?</h2><ul>
+    <li>Pilot: APK, witness link, dashboard in a browser</li>
+    <li>Later: Play Store (SMS-permission policy or composer fallback)</li>
+    <li>Civil Protection days, driving schools, DNSR campaigns</li>
+    <li><b>Hardware:</b> fleet onboarding, insurer packs, car-accessory shops, online <span class="chip h">H</span></li></ul></div>
+  <div class="box cs"><span class="n">1 · Customer segments</span><h2>Who are they?</h2><ul>
+    <li><b>Free users:</b> drivers and passengers with Android phones (≈ 87 % of phones in Algeria) <span class="chip v">StatCounter</span>; witnesses</li>
+    <li><b>Free receivers (pilot):</b> Civil Protection 14 / 1021, Gendarmerie 1055, Police 17, SAMU where present; hospital EDs</li>
+    <li><b>Hardware buyers:</b> drivers who want stronger detection; fleets and transport operators (buses, coaches, lorries) <span class="chip h">H</span></li>
+    <li><b>Institutional payers:</b> the State (B2G); motor insurers, ≈ 41.6 % of 2024 premiums <span class="chip v">Trésor via Atlas Mag.</span></li>
+    <li><b>Pilot early adopters:</b> one wilaya’s ops room, one university hospital, one fleet</li></ul></div>
+  <div class="box co"><span class="n">9 · Cost structure</span><h2>What will it cost?</h2><ul>
+    <li><b>Fixed:</b> team time (the main cost); hosting in Algeria; map and routing hosting</li>
+    <li><b>Per incident:</b> about one SMS receipt and one hospital pre-alert, plus gateway SIMs</li>
+    <li><b>Hardware:</b> parts (ESP32, ±200 g sensor, LTE/GNSS modem, power), enclosure, box SIM data, homologation (Executive Decree 26-97), warranty</li>
+    <li><b>One-off:</b> medical and legal review, trademark (INAPI), test phones</li>
+    <li>No supplier quotes yet, so no figures <span class="chip h">H</span></li></ul></div>
+  <div class="box rs"><span class="n">5 · Revenue streams</span><h2>How will it be funded?</h2><ul>
+    <li><b>Apps: always free for citizens.</b> Nobody pays to be alerted.</li>
+    <li><span class="chip p">Paid</span> <b>OBD dongle:</b> entry-level hardware sale to drivers and fleets</li>
+    <li><span class="chip p">Paid</span> <b>Sellekni Box:</b> premium hardware sale, with an optional connectivity subscription for its SIM <span class="chip h">H</span></li>
+    <li><b>B2G:</b> licence and support contract for the ops-room software <span class="chip h">H</span></li>
+    <li><b>Fleets and insurers:</b> crash notification and data export subscription <span class="chip h">H</span></li>
+    <li><b>Now:</b> prizes, incubators, Algeria Startup Fund after labelling <span class="chip v">Route verified</span></li>
+    <li>No price set before interviewing 3 fleet managers and 2 insurers.</li></ul></div>
+</div>
+
+<div class="bottom">
+  <div class="panel"><span class="k">Hardware plan · roadmap · paid tier</span><h3>Free app, paid hardware, one packet</h3>
+    <div class="tiers">
+      <div class="tier free"><span class="chip v">Free · today</span><b>Phone app</b><span>accelerometer, gyro, GPS; saturates on hard impacts</span></div>
+      <div class="tier free"><span class="chip v">Free · today</span><b>Witness</b><span>in the app or a web link</span></div>
+      <div class="tier paid"><span class="chip p">Paid · roadmap</span><b>OBD dongle</b><span>wheel speed from the diagnostic port</span></div>
+      <div class="tier paid"><span class="chip p">Paid · roadmap</span><b>Sellekni Box</b><span>±200 g sensor, own GNSS, LTE, backup power</span></div>
+    </div>
+    <div class="flow"><span>all sources</span>→<b>same 160-char packet</b>→<b>same server</b>→<span>a human decides</span></div></div>
+  <div class="panel"><span class="k">Schema · Sellekni Box (ESP32)</span><h3>Reference design and firmware flow</h3>__BOX__
+    <p>Acceptance test: the C encoder reproduces our 302 valid and 134 invalid test packets byte for byte. LTE because Algeria plans to retire 2G/3G by 2029.</p></div>
+  <div class="panel"><span class="k">Schema · OBD link</span><h3>What the car’s diagnostic port adds</h3>
+    <div class="chain"><span>Car OBD-II port<br><i>pin 16: +12 V</i></span>→<span>BLE dongle<br><i>ELM327-type</i></span>→<span>Phone app<br><i>reads PID 0D</i></span>→<span>Same detector<br><i>sharper speed drop</i></span></div>
+    <div class="cc"><div><b>Can:</b><ul><li>vehicle speed, PID 0D (km/h)</li><li>engine speed, PID 0C</li><li>faster speed than 1 Hz GPS</li></ul></div>
+    <div><b>Can’t:</b><ul><li>read “airbag deployed”: no standard signal</li><li>B0001 is a circuit fault, not a deployment</li></ul></div></div>
+    <p><b>Status:</b> box and OBD link are designed, not built, not tested in a vehicle, not homologated. No hardware price is set.</p></div>
+</div>
+
+<footer>
+  <span>Sources: DNSR 2025 via Atlas Magazine; Direction Générale du Trésor via Atlas Magazine (insurance 2024); StatCounter (Android share); decrees 20-254 / 25-311 (startup label); Executive Decree 26-97 (homologation).</span>
+  <span>Hackathon prototype · not an official emergency service · no agreement with any partner today · in an emergency call 14 / 1021 · 1055 · 17</span>
+</footer>
+</div></body></html>

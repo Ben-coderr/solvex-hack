@@ -1,0 +1,406 @@
+<title>Sellekni Business Model Canvas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a working canvas first (the classic 9-box grid), then one detailed sheet per block in the workshop's question order. */
+:root {
+  --bg: #F3F5F8; --surface: #FFFFFF; --sunk: #E9EDF2; --line: #D5DCE4;
+  --fg: #141A21; --muted: #556171; --soft: #3A4553;
+  --red: #D92B3A; --red-soft: #FDE9EB; --blue: #2F6FE0; --blue-soft: #E7EFFD;
+  --green: #12865A; --green-soft: #E2F4EC; --amber: #A86500; --amber-soft: #FFF2DC;
+  --tile: #0D1013;
+  --display: 'Nunito', 'Trebuchet MS', Arial, sans-serif;
+  --body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', Menlo, 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1013; --surface: #151A1F; --sunk: #10151A; --line: #2A313A;
+  --fg: #E8ECF1; --muted: #9AA4B2; --soft: #BFC8D4;
+  --red: #FF5A66; --red-soft: #2A1418; --blue: #6FA2FF; --blue-soft: #14213D;
+  --green: #3DD68C; --green-soft: #10261C; --amber: #FFB020; --amber-soft: #2A2312;
+  --tile: #0A0C0F; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0D1013; --surface: #151A1F; --sunk: #10151A; --line: #2A313A;
+  --fg: #E8ECF1; --muted: #9AA4B2; --soft: #BFC8D4;
+  --red: #FF5A66; --red-soft: #2A1418; --blue: #6FA2FF; --blue-soft: #14213D;
+  --green: #3DD68C; --green-soft: #10261C; --amber: #FFB020; --amber-soft: #2A2312;
+  --tile: #0A0C0F; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; }
+.wrap { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 4.4vw, 48px); }
+h2 { font-size: clamp(24px, 3vw, 32px); }
+h3 { font-size: 20px; }
+p { margin: 0; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+a { color: var(--blue); }
+.eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* header */
+header { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; }
+.tile { width: 84px; height: 84px; border-radius: 20px; background: var(--tile); display: grid; place-items: center; }
+.tile img { width: 56px; height: 64px; object-fit: contain; }
+.head-text { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.lede { font-size: 18px; color: var(--soft); max-width: 70ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+.meta b { color: var(--fg); font-weight: 600; }
+
+/* status chips */
+.chip { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 999px; vertical-align: 2px; white-space: nowrap; }
+.v { background: var(--green-soft); color: var(--green); }
+.h { background: var(--amber-soft); color: var(--amber); }
+.t { background: var(--blue-soft); color: var(--blue); }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--soft); align-items: center; }
+
+/* one-liner */
+.thesis { background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--red); border-radius: 14px; padding: 22px 26px;
+  font-size: 19px; line-height: 1.5; }
+
+/* the canvas */
+.canvas-wrap { overflow-x: auto; }
+.canvas { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 10px;
+  grid-template-areas:
+    "kp kp ka ka vp vp cr cr cs cs"
+    "kp kp kr kr vp vp ch ch cs cs"
+    "co co co co co rs rs rs rs rs"; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.box .n { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.box h3 { font-size: 17px; }
+.box ul { font-size: 14px; line-height: 1.45; color: var(--soft); padding-left: 16px; }
+.box a.more { font-size: 13px; margin-top: auto; text-decoration: none; font-weight: 600; }
+.box a.more:hover, .box a.more:focus-visible { text-decoration: underline; }
+.kp { grid-area: kp; } .ka { grid-area: ka; } .kr { grid-area: kr; } .vp { grid-area: vp; border: 2px solid var(--red); }
+.cr { grid-area: cr; } .ch { grid-area: ch; } .cs { grid-area: cs; } .co { grid-area: co; } .rs { grid-area: rs; border: 2px solid var(--green); }
+.reading { font-size: 14px; color: var(--muted); }
+
+/* detailed sheets */
+.sheets { display: flex; flex-direction: column; gap: 20px; }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; scroll-margin-top: 16px; }
+.sheet-side { display: flex; flex-direction: column; gap: 10px; }
+.big { font-family: var(--display); font-weight: 800; font-size: 44px; line-height: 1; color: var(--red); }
+.q { font-size: 15px; color: var(--muted); font-style: italic; }
+.sheet-body { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.sheet-body h4 { margin: 0; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.group { display: flex; flex-direction: column; gap: 8px; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.mini { background: var(--sunk); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mini b { font-weight: 700; }
+.mini p { font-size: 15px; color: var(--soft); }
+.note { font-size: 14px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 12px; }
+
+/* tables */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--sunk); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.panel.good { border-top: 5px solid var(--green); } .panel.weak { border-top: 5px solid var(--amber); }
+section > .section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.section-head p { color: var(--soft); max-width: 75ch; }
+.team { display: flex; flex-wrap: wrap; gap: 10px; }
+.team span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 600; }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 6px; }
+
+@media (max-width: 860px) {
+  .canvas-wrap { overflow: visible; }
+  .canvas { grid-template-columns: 1fr; grid-template-areas: "cs" "vp" "ch" "cr" "rs" "kr" "ka" "kp" "co"; }
+  .sheet { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .two { grid-template-columns: 1fr; }
+  header { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="tile"><img src="data:image/png;base64,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" alt="Sellekni logo"></div>
+  <div class="head-text">
+    <p class="eyebrow">SolveX 3.0 · Challenge 1 · Road emergencies in Algeria</p>
+    <h1>Sellekni Business Model Canvas</h1>
+    <p class="lede">A phone-based crash alert that reaches the emergency operations room by internet or plain SMS, with an estimated risk and a hospital suggestion. This canvas answers the workshop’s nine questions and marks what we have checked and what we still have to prove.</p>
+    <div class="meta"><span><b>Version</b> 31 Oct 2026</span><span><b>Stage</b> hackathon prototype, synthetic data</span><span><b>Status</b> hypotheses to validate before any price or partnership</span></div>
+  </div>
+</header>
+
+<div class="legend">
+  <span><span class="chip v">Verified</span> sourced fact or something we built and tested</span>
+  <span><span class="chip h">Hypothesis</span> what we believe, not yet confirmed</span>
+  <span><span class="chip t">Next test</span> how we will check it</span>
+</div>
+
+<p class="thesis"><b>The model in one sentence.</b> Sellekni is a public-safety data layer that is free for the people who send alerts, and free for the emergency services that receive them during the pilot. Money, if any, comes from organisations that benefit from faster, better-structured crash reports (the State, insurers, fleets) and from non-dilutive funding. All of it is to be validated.</p>
+
+<section aria-labelledby="canvas-h">
+  <div class="section-head">
+    <p class="eyebrow">At a glance</p>
+    <h2 id="canvas-h">The canvas</h2>
+    <p class="reading">Read it in the workshop order: 1 Segments → 2 Value → 3 Channels → 4 Relationships → 5 Revenue, then the operating side 6–9. Each box links to its detailed sheet below.</p>
+  </div>
+  <div class="canvas-wrap">
+  <div class="canvas">
+    <div class="box kp"><span class="n">8 · Key partners</span><h3>Who could help us?</h3>
+      <ul><li>Civil Protection (14 / 1021) ops rooms</li><li>Health ministry, SAMU, hospital EDs</li><li>Telecom operators: short code, coverage maps</li><li>Emergency physicians, universities</li><li>DNSR, incubators, startup-label committee</li><li>Later: insurers, fleets</li></ul>
+      <span class="chip h">To approach · none agreed</span><a class="more" href="#b8">Details →</a></div>
+    <div class="box ka"><span class="n">7 · Key activities</span><h3>What must we do?</h3>
+      <ul><li>Build the app and dashboard</li><li>Record real driving data, tune the detector</li><li>Verify hospital capabilities</li><li>Clinical review of the score</li></ul>
+      <a class="more" href="#b7">Details →</a></div>
+    <div class="box kr"><span class="n">6 · Key resources</span><h3>What do we need?</h3>
+      <ul><li>Tested SLK1 protocol and rules engine</li><li>Crash detector with replay traces</li><li>Hospital capability registry</li><li>Hosting in Algeria; the team</li></ul>
+      <a class="more" href="#b6">Details →</a></div>
+    <div class="box vp"><span class="n">2 · Value proposition</span><h3>What problem do we solve?</h3>
+      <ul><li><b>Victim:</b> if you can’t call, your phone alerts, even without mobile data</li><li><b>Operator:</b> one located, merged, explained report; the human decides</li><li><b>Hospital:</b> a pre-alert before the patient arrives</li><li><b>Payers:</b> structured, time-stamped crash data</li></ul>
+      <a class="more" href="#b2">Details →</a></div>
+    <div class="box cr"><span class="n">4 · Relationships</span><h3>How do we support them?</h3>
+      <ul><li>Co-design with one ops room</li><li>Operator training day</li><li>SMS receipt to the sender</li><li>“False alarm” feedback loop</li></ul>
+      <a class="more" href="#b4">Details →</a></div>
+    <div class="box ch"><span class="n">3 · Channels</span><h3>How do we reach them?</h3>
+      <ul><li>Android app (APK in the pilot)</li><li>Witness web link, no account</li><li>Dashboard in any browser</li><li>Civil Protection days, driving schools, fleets</li></ul>
+      <a class="more" href="#b3">Details →</a></div>
+    <div class="box cs"><span class="n">1 · Customer segments</span><h3>Who are they?</h3>
+      <ul><li><b>Free beneficiaries:</b> drivers and passengers, witnesses, 14 ops rooms, hospital EDs</li><li><b>Possible payers:</b> the State (B2G), motor insurers, fleets and transport operators</li></ul>
+      <span class="chip h">Payers are hypotheses</span><a class="more" href="#b1">Details →</a></div>
+    <div class="box co"><span class="n">9 · Cost structure</span><h3>What will it cost?</h3>
+      <ul><li>Team time (the main cost)</li><li>Hosting in Algeria; SMS gateway and messages; map and routing hosting</li><li>Medical and legal review; trademark; test phones</li></ul>
+      <span class="chip h">No quotes yet, so no figures</span><a class="more" href="#b9">Details →</a></div>
+    <div class="box rs"><span class="n">5 · Revenue streams</span><h3>How will it be funded?</h3>
+      <ul><li><b>Always free for citizens</b></li><li>Now: prizes, incubators, startup fund (non-dilutive)</li><li>To test: public licence (B2G), insurer and fleet subscription, anonymised black-spot data</li></ul>
+      <span class="chip h">No price set</span><a class="more" href="#b5">Details →</a></div>
+  </div>
+  </div>
+</section>
+
+<section aria-labelledby="detail-h">
+  <div class="section-head">
+    <p class="eyebrow">Block by block</p>
+    <h2 id="detail-h">The nine answers in detail</h2>
+    <p>Each sheet starts with the workshop’s question, then gives our answer, how sure we are, and what would change our mind.</p>
+  </div>
+  <div class="sheets">
+
+  <article class="sheet" id="b1">
+    <div class="sheet-side"><span class="big">1</span><h3>Customer segments</h3><p class="q">Who are your customers or beneficiaries?</p></div>
+    <div class="sheet-body">
+      <div class="cols">
+        <div class="mini"><b>Senders · free</b><p>Drivers and passengers with an Android phone. About 87 % of mobile OS share in Algeria is Android <span class="chip v">Verified · StatCounter</span></p><p>Witnesses at the scene, with a web link and no account.</p></div>
+        <div class="mini"><b>Receivers · free in the pilot</b><p>Emergency operations rooms: Civil Protection 14 / 1021, Gendarmerie 1055, Police 17 / 1548 <span class="chip v">Verified</span>, and SAMU where it operates (no national SAMU number confirmed).</p><p>Hospital emergency departments receiving a pre-alert.</p></div>
+        <div class="mini"><b>Possible payers</b><p>The State, through the ministries that run the operations rooms (B2G). Motor insurers. Fleets and transport operators (buses, coaches, lorries). Employers with driving staff. <span class="chip h">Hypothesis</span></p></div>
+      </div>
+      <div class="group"><h4>Why these payers</h4>
+        <ul>
+          <li>Motor insurance is the largest branch of the Algerian market: about 71.55 bn DZD, 41.6 % of 2024 premiums <span class="chip v">Verified · Trésor data via Atlas Magazine</span>. Faster first notification could matter to them; we have not asked them yet.</li>
+          <li>The DNSR names heavy vehicles as a driver of the 2025 trend <span class="chip v">Verified · qualitative</span>. Fleets already pay for tracking; crash notification could join it.</li>
+          <li>The receivers are public services, so “free during the pilot” avoids a procurement fight before anyone has seen value.</li>
+        </ul></div>
+      <p class="note"><span class="chip t">Next test</span> Pilot early adopters: one wilaya’s Civil Protection ops room, one university hospital ED, and one fleet of professional drivers.</p>
+    </div>
+  </article>
+
+  <article class="sheet" id="b2">
+    <div class="sheet-side"><span class="big">2</span><h3>Value proposition</h3><p class="q">What problem do you solve for them?</p></div>
+    <div class="sheet-body">
+      <div class="cols">
+        <div class="mini"><b>Victim and passengers</b><p>“If I can’t call, my phone does, with my exact position, and I stay in control.” A 30 s alarm with an “I’m OK” button, then the alert sends itself. It works through plain SMS when mobile data is weak, and queues when there is no signal.</p></div>
+        <div class="mini"><b>Witness</b><p>Report in 4 quick questions from a web link: no app, no account, no name.</p></div>
+        <div class="mini"><b>Operations room</b><p>One merged, de-duplicated, located report with an explainable estimated risk and a hospital suggestion ranked by capability and travel time. The operator decides; every action is logged.</p></div>
+        <div class="mini"><b>Hospital ED</b><p>A pre-alert with the mechanism and arrival estimate, which staff acknowledge, so the team is ready before the ambulance arrives.</p></div>
+        <div class="mini"><b>Payers</b><p>Structured, time-stamped crash data and faster first notification <span class="chip h">Hypothesis</span></p></div>
+      </div>
+      <div class="group"><h4>What we deliberately do not promise</h4>
+        <ul><li>We don’t replace 14 / 1021 or the regulating doctor: the app still opens the dialler.</li><li>We don’t make a diagnosis: transparent rules give an estimated risk.</li><li>We don’t claim real-time bed availability: that feed does not exist.</li><li>We don’t claim minutes or lives saved: the pilot measures it.</li></ul></div>
+      <p class="note">Why minutes matter, from the literature: automatic notification 1.2 min vs 5.7 min for witness calls in a US field test (NHTSA, 1990s, an analogy); each extra 10 min before hospital is linked to an odds ratio of 1.04 for in-hospital death (Gauss et al., JAMA Surg 2019, France).</p>
+    </div>
+  </article>
+
+  <article class="sheet" id="b3">
+    <div class="sheet-side"><span class="big">3</span><h3>Channels</h3><p class="q">How will you reach them?</p></div>
+    <div class="sheet-body">
+      <div class="cols">
+        <div class="mini"><b>Pilot</b><p>Android app installed directly (APK), the witness web link shared on the scene, and the dashboard in any browser on existing ops-room PCs.</p></div>
+        <div class="mini"><b>After the pilot</b><p>Play Store. Its SMS permission is restricted, so we either follow Google’s policy route or fall back to opening the phone’s SMS composer pre-filled.</p></div>
+        <div class="mini"><b>Distribution</b><p>Civil Protection awareness days, driving schools, university campuses, fleet onboarding, DNSR road-safety campaigns, and insurer welcome packs <span class="chip h">Hypothesis</span></p></div>
+      </div>
+      <p class="note"><span class="chip t">Next test</span> 8 drivers try the onboarding in 5 minutes; we record where they stop.</p>
+    </div>
+  </article>
+
+  <article class="sheet" id="b4">
+    <div class="sheet-side"><span class="big">4</span><h3>Customer relationships</h3><p class="q">How will you support and retain them?</p></div>
+    <div class="sheet-body">
+      <div class="cols">
+        <div class="mini"><b>Operators</b><p>Weekly co-design with a small group of operators, a one-day training (the web interface is standard), and a named contact at each pilot partner.</p></div>
+        <div class="mini"><b>Drivers</b><p>A quiet app: no ads, no tracking outside an alert, Arabic and French with right-to-left screens. An SMS receipt tells the sender the alert was received.</p></div>
+        <div class="mini"><b>Trust loop</b><p>Every alert can be closed as “false alarm” with a reason. Those reasons feed the detector tuning and are reported back to partners.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="sheet" id="b5">
+    <div class="sheet-side"><span class="big">5</span><h3>Revenue streams</h3><p class="q">How will the project generate income or funding?</p></div>
+    <div class="sheet-body">
+      <p><b>Today: none.</b> The alert is always free for citizens; nobody should pay to be rescued. Candidates, in the order we would test them:</p>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>#</th><th>Stream</th><th>Who pays</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Non-dilutive funding: competition prizes, incubators, the Algeria Startup Fund after labelling</td><td>Public and private programmes</td><td><span class="chip v">Route verified</span></td></tr>
+          <tr><td class="num">2</td><td>Institutional licence and support contract for the ops-room software</td><td>The State (B2G)</td><td><span class="chip h">Hypothesis</span></td></tr>
+          <tr><td class="num">3</td><td>Crash notification and data export subscription</td><td>Fleets, motor insurers</td><td><span class="chip h">Hypothesis</span></td></tr>
+          <tr><td class="num">4</td><td>Aggregated, anonymised black-spot analytics</td><td>Road-safety authorities</td><td><span class="chip h">Needs a legal basis</span></td></tr>
+        </tbody></table></div>
+      <p class="note"><b>No price is set.</b> We will not invent a number before talking to the people who would pay. <span class="chip t">Next test</span> Ask 3 fleet managers and 2 insurers how they learn about a crash today, how long it takes, and what that delay costs them, without pitching a price.</p>
+    </div>
+  </article>
+
+  <article class="sheet" id="b6">
+    <div class="sheet-side"><span class="big">6</span><h3>Key resources</h3><p class="q">What do you need?</p></div>
+    <div class="sheet-body">
+      <div class="group"><h4>Already built</h4>
+        <ul>
+          <li>The SLK1 alert protocol, scoring, ranking and merge package: 67 tests, plus an independent Python decoder that agrees on every valid packet <span class="chip v">Verified</span></li>
+          <li>The crash detector with recorded replay traces: 21 tests <span class="chip v">Verified</span></li>
+          <li>The dashboard, witness page, hospital view and audit log, with a design system in Arabic, French and English</li>
+        </ul></div>
+      <div class="group"><h4>Still to build</h4>
+        <ul><li>A verified, clinician-reviewed hospital capability registry, starting with the pilot wilaya</li><li>Hosting in Algeria for production</li><li>Real driving data to tune the detector</li></ul></div>
+      <div class="group"><h4>People</h4>
+        <div class="team"><span>Cheikh Mohamed Tahar</span><span>Benkorich Abdenour</span><span>Ould Miloud Zakaria</span><span>Bouzid Mustapha</span><span>Baghdad Imad Eddine</span></div></div>
+    </div>
+  </article>
+
+  <article class="sheet" id="b7">
+    <div class="sheet-side"><span class="big">7</span><h3>Key activities</h3><p class="q">What must you do?</p></div>
+    <div class="sheet-body">
+      <ul>
+        <li>Build and maintain the app, the gateway and the dashboard.</li>
+        <li>Collect real driving traces and retune the detector; measure false alarms per driving hour.</li>
+        <li>Verify hospital capabilities with each hospital, then keep them current.</li>
+        <li>Calibrate the risk score with emergency physicians on real cases.</li>
+        <li>Train operators and run the pilot measurements.</li>
+        <li>Privacy and legal compliance (law 18-07 as amended by law 25-11); legal review before any real deployment.</li>
+        <li>Security: per-device keys and a signed packet are next, because today’s check code catches corruption but is not authentication.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="sheet" id="b8">
+    <div class="sheet-side"><span class="big">8</span><h3>Key partnerships</h3><p class="q">Who could help you?</p></div>
+    <div class="sheet-body">
+      <p>None of these partners has agreed to anything. This is who we would approach, and why it is worth it for them.</p>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Partner</th><th>What they bring</th><th>What they get</th></tr></thead>
+        <tbody>
+          <tr><td>Civil Protection ops rooms</td><td>Operators to co-design with, ground truth on real calls</td><td>Located, structured reports at no cost during the pilot</td></tr>
+          <tr><td>Health ministry, SAMU, hospital EDs</td><td>Capability data, ED contacts, clinical review</td><td>Pre-alerts before arrival; fewer patients sent to the wrong place</td></tr>
+          <tr><td>Telecom operators</td><td>An SMS short code, coverage maps</td><td>A public-safety service on their network</td></tr>
+          <tr><td>Emergency physicians, universities</td><td>Score calibration, study design</td><td>Data for research on prehospital delays</td></tr>
+          <tr><td>DNSR</td><td>Crash statistics, awareness campaigns</td><td>A new channel for road-safety messages</td></tr>
+          <tr><td>Incubators, startup-label committee</td><td>Funding route, mentoring</td><td>A labelled public-interest startup</td></tr>
+          <tr><td>Later: insurers, fleets</td><td>Distribution and possible funding</td><td>Faster crash notification and structured data</td></tr>
+        </tbody></table></div>
+    </div>
+  </article>
+
+  <article class="sheet" id="b9">
+    <div class="sheet-side"><span class="big">9</span><h3>Cost structure</h3><p class="q">What will it cost?</p></div>
+    <div class="sheet-body">
+      <div class="cols">
+        <div class="mini"><b>Fixed</b><p>Team time (the main cost). Hosting: free tiers for the prototype, then paid hosting in Algeria at pilot scale. Map and routing hosting.</p></div>
+        <div class="mini"><b>Per incident</b><p>SMS: roughly one acknowledgement to the sender and one pre-alert to the hospital per incident, plus the gateway SIMs.</p></div>
+        <div class="mini"><b>One-off</b><p>Clinician and legal review, trademark and domain checks (INAPI), test phones. Hardware and homologation only if the in-car box on the roadmap goes ahead.</p></div>
+      </div>
+      <p class="note">We have no quotes yet, so this canvas gives no figures. For the ops room: the dashboard runs in a browser on existing PCs, so there is nothing to buy during the pilot.</p>
+    </div>
+  </article>
+
+  </div>
+</section>
+
+<section aria-labelledby="impact-h">
+  <div class="section-head">
+    <p class="eyebrow">Extra block for a public-safety project</p>
+    <h2 id="impact-h">How we will know it works</h2>
+    <p>Measured in the pilot, never claimed before it.</p>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Measure</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Median and p90 time from impact to a located report on the operator’s screen</td><td>The core promise: information sooner</td></tr>
+      <tr><td>Share of reports located within a set distance</td><td>A report is only useful if the position is right</td></tr>
+      <tr><td>Duplicate reports merged</td><td>Fewer calls and cards for the operator</td></tr>
+      <tr><td>False alarms per 100 driving hours</td><td>Decides whether operators keep trusting it</td></tr>
+      <tr><td>Operator trust score</td><td>Adoption depends on it</td></tr>
+      <tr><td>Hospital pre-alerts acknowledged</td><td>Shows the ED actually uses the warning</td></tr>
+    </tbody></table></div>
+</section>
+
+<section aria-labelledby="tests-h">
+  <div class="section-head">
+    <p class="eyebrow">Before money</p>
+    <h2 id="tests-h">Riskiest assumptions and the cheapest tests</h2>
+    <p>None of these has run yet. They are the next steps after the hackathon.</p>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Riskiest assumption</th><th>Cheapest test</th><th>Evidence we bring back</th></tr></thead>
+    <tbody>
+      <tr><td>Operators will use a structured report from an unknown source</td><td>3 short interviews and a 15-minute screen-share of the demo dashboard</td><td>Notes, quotes, their objections</td></tr>
+      <tr><td>A hospital ED wants a pre-alert</td><td>2 interviews with ED staff</td><td>What they need in it, in their words</td></tr>
+      <tr><td>Drivers accept background crash detection</td><td>8 drivers, a 5-minute onboarding walkthrough</td><td>Completion rate, where they stop</td></tr>
+      <tr><td>Someone will pay</td><td>3 fleet managers and 2 insurers: how do you learn about a crash today, and what is the delay worth?</td><td>Their current process and cost of delay</td></tr>
+      <tr><td>The startup-label route works</td><td>Read decrees 20-254 and 25-311; book an incubator slot</td><td>A one-page eligibility check</td></tr>
+    </tbody></table></div>
+</section>
+
+<section aria-labelledby="sw-h">
+  <div class="section-head">
+    <p class="eyebrow">Self-assessment</p>
+    <h2 id="sw-h">Where the model is strong, and where it is weak</h2>
+  </div>
+  <div class="two">
+    <div class="panel good"><h3>Strong</h3><ul>
+      <li>Senders pay nothing, which removes the adoption barrier.</li>
+      <li>Receivers are public services, so a free pilot is natural.</li>
+      <li>The data we produce (located, structured, time-stamped) is useful to several parties.</li>
+      <li>Non-dilutive funding routes exist and are verified.</li>
+      <li>No hardware to buy: existing phones, existing PCs, plain SMS.</li></ul></div>
+    <div class="panel weak"><h3>Weak, and we say it first</h3><ul>
+      <li>No payer is identified yet.</li>
+      <li>Public buyers are slow.</li>
+      <li>The Play Store restricts the SMS permission.</li>
+      <li>Liability and privacy must be settled in writing before any real deployment.</li>
+      <li>An operations room has no reason to trust us yet; the pilot has to earn it.</li>
+      <li>Some recent iPhones and Pixels have built-in crash detection; Pixel detection and Android ELS were not available in Algeria at research time. We complement them.</li></ul></div>
+  </div>
+</section>
+
+<section aria-labelledby="src-h">
+  <div class="section-head">
+    <p class="eyebrow">Sources</p>
+    <h2 id="src-h">Facts this canvas relies on</h2>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Fact</th><th>Source</th><th>Caveat</th></tr></thead>
+    <tbody>
+      <tr><td>2025: 26 976 crashes, 3 838 deaths, 37 020 injured</td><td>DNSR, reported by Atlas Magazine (24 Feb 2026)</td><td>Press report of official figures</td></tr>
+      <tr><td>Motor ≈ 71.55 bn DZD, 41.6 % of 2024 insurance premiums</td><td>Direction Générale du Trésor data, tabulated by Atlas Magazine</td><td>Market total, not crash-related costs</td></tr>
+      <tr><td>Android ≈ 87 % of mobile OS share in Algeria</td><td>StatCounter</td><td>Snapshot</td></tr>
+      <tr><td>Startup label: tax exemption, access to the Algeria Startup Fund</td><td>Decrees 20-254 / 25-311, via an UpGrowth summary</td><td>Commercial summary; read the decrees before filing</td></tr>
+      <tr><td>1.2 vs 5.7 min, automatic vs witness notification</td><td>NHTSA field test, USA, 1990s</td><td>An analogy, not an Algerian measurement</td></tr>
+      <tr><td>OR 1.04 for in-hospital death per extra 10 min before hospital</td><td>Gauss et al., JAMA Surgery 2019</td><td>Physician-staffed EMS in France</td></tr>
+    </tbody></table></div>
+</section>
+
+<footer>
+  <p>Sellekni is a hackathon prototype using synthetic data, not an official emergency service. No agreement exists with any emergency service, telecom operator, insurer or hospital. In an emergency, always call 14 / 1021 · 1055 · 17.</p>
+  <p>Team: Cheikh Mohamed Tahar · Benkorich Abdenour · Ould Miloud Zakaria · Bouzid Mustapha · Baghdad Imad Eddine</p>
+</footer>
+
+</div>

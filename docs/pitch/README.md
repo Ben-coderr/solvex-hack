@@ -2,7 +2,7 @@
 
 | File | What |
 |---|---|
-| Slides | “Sellekni — pitch” deck (claude.ai artifact, private until shared): 13 slides + sources appendix (incl. roadmap: OBD, box, prevention radar), dark, 16:9, real screenshots from `screens/` |
+| Slides | “Sellekni — pitch” deck (claude.ai artifact, private until shared): in English, the SolveX five-part structure (01 problem → 05 BMC → conclusion) on 11 slides + 5 annex slides for the Q&A (measures, validated vs assumed, packet field guide, roadmap incl. OBD/box/radar, sources); dark, 16:9, logo on every slide, real screenshots from `screens/`, diagrams from `../diagrams/pitch/` (`python3 gen.py` and `python3 hw.py` regenerate the SVGs) |
 | `ladder.md` | resilience ladder with the trigger for each step down — print |
 | `qa-sheet.md` | Q&A: the docs/10 §6 bank + 10 hard questions — print |
 | `runbook.md` | switch to the cloud backup (≤ 5 lines) and how the backup is set up |

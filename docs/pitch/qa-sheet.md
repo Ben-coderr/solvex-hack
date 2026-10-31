@@ -5,6 +5,31 @@ that is not in docs/10 §4. It is **rules, not AI**; the output is **estimated r
 Hackathon prototype, synthetic data, not an official emergency service. We have **no** agreement with Protection civile,
 SAMU, the Gendarmerie or any hospital — don't imply one.
 
+**Q&A format (SolveX): 4 minutes.** Listen to the whole question. Answer in 20–30 s so the jury can ask 3–4 questions.
+Split by domain: technical / SMS / code → speaker 2 or 3 · medical / triage / hospital → the product teammate ·
+business / legal / insurers → speaker 4. Open with one line that takes the question seriously, then answer.
+
+## 0. The 8 classic jury questions (from the SolveX jury guide), answered in French
+The guide's suggested answers contain claims we can't back. These are the corrected versions; the "don't say" column
+is what the guide proposed and why it's out.
+
+| # | Question | Réponse (20 s) | Don't say |
+|---|---|---|---|
+| 1 | Fausses alertes si le téléphone tombe ? | « Trois filtres : la détection ne s'arme qu'au-dessus de 25 km/h ; il faut un choc soutenu, une chute de vitesse GPS et un arrêt du véhicule ; puis 30 s d'alarme et de voix avec un gros bouton "Ça va — annuler". Côté opérateur, l'alerte reste "AUTO · NON CONFIRMÉE". Notre taux de fausses alertes n'est pas encore mesuré. » | "30 km/h" (our gate is 25), "zéro fausse alerte" |
+| 2 | Et sans aucun réseau, même pas 2G ? | « Le paquet reste en file d'attente sur le téléphone et repart dès qu'une barre revient. Un témoin qui passe peut aussi signaler. Dans une vraie zone blanche, rien ne sort du téléphone : c'est la physique. » | that a passing driver "relays" the victim's packet: relays are roadmap |
+| 3 | Disponibilité des lits sans système central ? | « Nous ne prétendons pas l'avoir : ce flux n'existe pas. Une table des capacités fixes (urgences 24 h, scanner, réanimation, chirurgie) plus un statut simple que l'équipe de garde met en quelques secondes, qui expire après 6 h. "Inconnu" s'affiche comme inconnu. Nos données hospitalières sont illustratives. » | "jamais orienté vers une structure sans scanner" as a guarantee |
+| 4 | Loi 18-07 ? | « Les données de santé sont sensibles (loi 18-07 modifiée par la loi 25-11). Pas de suivi hors alerte ; l'alerte part pour sauvegarde de l'intérêt vital ; le profil médical est un opt-in séparé et ne voyage jamais par SMS ; hébergement de production en Algérie ; revue juridique avant tout déploiement réel. La démo n'utilise que des données synthétiques. » | "Absolument conforme", "décret d'application 25-11" (25-11 is cited to us as an amending law; we haven't verified a decree) |
+| 5 | Pourquoi pas Google ELS ou Apple ? | « Au moment de nos recherches, la détection de choc Pixel et Android ELS n'étaient pas disponibles en Algérie, et environ 87 % des téléphones sont sous Android. Ces systèmes envoient voix et position, pas un rapport structuré fusionné avec une orientation hospitalière. Nous les complétons. » | "iPhone = 13 %" (not in our sources), "Apple ne marche pas en Algérie" (not verified) |
+| 6 | Score validé médicalement ? | « Non, et nous le disons. Des points transparents ; les critères viennent du guide de triage de terrain ACS/NHTSA 2021 et de la physique du choc ; les poids ne sont pas calibrés. C'est un risque estimé, pas un diagnostic ; un humain décide. Calibrer avec des urgentistes est la première tâche du pilote. » | "critères de Vittel" (we didn't use them; say it only if you can explain them) |
+| 7 | Pourquoi installer l'app ? | « Le témoin peut utiliser le mode témoin de l'app (5 touches) ou, sans rien installer, un lien web, sans compte. Pour les conducteurs, le levier est institutionnel : une campagne avec les secours, les auto-écoles, les flottes. Un avantage d'assurance est une piste à tester avec les assureurs, pas un accord. » | windscreen QR code (not built), insurance discount as fact |
+| 8 | Combien pour la Protection civile ? | « Pendant le pilote : rien à acheter. Le tableau de bord tourne dans un navigateur sur les PC existants. Les coûts réels à l'échelle sont l'hébergement en Algérie, les SMS et un accord de numéro court : nous n'avons pas de devis, donc pas de chiffre. » | "zéro coût" at scale |
+
+**Guide claims we deliberately left out of the pitch** (no source in docs/10 §4): "18 minutes" to a usable location,
+"230 milliards DZD / 1 % du PIB", "20 % des blessés graves subissent un transfert secondaire mortel", "13 % iPhone",
+"14 g" in the demo script (phones saturate at ±8–16 g, so we never show a g-force), "+10 min = +4 % de survie" (D3 is
+an odds ratio of *death*, OR 1.04, French physician-staffed EMS), "nous faisons gagner 10 minutes", Bouira as the
+pilot wilaya (not agreed with anyone), insurers and telecom operators named as partners, "boîtier à 30 000 DZD".
+
 ## A. The base bank (docs/10 §6, corrected by docs/15 §4)
 
 | # | Question | Answer |
@@ -14,7 +39,7 @@ SAMU, the Gendarmerie or any hospital — don't imply one.
 | 3 | Who gets the SMS? Do you call 14? | The call to 14/1021 still happens: the app opens the dialler. The SMS goes to a gateway number in the operations room (a phone today; an operator short code at scale). |
 | 4 | No network at all? | Queued and retried; SMS can get through where data is weak. True dead zone: nothing leaves the phone — that's why witnesses matter; relays are roadmap. We have **not** measured Algerian coverage. |
 | 5 | Hospital capacity data doesn't exist. | Right. Curated capability table, an optional status a charge nurse sets in seconds (expires after 6 h), "unknown" shown as unknown. Our hospital data is illustrative/unverified. |
-| 6 | Why install another app? | Witnesses need no account (a link). The real lever is institutional push. And the protocol matters more than the app: any device can send the same 160 characters. |
+| 6 | Why install another app? | Witnesses need no account: witness mode in the app (5 taps) or just a web link. The real lever is institutional push. And the protocol matters more than the app: any device can send the same 160 characters. |
 | 7 | Personal and health data? | Law 18-07 as amended by 25-11: health data is sensitive. Alert on vital-interest grounds; medical profile is a separate opt-in and never travels by SMS; production hosting in Algeria; legal review before any real deployment. Demo = synthetic data. |
 | 8 | Who is liable if it's wrong? | Decision support: the dispatcher chooses; every suggestion and override is logged with actor and reason. Liability stays with the existing chain of command; a pilot needs a written protocol with the institution. |
 | 9 | Can someone fake an alert? | Yes — the CRC is integrity, not authentication. Today: private gateway number, webhook secret, rate limits, "unconfirmed" until call-back, no automatic dispatch. Next: per-device keys and an HMAC tag. |

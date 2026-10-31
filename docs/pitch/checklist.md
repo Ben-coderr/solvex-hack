@@ -3,7 +3,7 @@
 ## Recorded (2026-10-31)
 | Item | Value | Status |
 |---|---|---|
-| Release APK | `apps/mobile/android/app/build/outputs/apk/release/app-release.apk`, built 2026-10-31 01:33, 114 MB, sha256 `ff428399f7b9b92a7c01f41ccc094fbfb3b846f6639c1d9b22c478a0efe9f4c9` | ⚠ **stale:** built before `10613f7` (in-app witness mode, 03:11). Rebuild, install on every stage phone, record the new hash here |
+| Release APK | `apps/mobile/android/app/build/outputs/apk/release/app-release.apk`, built 2026-10-31 08:33 (includes `10613f7` in-app witness mode), 114 MB, sha256 `f7e433c4a747ca815abd76d47dcb549a2aaf9e48afdc73be73ee369b4702879e` | ✓ Realme: installed, witness flow tested end to end (HTTPS ACK, merge L → H). Install on the Samsung too |
 | DB snapshot (public schema, after demo reset) | `data/snapshots/demo-v1-public.sql.gz`, sha256 `5797943deef108eb3afb40cdc830fa610024f37ad600e31a54be1506b0de0f7d` | ✓ restore: `gzcat … \| psql <db url>` on an empty schema |
 | Git tag | `demo-v1` | after the acceptance below |
 | Backup videos | `docs/pitch/videos/` 01…11 + `00-cut-60s.mp4` | ✓ browser recording · phone clips via scrcpy still to do |
