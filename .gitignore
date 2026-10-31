@@ -29,3 +29,6 @@ data/captures/
 
 # Tooling and caches
 .playwright-mcp/
+
+# offline basemap extract (docs/field-notes/offline-drill-p7.md): ~70 MB, rebuilt with pmtiles extract
+apps/web/public/tiles/*.pmtiles

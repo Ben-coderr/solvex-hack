@@ -1,0 +1,89 @@
+{
+  "at": "2026-10-31T03:23:21.839Z",
+  "base": "http://localhost:3000",
+  "chrome": "156.0.8078.74",
+  "blockedExternalHosts": [],
+  "tileRangeResponses": 18,
+  "checks": [
+    {
+      "check": "A renders /login",
+      "ok": true
+    },
+    {
+      "check": "A reset (local API)",
+      "ok": true
+    },
+    {
+      "check": "A dashboard says no internet",
+      "ok": true
+    },
+    {
+      "check": "A Simulate SMS still creates an incident",
+      "ok": true,
+      "detail": "outcome=created"
+    },
+    {
+      "check": "A drawer + orientation render",
+      "ok": true
+    },
+    {
+      "check": "A strip says OFFLINE TILES",
+      "ok": true,
+      "detail": "Offline map"
+    },
+    {
+      "check": "A map reads the local PMTiles (HTTP 206 ranges)",
+      "ok": true,
+      "detail": "18 range responses"
+    },
+    {
+      "check": "A renders /audit",
+      "ok": true
+    },
+    {
+      "check": "A renders /demo",
+      "ok": true
+    },
+    {
+      "check": "A renders /phones",
+      "ok": true
+    },
+    {
+      "check": "A renders /styleguide",
+      "ok": true
+    },
+    {
+      "check": "A renders witness page /w",
+      "ok": true
+    },
+    {
+      "check": "A renders crew page /crew",
+      "ok": true
+    },
+    {
+      "check": "A pre-alert (local API)",
+      "ok": true
+    },
+    {
+      "check": "A renders hospital ED view with the pre-alert",
+      "ok": true
+    },
+    {
+      "check": "B dashboard says Offline when the server is unreachable",
+      "ok": true
+    },
+    {
+      "check": "B queue keeps the last data",
+      "ok": true
+    },
+    {
+      "check": "B recovers by itself when the server is back",
+      "ok": true
+    },
+    {
+      "check": "no 5xx / page errors from our own origin",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

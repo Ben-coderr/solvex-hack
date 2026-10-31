@@ -83,7 +83,12 @@ export const useHospitals = () =>
   useQuery({ queryKey: ['hospitals'], queryFn: () => api<{ set: 'demo' | 'national'; hospitals: HospitalPoint[] }>('/api/hospitals'), staleTime: Infinity });
 
 export const useHealth = () =>
-  useQuery({ queryKey: ['health'], queryFn: () => api<{ ok: true; demo: boolean; time: string; offlineTiles: boolean }>('/api/health'), refetchInterval: 10_000, retry: 0 });
+  useQuery({
+    queryKey: ['health'], queryFn: () => api<{ ok: true; demo: boolean; time: string; offlineTiles: boolean }>('/api/health'), refetchInterval: 10_000, retry: 0,
+    // the probe must run when the browser says it is offline: TanStack pauses queries then, so the request never
+    // failed and the dashboard kept claiming "SMS only" while it could not reach its own server (P7 offline drill)
+    networkMode: 'always',
+  });
 
 export const useAudit = (incident: string | null) =>
   useQuery({ queryKey: ['audit', incident], queryFn: () => api<{ events: AuditEvent[] }>(`/api/audit${incident ? `?incident=${incident}` : ''}`) });

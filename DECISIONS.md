@@ -194,6 +194,8 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [P7] auth — sign-ups closed (`[auth] enable_signup = false`); `[auth.email] enable_signup` stays true (it is the email provider itself, logins included).
 - [P7] headers — SAMEORIGIN framing (not DENY: /phones frames /w and /crew), nosniff, Permissions-Policy, `no-referrer` on the token pages. Full script CSP deferred (MapLibre workers + Next inline scripts need nonces).
 - [P7] accepted — ingest key in the APK, witness link without expiry, webhook replay inside the window: docs/security-review-p7.md.
+- [P7] perf — Realtime pushes coalesced 250 ms (burst of 20: 52 → 2 list refetches, no more self-inflicted 429); staff pages get /api/health rendered server-side (CLS 0.114 → 0.001). docs/field-notes/perf-p7.md.
+- [P7] offline basemap — `apps/web/public/tiles/sellekni.pmtiles` extracted (northern Algeria, z0–13, 69 MB, Protomaps build 20261030), git-ignored; rebuild the app after adding it. Health probe runs with `networkMode: 'always'` so a browser-offline dashboard says Offline. docs/field-notes/offline-drill-p7.md.
 
 ## Open items
 - ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).
