@@ -1,7 +1,7 @@
 // P3 screenshot matrix: dashboard (detail open), hospital view, audit × 360/768/1440 × light/dark × en/ar.
 // Run after the hero flow has left data in the DB:  pnpm --filter web test:e2e && pnpm --filter web screens:p3
 // Uses the installed Chrome (no browser download). Output: docs/pitch/design/p3/*.jpg (JPEG to keep the repo small).
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import nextEnv from '@next/env';
 import { chromium, type Browser } from 'playwright';
@@ -10,6 +10,8 @@ const root = path.resolve(import.meta.dirname, '../../..');
 nextEnv.loadEnvConfig(root, true, undefined, true);
 const BASE = process.env.BASE_URL ?? 'http://localhost:3001';
 const OUT = path.join(root, 'docs/pitch/design/p3');
+const HOSPITAL_A_ID: string = JSON.parse(readFileSync(path.join(root, 'data/demo-hospitals.json'), 'utf8'))
+  .logins[process.env.HOSPITAL_SET === 'demo' ? 'demo' : 'national']['hospital-a'];
 const PASSWORD = process.env.DEMO_USER_PASSWORD!;
 const incident = process.argv[2]; // incident id to open in the drawer
 if (!incident) throw new Error('usage: tsx scripts/p3-screens.mts <INCIDENT_ID>');
@@ -37,7 +39,7 @@ const roles = { dispatcher: await session(browser, 'dispatcher@sellekni.test'), 
 const pages = [
   { name: 'dashboard', role: 'dispatcher', path: `/?i=${incident}`, ready: '[data-testid="orientation"]' },
   { name: 'audit', role: 'dispatcher', path: `/audit?incident=${incident}`, ready: '[data-testid="audit-table"]' },
-  { name: 'hospital', role: 'hospital', path: '/hospital/CHU-A', ready: `[data-testid="incoming-${incident}"]` },
+  { name: 'hospital', role: 'hospital', path: `/hospital/${HOSPITAL_A_ID}`, ready: `[data-testid="incoming-${incident}"]` },
 ] as const;
 
 const problems: string[] = [];

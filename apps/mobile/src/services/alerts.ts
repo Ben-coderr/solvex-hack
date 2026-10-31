@@ -6,7 +6,7 @@ import { AppState, Linking } from 'react-native';
 import type { ChainConfig } from '../alert/chain';
 import { COMPACT_TIMEOUT_MS, postIncident, probeHealth } from '../alert/https';
 import { newItem, type OutboxItem } from '../alert/outbox';
-import { buildAlert } from '../alert/packet';
+import { buildAlert, type Fix, type WitnessScene } from '../alert/packet';
 import { createRunner } from '../alert/runner';
 import { openComposer } from '../channels/composer';
 import { nativeSms } from '../channels/sms';
@@ -70,17 +70,21 @@ export async function openDialler(number: string = EMERGENCY.civil): Promise<boo
   }
 }
 
-export async function raiseAlert(o: { source: Source; hints?: PacketHints; noResponse?: boolean }): Promise<string> {
+/** `fix`: the position the person confirmed (witness mode, M6); otherwise the session's latest fix. */
+export async function raiseAlert(o: {
+  source: Source; hints?: PacketHints; noResponse?: boolean; scene?: WitnessScene; fix?: Fix | null;
+}): Promise<string> {
   const s = useSession.getState();
   const now = new Date();
   const id = generateIncidentId((n) => getRandomBytes(n));
   const inReplay = s.replay !== null;
   const built = buildAlert({
     id, source: o.source, now,
-    fix: inReplay ? replayFix() : s.fix,
+    fix: o.fix !== undefined ? o.fix : inReplay ? replayFix() : s.fix,
     replay: inReplay,
     ...(o.hints && { hints: o.hints }),
     ...(o.noResponse && { noResponse: true }),
+    ...(o.scene && { scene: o.scene }),
     ...(s.battery !== null && { battery: Math.round(s.battery * 100) }),
     lang: i18n.language as Locale,
     appVersion: Constants.expoConfig?.version ?? '0',

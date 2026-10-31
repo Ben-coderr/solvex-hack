@@ -84,7 +84,7 @@ export function HospitalView({ hospitalId, canNavigate }: { hospitalId: string; 
         <section aria-labelledby="in-h" className="flex min-w-0 flex-col gap-4">
           <h1 className="flex flex-wrap items-center gap-3">
             <Hospital aria-hidden className="size-7 text-brand-text" />
-            <span className="font-display text-3xl font-semibold">{t('title')}</span>
+            <span className="min-w-0 font-display text-3xl font-semibold break-words hyphens-auto">{t('title')}</span>
             <span className="packet-ltr font-mono text-xl text-muted-foreground">{hospitalId}</span>
           </h1>
           <h2 id="in-h" className="text-lg font-semibold">
@@ -101,9 +101,11 @@ export function HospitalView({ hospitalId, canNavigate }: { hospitalId: string; 
               {items.map((p) => (
                 <li key={p.id} data-testid={`incoming-${p.incident_id}`} data-acked={!!p.acked_at}>
                   <PreAlertCard
-                    incidentId={p.incident_id} band={p.band} nsi={p.nsi} conf={p.conf} sentAt={p.sent_at} etaMin={p.eta_min ?? 0}
+                    incidentId={p.incident_id} band={p.band} nsi={p.nsi} conf={p.conf}
+                    sentAt={p.sent_at} etaMin={p.crew_eta_min ?? p.eta_min ?? 0} etaFrom={p.crew_eta_at}
                     ackedAt={p.acked_at} mechanism={mechanism(p)} persons={p.inputs?.persons}
                     reasons={p.reasons ?? []} values={{ dv: p.inputs?.dvKmh, spo2_low: p.inputs?.spo2, hr_abnormal: p.inputs?.hr }}
+                    vitals={{ gcs: p.inputs?.gcs, sbp: p.inputs?.sbp, spo2: p.inputs?.spo2, hr: p.inputs?.hr }}
                     onAck={ack.isPending ? undefined : () => ack.mutate(p.id)}
                   />
                 </li>

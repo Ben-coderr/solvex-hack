@@ -10,9 +10,15 @@ export const json = <T,>(body: T, status = 200, headers?: HeadersInit) => NextRe
 export const fail = (status: number, error: string, details?: unknown) =>
   NextResponse.json(details === undefined ? { error } : { error, details }, { status });
 
-/** Best-effort client address (behind the laptop's LAN or a tunnel). Used only for hashing/rate limiting. */
+/**
+ * Best-effort client address. Used only for hashing/rate limiting, never for authorisation.
+ * The RIGHT-most X-Forwarded-For entry: a proxy appends the address it saw, so the left entries are whatever the
+ * client chose (P7 security review: rotating the first entry bypassed every per-IP limit). With no proxy, Next only
+ * fills the header when the client sent none, so a client can still pick its "IP": every public endpoint therefore
+ * also has a cap that does not depend on the address (LIMITS.*All, per incident, per sender).
+ */
 export function clientIp(req: NextRequest): string {
-  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip') || 'local';
+  return req.headers.get('x-forwarded-for')?.split(',').at(-1)?.trim() || req.headers.get('x-real-ip') || 'local';
 }
 
 /** Raw body with a hard size cap (the webhook signature is computed over these exact bytes). */

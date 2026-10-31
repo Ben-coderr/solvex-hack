@@ -1,5 +1,5 @@
 'use client';
-import { CopyX, MessageSquareText, RotateCcw, ShieldAlert, UserRoundPlus } from 'lucide-react';
+import { Ambulance, CopyX, MessageSquareText, RotateCcw, ShieldAlert, UserRoundPlus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { useDemoReset, useDemoRun, useOutcomeText, type DemoRun } from './use-demo';
 
 const SCENARIOS = ['rollover', 'frontal', 'witness_near_rollover', 'witness_oran', 'bad_crc'] as const;
-const ACTIONS = [['witness', UserRoundPlus], ['duplicate', CopyX]] as const;
+const ACTIONS = [['witness', UserRoundPlus], ['crew', Ambulance], ['duplicate', CopyX]] as const;
 
 /** Scenario + action buttons and the two-step Reset. `onStart` (the stopwatch) fires on the first scenario tap. */
 export function DemoControls({ onStart, onReset, compact }: { onStart?: () => void; onReset?: () => void; compact?: boolean }) {

@@ -80,7 +80,8 @@
     "sent": "envoyé",
     "retrying": "nouvel essai",
     "acked": "reçu",
-    "failed": "échec"
+    "failed": "échec",
+    "crew": "Équipe"
   },
   "incident": {
     "unconfirmed": "Auto · non confirmé",
@@ -113,7 +114,9 @@
     "choose": "Choisir…",
     "illustrative": "illustratif",
     "gateNote": "Classé premier par la règle de capacités : un niveau R exige un centre de niveau A à moins de 60 min (règle clinique, pas le score brut).",
-    "missingNote": "Manque {caps} : risque de transfert secondaire."
+    "missingNote": "Manque {caps} : risque de transfert secondaire.",
+    "marker": "Hôpital {name}, niveau {level}",
+    "level": "Niveau {level}"
   },
   "capability": {
     "ed24": "Urgences 24h/24",
@@ -144,7 +147,14 @@
     "eta": "Arrivée dans",
     "ack": "Prendre en compte",
     "mechanism": "Mécanisme",
-    "persons": "{count, plural, one {# personne} other {# personnes}}"
+    "persons": "{count, plural, one {# personne} other {# personnes}}",
+    "vitals": "Constantes",
+    "vital": {
+      "gcs": "GCS {value}",
+      "sbp": "PAS {value} mmHg",
+      "spo2": "SpO₂ {value} %",
+      "hr": "FC {value}/min"
+    }
   },
   "witness": {
     "steps": {
@@ -262,6 +272,15 @@
       "body": "Un témoin sur place le scanne, répond à 4 questions, et son signalement rejoint cet incident. La page n’affiche qu’une position à ~100 m près, aucune donnée sur les victimes.",
       "loadError": "Le lien témoin n’a pas pu être créé.",
       "qrLabel": "QR code de la page témoin pour l’incident {id}"
+    },
+    "crew": {
+      "title": "Lien équipe",
+      "show": "Afficher le lien équipe",
+      "hide": "Masquer le lien équipe",
+      "body": "L’équipe de l’ambulance saisit GCS, tension, SpO₂, FC et ETA ; le niveau est recalculé et l’hôpital est prévenu. Le lien expire dans 12 h.",
+      "loadError": "Impossible de créer le lien équipe.",
+      "qrLabel": "QR code de la page équipe pour l’incident {id}",
+      "expires": "Valable jusqu’à {time}"
     }
   },
   "override": {
@@ -369,7 +388,8 @@
       "override_cleared": "Retour à la bande calculée",
       "hospital_set": "Établissement choisi",
       "hospital_override": "Autre établissement choisi",
-      "unit_assigned": "Unité affectée"
+      "unit_assigned": "Unité affectée",
+      "crew_update": "Mise à jour de l’équipe"
     },
     "prealert": {
       "sent": "Pré-alerte envoyée",
@@ -468,7 +488,8 @@
     },
     "action": {
       "witness": "Signalement témoin (5 gestes)",
-      "duplicate": "Même SMS renvoyé (doublon)"
+      "duplicate": "Même SMS renvoyé (doublon)",
+      "crew": "Mise à jour équipe (GCS 9, PAS 85)"
     },
     "outcome": {
       "created": "Nouvel incident {id}",
@@ -518,9 +539,63 @@
         "failed": "échec",
         "simulated": "simulé (pas de passerelle)",
         "no_number": "pas de numéro"
-      }
+      },
+      "crew": "Équipe · téléphone B",
+      "crewEmpty": "Pas encore d’incident ouvert.",
+      "simulateCrew": "Envoyer GCS 9, PAS 85 (simulé)"
     },
     "error": "L’action a échoué : {message}",
     "notAllowed": "Les pages de démo sont réservées au compte régulateur."
+  },
+  "crewPage": {
+    "title": "Mise à jour de l’équipe",
+    "lead": "Saisissez ce que vous avez mesuré. Laissez vide ce qui n’a pas été mesuré.",
+    "disclaimer": "Risque estimé, pas un diagnostic.",
+    "field": {
+      "gcs": "Glasgow (GCS)",
+      "sbp": "Pression systolique",
+      "spo2": "SpO₂",
+      "hr": "Fréquence cardiaque",
+      "etaMin": "Arrivée à l’hôpital dans"
+    },
+    "unit": {
+      "gcs": "3–15",
+      "sbp": "mmHg",
+      "spo2": "%",
+      "hr": "/min",
+      "etaMin": "min"
+    },
+    "range": "de {min} à {max}",
+    "last": "dernier envoi : {value}",
+    "send": "Envoyer à la salle de régulation et à l’hôpital",
+    "sending": "Envoi…",
+    "expires": "Ce lien cesse de fonctionner à {time}.",
+    "callButton": "Appeler le 14",
+    "offline": "Pas de connexion Internet. La mise à jour ne peut pas partir : passez par la radio ou appelez la salle.",
+    "slow": "Trop de requêtes depuis cette connexion. Attendez une minute puis rechargez.",
+    "invalid": {
+      "title": "Ce lien n’est pas valide",
+      "body": "Vérifiez que vous avez ouvert le lien complet envoyé par la salle de régulation."
+    },
+    "expired": {
+      "title": "Ce lien a expiré",
+      "body": "Demandez un nouveau lien équipe à la salle de régulation."
+    },
+    "closed": {
+      "title": "Cet incident est clôturé",
+      "body": "Il n’accepte plus de mises à jour."
+    },
+    "sent": {
+      "title": "Mise à jour envoyée.",
+      "changed": "Mise à jour envoyée. Niveau relevé : {from} → {to}.",
+      "body": "La salle de régulation et l’hôpital pré-alerté ont les nouvelles valeurs."
+    },
+    "error": {
+      "empty": "Saisissez au moins une valeur.",
+      "invalid": "Une valeur est hors limites. Vérifiez et renvoyez.",
+      "rate_limited": "Trop de mises à jour depuis cette connexion. Attendez quelques minutes.",
+      "closed": "Cet incident est clôturé.",
+      "expired": "Ce lien a expiré. Demandez-en un nouveau à la salle de régulation."
+    }
   }
 }

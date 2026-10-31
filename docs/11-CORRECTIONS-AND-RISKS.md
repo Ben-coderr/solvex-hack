@@ -30,6 +30,13 @@
 | 19 | 🟡 | V3 §14 | Mobile only starts at H28 — the riskiest part (native SMS, sensors) comes last | Mobile starts at H0, native SMS has its own gate (G4, H30) |
 | 20 | 🟡 | 06 §3.3 | Flutter plan | Superseded (Expo + Next.js as requested) |
 | 21 | 🔴 | docs 03–05, 10 (this pack) | **Our own error:** the docs treat a phone as measuring crash peaks like 38 g. Phone accelerometers saturate (typically ±8–16 g, device-specific; Apple needed a 256 g sensor for iPhone 14 Crash Detection) | Detector is range-aware, traces clipped, `G = min(peak, range)`, demo says "sensor ceiling"; high-g only for a hardware box (docs/12 §3) |
+| 22 | 🟠 | old docs/08 | Gateway webhook to `http://<laptop-ip>`: SMSGate only posts to HTTPS or `http://127.0.0.1` | USB + `adb reverse tcp:3000` (DECISIONS 24h-H8) |
+| 23 | 🔴 | our code (P7) | **Our own error:** per-IP rate limits read the first `X-Forwarded-For` entry. On a bare `next start` the client writes that header (Next only fills it when absent), so a script picks a new "IP" per request: 8/8 witness posts passed a limit of 5 | Right-most entry + endpoint-wide caps that ignore the address (docs/security-review-p7.md S1) |
+| 24 | 🟠 | our migration (P1) | **Our own error:** RLS `staff read incidents` let every hospital read every incident's exact location — the R18 risk, in our own schema | Hospital reads only incidents it was pre-alerted for (migration `20261031000002`) |
+| 25 | 🟠 | Supabase config | "Disable sign-ups" is `[auth] enable_signup = false`. Setting `[auth.email] enable_signup = false` too switches off the email provider: **nobody can log in** | Only the `[auth]` switch; on the hosted project use the dashboard toggle |
+| 26 | 🟠 | docs/04, docs/09 §4 | "PMTiles = offline map" was planned but the extract never existed, so the map was online-only. Next also serves `public/` as of **build** time | Extract made (northern Algeria z0–13, 69 MB), rebuild after adding it (docs/field-notes/offline-drill-p7.md) |
+| 27 | 🟠 | our code (P2) | TanStack Query pauses queries while the browser is offline, so the health probe never failed and the dashboard showed "SMS only — alerts still go out" while it could not reach its server | `networkMode: 'always'` on the probe |
+| 28 | 🟡 | our code (P3) | Each Realtime row event refetched the whole list (one ingest = 3+ events): a 20-alert burst made 52 refetches and the dashboard hit its **own** rate limit | Pushes coalesced 250 ms (docs/field-notes/perf-p7.md) |
 
 ## B. Risk register
 
@@ -53,6 +60,10 @@
 | R16 | Arabic TTS missing/poor on the demo phone | M | L | no Arabic voice | pre-recorded audio files |
 | R17 | Team fatigue → sloppy merges at H40+ | **H** | M | red `main` | tags at gates, sleep shifts, no new features after H36 |
 | R18 | Location privacy of victims (witness page, logs) | M | **H** | public pages show exact coordinates | coarse location, tokens, retention limits, no PII in logs |
+| R19 | Laptop disk full → the Docker VM (colima) gets I/O errors → Supabase will not start | M | **H** | `df` under 10 GB free; `supabase start` "input/output error" | **Materialised 2026-10-31 night:** freed caches, `colima restart`, images and DB volumes survived. Keep ≥ 20 GB free before the event; `./sellekni up` on the stage laptop the evening before |
+| R20 | Gateway SIM has no credit: inbound SMS works, ACK/pre-alert SMS fail (RIL 124) | M | M | outbox rows `failed` | **Materialised 24h-H8.** Top up the gateway SIM; the web card still reaches the hospital; the outbox shows the failure |
+
+**Materialised during the build (2026-10-31):** R14 in part (forged traffic could dodge per-IP limits: fixed, see A #23); R18 in our own RLS (A #24); R19; R20. R4 drilled, not suffered (offline drill passed after two fixes, A #26–27).
 
 ## C. Assumptions register (say "assumption" out loud)
 Duration 48 h · team of 4 · Android-only demo phones · judging criteria · every threshold in the detector (4 g, 8 g, 25 km/h gate, 20 km/h drop, 90° rollover, 30 s countdown) · NSI points, 70/45/20 cut-offs, confidence rules · GCS/SBP point values · hospital weights 0.45/0.35/0.15/0.05, the 60-min Level-A gate, the 0.75 capability gate, the 6 h status decay · merge rule 300 m / 10 min · DZ-MSD is our own spec · SMS gateway webhook field names · "no routine hospital pre-alert protocol exists" (absence of evidence) · business model · any "minutes saved" figure (a hypothesis for the pilot to measure).
@@ -71,4 +82,5 @@ Duration 48 h · team of 4 · Android-only demo phones · judging criteria · ev
 ## F. What this pack verified, and what it could not
 **Verified by running code in a sandbox:** the codec, CRC, GSM-7 check, Plus Codes (vs Google's library), scoring, ranking, merge (67 tests); the golden vectors against an independent Python implementation; WCAG contrast of every token pair; a fresh `pnpm install && pnpm check`; the automated test-on-edit hook (including a deliberately broken weight being caught).
 **Verified against vendor docs (2026-10-30):** the Figma, shadcn and Supabase MCP setup commands; Figma's seat requirement for canvas writes; the EAS free plan wording ("limited quantity of low-priority builds"); the free-tier limits in `08`.
+**Verified in P7 (2026-10-31, on the team laptop):** e2e 14/14 headless (hero flow, witness merge, crew upgrade, hospital ACK, demo reset, unparsed packet, a11y on 8 screens × en/ar) and in CI against `supabase start`; hostile security pass (docs/security-review-p7.md, no High/Critical open); offline drill 19/19; dashboard performance with 55 incidents (docs/field-notes/perf-p7.md). **Still not measured:** latency per channel, false-alarm staged tests and witness speed on real phones (docs/10 §5) — the team runs them; the countdown alarm with the ringer on silent on the demo phones.
 **Not verified (your first tasks):** the SQL migration (run `supabase db reset`); the Kotlin module and everything Android-side; the SMS gateway's webhook payload; Expo SDK 58 + NativeWind + Reanimated 4 compatibility; Figma MCP call limits for your plan; OSRM/PMTiles build sizes and timings for your region; Arabic TTS on your phones; all medical content (clinician review).

@@ -1,7 +1,7 @@
 'use client';
 import type { Band } from '@sellekni/shared';
 import { BAND_ORDER } from '@sellekni/ui-core';
-import { Check, Copy, ExternalLink, Flame, Phone, QrCode, PhoneOff, ScrollText, Users, Wrench, X, type LucideIcon } from 'lucide-react';
+import { Ambulance, Check, Copy, ExternalLink, Flame, Phone, QrCode, PhoneOff, ScrollText, Users, Wrench, X, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Tabs } from 'radix-ui';
@@ -20,6 +20,7 @@ import { cn } from '@/lib/utils';
 import type { RouteHint } from './incident-map';
 import { LifecyclePanel } from './lifecycle';
 import { Orientation } from './orientation';
+import { CrewLink } from './crew-link';
 import { WitnessQr } from './witness-qr';
 import { ReasonDialog } from './reason-dialog';
 
@@ -27,7 +28,8 @@ function CopyButton({ text, label, testId }: { text: string; label: string; test
   const t = useTranslations('detail');
   const [done, setDone] = useState(false);
   return (
-    <Button variant="outline" size="sm" data-testid={testId} aria-label={`${label}: ${text}`}
+    // the accessible name starts with the visible word (WCAG 2.5.3: a voice user says "copy"), then says what is copied
+    <Button variant="outline" size="sm" data-testid={testId}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(text);
@@ -39,6 +41,7 @@ function CopyButton({ text, label, testId }: { text: string; label: string; test
       }}>
       {done ? <Check aria-hidden className="text-status-ok" /> : <Copy aria-hidden />}
       {done ? t('copied') : t('copy')}
+      <span className="sr-only">{` ${label}: ${text}`}</span>
     </Button>
   );
 }
@@ -90,7 +93,7 @@ function BandOverride({ detail }: { detail: IncidentDetail }) {
             { onSuccess: () => setOpen(false) },
           )}
       >
-        <fieldset className="flex flex-col gap-2">
+        <fieldset className="flex min-w-0 flex-col gap-2">
           <legend className="mb-1 text-base font-medium">{t('override.band')}</legend>
           <div className="flex flex-wrap gap-2">
             {BAND_ORDER.map((b) => (
@@ -178,7 +181,10 @@ function Overview({ detail }: { detail: IncidentDetail }) {
         </dl>
       </section>
 
-      <WitnessLinkPanel incidentId={incident.id} />
+      <div className="flex flex-wrap gap-x-3 gap-y-2">
+        <WitnessLinkPanel incidentId={incident.id} />
+        <CrewLinkPanel incidentId={incident.id} />
+      </div>
 
       {latest && (
         <section className="flex flex-col gap-2">
@@ -217,6 +223,47 @@ function WitnessLinkPanel({ incidentId }: { incidentId: string }) {
   );
 }
 
+/** D9: the crew's signed 12 h link (QR + copy), folded by default like the witness link. */
+function CrewLinkPanel({ incidentId }: { incidentId: string }) {
+  const t = useTranslations('detail.crew');
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="flex flex-col gap-2">
+      <Button variant="outline" size="sm" className="self-start" aria-expanded={open} data-testid="crew-toggle" onClick={() => setOpen((o) => !o)}>
+        <Ambulance aria-hidden />
+        {open ? t('hide') : t('show')}
+      </Button>
+      {open && (
+        <div className="flex flex-col gap-2 rounded-md border border-line p-3">
+          <p className="text-sm text-muted-foreground">{t('body')}</p>
+          <CrewLink incidentId={incidentId} />
+        </div>
+      )}
+    </section>
+  );
+}
+
+/** A crew update (D9) has no packet: show the values the crew typed, labelled like the crew page. */
+function CrewValues({ raw }: { raw: string }) {
+  const t = useTranslations('crewPage');
+  let crew: Record<string, number> = {};
+  try {
+    crew = (JSON.parse(raw) as { crew?: Record<string, number> }).crew ?? {};
+  } catch {
+    return <code className="packet-ltr break-all font-mono text-base">{raw}</code>;
+  }
+  return (
+    <dl className="flex flex-wrap gap-x-4 gap-y-1 text-base" data-testid="crew-values">
+      {(['gcs', 'sbp', 'spo2', 'hr', 'etaMin'] as const).filter((k) => crew[k] !== undefined).map((k) => (
+        <div key={k} className="flex items-baseline gap-1.5">
+          <dt className="text-muted-foreground">{t(`field.${k}`)}</dt>
+          <dd className="packet-ltr font-display tabular-nums">{crew[k]} <span className="text-sm text-muted-foreground">{t(`unit.${k}`)}</span></dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 function Timeline({ detail }: { detail: IncidentDetail }) {
   const t = useTranslations();
   return (
@@ -230,6 +277,8 @@ function Timeline({ detail }: { detail: IncidentDetail }) {
           </div>
           {r.parse_error ? (
             <code className="packet-ltr break-all font-mono text-base text-status-warn">{r.raw}</code>
+          ) : r.source === 'crew' ? (
+            <CrewValues raw={r.raw} />
           ) : (
             <PacketLine wire={r.raw} chipsCopyable={false} />
           )}

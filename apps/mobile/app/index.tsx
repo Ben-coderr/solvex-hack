@@ -1,6 +1,6 @@
 import * as Haptics from 'expo-haptics';
 import { Redirect, router } from 'expo-router';
-import { ChevronRight, FlaskConical, Phone, PlayCircle, Settings as SettingsIcon } from 'lucide-react-native';
+import { ChevronRight, Eye, FlaskConical, Phone, PlayCircle, Settings as SettingsIcon } from 'lucide-react-native';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { I18nManager, Pressable, View } from 'react-native';
@@ -15,7 +15,7 @@ import { useSession } from '@/src/state/session';
 import { useSettings } from '@/src/state/settings';
 import { EmptyState, SosButton, T, useTheme, type SosState } from '@/src/ui';
 
-/** Home (M2 entry, M7 SOS): one primary action (Drive mode), SOS held 1.5 s, last alert, call 14. */
+/** Home (M2 entry, M7 SOS, M6 witness): one primary action (Drive mode), SOS held 1.5 s, witness mode, last alert, call 14. */
 export default function Home() {
   const { t } = useTranslation();
   const { c } = useTheme();
@@ -61,6 +61,9 @@ export default function Home() {
         <SosButton state={sos} onConfirm={() => void sendSos()} />
         <Txt v="small" tone="muted" style={{ textAlign: 'center' }}>{t('home.sosHint')}</Txt>
       </View>
+
+      {/* M6: anyone can report a crash they saw; no account, no Drive mode needed */}
+      <Btn testID="open-witness" kind="secondary" icon={Eye} label={t('home.witness')} onPress={() => router.push('/witness')} />
 
       <Readiness />
 

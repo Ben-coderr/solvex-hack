@@ -41,6 +41,16 @@ export interface AlertInput {
   appVersion?: string;
   /** built from a replayed trace: marked in device.app so the server-side raw JSON shows it */
   replay?: boolean;
+  /** what a witness saw (M6, source W): replaces the driver defaults of 1 vehicle, 1 person, a car, no flags */
+  scene?: WitnessScene;
+}
+
+/** The 5-tap witness answers (docs/03 M6). `pers` = people hurt (0 is a valid answer); flags in FLAG_ORDER-free form. */
+export interface WitnessScene {
+  veh: number;
+  pers: number;
+  kinds: Kind[];
+  flags: Flag[];
 }
 
 export interface BuiltAlert {
@@ -68,14 +78,14 @@ export function isoAlgiers(d: Date): string {
 export function buildAlert(a: AlertInput): BuiltAlert {
   const lat = a.fix ? round5(a.fix.lat) : 0;
   const lon = a.fix ? round5(a.fix.lon) : 0;
-  const flags: Flag[] = a.noResponse ? ['N'] : [];
-  const kinds: Kind[] = a.kinds?.length ? a.kinds : ['C'];
+  const flags: Flag[] = [...(a.noResponse ? ['N' as const] : []), ...(a.scene?.flags ?? [])];
+  const kinds: Kind[] = a.scene?.kinds.length ? a.scene.kinds : a.kinds?.length ? a.kinds : ['C'];
   const h = a.hints;
 
   const base: DzmsdPacket = {
     id: a.id, band: 'U', score: 0, conf: 'L',
     lat, lon, time: formatHHMM(a.now), src: a.source,
-    veh: 1, pers: 1, kinds,
+    veh: a.scene ? clampInt(a.scene.veh, 9) : 1, pers: a.scene ? clampInt(a.scene.pers, 9) : 1, kinds,
     ...(h && { dv: clampInt(h.D, 999), g: clampInt(h.G, 999) }),
     ...(h?.RO && { roll: true }),
     ...(flags.length > 0 && { flags }),
@@ -102,7 +112,10 @@ export function buildAlert(a: AlertInput): BuiltAlert {
           },
         }
       : {}),
-    scene: { vehicles: packet.veh, persons: packet.pers, kinds: kinds.map((k) => KIND_WORD[k]), flags: flags.map((f) => FLAG_WORD[f]) },
+    scene: {
+      vehicles: packet.veh, persons: packet.pers, kinds: kinds.map((k) => KIND_WORD[k]), flags: flags.map((f) => FLAG_WORD[f]),
+      ...(flags.includes('F') && { fire: true }),
+    },
     ...(a.lang && { contact: { lang: a.lang } }),
     device: { app: `${BRAND.appId}/${a.appVersion ?? '0'}${a.replay ? '+replay' : ''}`, ...(a.battery !== undefined && { battery: clampInt(a.battery, 100) }) },
     hint: { band: packet.band, score: packet.score, conf: packet.conf },

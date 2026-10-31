@@ -1,6 +1,6 @@
 # Sellekni docs
 
-Start with the root `README.md` (run it) and `DEVELOPMENT.md` (rules and architecture). Decisions taken while building are logged in `DECISIONS.md`.
+Start with the [root README](../README.md) (overview with pictures), [RUNNING.md](RUNNING.md) (run and test it locally) and [`DEVELOPMENT.md`](../DEVELOPMENT.md) (rules and architecture). Decisions taken while building are logged in `DECISIONS.md`.
 Numbers 01–02 were planning prompts and are not in the repo.
 
 | Doc | Read it when |
@@ -19,4 +19,14 @@ Numbers 01–02 were planning prompts and are not in the repo.
 | [14 Business model canvas](14-BUSINESS-MODEL-CANVAS.md) | business questions |
 
 Guidelines: [design constitution](guidelines/design-constitution.md), [medical language](guidelines/medical-language.md), [protocol guard](guidelines/protocol-guard.md).
-Diagrams: `diagrams/*.svg` (built by `diagrams/build_diagrams.py`), the one-page blueprint `diagrams/sellekni-blueprint.html`. Screenshots: `pitch/design/`.
+## Folders
+
+| Folder | What |
+|---|---|
+| [`diagrams/`](diagrams/) | Reference SVGs (built by `build_diagrams.py`) and the one-page blueprint `sellekni-blueprint.html` |
+| [`diagrams/pitch/`](diagrams/pitch/) | Slide diagrams (architecture, detection gates, packet, orientation, today vs Sellekni, hardware tiers / OBD / box). Run `python3 gen.py` and `python3 hw.py` in that folder to regenerate them |
+| [`assets/`](assets/) | Images used by the READMEs: logo, screenshots, diagram renders |
+| [`guidelines/`](guidelines/) | Design constitution, medical language, protocol guard |
+| [`field-notes/`](field-notes/) | Drills and measurements (offline drill, performance, reset runs, G4 drill protocol) |
+| [`pitch/`](pitch/) | Deck material, BMC (HTML + PDF), runbook, Q&A sheet, rehearsal log, videos, screenshot sets (`design/`, `screens/`) |
+| [`security-review-p7.md`](security-review-p7.md) | Security review |

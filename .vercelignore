@@ -1,0 +1,16 @@
+# Vercel backup deploy (docs/pitch/runbook.md): upload only what apps/web builds from
+.env*
+!.env.example
+.sellekni
+.claude
+apps/mobile
+docs
+data/snapshots
+data/metrics
+data/captures
+**/node_modules
+**/.next*
+apps/web/public/tiles/*.pmtiles
+apps/web/test-results
+apps/web/playwright-report
+supabase/.temp

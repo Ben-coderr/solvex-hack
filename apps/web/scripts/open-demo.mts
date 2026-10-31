@@ -1,4 +1,4 @@
-// Open the demo already signed in: one Chrome window for the dispatcher, one for hospital CHU-A (separate
+// Open the demo already signed in: one Chrome window for the dispatcher, one for hospital A (separate
 // sessions, like two people), and a stage window (dispatcher session) with /demo and /phones in two tabs.
 // Uses the real login form, so it also proves the accounts work.
 //   ./sellekni open                 (or: BASE_URL=http://localhost:3000 pnpm --filter web exec tsx scripts/open-demo.mts)
@@ -82,7 +82,7 @@ console.log(`
   Try the hero flow (≈ 90 s):
    1. Dispatcher: Simulate SMS → "Rollover, no response" → Send → Esc
    2. Click the red ▲ pin → read the reasons → Acknowledged
-   3. Orientation: Pre-alert on CHU-A (#1)
+   3. Orientation: Pre-alert on the #1 hospital (hospital A's)
    4. Hospital window: Acknowledge
    5. Dispatcher: ✓ Acknowledged appears → Audit log shows every step
    6. Stage window: a witness report on the newest incident → ×2, confidence up; Reset when done

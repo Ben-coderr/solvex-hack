@@ -1,5 +1,6 @@
 // Create/refresh the demo logins (idempotent). Uses the service-role key: run locally only, never ship this key.
 //   pnpm db:users
+import { readFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -10,10 +11,14 @@ if (!url || !serviceKey || !password) {
   process.exit(1);
 }
 
+// hospital logins follow the active set (data/demo-hospitals.json): re-run after changing HOSPITAL_SET
+const set = process.env.HOSPITAL_SET === 'demo' ? 'demo' : 'national';
+const logins = JSON.parse(readFileSync('data/demo-hospitals.json', 'utf8')).logins[set] as Record<'hospital-a' | 'hospital-b', string>;
+
 const USERS = [
   { email: 'dispatcher@sellekni.test', role: 'dispatcher', hospital_id: null, display_name: 'Dispatcher (demo)' },
-  { email: 'hospital-a@sellekni.test', role: 'hospital', hospital_id: 'CHU-A', display_name: 'CHU A ED (demo)' },
-  { email: 'hospital-b@sellekni.test', role: 'hospital', hospital_id: 'EPH-B', display_name: 'EPH B ED (demo)' },
+  { email: 'hospital-a@sellekni.test', role: 'hospital', hospital_id: logins['hospital-a'], display_name: 'Hospital A ED (demo)' },
+  { email: 'hospital-b@sellekni.test', role: 'hospital', hospital_id: logins['hospital-b'], display_name: 'Hospital B ED (demo)' },
 ] as const;
 
 const admin = createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });

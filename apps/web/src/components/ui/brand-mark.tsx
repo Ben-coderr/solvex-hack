@@ -18,7 +18,8 @@ export function BrandLockup({ size = 'md' }: { size?: 'md' | 'lg' }) {
   return (
     <span className="inline-flex items-center gap-2.5">
       <BrandMark className={lg ? 'size-16' : 'size-9'} />
-      <span className={cn('font-display font-semibold leading-none', lg ? 'text-4xl' : 'text-2xl')}>{BRAND.name}</span>
+      {/* a logotype (WCAG 1.4.4 exception): capped by the viewport so 200 % text never pushes the page sideways */}
+      <span className={cn('font-display font-semibold leading-none', lg ? 'text-[min(2.25rem,11vw)]' : 'text-[min(1.5rem,9vw)]')}>{BRAND.name}</span>
     </span>
   );
 }

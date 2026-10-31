@@ -53,7 +53,9 @@ export class MemoryStore implements IngestStore {
           .filter((i) => Math.abs(i.crashedAt.getTime() - at.getTime()) <= MERGE_WINDOW_MIN * 60_000)
           .sort((a, b) => a.crashedAt.getTime() - b.crashedAt.getTime())[0] ?? null,
       listPackets: async (incidentId) =>
-        s().reports.filter((r) => r.incidentId === incidentId && r.parsed).map((r) => r.parsed!.packet as DzmsdPacket),
+        s().reports.flatMap((r) => (r.incidentId === incidentId && r.parsed && 'packet' in r.parsed ? [r.parsed.packet as DzmsdPacket] : [])),
+      listCrewVitals: async (incidentId) =>
+        s().reports.flatMap((r) => (r.incidentId === incidentId && r.parsed && 'crew' in r.parsed ? [r.parsed.crew] : [])),
       insertIncident: async (row) => {
         s().incidents.push({ ...row });
       },

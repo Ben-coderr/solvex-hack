@@ -80,7 +80,8 @@
     "sent": "sent",
     "retrying": "retrying",
     "acked": "received",
-    "failed": "failed"
+    "failed": "failed",
+    "crew": "Crew"
   },
   "incident": {
     "unconfirmed": "Auto · unconfirmed",
@@ -113,7 +114,9 @@
     "choose": "Choose…",
     "illustrative": "illustrative",
     "gateNote": "Ranked first by the capability rule: band R needs a level-A centre within 60 min (a clinical policy, not the raw score).",
-    "missingNote": "Missing {caps}: risk of a secondary transfer."
+    "missingNote": "Missing {caps}: risk of a secondary transfer.",
+    "marker": "Hospital {name}, level {level}",
+    "level": "Level {level}"
   },
   "capability": {
     "ed24": "ED 24/7",
@@ -144,7 +147,14 @@
     "eta": "Arrives in",
     "ack": "Acknowledge",
     "mechanism": "Mechanism",
-    "persons": "{count, plural, one {# person} other {# people}}"
+    "persons": "{count, plural, one {# person} other {# people}}",
+    "vitals": "Vitals",
+    "vital": {
+      "gcs": "GCS {value}",
+      "sbp": "SBP {value} mmHg",
+      "spo2": "SpO₂ {value}%",
+      "hr": "HR {value}/min"
+    }
   },
   "witness": {
     "steps": {
@@ -262,6 +272,15 @@
       "body": "A witness on site scans it, answers 4 questions, and the report joins this incident. The page shows only a ~100 m position, no victim data.",
       "loadError": "The witness link could not be created.",
       "qrLabel": "QR code of the witness page for incident {id}"
+    },
+    "crew": {
+      "title": "Crew link",
+      "show": "Show the crew link",
+      "hide": "Hide the crew link",
+      "body": "The ambulance crew enters GCS, blood pressure, SpO₂, HR and ETA; the band is recomputed and the hospital is told. The link expires in 12 h.",
+      "loadError": "The crew link could not be created.",
+      "qrLabel": "QR code of the crew page for incident {id}",
+      "expires": "Valid until {time}"
     }
   },
   "override": {
@@ -369,7 +388,8 @@
       "override_cleared": "Back to computed band",
       "hospital_set": "Facility chosen",
       "hospital_override": "Other facility chosen",
-      "unit_assigned": "Unit assigned"
+      "unit_assigned": "Unit assigned",
+      "crew_update": "Crew update"
     },
     "prealert": {
       "sent": "Pre-alert sent",
@@ -468,7 +488,8 @@
     },
     "action": {
       "witness": "Witness report (5 taps)",
-      "duplicate": "Same SMS again (duplicate)"
+      "duplicate": "Same SMS again (duplicate)",
+      "crew": "Crew update (GCS 9, BP 85)"
     },
     "outcome": {
       "created": "New incident {id}",
@@ -518,9 +539,63 @@
         "failed": "failed",
         "simulated": "simulated (no gateway)",
         "no_number": "no number"
-      }
+      },
+      "crew": "Crew · phone B",
+      "crewEmpty": "No open incident yet.",
+      "simulateCrew": "Send GCS 9, BP 85 (simulated)"
     },
     "error": "The action failed: {message}",
     "notAllowed": "Demo pages are for the dispatcher account."
+  },
+  "crewPage": {
+    "title": "Crew update",
+    "lead": "Fill in what you measured. Leave a field empty if you did not measure it.",
+    "disclaimer": "Estimated risk, not a diagnosis.",
+    "field": {
+      "gcs": "Glasgow (GCS)",
+      "sbp": "Systolic BP",
+      "spo2": "SpO₂",
+      "hr": "Heart rate",
+      "etaMin": "Arrival at hospital in"
+    },
+    "unit": {
+      "gcs": "3–15",
+      "sbp": "mmHg",
+      "spo2": "%",
+      "hr": "/min",
+      "etaMin": "min"
+    },
+    "range": "{min} to {max}",
+    "last": "last sent: {value}",
+    "send": "Send to the operations room and the hospital",
+    "sending": "Sending…",
+    "expires": "This link stops working at {time}.",
+    "callButton": "Call 14",
+    "offline": "No internet connection. The update cannot be sent: radio or call the operations room.",
+    "slow": "Too many requests from this connection. Wait a minute and reload.",
+    "invalid": {
+      "title": "This link is not valid",
+      "body": "Check that you opened the full link from the operations room."
+    },
+    "expired": {
+      "title": "This link has expired",
+      "body": "Ask the operations room for a new crew link."
+    },
+    "closed": {
+      "title": "This incident is closed",
+      "body": "Updates are no longer accepted for it."
+    },
+    "sent": {
+      "title": "Update sent.",
+      "changed": "Update sent. Band raised: {from} → {to}.",
+      "body": "The operations room and the pre-alerted hospital have the new values."
+    },
+    "error": {
+      "empty": "Enter at least one value.",
+      "invalid": "A value is outside its range. Check and send again.",
+      "rate_limited": "Too many updates from this connection. Wait a few minutes.",
+      "closed": "This incident is closed.",
+      "expired": "This link has expired. Ask the operations room for a new one."
+    }
   }
 }

@@ -1,22 +1,26 @@
 import 'server-only';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import type { IngestAck } from '@sellekni/api-contract';
-import { encodeDzmsd, encodePlusCode, formatHHMM, generateIncidentId, WitnessForm, type DzmsdPacket } from '../domain';
+import { CrewForm, encodeDzmsd, encodePlusCode, formatHHMM, generateIncidentId, WitnessForm, type DzmsdPacket } from '../domain';
 import { sql as getSql } from '../db';
+import { crewLink, submitCrew } from './crew';
 import { ingest } from './ingest';
 import { postgresStore } from './store-postgres';
 import { submitWitness, witnessLink } from './witness';
+// bundled, not read from disk at run time: serverless hosts (the Vercel backup) don't ship ../../data
+import hospitalsSeed from '../../../../../data/hospitals.seed.json';
 
 /** Scenarios for "Simulate SMS" / replay. Re-encoded with the current time so merge windows behave live. */
 export const SCENARIOS = ['rollover', 'frontal', 'witness_oran', 'bad_crc', 'witness_near_rollover'] as const;
 export type Scenario = (typeof SCENARIOS)[number];
 /** /demo and /phones only: they act on the latest open incident instead of creating a packet from nothing. */
-export const ACTIONS = ['witness', 'duplicate'] as const;
+export const ACTIONS = ['witness', 'duplicate', 'crew'] as const;
 export type DemoAction = (typeof ACTIONS)[number];
 
 /** docs/10 §3 step 7: "2 vehicles, motorbike, trapped, child". */
 const DEMO_WITNESS = WitnessForm.parse({ vehicles: '2', kinds: ['car', 'moto'], hurt: '1', danger: ['trapped', 'child'], here: 'yes' });
+
+/** docs/03 flow E: "enters GCS 9, SBP 85" → physiology raises the band to R. */
+const DEMO_CREW = CrewForm.parse({ gcs: '9', sbp: '85', etaMin: '12' });
 
 const ORIGIN = { lat: 36.47213, lon: 2.82871 }; // docs/05 §1.2 example 1
 
@@ -63,8 +67,22 @@ async function latestOpen(): Promise<string | null> {
 /**
  * witness: the same path as the /w page (channel `witness`) into the newest open incident.
  * duplicate: the newest parsed SMS/simulated text re-delivered byte for byte (idempotence on stage: nothing changes).
+ * crew: the /crew path (GCS 9, SBP 85, ETA 12 min) on the newest open incident; answers like an ingest (`updated`).
  */
 export async function demoAction(a: DemoAction, ip: string, now = new Date()): Promise<{ text: string; ack: IngestAck }> {
+  if (a === 'crew') {
+    const id = await latestOpen();
+    const crew = id ? await submitCrew(id, DEMO_CREW, ip, now) : null;
+    if (!crew) throw new DemoConflict('no open incident: run a scenario first');
+    const [inc] = await getSql()<{ merged_count: number }[]>`select merged_count from public.incidents where id = ${id}`;
+    return {
+      text: `crew → ${id}`,
+      ack: {
+        outcome: 'updated', report_id: crew.report_id, incident_id: crew.incident_id, merged_count: inc?.merged_count ?? null,
+        assessment: crew.assessment, error: null, received_at: now.toISOString(),
+      },
+    };
+  }
   if (a === 'witness') {
     const id = await latestOpen();
     const ack = id ? await submitWitness(id, DEMO_WITNESS, ip, now) : null;
@@ -84,6 +102,7 @@ export interface DemoPhones {
   /** the newest packet that reached the server, as the driver's phone sent it */
   lastPacket: { raw: string; channel: string; received_at: Date } | null;
   witness: { url: string; svg: string } | null;
+  crew: { url: string; svg: string; expiresAt: string } | null;
   /** outbound SMS (ACKs to drivers, pre-alerts to hospitals), newest first: what the virtual phones receive */
   sms: Array<{ id: string; to_number: string | null; body: string; purpose: string; status: string; created_at: Date }>;
 }
@@ -102,6 +121,7 @@ export async function demoPhones(origin: string): Promise<DemoPhones> {
     latest: latest ?? null,
     lastPacket: lastPacket ?? null,
     witness: latest ? await witnessLink(latest.id, origin) : null,
+    crew: latest ? await crewLink(latest.id, origin) : null,
     sms,
   };
 }
@@ -111,9 +131,7 @@ const DEMO_TABLES = ['incidents', 'reports', 'assessments', 'prealerts', 'sms_ou
 /** Wipe incidents and everything hanging off them; restore seeded hospital statuses. Audited as the first new row. */
 export async function resetDemo(actor: string): Promise<{ ms: number; clean: boolean; counts: Record<string, number> }> {
   const t0 = Date.now();
-  const seed = JSON.parse(readFileSync(path.resolve(process.cwd(), '../../data/hospitals.seed.json'), 'utf8')) as {
-    statuses?: Array<{ hospital_id: string; status: string; set_by?: string }>;
-  };
+  const seed = hospitalsSeed as { statuses?: Array<{ hospital_id: string; status: string; set_by?: string }> };
   await getSql().begin(async (sql) => {
     await sql`truncate public.prealerts, public.assessments, public.reports, public.audit_events, public.sms_outbox,
                        public.eta_cache, public.incidents restart identity cascade`;

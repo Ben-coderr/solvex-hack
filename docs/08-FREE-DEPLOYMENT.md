@@ -54,7 +54,7 @@ pnpm install && pnpm --filter web build && pnpm --filter web start    # http://l
 ### 3.2 SMS gateway phone
 1. Install **SMS Gateway for Android** (capcom6; Apache-2.0) on a spare Android with a SIM that has coverage in the demo room (test all three operators the day before and pick the strongest).
 2. Choose **local server mode** (phone and laptop on the same network) or **cloud mode** (phone talks to the vendor's server; you then need a public HTTPS webhook URL → Cloudflare Tunnel). *Read docs.sms-gate.app first:* confirm webhook event names, payload fields, signing, and the send endpoint, then update `gateway.ts` and its fixtures.
-3. Webhook target: `POST http://<laptop-ip>:3000/api/sms/inbound` with your `SMSGATE_WEBHOOK_SECRET`.
+3. Webhook target: `POST https://<tunnel>/api/sms/inbound` with your `SMSGATE_WEBHOOK_SECRET` as the app's signing key. The app only sends webhooks to HTTPS with a valid certificate (plain HTTP only to `127.0.0.1`), so `http://<laptop-ip>:3000` is refused: keep the gateway phone on USB and use `adb reverse tcp:3000 tcp:3000` with the webhook at `http://127.0.0.1:3000/api/sms/inbound` (or a Cloudflare quick tunnel). Steps: `docs/field-notes/G4-drill.md`.
 4. Disable battery optimisation for the app, keep the phone on charge, screen on during the demo.
 5. Test: send an SMS from another phone containing `SLK1 K7Q2M R75H 36.47213,2.82871 T1432 SA V1 P1 KC D71 G38 RO FN HR124 SP89 8F84FRCH+VF #0E` → pin appears.
 

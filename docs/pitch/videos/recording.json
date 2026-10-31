@@ -1,0 +1,99 @@
+{
+  "at": "2026-10-31T04:46:04.583Z",
+  "base": "http://localhost:3000",
+  "chrome": "156.0.8078.74",
+  "totalSeconds": 45,
+  "speedup60": 1,
+  "steps": [
+    {
+      "n": 1,
+      "slug": "phone-in-car",
+      "views": [
+        "phones"
+      ],
+      "seconds": 3.6
+    },
+    {
+      "n": 2,
+      "slug": "impact",
+      "views": [
+        "phones"
+      ],
+      "seconds": 1.6
+    },
+    {
+      "n": 3,
+      "slug": "no-response-dialler",
+      "views": [
+        "phones"
+      ],
+      "seconds": 1.6
+    },
+    {
+      "n": 4,
+      "slug": "sms-160-chars",
+      "views": [
+        "phones"
+      ],
+      "seconds": 3
+    },
+    {
+      "n": 5,
+      "slug": "pin-and-reasons",
+      "views": [
+        "dispatcher"
+      ],
+      "seconds": 4.2
+    },
+    {
+      "n": 6,
+      "slug": "ack-delivered",
+      "views": [
+        "phones"
+      ],
+      "seconds": 2.6
+    },
+    {
+      "n": 7,
+      "slug": "witness-merge",
+      "views": [
+        "witness",
+        "dispatcher"
+      ],
+      "seconds": 10.3
+    },
+    {
+      "n": 8,
+      "slug": "acknowledged-dispatched",
+      "views": [
+        "dispatcher"
+      ],
+      "seconds": 3.4
+    },
+    {
+      "n": 9,
+      "slug": "orientation",
+      "views": [
+        "dispatcher"
+      ],
+      "seconds": 4.1
+    },
+    {
+      "n": 10,
+      "slug": "prealert-hospital",
+      "views": [
+        "dispatcher",
+        "hospital"
+      ],
+      "seconds": 6.2
+    },
+    {
+      "n": 11,
+      "slug": "audit",
+      "views": [
+        "dispatcher"
+      ],
+      "seconds": 3.7
+    }
+  ]
+}

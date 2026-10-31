@@ -31,6 +31,8 @@ export class RateLimiter {
 export const LIMITS = {
   /** per API key + IP */
   incidentsJson: { limit: 30, windowMs: 60_000 },
+  /** every app together: the per-IP limit can be dodged with a forged X-Forwarded-For, and the key ships in the APK */
+  incidentsJsonAll: { limit: 120, windowMs: 60_000 },
   /** per gateway (the phone retries with backoff; generous) */
   smsWebhook: { limit: 120, windowMs: 60_000 },
   /** docs/05 §7: ≤ 3 auto alerts per hour per SMS sender (excess is still STORED, flagged, never dropped) */
@@ -41,6 +43,12 @@ export const LIMITS = {
   witnessPerIncident: { limit: 20, windowMs: 3_600_000 },
   /** witness page views per IP hash (refreshes on a bad connection are normal) */
   witnessPagePerIp: { limit: 60, windowMs: 60_000 },
+  /** crew update POST per IP hash: a crew re-measures every few minutes on a long transfer */
+  crewPerIp: { limit: 20, windowMs: 600_000 },
+  /** crew updates per incident (one ambulance, maybe two) */
+  crewPerIncident: { limit: 30, windowMs: 3_600_000 },
+  /** crew page views per IP hash */
+  crewPagePerIp: { limit: 60, windowMs: 60_000 },
   /** dispatcher API per user */
   dispatcher: { limit: 120, windowMs: 60_000 },
 } as const satisfies Record<string, Limit>;

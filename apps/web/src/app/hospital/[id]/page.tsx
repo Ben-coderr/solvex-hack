@@ -1,5 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 import { DispatchProviders } from '@/components/dispatch/providers';
+import { healthBody } from '@/server/health';
 import { HospitalView } from '@/components/hospital/hospital-view';
 import { getActorFromCookies } from '@/server/auth';
 
@@ -13,7 +14,7 @@ export default async function HospitalPage({ params }: PageProps<'/hospital/[id]
     redirect(actor.hospitalId ? `/hospital/${actor.hospitalId}` : '/login');
   }
   return (
-    <DispatchProviders>
+    <DispatchProviders health={healthBody()}>
       <HospitalView hospitalId={id} canNavigate={actor.role !== 'hospital'} />
     </DispatchProviders>
   );

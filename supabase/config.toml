@@ -174,7 +174,8 @@ enable_refresh_token_rotation = true
 # Requires enable_refresh_token_rotation = true.
 refresh_token_reuse_interval = 10
 # Allow/disallow new user signups to your project.
-enable_signup = true
+# false (P7 security review): staff accounts are created by scripts/seed-users.mts with the admin API only.
+enable_signup = false
 # Allow/disallow anonymous sign-ins to your project.
 enable_anonymous_sign_ins = false
 # Allow/disallow testing manual linking of accounts
@@ -219,6 +220,7 @@ web3 = 30
 
 [auth.email]
 # Allow/disallow new user signups via email to your project.
+# Stays true: here it switches the whole email provider (logins included). Sign-ups are closed by [auth] above.
 enable_signup = true
 # If enabled, a user will be required to confirm any email change on both the old, and new email
 # addresses. If disabled, only the new email is required to confirm.

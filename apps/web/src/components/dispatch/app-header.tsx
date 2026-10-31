@@ -59,12 +59,12 @@ export function AppHeader({ actions, nav = true }: { actions?: ReactNode; nav?: 
   ];
   return (
     <header className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-surface px-4 py-2">
-      <Link href="/" aria-label={BRAND.name} className="rounded-md"><BrandLockup /></Link>
+      <Link href="/" aria-label={BRAND.name} className="inline-flex min-h-12 items-center rounded-md md:min-h-0"><BrandLockup /></Link>
       {nav && (
         <nav aria-label={t('nav')} className="flex min-w-0 flex-wrap items-center gap-1">
           {links.map((l) => (
             <Link key={l.href} href={l.href} aria-current={path === l.href ? 'page' : undefined}
-              className={cn('inline-flex min-h-10 items-center gap-1.5 rounded-md px-3 text-base hover:bg-raised',
+              className={cn('inline-flex min-h-12 items-center gap-1.5 rounded-md px-3 text-base hover:bg-raised md:min-h-10',
                 path === l.href ? 'font-semibold text-text' : 'text-muted-foreground')}>
               <l.icon aria-hidden className="size-4" />
               {l.label}
@@ -74,7 +74,7 @@ export function AppHeader({ actions, nav = true }: { actions?: ReactNode; nav?: 
       )}
       <div className="ms-auto flex flex-wrap items-center gap-2">
         {actions}
-        <LocaleSwitch className="[&_button]:min-h-10 [&_button]:px-3" />
+        <LocaleSwitch className="md:[&_button]:min-h-10 md:[&_button]:px-3" />
         <ThemeToggle />
         <SignOut />
       </div>

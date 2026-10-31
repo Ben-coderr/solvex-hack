@@ -8,10 +8,11 @@ export interface DemoPhones {
   latest: { id: string; band: 'R' | 'O' | 'Y' | 'G' | 'U'; nsi: number; conf: 'H' | 'M' | 'L'; merged_count: number; status: string; created_at: string } | null;
   lastPacket: { raw: string; channel: string; received_at: string } | null;
   witness: { url: string; svg: string } | null;
+  crew: { url: string; svg: string; expiresAt: string } | null;
   sms: Array<{ id: string; to_number: string | null; body: string; purpose: string; status: string; created_at: string }>;
 }
 
-export type DemoRun = { scenario: string } | { action: 'witness' | 'duplicate' };
+export type DemoRun = { scenario: string } | { action: 'witness' | 'duplicate' | 'crew' };
 
 /** Polled every 2 s (docs/17 §2: polling is the Realtime fallback, and good enough for a stage page). */
 export const useDemoPhones = () =>

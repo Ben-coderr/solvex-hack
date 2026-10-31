@@ -21,7 +21,7 @@ export interface UnparsedItem { id: string; channel: Channel; raw: string; parse
 export interface Reason { code: string; points: number; text: string; red?: boolean }
 export interface AssessmentInputs {
   flags?: Flag[]; persons?: number; vehicles?: number; dvKmh?: number; peakG?: number; rollover?: boolean;
-  spo2?: number; hr?: number; independentReports?: number;
+  spo2?: number; hr?: number; gcs?: number; sbp?: number; independentReports?: number;
 }
 export interface AuditEvent {
   id: string; incident_id?: string | null; actor: string; action: string; before: unknown; after: unknown; reason: string | null; at: string;
@@ -56,6 +56,8 @@ export interface IncomingPrealert {
   id: string; incident_id: string; channel: string; sent_at: string; acked_at: string | null; acked_by: string | null;
   band: Band; nsi: number; conf: Confidence; status: IncidentStatus; crashed_at: string;
   reasons: Reason[] | null; inputs: AssessmentInputs | null; eta_min: number | null;
+  /** the crew's own ETA (D9), counted from when they sent it; replaces the estimate when present */
+  crew_eta_min: number | null; crew_eta_at: string | null;
 }
 
 // ───────────── queries ─────────────
@@ -73,8 +75,20 @@ export const useRecommendations = (id: string | null, band?: Band) =>
 export const useSystemStatus = () =>
   useQuery({ queryKey: ['status'], queryFn: () => api<SystemStatus>('/api/status'), refetchInterval: 10_000 });
 
+export interface HospitalPoint {
+  id: string; name: string; level: 'A' | 'B' | 'C'; lat: number; lon: number;
+  capabilities: Array<'ed24' | 'trauma_surgery' | 'ct' | 'icu' | 'neurosurgery' | 'pediatrics' | 'burns' | 'general_surgery'>;
+}
+export const useHospitals = () =>
+  useQuery({ queryKey: ['hospitals'], queryFn: () => api<{ set: 'demo' | 'national'; hospitals: HospitalPoint[] }>('/api/hospitals'), staleTime: Infinity });
+
 export const useHealth = () =>
-  useQuery({ queryKey: ['health'], queryFn: () => api<{ ok: true; demo: boolean; time: string; offlineTiles: boolean }>('/api/health'), refetchInterval: 10_000, retry: 0 });
+  useQuery({
+    queryKey: ['health'], queryFn: () => api<{ ok: true; demo: boolean; time: string; offlineTiles: boolean }>('/api/health'), refetchInterval: 10_000, retry: 0,
+    // the probe must run when the browser says it is offline: TanStack pauses queries then, so the request never
+    // failed and the dashboard kept claiming "SMS only" while it could not reach its own server (P7 offline drill)
+    networkMode: 'always',
+  });
 
 export const useAudit = (incident: string | null) =>
   useQuery({ queryKey: ['audit', incident], queryFn: () => api<{ events: AuditEvent[] }>(`/api/audit${incident ? `?incident=${incident}` : ''}`) });
@@ -83,6 +97,7 @@ export const useIncoming = (hospitalId: string) =>
   useQuery({
     queryKey: ['hospital', hospitalId],
     queryFn: () => api<{ incoming: IncomingPrealert[]; status: { status: LoadStatus; setAt: number } | null }>(`/api/hospitals/${hospitalId}/prealerts`),
+    refetchInterval: 10_000, // fallback when Realtime does not reach a hospital session (docs/17 §2)
   });
 
 // ───────────── mutations (every one is a human click; the server audits it) ─────────────
