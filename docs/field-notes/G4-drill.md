@@ -9,30 +9,32 @@ Status at 00:41 Sat: the app side works up to the radio (DECISIONS [24h-H2]: GW1
 - [ ] **SIM credit on the gateway phone** — it sends the ACK SMS back (one per alert).
 - [ ] **Signal ≥ 3 bars** on both phones in the room where you will pitch. Pick the operator that works there.
 
-## 1. The webhook must be HTTPS (this changes docs/08)
-The gateway app only POSTs webhooks to **HTTPS with a valid certificate**; plain HTTP is accepted only for `http://127.0.0.1` (docs.sms-gate.app/features/webhooks, checked 2026-10-31). `http://<laptop-ip>:3000/api/sms/inbound` **will not work**. Use a Cloudflare quick tunnel (free, no account):
+## 1. The webhook must be HTTPS — or 127.0.0.1 over USB (this changes docs/08)
+The gateway app only POSTs webhooks to **HTTPS with a valid certificate**; plain HTTP is accepted only for `http://127.0.0.1` (docs.sms-gate.app/features/webhooks, checked 2026-10-31). `http://<laptop-ip>:3000/api/sms/inbound` **will not work**.
 
+**Chosen: gateway phone on USB to the laptop** — nothing public, no Wi-Fi needed:
 ```sh
-brew install cloudflared
-cloudflared tunnel --url http://localhost:3000     # prints https://<random>.trycloudflare.com — keep this terminal open
-curl -s https://<random>.trycloudflare.com/api/health   # must answer from the laptop
+adb -s <gateway-serial> reverse tcp:3000 tcp:3000   # phone's 127.0.0.1:3000 → laptop's :3000 (webhook)
+adb -s <gateway-serial> forward tcp:8080 tcp:8080   # laptop's 127.0.0.1:8080 → gateway's local server (ACK SMS)
 ```
-The URL changes every time `cloudflared` restarts: re-register the webhook (step 3) after any restart. The laptop needs internet for this; only the **Realme** has its data off.
+Then webhook URL = `http://127.0.0.1:3000/api/sms/inbound` and `SMSGATE_BASE_URL=http://127.0.0.1:8080`. Re-run both `adb` lines after any replug. The gateway phone stays cabled on the table.
+
+Fallback: a Cloudflare quick tunnel (`cloudflared tunnel --url http://localhost:3000`, URL changes on every restart; exposes the laptop publicly while it runs).
 
 ## 2. Gateway phone (any Android with a SIM)
 1. Install **SMS Gateway for Android** (capcom6). Turn on **Local Server**; note the IP, port (8080), username and password it shows.
 2. Settings → Webhooks → **Signing Key**: set it to the same value as `SMSGATE_WEBHOOK_SECRET` in `.env.local`.
 3. Battery: no optimisation for the gateway app; keep it charging, screen on.
-4. Same Wi-Fi/hotspot as the laptop (the laptop sends the ACK SMS through `http://<phone-ip>:8080/message`).
+4. USB cable to the laptop, then the two `adb` lines from step 1.
 
 ## 3. Laptop
-1. `.env.local`: `SMSGATE_MODE=local`, `SMSGATE_BASE_URL=http://<phone-ip>:8080`, `SMSGATE_USER` / `SMSGATE_PASSWORD` from step 2.1. Optional: `SMSGATE_CAPTURE_DIR=../../data/captures` to record the real payload (it confirms the `receivedAt` format, still unconfirmed in `gateway.ts`).
+1. `.env.local`: `SMSGATE_MODE=local`, `SMSGATE_BASE_URL=http://127.0.0.1:8080`, `SMSGATE_USER` / `SMSGATE_PASSWORD` from step 2.1. Optional: `SMSGATE_CAPTURE_DIR=../../data/captures` to record the real payload (it confirms the `receivedAt` format, still unconfirmed in `gateway.ts`).
 2. Production build on :3000 (not `next dev`, it reload-loops here). Status strip must **not** say *SMS gateway: simulated*.
 3. Register the webhook on the gateway phone (Local mode keeps its own webhook list):
    ```sh
-   curl -u USER:PASS -X POST http://<phone-ip>:8080/webhooks -H 'content-type: application/json' \
-     -d '{"id":"sellekni","url":"https://<random>.trycloudflare.com/api/sms/inbound","event":"sms:received"}'
-   curl -u USER:PASS http://<phone-ip>:8080/webhooks     # check it is listed
+   curl -u USER:PASS -X POST http://127.0.0.1:8080/webhooks -H 'content-type: application/json' \
+     -d '{"id":"sellekni","url":"http://127.0.0.1:3000/api/sms/inbound","event":"sms:received"}'
+   curl -u USER:PASS http://127.0.0.1:8080/webhooks     # check it is listed
    ```
    (Body per the vendor's cloud example; the local endpoint is not spelled out in their docs — if this 404s, check the Local Server API page in the app.)
 4. Smoke test before touching the Realme: from **any** phone, text the gateway number the canonical packet from `scripts/curl-demo.sh` (`EX1`). A pin must appear on the dashboard within seconds. If not: `./sellekni logs web` — a `401 webhook signature mismatch` means the signing key differs; `stale` means the phone clock is off by > 5 min.
@@ -53,7 +55,7 @@ run,scenario,channel,sim,sent_at,webhook_at,pin_at,ack_sms_at,result,note
 
 ## 6. If it fails on stage (docs/10 §5 ladder) — say it out loud
 1. SMS does not arrive within ~20 s → dashboard **Simulate SMS** (DEMO_MODE) with the same packet: *"this is the same 77-character packet, injected — the real SMS is in our video."*
-2. Webhook down (tunnel died) → read the SMS on the gateway phone's screen, **Paste SMS** on the dashboard: same ingest path.
+2. Webhook down (cable/adb reverse lost) → read the SMS on the gateway phone's screen, **Paste SMS** on the dashboard: same ingest path.
 3. Everything down → the recorded video of this drill.
 
 ## 7. After it passes
