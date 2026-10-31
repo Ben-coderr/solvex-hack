@@ -21,7 +21,7 @@ export interface UnparsedItem { id: string; channel: Channel; raw: string; parse
 export interface Reason { code: string; points: number; text: string; red?: boolean }
 export interface AssessmentInputs {
   flags?: Flag[]; persons?: number; vehicles?: number; dvKmh?: number; peakG?: number; rollover?: boolean;
-  spo2?: number; hr?: number; independentReports?: number;
+  spo2?: number; hr?: number; gcs?: number; sbp?: number; independentReports?: number;
 }
 export interface AuditEvent {
   id: string; incident_id?: string | null; actor: string; action: string; before: unknown; after: unknown; reason: string | null; at: string;
@@ -56,6 +56,8 @@ export interface IncomingPrealert {
   id: string; incident_id: string; channel: string; sent_at: string; acked_at: string | null; acked_by: string | null;
   band: Band; nsi: number; conf: Confidence; status: IncidentStatus; crashed_at: string;
   reasons: Reason[] | null; inputs: AssessmentInputs | null; eta_min: number | null;
+  /** the crew's own ETA (D9), counted from when they sent it; replaces the estimate when present */
+  crew_eta_min: number | null; crew_eta_at: string | null;
 }
 
 // ───────────── queries ─────────────
@@ -90,6 +92,7 @@ export const useIncoming = (hospitalId: string) =>
   useQuery({
     queryKey: ['hospital', hospitalId],
     queryFn: () => api<{ incoming: IncomingPrealert[]; status: { status: LoadStatus; setAt: number } | null }>(`/api/hospitals/${hospitalId}/prealerts`),
+    refetchInterval: 10_000, // fallback when Realtime does not reach a hospital session (docs/17 §2)
   });
 
 // ───────────── mutations (every one is a human click; the server audits it) ─────────────

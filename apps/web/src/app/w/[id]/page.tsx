@@ -5,6 +5,7 @@ import {
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { getLocale, getTranslations } from 'next-intl/server';
+import { Notice } from '@/components/ui/notice';
 import { StatusBanner } from '@/components/ui/status-banner';
 import { BrandLockup } from '@/components/ui/brand-mark';
 import { WitnessEnhance } from '@/components/witness/witness-enhance';
@@ -170,21 +171,6 @@ export default async function WitnessPage({ params, searchParams }: PageProps<'/
         </a>
         <p className="text-sm text-muted-foreground">{t('call')}</p>
       </main>
-    </div>
-  );
-}
-
-function Notice({ icon: Icon, tone, title, body, role, testId }: {
-  icon: LucideIcon; tone: 'ok' | 'warn' | 'danger' | 'info'; title: string; body?: string; role?: 'alert'; testId?: string;
-}) {
-  const color = { ok: 'border-status-ok text-status-ok', warn: 'border-status-warn text-status-warn', danger: 'border-status-danger text-status-danger', info: 'border-status-info text-status-info' }[tone];
-  return (
-    <div role={role ?? 'status'} data-testid={testId} className={cn('flex items-start gap-3 rounded-md border-2 bg-surface p-4', color)}>
-      <Icon aria-hidden className="mt-0.5 size-6 shrink-0" />
-      <div className="flex flex-col gap-1 text-text">
-        <p className="text-lg font-semibold">{title}</p>
-        {body && <p className="text-base text-muted-foreground">{body}</p>}
-      </div>
     </div>
   );
 }

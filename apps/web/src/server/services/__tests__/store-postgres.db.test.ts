@@ -1,7 +1,7 @@
 import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 import { encodeDzmsd, encodePlusCode, type DzmsdPacket } from '@sellekni/shared';
 import { sql } from '../../db';
-import { ingest, type InboundMessage } from '../ingest';
+import { crewUpdate, ingest, type InboundMessage } from '../ingest';
 import { postgresStore } from '../store-postgres';
 
 // Same scenarios as ingest.test.ts, but through real SQL (PostGIS merge query, FOR UPDATE, advisory lock, jsonb).
@@ -30,6 +30,22 @@ afterAll(async () => {
 });
 
 describe('postgres store (local Supabase)', () => {
+  it('D9 crew update: a crew row (channel crew, no packet) re-scores Y to R and survives a later merge', async () => {
+    const store = postgresStore(db);
+    const at = new Date('2026-10-30T08:20:00Z');
+    await ingest(sms(EX2, { receivedAt: at }), store);
+    const ack = await crewUpdate({ incidentId: 'P3N8D', vitals: { gcs: 9, sbp: 85, etaMin: 12 }, receivedAt: new Date(at.getTime() + 60_000), senderHash: 'db-crew' }, store);
+    expect(ack).toMatchObject({ before: { band: 'Y' }, assessment: { band: 'R', version: 2 } });
+    const [r] = await db`select channel, source, client_id, parsed from public.reports where source = 'crew'`;
+    expect(r).toMatchObject({ channel: 'crew', source: 'crew', parsed: { crew: { gcs: 9, sbp: 85, etaMin: 12 } } });
+    expect(r!.client_id).toMatch(/^[0-9A-HJKMNP-TV-Z]{5}$/);
+    // a second report at the same place: listPackets must skip the crew row, listCrewVitals must keep GCS 9
+    const m = await ingest(sms(pkt({ id: 'W1TN5', lat: 35.69112, lon: -0.63305, time: '0918' }), { receivedAt: new Date(at.getTime() + 120_000) }), store);
+    expect(m).toMatchObject({ outcome: 'merged', merged_count: 2, assessment: { band: 'R', version: 3 } });
+    const actions = (await db`select action from public.audit_events order by id`).map((x) => x.action);
+    expect(actions).toEqual(['incident.created', 'incident.crew_update', 'incident.report_merged']);
+  });
+
   it('G1 sequence: create R and Y, unparsed bad CRC, duplicate, merge at ~120 m / 4 min', async () => {
     const store = postgresStore(db);
     expect((await ingest(sms(EX1), store)).assessment).toMatchObject({ band: 'R', nsi: 75, conf: 'H' });

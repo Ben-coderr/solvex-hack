@@ -1,7 +1,8 @@
 import type { Band, Confidence, DzmsdPacket } from '@sellekni/shared';
+import type { CrewVitals } from '../domain/crew';
 import type { ClientHint } from '../domain/json-packet';
 
-export type Channel = 'https' | 'sms' | 'paste' | 'witness' | 'sim';
+export type Channel = 'https' | 'sms' | 'paste' | 'witness' | 'sim' | 'crew';
 export type ReportSource = 'auto' | 'witness' | 'sos' | 'crew' | 'unknown';
 export type IncidentStatus =
   | 'RECEIVED' | 'ACKNOWLEDGED' | 'DISPATCHED' | 'EN_ROUTE' | 'ON_SCENE'
@@ -31,6 +32,11 @@ export interface ParsedReport {
   hint: ClientHint | null;
 }
 
+/** What `reports.parsed` holds for a crew update (D9): the values typed by the crew; there is no packet. */
+export interface CrewReport {
+  crew: CrewVitals;
+}
+
 export interface StoredReport {
   id: string;
   incidentId: string | null;
@@ -42,7 +48,7 @@ export interface NewReport {
   channel: Channel;
   source: ReportSource;
   raw: string;
-  parsed: ParsedReport | null;
+  parsed: ParsedReport | CrewReport | null;
   parseError: string | null;
   senderHash: string | null;
   receivedAt: Date;
@@ -70,7 +76,7 @@ export interface AuditEvent {
 export interface OutboundSms {
   to: string;
   body: string;
-  purpose: 'ack' | 'prealert' | 'status_reply';
+  purpose: 'ack' | 'prealert' | 'status_reply' | 'crew_update';
   incidentId: string | null;
 }
 
@@ -84,8 +90,10 @@ export interface IngestTx {
   findIncidentByClientId(clientId: string): Promise<IncidentRow | null>;
   /** Open incident within MERGE_RADIUS_M and ±MERGE_WINDOW_MIN of `at`, earliest first (FOR UPDATE). */
   findMergeCandidate(lat: number, lon: number, at: Date): Promise<IncidentRow | null>;
-  /** Decoded packets of an incident in receive order. */
+  /** Decoded packets of an incident in receive order (crew updates have none). */
   listPackets(incidentId: string): Promise<DzmsdPacket[]>;
+  /** Crew updates of an incident in receive order (D9). */
+  listCrewVitals(incidentId: string): Promise<CrewVitals[]>;
   insertIncident(row: IncidentRow): Promise<void>;
   updateIncident(id: string, patch: Partial<Omit<IncidentRow, 'id'>>): Promise<void>;
   insertReport(r: NewReport): Promise<string>;

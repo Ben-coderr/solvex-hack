@@ -1,11 +1,12 @@
+import { createHmac } from 'node:crypto';
 import { mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { expect, test, type Browser } from '@playwright/test';
-import { DISPATCHER, login, PASSWORD, watchConsole } from './helpers';
+import { DISPATCHER, HOSPITAL_A, HOSPITAL_A_ID, login, PASSWORD, watchConsole } from './helpers';
 
 /**
- * P6: witness page (D10) merge on an old-browser profile, /demo reset (D11), witness page states.
- * Hospital ACK (D8) is covered by hero-flow.spec.ts. Needs DEMO_MODE=true and a running app.
+ * P6: witness page (D10) merge on an old-browser profile, crew update (D9) raising the band, /demo reset (D11),
+ * witness and crew page states. Hospital ACK (D8) is covered by hero-flow.spec.ts. Needs DEMO_MODE=true and a running app.
  * `P6_SCREENS=1` also writes the screenshot matrix to docs/pitch/design/p6.
  */
 
@@ -103,6 +104,88 @@ test('D10: wrong token, closed incident, missing confirmation, offline', async (
   expect(errors, errors.join('\n')).toEqual([]);
 });
 
+test('D9: a crew on an old phone (no JS) sends GCS 9 + SBP 85 — band rises to R, audited, hospital sees the vitals', async ({ browser }) => {
+  const errors: string[] = [];
+  const d = await login(browser, DISPATCHER, errors);
+  expect((await d.request.post('/api/demo/reset')).ok()).toBe(true);
+  await d.reload();
+
+  const { ack } = (await (await d.request.post('/api/demo/replay', { data: { scenario: 'frontal' } })).json()) as {
+    ack: { incident_id: string; assessment: { band: string } };
+  };
+  const id = ack.incident_id;
+  expect(ack.assessment.band).not.toBe('R');
+  expect((await d.request.post(`/api/incidents/${id}/prealert`, { data: { hospital_id: HOSPITAL_A_ID } })).ok()).toBe(true);
+
+  await d.getByTestId(`pin-${id}`).click();
+  await d.getByTestId('crew-toggle').click();
+  await expect(d.getByTestId('crew-qr').locator('svg')).toBeVisible();
+  const url = (await d.getByTestId('crew-url').textContent())!;
+  expect(url).toMatch(new RegExp(`/crew/${id}\\?k=[0-9a-z]+\\.[A-Za-z0-9_-]{22}$`));
+
+  // ── the crew: plain HTML form, JavaScript off, small screen ──
+  const c = await oldPhone(browser);
+  await c.goto(url);
+  await expect(c.getByTestId('crew-band')).toHaveAttribute('data-band', ack.assessment.band);
+  await c.getByTestId('crew-gcs').fill('9');
+  await c.getByTestId('crew-sbp').fill('85');
+  await c.getByTestId('crew-etaMin').fill('12');
+  await c.getByTestId('crew-send').click();
+  await expect(c.getByTestId('crew-sent')).toContainText('Critique'); // fr: "Niveau relevé : … → Critique"
+  await expect(c.getByTestId('crew-band')).toHaveAttribute('data-band', 'R');
+  await expect(c.getByText('dernier envoi : 9')).toBeVisible();
+
+  // ── dispatcher: the row turns R live, the timeline shows the values, the audit has the before/after ──
+  await expect(d.getByTestId(`row-${id}`)).toHaveAttribute('data-band', 'R', { timeout: 3_000 });
+  await expect(d.getByTestId(`row-${id}`)).not.toContainText('×2'); // a crew update is not a second report
+  const audit = (await (await d.request.get(`/api/audit?incident=${id}`)).json()) as {
+    events: Array<{ action: string; actor: string; before: { band?: string } | null; after: { band?: string; vitals?: { gcs?: number } } }>;
+  };
+  const crew = audit.events.find((e) => e.action === 'incident.crew_update');
+  expect(crew).toMatchObject({ actor: 'crew', before: { band: ack.assessment.band }, after: { band: 'R', vitals: { gcs: 9 } } });
+
+  // ── the pre-alerted hospital: SMS update queued, ED card shows the vitals and the crew's ETA ──
+  const phones = (await (await d.request.get('/api/demo/phones')).json()) as { sms: Array<{ purpose: string; body: string }> };
+  const hospitalHasNumber = phones.sms.some((m) => m.purpose === 'prealert' && m.body.includes(id));
+  if (hospitalHasNumber) expect(phones.sms.some((m) => m.purpose === 'crew_update' && m.body.includes(`MAJ EQUIPE ${id}`))).toBe(true);
+  const h = await login(browser, HOSPITAL_A, errors);
+  await h.goto(`/hospital/${HOSPITAL_A_ID}`);
+  const card = h.getByTestId(`incoming-${id}`);
+  await expect(card.getByTestId('prealert-vitals')).toContainText('GCS 9');
+  await expect(card.getByTestId('prealert-vitals')).toContainText('SBP 85 mmHg');
+  await expect(card).toContainText(/1[12]\s*min/); // the crew's 12 min, counting down
+  expect(errors, errors.join('\n')).toEqual([]);
+});
+
+test('D9: crew page states — forged, expired, empty form, closed', async ({ browser }) => {
+  const errors: string[] = [];
+  const d = await login(browser, DISPATCHER, errors);
+  expect((await d.request.post('/api/demo/reset')).ok()).toBe(true);
+  const { ack } = (await (await d.request.post('/api/demo/replay', { data: { scenario: 'frontal' } })).json()) as { ack: { incident_id: string } };
+  const id = ack.incident_id;
+  const { crew } = (await (await d.request.get('/api/demo/phones')).json()) as { crew: { url: string } };
+  const c = await oldPhone(browser);
+
+  const forged = crew.url.replace(/\.[A-Za-z0-9_-]{22}$/, '.AAAAAAAAAAAAAAAAAAAAAA');
+  await c.goto(forged);
+  await expect(c.getByTestId('crew-invalid')).toBeVisible();
+  // a genuine signature with a past expiry (same scheme as src/server/domain/links.ts)
+  const exp = Math.floor((Date.now() - 60_000) / 1000).toString(36);
+  const sig = createHmac('sha256', process.env.LINK_SIGNING_SECRET!).update(`crew:v1:${id}:${exp}`).digest('base64url').slice(0, 22);
+  await c.goto(`${new URL(crew.url).origin}/crew/${id}?k=${exp}.${sig}`);
+  await expect(c.getByTestId('crew-expired')).toBeVisible();
+
+  await c.goto(crew.url);
+  await c.getByTestId('crew-send').click(); // nothing typed
+  await expect(c.getByTestId('crew-error')).toContainText('au moins une valeur');
+
+  expect((await d.request.patch(`/api/incidents/${id}`, { data: { action: 'transition', to: 'CANCELLED', reason: 'e2e: crew states' } })).ok()).toBe(true);
+  await c.goto(crew.url);
+  await expect(c.getByTestId('crew-closed')).toBeVisible();
+  await expect(c.locator('form')).toHaveCount(0);
+  expect(errors, errors.join('\n')).toEqual([]);
+});
+
 test('D11: /demo — scenario starts the stopwatch, witness merges, Reset returns a verified clean DB in < 5 s', async ({ browser }) => {
   const errors: string[] = [];
   const d = await login(browser, DISPATCHER, errors);
@@ -116,6 +199,8 @@ test('D11: /demo — scenario starts the stopwatch, witness merges, Reset return
   await d.getByTestId('demo-witness').click();
   await expect(d.getByTestId('demo-outcome')).toContainText('×2');
   await expect(d.getByTestId('demo-latest')).toHaveAttribute('data-count', '2');
+  await d.getByTestId('demo-crew').click();
+  await expect(d.getByTestId('demo-outcome')).toContainText('Updated');
   await d.getByTestId('demo-duplicate').click();
   await expect(d.getByTestId('demo-outcome')).toContainText('Duplicate');
 
@@ -133,10 +218,11 @@ test('D11: /demo — scenario starts the stopwatch, witness merges, Reset return
   await expect(d.getByTestId('phone-driver')).toBeVisible();
   await d.getByTestId('phone-driver-rollover').click();
   await expect(d.getByTestId('phone-witness').locator('iframe')).toBeVisible();
+  await expect(d.getByTestId('phone-crew').locator('iframe')).toBeVisible();
   expect(errors, errors.join('\n')).toEqual([]);
 });
 
-test('screens: witness ar/en light/dark, /demo, /phones', async ({ browser }) => {
+test('screens: witness + crew ar/en/fr light/dark, /demo, /phones', async ({ browser }) => {
   test.skip(!process.env.P6_SCREENS, 'set P6_SCREENS=1 to write docs/pitch/design/p6');
   const out = path.resolve(__dirname, '../../../../docs/pitch/design/p6');
   mkdirSync(out, { recursive: true });
@@ -144,7 +230,7 @@ test('screens: witness ar/en light/dark, /demo, /phones', async ({ browser }) =>
   const d = await login(browser, DISPATCHER, errors);
   expect((await d.request.post('/api/demo/reset')).ok()).toBe(true);
   await d.request.post('/api/demo/replay', { data: { scenario: 'rollover' } });
-  const { witness } = (await (await d.request.get('/api/demo/phones')).json()) as { witness: { url: string } };
+  const { witness, crew } = (await (await d.request.get('/api/demo/phones')).json()) as { witness: { url: string }; crew: { url: string } };
 
   for (const theme of ['dark', 'light'] as const) {
     for (const locale of ['ar', 'en', 'fr'] as const) {
@@ -159,6 +245,9 @@ test('screens: witness ar/en light/dark, /demo, /phones', async ({ browser }) =>
         await p.goto(`${witness.url}&sent=1`);
         await p.screenshot({ path: `${out}/witness-sent-360-${theme}-${locale}.jpg`, fullPage: true, quality: 70 });
       }
+      await p.goto(crew.url);
+      await p.screenshot({ path: `${out}/crew-360-${theme}-${locale}.jpg`, fullPage: true, quality: 70 });
+      expect(await p.evaluate(() => document.documentElement.scrollWidth), `crew ${theme} ${locale}`).toBeLessThanOrEqual(360);
       await ctx.close();
     }
   }

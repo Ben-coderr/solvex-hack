@@ -1,12 +1,12 @@
 'use client';
-import { Check, CheckCheck, ClipboardPaste, Eye, FlaskConical, Globe, MessageSquareText, RefreshCw, X, type LucideIcon } from 'lucide-react';
+import { Ambulance, Check, CheckCheck, ClipboardPaste, Eye, FlaskConical, Globe, MessageSquareText, RefreshCw, X, type LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
-export type Channel = 'https' | 'sms' | 'paste' | 'witness' | 'sim';
+export type Channel = 'https' | 'sms' | 'paste' | 'witness' | 'sim' | 'crew';
 export type ChannelStatus = 'sent' | 'retrying' | 'acked' | 'failed';
 
-const CHANNEL_ICON: Record<Channel, LucideIcon> = { https: Globe, sms: MessageSquareText, paste: ClipboardPaste, witness: Eye, sim: FlaskConical };
+const CHANNEL_ICON: Record<Channel, LucideIcon> = { https: Globe, sms: MessageSquareText, paste: ClipboardPaste, witness: Eye, sim: FlaskConical, crew: Ambulance };
 const STATUS: Record<ChannelStatus, { icon: LucideIcon; cls: string }> = {
   sent: { icon: Check, cls: 'text-status-info' },
   retrying: { icon: RefreshCw, cls: 'text-status-warn' },

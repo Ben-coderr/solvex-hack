@@ -25,7 +25,8 @@ function RealtimeBridge({ children }: { children: ReactNode }) {
           const incidentId = table === 'incidents' ? row.id : row.incident_id;
           qc.invalidateQueries({ queryKey: ['incidents'] });
           if (incidentId) qc.invalidateQueries({ queryKey: ['incident', incidentId] });
-          if (table === 'prealerts') qc.invalidateQueries({ queryKey: ['hospital'] });
+          // a crew update changes the incident, not the pre-alert: the ED view must follow both (D9)
+          if (table === 'prealerts' || table === 'incidents') qc.invalidateQueries({ queryKey: ['hospital'] });
         });
       }
       return ch.subscribe((s) => {

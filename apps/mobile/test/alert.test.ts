@@ -7,6 +7,7 @@ import { BUNDLED_TRACES } from '../src/replay/bundled-traces';
 import { postIncident, probeHealth, type Fetch } from '../src/alert/https';
 import { attemptHttps, backoffMs, GIVE_UP_MS, memoryStore, newItem } from '../src/alert/outbox';
 import { buildAlert, isoAlgiers } from '../src/alert/packet';
+import { EMPTY_ANSWERS, fixAgeMin, witnessScene } from '../src/alert/witness';
 
 const NOW = new Date('2026-10-30T13:32:07Z'); // 14:32 in Algiers
 const FIX = { lat: 36.472131, lon: 2.828714, accM: 8, at: NOW.getTime() - 4_000 };
@@ -145,4 +146,43 @@ test('https client: HEAD probe, POST with x-sellekni-key, ACK parsed, errors cla
   assert.deepEqual(await postIncident(reply(201, { nope: 1 }), 'http://x', 'k', json), { ok: false, kind: 'bad_response', status: 201 });
   const abort = Object.assign(new Error('aborted'), { name: 'AbortError' });
   assert.deepEqual(await postIncident(async () => { throw abort; }, 'http://x', 'k', json), { ok: false, kind: 'timeout' });
+});
+
+test('M6 witness: the 5 answers become an SW packet (same flags as the web witness page), GSM-7, valid JSON', () => {
+  const scene = witnessScene({ vehicles: 2, kinds: ['car', 'moto'], hurt: 1, state: ['unresponsive'], danger: ['trapped', 'fire'] });
+  assert.deepEqual(scene, { veh: 2, pers: 1, kinds: ['C', 'M'], flags: ['U', 'X', 'F'] });
+  const a = buildAlert({ id: 'W1TN5', source: 'W', now: NOW, fix: FIX, scene });
+  assert.ok(a.wire.includes(' SW ') && a.wire.length <= SMS_SINGLE_MAX && isGsm7Basic(a.wire), a.wire);
+  const back = decodeDzmsd(a.wire);
+  assert.ok(back.ok);
+  assert.equal(back.packet.src, 'W');
+  assert.equal(back.packet.veh, 2);
+  assert.equal(back.packet.pers, 1);
+  assert.deepEqual(back.packet.kinds, ['C', 'M']);
+  assert.deepEqual([...back.packet.flags!].sort(), ['F', 'U', 'X']);
+  assert.equal(back.packet.dv, undefined, 'a witness reports no sensor values');
+  assert.equal(a.packet.band, 'R', 'unresponsive is a RED criterion: the hint says so');
+  assert.ok(IncidentJson.safeParse(a.json).success, JSON.stringify(IncidentJson.safeParse(a.json).error));
+  assert.equal(a.json.source, 'witness');
+  assert.equal(a.json.scene.fire, true);
+  assert.equal(a.json.crash, undefined);
+});
+
+test('M6 witness: nobody hurt and no kind ticked still makes a valid packet (0 persons, kind "other")', () => {
+  const scene = witnessScene({ vehicles: 1, kinds: [], hurt: 0, state: [], danger: [] });
+  assert.deepEqual(scene, { veh: 1, pers: 0, kinds: ['X'], flags: [] });
+  const back = decodeDzmsd(buildAlert({ id: 'W1TN5', source: 'W', now: NOW, fix: FIX, scene }).wire);
+  assert.ok(back.ok);
+  assert.equal(back.packet.pers, 0);
+});
+
+test('M6 witness edge cases: last known fix keeps its age; no fix at all still sends (0,0, age null)', () => {
+  const scene = witnessScene(EMPTY_ANSWERS);
+  const old = { ...FIX, at: NOW.getTime() - 7 * 60_000 - 5_000 };
+  assert.equal(buildAlert({ id: 'W1TN5', source: 'W', now: NOW, fix: old, scene }).locationAgeMin, 7);
+  assert.equal(fixAgeMin(old, NOW.getTime()), 7);
+  const none = buildAlert({ id: 'W1TN5', source: 'W', now: NOW, fix: null, scene });
+  assert.equal(none.locationAgeMin, null);
+  assert.equal(fixAgeMin(null, NOW.getTime()), null);
+  assert.ok(decodeDzmsd(none.wire).ok, none.wire);
 });

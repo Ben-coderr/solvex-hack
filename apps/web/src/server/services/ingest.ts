@@ -1,7 +1,7 @@
 import type { AssessmentSummary, IncidentJson, IngestAck } from '@sellekni/api-contract';
 import {
-  assess, decodeDzmsd, formatHHMM, mergePackets, resolveCrashTime,
-  type Assessment, type DzmsdPacket,
+  assess, decodeDzmsd, formatHHMM, generateIncidentId, mergePackets, resolveCrashTime, withCrew,
+  type Assessment, type CrewVitals, type DzmsdPacket,
 } from '../domain';
 import { packetFromJson, rawFromJson, type ClientHint } from '../domain/json-packet';
 import type { Channel, IncidentRow, IngestStore, IngestTx, ReportSource } from './ingest-store';
@@ -77,7 +77,9 @@ export function ingest(msg: InboundMessage, store: IngestStore): Promise<IngestA
 
     const packets = candidate ? [...(await tx.listPackets(candidate.id)), packet] : [packet];
     const merged = mergePackets(packets);
-    const a = assess(merged.input);
+    // a later report must not drop what the crew measured (D9): their values stay on top of every re-merge
+    const input = withCrew(merged.input, candidate ? await tx.listCrewVitals(candidate.id) : []);
+    const a = assess(input);
 
     const next: IncidentRow = {
       id: candidate?.id ?? packet.id,
@@ -120,7 +122,7 @@ export function ingest(msg: InboundMessage, store: IngestStore): Promise<IngestA
       nsi: a.score,
       conf: a.conf,
       reasons: a.reasons,
-      inputs: { ...merged.input, reportIds: merged.ids, clientHint: hint },
+      inputs: { ...input, reportIds: merged.ids, clientHint: hint },
       engineVersion: a.engineVersion,
     });
 
@@ -143,6 +145,71 @@ export function ingest(msg: InboundMessage, store: IngestStore): Promise<IngestA
     }
 
     return ack(outcome, reportId, next, summary(a, version), null, msg.receivedAt);
+  });
+}
+
+export type CrewAck = {
+  incident_id: string;
+  report_id: string;
+  before: { band: IncidentRow['band']; nsi: number; conf: IncidentRow['conf'] };
+  assessment: AssessmentSummary;
+};
+
+/**
+ * D9 crew update (docs/05 §2.1, flow E): store the crew's values as a report (channel/source `crew`), re-run assess()
+ * on the merged packets with every crew update on top, write assessment(version+1) + audit. Physiology can raise the
+ * band to R; a dispatcher's band override still wins. `null` = no such incident, or it is closed.
+ */
+export function crewUpdate(
+  msg: { incidentId: string; vitals: CrewVitals; receivedAt: Date; senderHash: string | null },
+  store: IngestStore,
+): Promise<CrewAck | null> {
+  return store.transaction(async (tx) => {
+    await tx.lockIngest();
+    const inc = await tx.findIncidentByClientId(msg.incidentId);
+    if (!inc || inc.id !== msg.incidentId || CLOSED.has(inc.status)) return null;
+
+    const merged = mergePackets(await tx.listPackets(inc.id));
+    const input = withCrew(merged.input, [...(await tx.listCrewVitals(inc.id)), msg.vitals]);
+    const a = assess(input);
+    const next: IncidentRow = { ...inc, band: inc.bandOverride ?? a.band, nsi: a.score, conf: a.conf };
+    const before = snapshot(inc); // capture before the row changes
+    await tx.updateIncident(inc.id, { band: next.band, nsi: next.nsi, conf: next.conf });
+
+    const reportId = await tx.insertReport({
+      incidentId: inc.id,
+      clientId: generateIncidentId(), // a fresh id: each update is its own report (reports need one when parsed)
+      channel: 'crew',
+      source: 'crew',
+      raw: JSON.stringify({ v: 1, crew: msg.vitals }),
+      parsed: { crew: msg.vitals },
+      parseError: null,
+      senderHash: msg.senderHash,
+      receivedAt: msg.receivedAt,
+    });
+    const version = await tx.insertAssessment({
+      incidentId: inc.id,
+      band: a.band,
+      nsi: a.score,
+      conf: a.conf,
+      reasons: a.reasons,
+      inputs: { ...input, reportIds: merged.ids, clientHint: null },
+      engineVersion: a.engineVersion,
+    });
+    await tx.appendAudit({
+      incidentId: inc.id,
+      actor: 'crew',
+      action: 'incident.crew_update',
+      before,
+      after: { ...snapshot(next), report_id: reportId, vitals: msg.vitals, assessment_version: version },
+      reason: null,
+    });
+    return {
+      incident_id: inc.id,
+      report_id: reportId,
+      before: { band: before.band, nsi: before.nsi, conf: before.conf },
+      assessment: summary(a, version),
+    };
   });
 }
 

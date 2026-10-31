@@ -2,6 +2,7 @@ import 'server-only';
 import type postgres from 'postgres';
 import { MERGE_RADIUS_M, MERGE_WINDOW_MIN, type DzmsdPacket } from '@sellekni/shared';
 import { sql as getSql, type Sql } from '../db';
+import type { CrewVitals } from '../domain/crew';
 import type { IncidentRow, IngestStore, IngestTx } from './ingest-store';
 
 type Tx = postgres.TransactionSql;
@@ -75,9 +76,17 @@ function txOps(sql: Tx): IngestTx {
     async listPackets(incidentId) {
       const rows = await sql<{ packet: DzmsdPacket }[]>`
         select parsed->'packet' as packet from public.reports
-        where incident_id = ${incidentId} and parsed is not null
+        where incident_id = ${incidentId} and parsed->'packet' is not null
         order by received_at, id`;
       return rows.map((r) => r.packet);
+    },
+
+    async listCrewVitals(incidentId) {
+      const rows = await sql<{ crew: CrewVitals }[]>`
+        select parsed->'crew' as crew from public.reports
+        where incident_id = ${incidentId} and source = 'crew' and parsed->'crew' is not null
+        order by received_at, id`;
+      return rows.map((r) => r.crew);
     },
 
     async insertIncident(i) {

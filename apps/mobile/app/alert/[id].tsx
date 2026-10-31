@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { Check, MessageSquareText, Phone, X } from 'lucide-react-native';
+import { Check, MessageSquareText, Phone, TriangleAlert, X } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -73,6 +73,20 @@ export default function AlertStatus() {
         <Notice text={t('alert.waiting')} tone="statusInfo" />
       )}
       {outcome === 'merged' && item.ack?.merged_count ? <Txt v="small" tone="muted">{t('alert.merged', { n: item.ack.merged_count })}</Txt> : null}
+
+      {item.json.source === 'witness' && (
+        // M6: what a witness does while waiting. First on the screen: it matters more than the delivery details.
+        <View testID="witness-safety" accessibilityRole="summary"
+          style={{ gap: T.space[2], padding: T.space[4], borderWidth: 2, borderColor: c.statusWarn, borderRadius: T.radius.md }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: T.space[2] }}>
+            <TriangleAlert size={24} color={c.statusWarn} />
+            <Txt v="title" style={{ flex: 1 }}>{t('witness.safetyTitle')}</Txt>
+          </View>
+          {(['s1', 's2', 's3', 's4'] as const).map((k, i) => (
+            <Txt key={k} v={k === 's2' ? 'label' : 'body'}>{`${i + 1}. ${t(`witness.${k}`)}`}</Txt>
+          ))}
+        </View>
+      )}
 
       <Section title={t('alert.packet')}>
         <PacketLine wire={item.wire} />

@@ -173,7 +173,7 @@ describe('ingest — same id on two channels, server authority, atomicity', () =
     const forged = encodeDzmsd(packet({ id: 'F0RGE', band: 'G', score: 10, conf: 'L', src: 'A', dv: 71, g: 38, roll: true, flags: ['N'], spo2: 89 }));
     const a = await ingest(sms(forged), s);
     expect(a.assessment).toMatchObject({ band: 'R' });
-    expect(s.state.reports[0]!.parsed!.hint).toEqual({ band: 'G', score: 10, conf: 'L' }); // kept for audit
+    expect(s.state.reports[0]!.parsed).toHaveProperty('hint', { band: 'G', score: 10, conf: 'L' }); // kept for audit
   });
 
   it('rolls everything back if a write fails mid-transaction', async () => {

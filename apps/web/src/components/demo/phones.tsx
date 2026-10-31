@@ -1,5 +1,5 @@
 'use client';
-import { Hospital, MessageSquareText, Smartphone, UserRoundPlus } from 'lucide-react';
+import { Ambulance, Hospital, MessageSquareText, Smartphone, UserRoundPlus } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
@@ -18,7 +18,7 @@ import { useDemoPhones, useDemoRun, useOutcomeText, type DemoPhones } from './us
 function Phone({ title, icon: Icon, children, testId }: { title: string; icon: typeof Smartphone; children: ReactNode; testId: string }) {
   return (
     <section aria-label={title} data-testid={testId}
-      className="flex h-[44rem] w-full max-w-[24rem] flex-col overflow-hidden rounded-[2rem] border-4 border-line bg-bg shadow-sm">
+      className="flex h-[44rem] w-full max-w-[21rem] flex-col overflow-hidden rounded-[2rem] border-4 border-line bg-bg shadow-sm">
       <header className="flex items-center gap-2 border-b border-line bg-surface px-5 py-3 text-base font-semibold">
         <Icon aria-hidden className="size-5 text-brand-text" />
         {title}
@@ -45,7 +45,7 @@ function SmsList({ sms, empty, testId }: { sms: DemoPhones['sms']; empty: string
   );
 }
 
-/** D11 /phones: the stage's virtual phones side by side (driver, witness, hospital SMS), fed by the real server. */
+/** D11 /phones: the stage's virtual phones side by side (driver, witness, crew, hospital SMS), fed by the real server. */
 export function Phones() {
   const t = useTranslations('demo');
   const sw = useStopwatch();
@@ -54,7 +54,7 @@ export function Phones() {
   const outcome = useOutcomeText();
   const d = q.data;
   const toDriver = (d?.sms ?? []).filter((m) => m.purpose === 'ack');
-  const toHospital = (d?.sms ?? []).filter((m) => m.purpose === 'prealert');
+  const toHospital = (d?.sms ?? []).filter((m) => m.purpose === 'prealert' || m.purpose === 'crew_update');
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -70,7 +70,7 @@ export function Phones() {
           <LatestIncident q={q} />
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4">
           <Phone title={t('phone.driver')} icon={Smartphone} testId="phone-driver">
             <StatusBanner mode="replay" />
             <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-4">
@@ -101,6 +101,21 @@ export function Phones() {
             <div className="border-t border-line p-3">
               <Button variant="outline" className="w-full" disabled={run.isPending || !d?.latest} onClick={() => run.mutate({ action: 'witness' })}>
                 {t('phone.simulateWitness')}
+              </Button>
+            </div>
+          </Phone>
+
+          <Phone title={t('phone.crew')} icon={Ambulance} testId="phone-crew">
+            {d?.crew ? (
+              // the real crew page (signed 12 h link), as the paramedic's phone shows it
+              <iframe key={d.crew.url} src={d.crew.url} title={t('phone.crew')} className="min-h-0 w-full flex-1 border-0" />
+            ) : (
+              <EmptyState className="m-4" icon={Ambulance} title={t('phone.crewEmpty')} />
+            )}
+            <div className="border-t border-line p-3">
+              <Button variant="outline" className="w-full" disabled={run.isPending || !d?.latest} data-testid="phone-crew-simulate"
+                onClick={() => run.mutate({ action: 'crew' })}>
+                {t('phone.simulateCrew')}
               </Button>
             </div>
           </Phone>

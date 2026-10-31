@@ -37,7 +37,7 @@ export function Queue(p: QueueProps) {
       ) : (
         <ul aria-label={t('app.queue')} data-testid="queue">
           {incidents.map((i) => (
-            <li key={i.id} data-testid={`row-${i.id}`}>
+            <li key={i.id} data-testid={`row-${i.id}`} data-band={i.band}>
               <IncidentRow
                 id={i.id} band={i.band} nsi={i.nsi} conf={i.conf} crashedAt={i.crashed_at} channel={i.first_channel}
                 status={i.status} mergedCount={i.merged_count} unconfirmed={i.unconfirmed_auto}

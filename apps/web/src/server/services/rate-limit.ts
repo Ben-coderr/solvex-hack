@@ -41,6 +41,12 @@ export const LIMITS = {
   witnessPerIncident: { limit: 20, windowMs: 3_600_000 },
   /** witness page views per IP hash (refreshes on a bad connection are normal) */
   witnessPagePerIp: { limit: 60, windowMs: 60_000 },
+  /** crew update POST per IP hash: a crew re-measures every few minutes on a long transfer */
+  crewPerIp: { limit: 20, windowMs: 600_000 },
+  /** crew updates per incident (one ambulance, maybe two) */
+  crewPerIncident: { limit: 30, windowMs: 3_600_000 },
+  /** crew page views per IP hash */
+  crewPagePerIp: { limit: 60, windowMs: 60_000 },
   /** dispatcher API per user */
   dispatcher: { limit: 120, windowMs: 60_000 },
 } as const satisfies Record<string, Limit>;

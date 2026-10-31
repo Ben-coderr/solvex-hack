@@ -86,6 +86,8 @@ export interface IncomingPrealert {
   band: string; nsi: number; conf: string; status: string; crashed_at: Date;
   reasons: Array<{ code: string; points: number; text: string }> | null; inputs: Record<string, unknown> | null;
   eta_min: number | null;
+  crew_eta_min: number | null;
+  crew_eta_at: Date | null;
 }
 
 /** The hospital's incoming patients: one row per incident (the web card), newest first, last 12 h. */
@@ -96,10 +98,14 @@ export async function listIncoming(hospitalId: string): Promise<IncomingPrealert
            i.band, i.nsi, i.conf, i.status, i.crashed_at, a.reasons, a.inputs,
            (select (a2.after->>'eta_min')::int from public.audit_events a2
               where a2.incident_id = p.incident_id and a2.action = 'prealert.sent'
-                and a2.after->>'hospital_id' = p.hospital_id order by a2.id desc limit 1) as eta_min
+                and a2.after->>'hospital_id' = p.hospital_id order by a2.id desc limit 1) as eta_min,
+           c.eta as crew_eta_min, c.received_at as crew_eta_at
     from public.prealerts p
     join public.incidents i on i.id = p.incident_id
     left join lateral (select reasons, inputs from public.assessments where incident_id = p.incident_id order by version desc limit 1) a on true
+    left join lateral (select (parsed->'crew'->>'etaMin')::int as eta, received_at from public.reports
+                       where incident_id = p.incident_id and source = 'crew' and parsed->'crew'->>'etaMin' is not null
+                       order by received_at desc limit 1) c on true
     where p.hospital_id = ${hospitalId} and p.channel = 'web' and p.sent_at > now() - interval '12 hours'
     order by p.sent_at desc`;
 }

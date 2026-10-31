@@ -15,12 +15,16 @@ export interface PreAlertCardProps {
   conf: Confidence;
   sentAt: Date | string;
   etaMin: number;
+  /** when `etaMin` was given, if not at `sentAt` (a crew's own ETA, D9); the ACK clock still runs from `sentAt` */
+  etaFrom?: Date | string | null;
   ackedAt?: Date | string | null;
   /** reason codes (same vocabulary as ReasonList) + persons involved; localised here, never free text */
   mechanism: readonly { code: string; value?: number }[];
   persons?: number;
   reasons: readonly ReasonItem[];
   values?: Partial<Record<string, number>>;
+  /** measured values (wearable or crew), shown as numbers next to the mechanism */
+  vitals?: { gcs?: number | undefined; sbp?: number | undefined; spo2?: number | undefined; hr?: number | undefined };
   now?: Date | number;
   onAck?: () => void;
 }
@@ -34,7 +38,9 @@ export function PreAlertCard(p: PreAlertCardProps) {
   const tr = useTranslations('hospital');
   const now = useNow(1000, p.now);
   const sent = +new Date(p.sentAt);
-  const arrivesIn = Math.max(0, Math.ceil((sent + p.etaMin * 60_000 - now) / 60_000));
+  const etaFrom = p.etaFrom ? +new Date(p.etaFrom) : sent;
+  const arrivesIn = Math.max(0, Math.ceil((etaFrom + p.etaMin * 60_000 - now) / 60_000));
+  const vitals = (['gcs', 'sbp', 'spo2', 'hr'] as const).filter((k) => p.vitals?.[k] !== undefined);
   const state = p.ackedAt ? 'acked' : now - sent > OVERDUE_MS ? 'overdue' : 'incoming';
   const hhmm = p.ackedAt ? formatHHMM(new Date(p.ackedAt)) : ''; // Algeria local time (UTC+1)
   const ackTime = hhmm ? `${hhmm.slice(0, 2)}:${hhmm.slice(2)}` : '';
@@ -69,6 +75,12 @@ export function PreAlertCard(p: PreAlertCardProps) {
           ].join(' · ')}
         </p>
       </div>
+      {vitals.length > 0 && (
+        <div data-testid="prealert-vitals">
+          <h4 className="mb-1 text-sm font-medium text-muted-foreground">{t('vitals')}</h4>
+          <p className="packet-ltr text-base tabular-nums">{vitals.map((k) => t(`vital.${k}`, { value: p.vitals![k]! })).join(' · ')}</p>
+        </div>
+      )}
       <ReasonList reasons={p.reasons} conf={p.conf} values={p.values} showConfidence={false} />
       {state !== 'acked' && <Button size="lg" onClick={p.onAck}>{t('ack')}</Button>}
     </article>
