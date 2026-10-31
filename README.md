@@ -208,8 +208,7 @@ Details are in [docs/12](docs/12-DECISIONS-REBRAND-OBD-IOT.md) and [docs/16](doc
 
 ```bash
 pnpm install
-./sellekni up            # Docker → local Supabase → .env.local + demo logins → web app on :3000
-./sellekni open          # Chrome, already signed in: dispatcher + hospital + stage window
+./sellekni open --reset  # everything: Docker → Supabase → logins → production build → USB phones → ready check → signed-in Chrome
 ./sellekni test          # unit tests, typecheck, protocol cross-check, end-to-end hero flow
 ```
 

@@ -4,7 +4,10 @@
 #   ./sellekni up [--prod] [--mobile] [--replace]
 #                                    Docker/colima → Supabase → env + demo logins → web app (dev, or build+start)
 #                                    --replace: stop another `next dev` already running for apps/web (one per folder)
-#   ./sellekni open [--no-stage]        Chrome already signed in: dispatcher + hospital A + stage (/demo, /phones)
+#   ./sellekni open [--reset] [--dev|--prod] [--locale=ar|fr|en] [--no-stage]
+#                                    everything in one go: starts what is missing (production build by default,
+#                                    rebuilt when the code changed), sets up USB phones (adb, newer APK), checks
+#                                    readiness, then Chrome already signed in: dispatcher + hospital A + stage
 #   ./sellekni login                    print the demo accounts and password
 #   ./sellekni status                   what is running, on which port
 #   ./sellekni reset                    empty the demo database (incidents, pre-alerts, audit)
@@ -232,11 +235,123 @@ cmd_reset() {
   (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm -s exec tsx scripts/open-demo.mts --reset-only)
 }
 
+# a source file is newer than the production build: the running `next start` would show old code
+build_stale() {
+  local id="$ROOT/apps/web/.next/BUILD_ID"
+  [[ -f "$id" ]] || return 0
+  [[ -n "$(find "$ROOT/apps/web/src" "$ROOT/apps/web/messages" "$ROOT/apps/web/public" "$ROOT/apps/web/next.config.ts" \
+    "$ROOT/packages" -newer "$id" -type f -not -path '*/node_modules/*' -not -path '*/test/*' -not -name '*.md' \
+    -print -quit 2>/dev/null)" ]]
+}
+web_mode() { ps -o command= -p "$(cat "$RUN/web.pid" 2>/dev/null || echo 0)" 2>/dev/null | grep -q "next start" && echo prod || echo dev; }
+
+# start what is missing; restart the web app when it runs in the other mode or its production build is out of date
+ensure_web() {
+  local want="$1"
+  check_tools; start_docker; install_deps; start_supabase
+  if pid_alive web && healthy "$(base_url)"; then
+    local have; have="$(web_mode)"
+    if [[ -n "$want" && "$want" != "$have" ]]; then
+      warn "web app runs in $have mode → restarting in $want"; stop_pid web; rm -f "$RUN/web.port"
+    elif [[ "$have" == prod ]] && build_stale; then
+      warn "code changed since the last production build → rebuilding"; stop_pid web; rm -f "$RUN/web.port"; want=prod
+    else
+      say "Web app"; ok "already running at $(base_url) ($have, up to date)"; return
+    fi
+  elif healthy "$(base_url)"; then
+    say "Web app"; warn "an app this script did not start answers at $(base_url): using it as is (./sellekni down, then open, to own it)"; return
+  fi
+  prepare_env_and_users
+  start_web "${want:-prod}"
+}
+
+# USB phones: the app's server URL is http://127.0.0.1:3000 (adb reverse to the web port); the SMS Gateway app's local
+# server is reached at 127.0.0.1:8080 (adb forward). Installs the release APK when it is newer than the installed app.
+setup_phones() {
+  local port="${1##*:}" apk="$ROOT/apps/mobile/android/app/build/outputs/apk/release/app-release.apk" serials s gw_done=0
+  say "Phones (USB)"
+  command -v adb >/dev/null 2>&1 || { ok "adb not installed: skipped (the virtual phones on /phones need no device)"; return 0; }
+  serials="$(adb devices 2>/dev/null | awk 'NR>1 && $2=="device" {print $1}')"
+  [[ -n "$serials" ]] || { ok "none connected (plug one in with USB debugging on, then run open again)"; return 0; }
+  if [[ -f "$apk" && -n "$(find "$ROOT/apps/mobile/app" "$ROOT/apps/mobile/src" "$ROOT/apps/mobile/modules" "$ROOT/packages" \
+      -newer "$apk" -type f -not -path '*/node_modules/*' -not -path '*/build/*' -not -path '*/test/*' -not -name '*.md' -print -quit 2>/dev/null)" ]]; then
+    warn "the APK is older than the mobile code: cd apps/mobile/android && ./gradlew assembleRelease, then open again"
+  fi
+  for s in $serials; do
+    local model pkgs roles=""
+    model="$(adb -s "$s" shell getprop ro.product.model 2>/dev/null | tr -d '\r')"
+    pkgs="$(adb -s "$s" shell pm list packages 2>/dev/null | tr -d '\r')"
+    adb -s "$s" reverse tcp:3000 tcp:"$port" >/dev/null && roles="app → 127.0.0.1:3000 = laptop :$port"
+    if [[ -f "$apk" ]]; then
+      local installed=0 when
+      if grep -qx 'package:com.sellekni.app' <<<"$pkgs"; then
+        when="$(adb -s "$s" shell dumpsys package com.sellekni.app 2>/dev/null | sed -n 's/.*lastUpdateTime=//p' | head -1 | tr -d '\r')"
+        installed="$(date -j -f '%Y-%m-%d %H:%M:%S' "$when" +%s 2>/dev/null || echo 0)"
+      fi
+      if (( $(stat -f %m "$apk") > installed + 60 )); then
+        printf '  installing the release APK on %s (≈ 20 s) ' "$model"
+        adb -s "$s" install -r "$apk" >/dev/null 2>&1 && echo "✓" || { echo; warn "install failed on $model: adb -s $s install -r $apk"; }
+      fi
+    fi
+    grep -qx 'package:com.sellekni.app' <<<"$(adb -s "$s" shell pm list packages com.sellekni.app 2>/dev/null | tr -d '\r')" \
+      || roles="$roles · ${Y}Sellekni app not installed${N}"
+    if grep -qx 'package:me.capcom.smsgateway' <<<"$pkgs" && [[ $gw_done == 0 ]]; then
+      adb -s "$s" forward tcp:8080 tcp:8080 >/dev/null && roles="$roles · SMS gateway → laptop 127.0.0.1:8080" && gw_done=1
+      # a dozing phone answers 500: wake it and bring the gateway app to the front (some phones, e.g. Realme, refuse
+      # injected input over USB; preflight then says to do it by hand)
+      adb -s "$s" shell input keyevent KEYCODE_WAKEUP >/dev/null 2>&1 || true
+      adb -s "$s" shell monkey -p me.capcom.smsgateway -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1 || true
+    fi
+    ok "$model ($s): $roles"
+  done
+}
+
+# what the stage needs, in one glance (read-only; scripts/reset-demo.sh does the full reset + checklist)
+preflight() {
+  local url="$1" resetting="$2" health db open_inc gw others
+  say "Ready check"
+  health="$(curl -fsS -m 5 "$url/api/health" || true)"
+  grep -q '"demo":true' <<<"$health" && ok "DEMO_MODE on: Simulate SMS, /demo, /phones" || warn "DEMO_MODE off: no Simulate SMS, /demo or /phones"
+  grep -q '"offlineTiles":true' <<<"$health" && ok "offline map tiles" || warn "no offline tiles: the map needs internet"
+  db="$(cd "$ROOT" && supabase status -o env 2>/dev/null | sed -n 's/^DB_URL="\(.*\)"$/\1/p')"
+  if command -v psql >/dev/null 2>&1 && [[ -n "$db" ]]; then
+    ok "hospitals: $(psql "$db" -Atc 'select count(*) from public.hospitals' 2>/dev/null || echo '?') (HOSPITAL_SET=$(envget HOSPITAL_SET))"
+    open_inc="$(psql "$db" -Atc "select count(*) from public.incidents where status not in ('CLOSED','CANCELLED','MERGED')" 2>/dev/null || echo '?')"
+    if [[ "$resetting" == 1 ]]; then ok "open incidents: $open_inc → emptied by --reset below"
+    elif [[ "$open_inc" == 0 ]]; then ok "no open incident: clean stage"
+    else warn "$open_inc open incident(s): add --reset for a clean stage"; fi
+  fi
+  if [[ -n "$(envget PUBLIC_BASE_URL)" ]]; then ok "witness/crew QR codes use PUBLIC_BASE_URL=$(envget PUBLIC_BASE_URL)"
+  else ok "witness/crew QR codes use $url: phones on USB open them (adb reverse); Wi-Fi phones need PUBLIC_BASE_URL"; fi
+  case "$(envget SMSGATE_MODE)" in
+    local) gw="$(envget SMSGATE_BASE_URL)"
+      local tries=0; until curl -fsS -m 3 -u "$(envget SMSGATE_USER):$(envget SMSGATE_PASSWORD)" "$gw/health" >/dev/null 2>&1 || (( ++tries > 5 )); do sleep 1; done
+      if (( tries <= 5 )); then ok "SMS gateway phone answers at $gw"
+      else warn "SMS gateway phone not reachable at $gw: unlock it and open the SMS Gateway app (local server on), cable in.
+      Asleep it answers 500: Settings → Developer options → Stay awake keeps it up while charging."; fi ;;
+    sim) ok "SMS gateway: simulated (nothing is really sent)" ;;
+    *) warn "SMSGATE_MODE=$(envget SMSGATE_MODE)" ;;
+  esac
+  others="$(for p in $(pgrep -f next-server 2>/dev/null); do
+      [[ "$(lsof -a -p "$p" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')" == "$ROOT/apps/web" ]] || continue
+      pgrep -P "$(cat "$RUN/web.pid" 2>/dev/null || echo 0)" 2>/dev/null | grep -qx "$p" && continue
+      lsof -a -p "$p" -nP -iTCP -sTCP:LISTEN 2>/dev/null | awk -v p="$p" 'NR>1 {sub(/.*:/,"",$9); printf ":%s (pid %s) ", $9, p; exit}'
+    done)"
+  [[ -n "$others" ]] && warn "other servers of this app still running: $others— stop them with kill <pid> if unused"
+  return 0
+}
+
 cmd_open() {
-  local url; url="$(base_url)"
-  healthy "$url" || die "no app at $url (./sellekni up first)"
+  local mode="" pass=() url resetting=0
+  for a in "$@"; do case "$a" in --prod) mode=prod ;; --dev) mode=dev ;; --reset) resetting=1; pass+=("$a") ;; *) pass+=("$a") ;; esac; done
+  REPLACE=0
+  if [[ -n "${BASE_URL:-}" ]]; then healthy "$BASE_URL" || die "no app at $BASE_URL"
+  else ensure_web "$mode"; fi
+  url="$(base_url)"
+  setup_phones "$url"
+  preflight "$url" "$resetting"
   say "Opening Chrome: dispatcher + hospital A + stage (/demo, /phones), already signed in (close all windows to quit)"
-  (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm -s exec tsx scripts/open-demo.mts "$@")
+  (cd "$ROOT/apps/web" && BASE_URL="$url" pnpm -s exec tsx scripts/open-demo.mts ${pass[@]+"${pass[@]}"})
 }
 
 cmd_test() {
@@ -269,6 +384,6 @@ case "${1:-up}" in
   test) cmd_test ;;
   logs) cmd_logs "${2:-web}" ;;
   down) cmd_down "${2:-}" ;;
-  -h|--help|help) sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//' ;;
+  -h|--help|help) sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//' ;;
   *) die "unknown command '$1' (./sellekni help)" ;;
 esac

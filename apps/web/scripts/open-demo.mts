@@ -85,7 +85,12 @@ console.log(`
    3. Orientation: Pre-alert on the #1 hospital (hospital A's)
    4. Hospital window: Acknowledge
    5. Dispatcher: ✓ Acknowledged appears → Audit log shows every step
-   6. Stage window: a witness report on the newest incident → ×2, confidence up; Reset when done
+   6. Stage window (/demo): "Witness report (5 taps)" → ×2 reports, confidence up;
+      "Crew update (GCS 9, BP 85)" → re-scored, the hospital card follows; "Reset the demo" when done
+   7. Real phone on USB (app server URL http://127.0.0.1:3000): Home → "I saw an accident" (5 taps),
+      or hold SOS 1.5 s → the pin appears here. The witness/crew QR codes open on a USB phone (localhost is forwarded);
+      a phone on Wi-Fi needs PUBLIC_BASE_URL=http://<laptop LAN IP>:3000 in .env.local
+  Between two runs: ./sellekni open --reset (or scripts/reset-demo.sh for the full checklist).
   Close all windows (or Ctrl+C) to quit.`);
 
 // stay open until the person closes every window
