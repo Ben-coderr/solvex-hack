@@ -32,3 +32,6 @@ data/captures/
 
 # offline basemap extract (docs/field-notes/offline-drill-p7.md): ~70 MB, rebuilt with pmtiles extract
 apps/web/public/tiles/*.pmtiles
+
+# P8 backup video raw captures (re-made by scripts/record-demo.mts)
+docs/pitch/videos/.raw*
