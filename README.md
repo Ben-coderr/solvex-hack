@@ -22,6 +22,7 @@ That's it. `./sellekni up` prints the URL, the accounts and the password when it
 | `./sellekni login` | Prints the accounts and the password again. |
 | `./sellekni status` | Shows what's running and on which port. |
 | `./sellekni reset` | Empties incidents, pre-alerts and the audit log (hospitals stay). |
+| `scripts/reset-demo.sh [--prod]` | Between two demo runs: restarts the web app, reseeds hospitals, resets the demo DB, prints a checklist (exit 1 if a line is red). |
 | `./sellekni test` | Runs the unit tests, typecheck and protocol cross-check, then the end-to-end hero flow. |
 | `./sellekni logs [web\|mobile]` | Follows a log. Logs live in `.sellekni/`. |
 | `./sellekni down [--all]` | Stops the web app and Metro. `--all` stops Supabase too (your data is kept). |

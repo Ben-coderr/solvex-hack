@@ -1,0 +1,81 @@
+# scripts/reset-demo.sh ×5 — 2026-10-31T04:34:36Z, team laptop, prod build, local Supabase; DB dirtied (3 replays) before each run
+## run 1 (before: 2 incidents)
+exit 0
+▸ reset-demo (web: prod)
+  ✓ web app restarted (prod) at http://localhost:3000
+  ✓ hospitals reseeded (285 from seed.sql)
+  ✓ demo DB reset through /api/demo/reset (rate limits cleared)
+  ✓ incidents 0 · pre-alerts 0
+  ✓ SMS outbox empty (laptop side)
+  ✓ audit log: only the reset entry
+  ✓ hospital statuses back to the seed (2)
+  ✓ demo logins present (3)
+  ✓ DEMO_MODE on (/demo, /phones, Simulate SMS)
+  ✓ offline map tiles served
+  ! gateway phone not reachable at http://127.0.0.1:8080 (USB + adb reverse/forward: docs/field-notes/G4-drill.md) — ladder step 2: Simulate SMS
+  ! by hand: on the gateway phone, clear the SMS Gateway message list and the Messages inbox; driver phone: clear its outbox
+READY in 24s — http://localhost:3000
+## run 2 (before: 2 incidents)
+exit 0
+▸ reset-demo (web: prod)
+  ✓ web app restarted (prod) at http://localhost:3000
+  ✓ hospitals reseeded (285 from seed.sql)
+  ✓ demo DB reset through /api/demo/reset (rate limits cleared)
+  ✓ incidents 0 · pre-alerts 0
+  ✓ SMS outbox empty (laptop side)
+  ✓ audit log: only the reset entry
+  ✓ hospital statuses back to the seed (2)
+  ✓ demo logins present (3)
+  ✓ DEMO_MODE on (/demo, /phones, Simulate SMS)
+  ✓ offline map tiles served
+  ! gateway phone not reachable at http://127.0.0.1:8080 (USB + adb reverse/forward: docs/field-notes/G4-drill.md) — ladder step 2: Simulate SMS
+  ! by hand: on the gateway phone, clear the SMS Gateway message list and the Messages inbox; driver phone: clear its outbox
+READY in 23s — http://localhost:3000
+## run 3 (before: 2 incidents)
+exit 0
+▸ reset-demo (web: prod)
+  ✓ web app restarted (prod) at http://localhost:3000
+  ✓ hospitals reseeded (285 from seed.sql)
+  ✓ demo DB reset through /api/demo/reset (rate limits cleared)
+  ✓ incidents 0 · pre-alerts 0
+  ✓ SMS outbox empty (laptop side)
+  ✓ audit log: only the reset entry
+  ✓ hospital statuses back to the seed (2)
+  ✓ demo logins present (3)
+  ✓ DEMO_MODE on (/demo, /phones, Simulate SMS)
+  ✓ offline map tiles served
+  ! gateway phone not reachable at http://127.0.0.1:8080 (USB + adb reverse/forward: docs/field-notes/G4-drill.md) — ladder step 2: Simulate SMS
+  ! by hand: on the gateway phone, clear the SMS Gateway message list and the Messages inbox; driver phone: clear its outbox
+READY in 25s — http://localhost:3000
+## run 4 (before: 2 incidents)
+exit 0
+▸ reset-demo (web: prod)
+  ✓ web app restarted (prod) at http://localhost:3000
+  ✓ hospitals reseeded (285 from seed.sql)
+  ✓ demo DB reset through /api/demo/reset (rate limits cleared)
+  ✓ incidents 0 · pre-alerts 0
+  ✓ SMS outbox empty (laptop side)
+  ✓ audit log: only the reset entry
+  ✓ hospital statuses back to the seed (2)
+  ✓ demo logins present (3)
+  ✓ DEMO_MODE on (/demo, /phones, Simulate SMS)
+  ✓ offline map tiles served
+  ! gateway phone not reachable at http://127.0.0.1:8080 (USB + adb reverse/forward: docs/field-notes/G4-drill.md) — ladder step 2: Simulate SMS
+  ! by hand: on the gateway phone, clear the SMS Gateway message list and the Messages inbox; driver phone: clear its outbox
+READY in 32s — http://localhost:3000
+## run 5 (before: 2 incidents)
+exit 0
+▸ reset-demo (web: prod)
+  ✓ web app restarted (prod) at http://localhost:3000
+  ✓ hospitals reseeded (285 from seed.sql)
+  ✓ demo DB reset through /api/demo/reset (rate limits cleared)
+  ✓ incidents 0 · pre-alerts 0
+  ✓ SMS outbox empty (laptop side)
+  ✓ audit log: only the reset entry
+  ✓ hospital statuses back to the seed (2)
+  ✓ demo logins present (3)
+  ✓ DEMO_MODE on (/demo, /phones, Simulate SMS)
+  ✓ offline map tiles served
+  ! gateway phone not reachable at http://127.0.0.1:8080 (USB + adb reverse/forward: docs/field-notes/G4-drill.md) — ladder step 2: Simulate SMS
+  ! by hand: on the gateway phone, clear the SMS Gateway message list and the Messages inbox; driver phone: clear its outbox
+READY in 35s — http://localhost:3000
