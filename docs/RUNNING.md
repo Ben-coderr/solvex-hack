@@ -6,8 +6,8 @@ Overview with pictures: the [root README](../README.md). Project rules and archi
 ## 1. Start everything (one command)
 
 ```bash
-./sellekni up            # Docker → Supabase → .env.local + demo logins → web app (dev mode)
-./sellekni open          # Chrome, already signed in: dispatcher + hospital A + stage window (/demo, /phones)
+./sellekni open --reset  # stage: Docker → Supabase → logins → production build → phones → ready check → Chrome
+./sellekni up            # development only: same start-up, dev mode with hot reload, no windows
 ```
 
 That's it. `./sellekni up` prints the URL, the accounts and the password when it's ready.
@@ -18,7 +18,7 @@ That's it. `./sellekni up` prints the URL, the accounts and the password when it
 | `./sellekni up --prod` | Production build + `next start`. Faster pages; use it for rehearsals and the stage. |
 | `./sellekni up --mobile` | Also starts Metro for the phone app (development build, **not** Expo Go). |
 | `./sellekni up --replace` | Another `next dev` for this app is already running somewhere: stop it, start fresh. |
-| `./sellekni open [--reset] [--locale=ar] [--no-stage]` | Signed-in Chrome windows: dispatcher, hospital A, and (DEMO_MODE) the stage window with `/demo` + `/phones`. `--reset` empties the demo data first. |
+| `./sellekni open [--reset] [--dev\|--prod] [--locale=ar] [--no-stage]` | **The one command for the stage.** Starts whatever is missing (production build by default, rebuilt automatically when the code changed since the last build), sets up phones on USB (app → laptop through `adb reverse`, SMS gateway through `adb forward`, installs the release APK if it is newer than the one on the phone), prints a ready check, then opens signed-in Chrome windows: dispatcher, hospital A and the stage window (`/demo` + `/phones`). `--reset` empties the demo data first. |
 | `./sellekni login` | Prints the accounts and the password again. |
 | `./sellekni status` | Shows what's running and on which port. |
 | `./sellekni reset` | Empties incidents, pre-alerts and the audit log (hospitals stay). |
