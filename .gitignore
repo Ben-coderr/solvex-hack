@@ -35,3 +35,4 @@ apps/web/public/tiles/*.pmtiles
 
 # P8 backup video raw captures (re-made by scripts/record-demo.mts)
 docs/pitch/videos/.raw*
+.vercel

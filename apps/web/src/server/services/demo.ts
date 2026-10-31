@@ -1,6 +1,4 @@
 import 'server-only';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import type { IngestAck } from '@sellekni/api-contract';
 import { CrewForm, encodeDzmsd, encodePlusCode, formatHHMM, generateIncidentId, WitnessForm, type DzmsdPacket } from '../domain';
 import { sql as getSql } from '../db';
@@ -8,6 +6,8 @@ import { crewLink, submitCrew } from './crew';
 import { ingest } from './ingest';
 import { postgresStore } from './store-postgres';
 import { submitWitness, witnessLink } from './witness';
+// bundled, not read from disk at run time: serverless hosts (the Vercel backup) don't ship ../../data
+import hospitalsSeed from '../../../../../data/hospitals.seed.json';
 
 /** Scenarios for "Simulate SMS" / replay. Re-encoded with the current time so merge windows behave live. */
 export const SCENARIOS = ['rollover', 'frontal', 'witness_oran', 'bad_crc', 'witness_near_rollover'] as const;
@@ -131,9 +131,7 @@ const DEMO_TABLES = ['incidents', 'reports', 'assessments', 'prealerts', 'sms_ou
 /** Wipe incidents and everything hanging off them; restore seeded hospital statuses. Audited as the first new row. */
 export async function resetDemo(actor: string): Promise<{ ms: number; clean: boolean; counts: Record<string, number> }> {
   const t0 = Date.now();
-  const seed = JSON.parse(readFileSync(path.resolve(process.cwd(), '../../data/hospitals.seed.json'), 'utf8')) as {
-    statuses?: Array<{ hospital_id: string; status: string; set_by?: string }>;
-  };
+  const seed = hospitalsSeed as { statuses?: Array<{ hospital_id: string; status: string; set_by?: string }> };
   await getSql().begin(async (sql) => {
     await sql`truncate public.prealerts, public.assessments, public.reports, public.audit_events, public.sms_outbox,
                        public.eta_cache, public.incidents restart identity cascade`;
