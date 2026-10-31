@@ -84,7 +84,7 @@ export function HospitalView({ hospitalId, canNavigate }: { hospitalId: string; 
         <section aria-labelledby="in-h" className="flex min-w-0 flex-col gap-4">
           <h1 className="flex flex-wrap items-center gap-3">
             <Hospital aria-hidden className="size-7 text-brand-text" />
-            <span className="font-display text-3xl font-semibold">{t('title')}</span>
+            <span className="min-w-0 font-display text-3xl font-semibold break-words hyphens-auto">{t('title')}</span>
             <span className="packet-ltr font-mono text-xl text-muted-foreground">{hospitalId}</span>
           </h1>
           <h2 id="in-h" className="text-lg font-semibold">

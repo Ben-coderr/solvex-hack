@@ -28,7 +28,8 @@ function CopyButton({ text, label, testId }: { text: string; label: string; test
   const t = useTranslations('detail');
   const [done, setDone] = useState(false);
   return (
-    <Button variant="outline" size="sm" data-testid={testId} aria-label={`${label}: ${text}`}
+    // the accessible name starts with the visible word (WCAG 2.5.3: a voice user says "copy"), then says what is copied
+    <Button variant="outline" size="sm" data-testid={testId}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(text);
@@ -40,6 +41,7 @@ function CopyButton({ text, label, testId }: { text: string; label: string; test
       }}>
       {done ? <Check aria-hidden className="text-status-ok" /> : <Copy aria-hidden />}
       {done ? t('copied') : t('copy')}
+      <span className="sr-only">{` ${label}: ${text}`}</span>
     </Button>
   );
 }
@@ -91,7 +93,7 @@ function BandOverride({ detail }: { detail: IncidentDetail }) {
             { onSuccess: () => setOpen(false) },
           )}
       >
-        <fieldset className="flex flex-col gap-2">
+        <fieldset className="flex min-w-0 flex-col gap-2">
           <legend className="mb-1 text-base font-medium">{t('override.band')}</legend>
           <div className="flex flex-wrap gap-2">
             {BAND_ORDER.map((b) => (

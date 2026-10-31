@@ -94,7 +94,7 @@ export default async function WitnessPage({ params, searchParams }: PageProps<'/
         ) : view?.state === 'open' ? (
           <>
             <div className="flex flex-col gap-1">
-              <h1 className="font-display text-3xl font-semibold">{t('title')}</h1>
+              <h1 className="font-display text-3xl font-semibold break-words hyphens-auto">{t('title')}</h1>
               <p className="text-lg text-muted-foreground">{t('lead')}</p>
             </div>
             {error && <Notice icon={CircleAlert} tone="danger" title={t(`error.${error}`)} role="alert" testId="witness-error" />}
@@ -145,7 +145,7 @@ export default async function WitnessPage({ params, searchParams }: PageProps<'/
                   <span className="packet-ltr font-mono text-xl" data-testid="witness-coarse">{view.lat.toFixed(3)}, {view.lon.toFixed(3)}</span>
                   <span className="text-sm text-muted-foreground">({t('approx')})</span>
                 </p>
-                <a target="_blank" rel="noreferrer noopener" className="text-base text-brand-text underline underline-offset-4"
+                <a target="_blank" rel="noreferrer noopener" className="inline-block py-3 text-base text-brand-text underline underline-offset-4"
                   href={`https://www.openstreetmap.org/?mlat=${view.lat}&mlon=${view.lon}#map=16/${view.lat}/${view.lon}`}>
                   {t('map')}
                 </a>
@@ -177,11 +177,11 @@ export default async function WitnessPage({ params, searchParams }: PageProps<'/
 
 function Step({ n, icon: Icon, title, children }: { n: number; icon: LucideIcon; title: string; children: React.ReactNode }) {
   return (
-    <fieldset className="flex flex-col gap-3 rounded-md border border-line bg-surface p-4">
-      <legend className="flex items-center gap-2 px-1 text-xl font-semibold">
+    <fieldset className="flex min-w-0 flex-col gap-3 rounded-md border border-line bg-surface p-4">
+      <legend className="flex max-w-full flex-wrap items-center gap-2 px-1 text-xl font-semibold">
         <span className="packet-ltr grid size-9 place-items-center rounded-full bg-text font-display text-lg text-bg">{n}</span>
         <Icon aria-hidden className="size-6 text-brand-text" />
-        {title}
+        <span className="min-w-0 break-words">{title}</span>
       </legend>
       {children}
     </fieldset>
@@ -202,11 +202,11 @@ function Choice({ type, name, value, icon: Icon, defaultChecked, required, child
   type: 'radio' | 'checkbox'; name: string; value: string; icon?: LucideIcon; defaultChecked?: boolean; required?: boolean; children: React.ReactNode;
 }) {
   return (
-    <label className="flex min-h-14 min-w-16 cursor-pointer items-center gap-2 rounded-md border-2 border-line px-3 py-2 text-lg has-checked:border-brand-fill has-checked:bg-raised has-checked:font-semibold">
+    <label className="flex min-h-14 min-w-16 max-w-full cursor-pointer items-center gap-2 rounded-md border-2 border-line px-3 py-2 text-lg has-checked:border-brand-fill has-checked:bg-raised has-checked:font-semibold">
       <input type={type} name={name} value={value} defaultChecked={defaultChecked} required={required}
         className="size-5 shrink-0 accent-[var(--color-brand-fill)]" />
       {Icon && <Icon aria-hidden className="size-6 shrink-0" />}
-      <span>{children}</span>
+      <span className="min-w-0 break-words">{children}</span>
     </label>
   );
 }

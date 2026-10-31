@@ -58,7 +58,7 @@ export default function LoginPage() {
       <Suspense>
         <LoginForm />
       </Suspense>
-      <div className="flex items-center gap-2"><LocaleSwitch /><ThemeToggle /></div>
+      <div className="flex flex-wrap items-center gap-2"><LocaleSwitch /><ThemeToggle /></div>
       <p className="text-sm text-muted-foreground">{t('prototype')}</p>
     </main>
   );

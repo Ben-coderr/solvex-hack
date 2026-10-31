@@ -75,7 +75,7 @@ export function IngestButtons({ demo, onOpenIncident }: { demo: boolean; onOpenI
 
       <Dialog open={open === 'sim'} onOpenChange={close} title={t('sim.title')} description={t('sim.hint')}>
         <form className="flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); ingest.mutate({ kind: 'sim', scenario }); }}>
-          <fieldset className="flex flex-col gap-2">
+          <fieldset className="flex min-w-0 flex-col gap-2">
             <legend className="sr-only">{t('sim.title')}</legend>
             {SCENARIOS.map((s) => (
               <label key={s} className={cn('flex min-h-12 cursor-pointer items-center gap-3 rounded-md border px-3 py-2 text-base',

@@ -162,7 +162,7 @@ export function IncidentMap({ incidents, selectedId, newIds, route, onSelect, on
                   setOpenHospital(h);
                 }}
                 aria-label={t('hospital.marker', { name: h.name, level: h.level })}
-                className="block rounded-md p-0.5"
+                className="grid min-h-6 min-w-6 place-items-center rounded-md p-0.5"
               >
                 <HospitalMarker level={h.level} chosen={route?.hospitalId === h.id} />
               </button>

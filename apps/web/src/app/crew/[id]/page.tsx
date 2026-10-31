@@ -82,7 +82,7 @@ export default async function CrewPage({ params, searchParams }: PageProps<'/cre
         ) : view?.state === 'open' ? (
           <>
             <div className="flex flex-col gap-2">
-              <h1 className="font-display text-3xl font-semibold">{t('title')}</h1>
+              <h1 className="font-display text-3xl font-semibold break-words hyphens-auto">{t('title')}</h1>
               <p className="flex flex-wrap items-center gap-3 text-lg">
                 <span className="packet-ltr font-mono text-xl">{view.id}</span>
                 <span className="inline-flex items-center gap-2" data-testid="crew-band" data-band={view.band}>

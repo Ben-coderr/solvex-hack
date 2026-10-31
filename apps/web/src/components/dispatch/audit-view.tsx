@@ -72,7 +72,8 @@ export function AuditView() {
         ) : !q.data?.events.length ? (
           <EmptyState title={t('auditPage.empty')} body={t('auditPage.emptyBody')} />
         ) : (
-          <div className="overflow-x-auto rounded-md border border-line">
+          // scrolls sideways on narrow screens: focusable so a keyboard user can scroll it too (axe scrollable-region-focusable)
+          <div className="overflow-x-auto rounded-md border border-line" tabIndex={0} role="region" aria-label={t('auditPage.title')}>
             <table className="w-full min-w-[72rem] text-start text-lg" data-testid="audit-table">
               <thead className="bg-surface text-sm text-muted-foreground">
                 <tr>
