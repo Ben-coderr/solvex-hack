@@ -187,6 +187,14 @@ One line per decision: `[hour] area — decision — why`. Newest at the bottom.
 - [24h-H8] M6 location — fix requested when the screen opens: fresh fix within 10 s, else Android's last known, else the Drive-mode session fix, else none (coordinates 0,0, the server shows no position, the dispatcher calls back). A last-known fix is labelled with its age in minutes; location refused still lets the report go.
 - [24h-H8] M6 not yet verified on a phone: unit tests (scene → packet, edge cases) + typecheck only until the APK is rebuilt and installed.
 
+## P7 hardening (2026-10-31)
+- [P7] e2e in CI — new `e2e` job: `supabase start` → env:local → db:users → test:db → build → `next start` → Playwright on the runner's Chrome, `SMSGATE_MODE=sim`, retries 0. Each test that depends on DB state resets it itself (D11 used to inherit a frontal incident and merge).
+- [P7] client IP — right-most `X-Forwarded-For` entry, plus endpoint-wide caps (`incidentsJsonAll` 120/min) because without a proxy the client chooses that header. Per-IP limits are only real behind a proxy that writes the header (Vercel).
+- [P7] RLS — a hospital reads only the incidents/assessments it was pre-alerted for (`20261031000002_hospital_scope.sql`).
+- [P7] auth — sign-ups closed (`[auth] enable_signup = false`); `[auth.email] enable_signup` stays true (it is the email provider itself, logins included).
+- [P7] headers — SAMEORIGIN framing (not DENY: /phones frames /w and /crew), nosniff, Permissions-Policy, `no-referrer` on the token pages. Full script CSP deferred (MapLibre workers + Next inline scripts need nonces).
+- [P7] accepted — ingest key in the APK, witness link without expiry, webhook replay inside the window: docs/security-review-p7.md.
+
 ## Open items
 - ~~[H0] tokens — status colours not emitted~~ → resolved in P2 (status per mode, destructive = status-danger).
 - [H0] tooling — Supabase CLI not installed: `brew install supabase/tap/supabase` failed because github.com was unreachable from this machine/session at H0. Needed for P1.

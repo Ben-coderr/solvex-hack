@@ -81,6 +81,25 @@ describe('postgres store (local Supabase)', () => {
     expect(await count('incidents')).toBe(1);
   });
 
+  it('RLS: a hospital JWT reads only the incidents (and assessments) it was pre-alerted for', async () => {
+    const store = postgresStore(db);
+    await ingest(sms(EX1), store);
+    await ingest(sms(EX2, { receivedAt: new Date('2026-10-30T08:20:00Z') }), store);
+    const [h1, h2] = (await db`select id from public.hospitals order by id limit 2`).map((r) => r.id as string);
+    const seen = await db.begin(async (tx) => {
+      const [u] = await tx`insert into auth.users (id, aud, role, email) values (gen_random_uuid(), 'authenticated', 'authenticated', 'rls-probe@sellekni.test') returning id`;
+      await tx`insert into public.profiles (user_id, role, hospital_id, display_name) values (${u!.id}, 'hospital', ${h1!}, 'rls probe')`;
+      await tx`insert into public.prealerts (incident_id, hospital_id, channel, body) values ('K7Q2M', ${h1!}, 'web', 'x'), ('P3N8D', ${h2!}, 'web', 'x')`;
+      await tx`select set_config('request.jwt.claims', ${JSON.stringify({ sub: u!.id, role: 'authenticated' })}, true)`;
+      await tx`set local role authenticated`;
+      const incidents = (await tx`select id from public.incidents order by id`).map((r) => r.id);
+      const assessments = [...new Set((await tx`select incident_id from public.assessments`).map((r) => r.incident_id))];
+      await tx`reset role`;
+      throw Object.assign(new Error('rollback'), { incidents, assessments });
+    }).catch((e: { incidents?: string[]; assessments?: string[] }) => e);
+    expect(seen).toMatchObject({ incidents: ['K7Q2M'], assessments: ['K7Q2M'] });
+  });
+
   it('rolls back the whole ingest when a statement fails', async () => {
     const store = postgresStore(db);
     // Violates reports_client_id check inside the transaction (lower-case id), after the incident insert.

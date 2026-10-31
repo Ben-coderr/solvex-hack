@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   const key = req.headers.get('x-sellekni-key') ?? req.headers.get('x-najda-key');
   if (!sameSecret(key, env().INGEST_API_KEY)) return fail(401, 'missing or bad x-sellekni-key');
   const ip = clientIp(req);
-  const slow = limited(`incidents:${ip}`, LIMITS.incidentsJson);
+  const slow = limited(`incidents:${ip}`, LIMITS.incidentsJson) ?? limited('incidents:all', LIMITS.incidentsJsonAll);
   if (slow) return slow;
 
   const raw = await readRaw(req);

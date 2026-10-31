@@ -31,6 +31,8 @@ export class RateLimiter {
 export const LIMITS = {
   /** per API key + IP */
   incidentsJson: { limit: 30, windowMs: 60_000 },
+  /** every app together: the per-IP limit can be dodged with a forged X-Forwarded-For, and the key ships in the APK */
+  incidentsJsonAll: { limit: 120, windowMs: 60_000 },
   /** per gateway (the phone retries with backoff; generous) */
   smsWebhook: { limit: 120, windowMs: 60_000 },
   /** docs/05 §7: ≤ 3 auto alerts per hour per SMS sender (excess is still STORED, flagged, never dropped) */
