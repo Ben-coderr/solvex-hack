@@ -20,7 +20,7 @@ TODO: the remaining phases (see phase prompts P7–P8 and the cut list in docs/1
 
 ## Commands
 Quickest: `./sellekni up` (Docker → Supabase → env + demo logins → web), `./sellekni open` (signed-in dispatcher + hospital windows + the /demo · /phones stage window),
-`./sellekni test`, `./sellekni down`. Run/test guide with accounts: `README.md`.
+`./sellekni test`, `./sellekni down`. Run/test guide with accounts: `docs/RUNNING.md`.
 ```bash
 pnpm install
 pnpm check            # shared tests + typecheck + tokens contrast + independent Python cross-check — must be green before every merge

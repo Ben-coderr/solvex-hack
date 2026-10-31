@@ -1,7 +1,7 @@
 # web — Sellekni dispatcher, hospital and witness console
 
 Next.js 16 (App Router, Turbopack) on the local Supabase stack. **Synthetic data only.**
-Start it from the repo root with `./sellekni up` (see the root `README.md`); project rules are in `DEVELOPMENT.md`.
+Start it from the repo root with `./sellekni up` (see `docs/RUNNING.md`); project rules are in `DEVELOPMENT.md`.
 
 ## Layout
 
